@@ -67,18 +67,7 @@
 									</ul>
 								</li>
 
-								<li class="nav-item"><a
-									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-									data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">예약하기</a>
-									
-									<ul class="sub-menu collapse" id="submenu-1-3">
-										<li class="nav-item"><a href="/pet/menu/reserve/resv1_mb.do">resv1_mb</a></li>
-										<li class="nav-item"><a href="/pet/menu/reserve/resvhistory_mb_list.do">resvhistory_mb_list</a></li>
-										<li class="nav-item"><a href="/pet/menu/reserve/resvhistory_st_list.do">resvhistory_st_list</a></li>
-									</ul>
-								</li>
+								<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
 									
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
@@ -90,7 +79,6 @@
 										<li class="nav-item"><a href="/pet/menu/mypage/admin.do">Admin</a></li>
 										<li class="nav-item"><a href="/pet/menu/mypage/user.do">User</a></li>
 										<li class="nav-item"><a href="/pet/menu/mypage/sitter.do">Pet Sitter</a></li>
-										<li class="nav-item"><a href="/pet/menu/mypage/pet.do">Pet</a></li>
 									</ul>
 								</li>
 									

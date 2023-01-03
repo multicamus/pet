@@ -10,6 +10,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resv2_mb.jsp" />
 	</definition>
 	
+	<definition name="resv/resv_3" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/reserve/resv3_mb.jsp" />
+	</definition>
+	
 	<definition name="resv/resvmb_list" extends="main">
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resvhistory_mb_list.jsp" />
 	</definition>

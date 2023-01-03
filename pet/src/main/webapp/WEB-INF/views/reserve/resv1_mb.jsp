@@ -197,7 +197,7 @@
                     <div class="row">
 
                         <!-- 1번째 칸 -->
-                        <div class="col-md-4"> 
+                        <div class="col-md-6"> 
                             <!-- 1번째 칸 row -->
                             <div class="row"> 
                                 <!-- 1번째 칸 wrapper -->                    
@@ -267,39 +267,20 @@
                                             </div>
                                         </div>                                              
                                     </div>
-
-                                    <!-- 1번째 칸 매칭 제목 -->
                                     <div class="row">
                                         <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-top:25px ;">펫시터 매칭 방법 선택</span>
+                                            <div class="section-title text-center mb-20" style="margin-top:20px">
+                                                <span class="wow fadeInDown" data-wow-delay=".2s">돌봄 시 요청 및 주의사항</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 1번째 칸 매칭 입력 -->
-                                    <div  class="row">
-                                        <div class="mb-3">
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
-                                                <div class="form_radio_btn radio_male">
-                                                    <input id="radio-5" type="radio" name="howtomatch"  >
-                                                    <label for="radio-5">자동매칭</label>
-                                                </div>
-                                            </div> 
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
-                                                <div class="form_radio_btn">
-                                                    <input id="radio-6" type="radio" name="howtomatch" value="female">
-                                                    <label for="radio-6">과거에 이용했던 펫시터 리스트</label>
-                                                </div>
-                                            </div>
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >       
-                                                <div class="form_radio_btn">
-                                                    <input id="radio-7" type="radio" name="howtomatch" value="female">
-                                                    <label for="radio-7">직접선택</label>
-                                                </div>
-                                            </div> 
-                                        </div>                                              
-                                    </div>
 
+                                    <!-- 3번째 칸 돌봄시 요청 및 주의사항 입력 -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <textarea class="message" name="message" id="emergency" placeholder="" rows="10" style="width: 500px;"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- 1번째 칸 wrapper 끝 -->
                             </div>
@@ -308,7 +289,7 @@
                         <!-- 1번째 칸 끝-->
                 
                         <!-- 2번째 칸  ============ -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <!-- 2번째 칸 row -->
                             <div class="row"> 
                                 <!-- 2번째 칸 wrapper -->                    
@@ -324,7 +305,7 @@
                                     <!-- 2번째 칸 방문날짜 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="date">날짜를 선택해주세요
+                                            <label for="date">날짜를 선택해주세요<br/>
                                                 <input type="date" id="date">
                                             </label>
                                         </div>
@@ -341,7 +322,7 @@
                                     <!-- 2번째 칸 방문시간 입력=============== -->
                                     <div class="row">
                                         <div class="col-12">
-                                        방문시간을 선택해주세요
+                                        방문시간을 선택해주세요<br/>
                                             <select>
                                                 <option>오전 8:00</option>
                                                 <option>오전 9:00</option>
@@ -404,108 +385,9 @@
                         </div>
                         <!-- 2번째 칸 -->
 
-                        <!-- 3번째 칸 -->
-                        <div class="col-md-4"> 
-                            <!-- 3번째 칸 row -->
-                            <div class="row"> 
-                                <!-- 3번째 칸 wrapper -->
-                                <div class="contact-form-wrapper">
-                                    <!-- 3번째 칸 선호하는 펫시터 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">선호하는 펫시터</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 3번째 칸 선호하는 펫시터 입력 -->
-                                    <p style="margin-bottom: 10px;" ><strong>성별기준</strong></p>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="resv1_prefergender" >
-                                                <div class="form_radio_btn radio_gender">
-                                                    <input id="radio-11" type="radio" name="sittergender"  >
-                                                    <label for="radio-11">남성</label>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="resv1_prefergender" >
-                                                <div class="form_radio_btn radio_gender">
-                                                    <input id="radio-12" type="radio" name="sittergender"  >
-                                                    <label for="radio-12">여성</label>
-                                                </div>
-                                            </div>                                         
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
-                                                <div class="form_radio_btn radio_gender">
-                                                    <input id="radio-13" type="radio" name="sittergender"  >
-                                                    <label for="radio-13">상관없음</label>
-                                                </div>
-                                            </div>                                         
-                                        </div>
-                                    </div>
-
-                                    <p style="margin-bottom: 10px;" ><strong>반려견 사이즈에 따른 돌봄경험 횟수</strong></p>
-                                    <div  class="row">
-                                        <div class="mb-3">
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
-                                                <div class="form_radio_btn radio_male">
-                                                    <input id="radio-14" type="radio" name="dogsize"  >
-                                                    <label for="radio-14">소형견 돌봄 경험이 많은 사람</label>
-                                                </div>
-                                            </div> 
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
-                                                <div class="form_radio_btn">
-                                                    <input id="radio-15" type="radio" name="dogsize" >
-                                                    <label for="radio-15">중형견 돌봄 경험이 많은 사람</label>
-                                                </div>
-                                            </div>
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
-                                                <div class="form_radio_btn">
-                                                    <input id="radio-16" type="radio" name="dogsize" >
-                                                    <label for="radio-16">대형견 돌봄 경험이 많은 사람</label>
-                                                </div>
-                                            </div>
-                                            <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
-                                                <div class="form_radio_btn">
-                                                    <input id="radio-17" type="radio" name="dogsize">
-                                                    <label for="radio-17">상관없음</label>
-                                                </div>
-                                            </div>
-                                        </div>                                              
-                                    </div>
-
-                                    <!-- 3번째 칸 돌봄시 요청 및 주의사항 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20" style="margin-top:50px">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">돌봄 시 요청 및 주의사항</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- 3번째 칸 돌봄시 요청 및 주의사항 입력 -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea class="message" name="message" id="emergency" placeholder="" rows="10"></textarea>
-                                        </div>
-                                    </div>
-                                    
-
-                                </div>
-                                <!-- 3번째 칸 wrapper 끝 -->
-                            </div>
-                            <!-- 3번째 칸 row 끝 -->
-                        </div>
-                        <!-- 3번째 칸 끝  -->
-                    </div>
-                    <!-- 전체 row 끝 -->
-
                     <!-- 다음버튼 -->
                         <div class="col-12">
-                            <div class="button text-center">
+                            <div class="button text-center pb-50">
                                 <button type="submit" class="theme-btn" onclick="location.href='/pet/menu/reserve/resv2_mb.do'" style="margin-left: 1150px;">다음</button>
                                 
                             </div>
