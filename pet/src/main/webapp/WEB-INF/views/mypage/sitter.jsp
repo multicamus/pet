@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="banner-content">
-                            <h2 class="text-white">Petsitter's Page </h2>
+                            <h2 class="text-white">Pet Sitter's Page </h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -36,38 +36,45 @@
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-phone"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>연락처</h4>
-                                            <p>0984537278623</p>
-                                            <p>yourmail@gmail.com</p>
-                                        </div>
-                                    </div>
+                                	<a href="/pet/menu/reserve/resvhistory_st_list.do">
+	                                    <div class="contact-item">
+	                                        <div class="contact-icon">
+	                                            <i class="lni lni-phone"></i>
+	                                        </div>
+	                                        <div class="contact-content">
+	                                            <h4>나의 예약 보기</h4>
+	                                            <p>예약 정보 띄우기</p>
+	                                            <p>예약 정보 띄우기</p>
+	                                        </div>
+	                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-map-marker"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>주소</h4>
-                                            <p>서울시 종로구  </p>
-                                            <p>대한민국</p>
-                                        </div>
-                                    </div>
+	                                <a href="/pet/menu/reserve/resvhistory_st_list.do">
+	                                    <div class="contact-item">
+	                                        <div class="contact-icon">
+	                                            <i class="lni lni-map-marker"></i>
+	                                        </div>
+	                                        <div class="contact-content">
+	                                            <h4>나의 점수</h4>
+	                                            <p>별점으로 표시</p>
+	                                            <p>가장 최근 후기</p>
+	                                        </div>
+	                                    </div>
+                                    </a>
                                 </div>
+                                
                                 <div class="col-12 col-md-6 col-xl-12">
                                     <div class="contact-item">
                                         <div class="contact-icon">
                                             <i class="lni lni-alarm-clock"></i>
                                         </div>
                                         <div class="contact-content">
-                                            <h4>이용시간</h4>
-                                            <p>24 Hours / 7 Days Open </p>
-                                            <p>10 AM - 5:30 PM</p>
+                                            <h4>자격증</h4>
+                                            <p>자격증</p>
+                                            <p>자격증</p>
+                                            <p><a href="#">등록</a></p>
+                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -99,26 +106,33 @@
                                     <div class="col-md-6" ><button class=" btn btn-primary " style="margin-left: 30px;"  type="submit">번호 변경</button></br>
                                         <input type="text" name="phone" id="phone" placeholder="전화번호" required>
                                     </div>
-                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소변경</button></br>
+                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소 변경</button></br>
                                         <input type="text" name="address" id="address" placeholder="주소" required>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <h4>서비스 가능 지역</h4>
-                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5">
-                                             
-                                        </textarea>
+                                    <div class="col-md-6" >
+                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" required>
                                     </div>
                                 </div>
+                                	<div class="row">
+	                                    <div class="col-12">
+	                                        <h4>자기 소개</h4>
+	                                        <textarea name="message" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5"></textarea>
+	                                    </div>
+	                                </div>
+	                                <div class="row">
+	                                    <div class="col-12">
+	                                        <h4>서비스 가능 지역</h4>
+	                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5"></textarea>
+	                                    </div>
+	                                </div>
                                 <div>
-                                        <button class=" btn btn-primary " type="submit">서울시 종로구</button>
-                                        <button class=" btn btn-primary " type="submit">서울시 성북구</button>
-                                        <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
-                                        <button class=" btn btn-primary " type="submit">서울시 영등포구</button>    
-                                    </div>
-                                </br>
-                            </br>
+	                               <button class=" btn btn-primary " type="submit">서울시 종로구</button>
+	                               <button class=" btn btn-primary " type="submit">서울시 성북구</button>
+	                               <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
+	                               <button class=" btn btn-primary " type="submit">서울시 영등포구</button>    
+                                </div></br></br>
             
                                 <div class="row">
                                     <div class="col-12">
