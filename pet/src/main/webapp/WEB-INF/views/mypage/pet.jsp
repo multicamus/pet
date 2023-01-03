@@ -88,7 +88,7 @@
                             </div>
                             <form action="assets/php/mail.php" class="contact-form">
                                 <!-- <img src="assets/img/dog.jpg" class="rounded float-center" alt="" width="30%"><h4>사진등록</h4> -->
-                                <div style="display: flex; position: relative;"><a href=""><img src="assets/img/dog.jpg"
+                                <div style="display: flex; position: relative;"><a href=""><img src="/pet/resources/assets/images/dog.jpg"
                                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" ></a>
                            </div>
                                 <div>
