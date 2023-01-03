@@ -16,6 +16,17 @@
           margin-bottom: 25px;
           margin-top: 15px;
           /* border: 1px solid #999; */
+          select {
+          border-radius: 25px;
+            
+          border: 1px solid #F4EEFB;
+          transition: all 0.3s ease-out 0s;    
+          width: 300px; 
+          height: 60px;
+          padding: .8em .5em; 
+          margin-bottom: 25px;
+          margin-top: 15px;
+          /* border: 1px solid #999; */
           
 
           font-family: inherit;  
@@ -24,6 +35,26 @@
           -webkit-appearance: none; 
           -moz-appearance: none;
           appearance: none;
+
+          padding: 0.6em 1.4em 0.5em 0.8em;
+          }
+          
+
+        font-family: inherit;  
+        
+        
+        -webkit-appearance: none; 
+        -moz-appearance: none;
+        appearance: none;
+        }
+        
+        .input{
+        border: 1px solid #F4EEFB;
+        border-radius: 25px;
+        padding: .8em .5em;     
+        width: 150px;
+        margin:auto;
+        }
 
           padding: 0.6em 1.4em 0.5em 0.8em;
           }
