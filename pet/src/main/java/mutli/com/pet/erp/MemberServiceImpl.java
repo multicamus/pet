@@ -3,7 +3,7 @@ package mutli.com.pet.erp;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberServiceIml implements MemberService {
+public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDTO login(MemberDTO loginUser) {
