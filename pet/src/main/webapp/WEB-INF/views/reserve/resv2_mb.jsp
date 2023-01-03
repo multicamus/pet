@@ -3,88 +3,167 @@
 <html class="no-js" lang="ko">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>resv2_mb</title>
     <style>
-        select {
-        border-radius: 25px;
+          select {
+          border-radius: 25px;
+            
+          border: 1px solid #F4EEFB;
+          transition: all 0.3s ease-out 0s;    
+          width: 300px; 
+          height: 60px;
+          padding: .8em .5em; 
+          margin-bottom: 25px;
+          margin-top: 15px;
+          /* border: 1px solid #999; */
           
-        border: 1px solid #F4EEFB;
-        transition: all 0.3s ease-out 0s;    
-        width: 300px; 
-        height: 60px;
-        padding: .8em .5em; 
-        margin-bottom: 25px;
-        /* border: 1px solid #999; */
-        
 
-        font-family: inherit;  
-        background: url('arrow.jpg') no-repeat 95% 50%; 
-        
-        -webkit-appearance: none; 
-        -moz-appearance: none;
-        appearance: none;
-        }
-        
-        .input{
-        border: 1px solid #F4EEFB;
-        border-radius: 25px;
-        padding: .8em .5em;     
-        width: 150px;
-        margin:auto;
-        }
+          font-family: inherit;  
+          background: url('arrow.jpg') no-repeat 95% 50%; 
+          
+          -webkit-appearance: none; 
+          -moz-appearance: none;
+          appearance: none;
 
-        .homepass{
-        font-size: 13px;
-        border: 1px solid #F4EEFB;
-        border-radius: 25px;
-        padding: .8em .5em;     
-        width: 150px;
-        margin-bottom: 40px;
-        }
+          padding: 0.6em 1.4em 0.5em 0.8em;
+          }
+          
+          .homepass{
+              font-size: 13px;
+          }
 
-        #message{
-        border: 1px solid #F4EEFB;
-        border-radius: 25px;
-        padding: .8em .5em;     
-        width: 350px;  
-        margin-bottom: 35px;   
-        }
+          #parking{
+          border: 1px solid #F4EEFB;
+          border-radius: 25px;
+          padding: .8em .5em;     
+          width: 350px;     
+          }
 
-        #parking{
-        border: 1px solid #F4EEFB;
-        border-radius: 25px;
-        padding: .8em .5em;     
-        width: 350px;     
-        }
+          .message{
+          border: 1px solid #F4EEFB;
+          border-radius: 25px;
+          padding: .8em .5em;     
+          width: 350px; 
+          margin-bottom: 60px;
+          }
 
-        .message{
-        border: 1px solid #F4EEFB;
-        border-radius: 25px;
-        padding: .8em .5em;     
-        width: 350px; 
-        margin-bottom: 60px;
-        }
+          .theme-btn{
+             margin-left: 180px;
+             margin-top: 60px;
+          }
 
-        .theme-btn{
-           margin-left: 10px;
-           margin-top: 60px;
-        }
+          #clean{
+              margin-bottom:20px;
+          }
 
-        #clean{
-            margin-bottom:20px;
-        }
+          #emergency{
+              margin-bottom: 15px;
+          }
 
-        #emergency{
-            margin-bottom: 15px;
-        }
+          #feed{
+              margin-bottom : 95px;
+          }
 
-        #feed{
-            margin-bottom : 95px;
-        }
-        </style>
+          .form_check_btn {
+	width: 80%;
+          display: inline-block;
+	height : 45px;
+  		border: 1px solid #EAE7E7;
+  		border-radius: 30px;
+          margin:auto;
+          margin-bottom: 20px;
+}
+.form_check_btn input[type=checkbox] {
+	display: none;
+}
+.form_check_btn label {
+	display: block;
+  		border-radius: 30px;
+ 			margin: 0 auto;
+  		text-align: center;
+  		height: -webkit-fill-available;
+  		line-height: 45px;
+}
+ 
+/* Checked */
+.form_check_btn input[type=checkbox]:checked + label {
+	background: #3763ec;
+	color: #fff;
+          
+}
+ 
+/* Hover */
+.form_check_btn label:hover {
+	color: #666;
+}
+ 
+/* Disabled */
+.form_check_btn input[type=checkbox] + label {
+	background: #F9FAFC;
+	color: #666;
+}
+      
+      input[type="checkbox"]:checked + label {
+          background:#3763ec ;
+      }
+
+
+      .form_radio_btn {
+	width: 80%;
+          display: inline-block;
+	height : 45px;
+  		border: 1px solid #EAE7E7;
+  		border-radius: 30px;
+          margin:auto;
+          margin-bottom: 20px;
+}
+.form_radio_btn input[type=radio] {
+	display: none;
+}
+.form_radio_btn label {
+	display: block;
+  		border-radius: 30px;
+ 			margin: 0 auto;
+  		text-align: center;
+  		height: -webkit-fill-available;
+  		line-height: 45px;
+}
+ 
+/* Checked */
+.form_radio_btn input[type=radio]:checked + label {
+	background: #3763ec;
+	color: #fff;
+          
+}
+ 
+/* Hover */
+.form_radio_btn label:hover {
+	color: #666;
+}
+ 
+/* Disabled */
+.form_radio_btn input[type=radio] + label {
+	background: #F9FAFC;
+	color: #666;
+}
+      
+      input[type="radio"]:checked + label {
+          background:#3763ec ;
+      }
+
+      #date{
+          border: 1px solid #F4EEFB;
+          border-radius: 25px;
+          padding: .8em .5em;     
+          width: 350px;
+          margin-top: 10px;  
+          margin-bottom:30px;
+      }
+
+      
+          </style>
 </head>
-<body>
+    <body>
         <!-- ========================= page-banner-section start ========================= -->
         <section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
             <div class="container">
@@ -106,190 +185,185 @@
             </div>
         </section>
         <!-- ========================= page-banner-section end ========================= -->
-
-        <!-- ========================= contact-section start ========================= -->
-        <!-- 전체 section -->
-        <section class="contact-section pt-130">
-            <!-- 전체 컨테이너 -->
-            <div class="container">
-                <!-- 전체 form -->
-                <form action="assets/php/mail.php" class="contact-form">
-                    <!-- 전체 row -->
-                    <div class="row">
-                        
-                        <!-- 1번째 칸 -->
-                        <div class="col-md-4"> 
-                            <!-- 1번째 칸 row -->
-                            <div class="row"> 
-                                <!-- 1번재 칸 wrapper -->
-                                <div class="contact-form-wrapper">
-                                <!-- <form action="assets/php/mail.php" class="contact-form"> -->
-                                    <!-- 1번째 칸 방문방법 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">방문방법(필수)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 1번째 칸 방문방법 선택 -->
-                                    <div class="row">
-                                        <div class="col-12" >
-                                            <select>
-                                                <option>비밀번호</option>
-                                                <option>직접만남</option>
-                                            </select> 
-                                        </div>    
-                                    </div>
-                                    <!--1번째 칸 비밀번호 입력 제목 (비밀번호 선택시 이 화면이 보여지도록) -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-top:20px ;">비밀번호(필수)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--1번째 칸 비밀번호 입력 칸 (비밀번호 선택시 이 화면이 보여지도록) -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class= "homepass" name="homepass1" id="homepass1" placeholder="공동현관비밀번호" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" class= "homepass" name="homepass1" id="homepass2" placeholder="집현관비밀번호" required>
-                                        </div>
-                                    </div>
-                                    <!-- 1번째 칸 직접만남 제목(직접만남선택시 이 화면이 보여지도록) -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-top:25px ;">직접만남(필수)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 1번째 칸 직접만남 입력칸(직접만남선택시 이 화면이 보여지도록) -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea name="message" id="message" placeholder="대면만남시 특이사항 기입(필수)" rows="5"></textarea>
-                                        </div>
-                                    </div>  
-                                </div> 
-                                <!-- 1번째 칸 wrapper 끝 -->
-                            </div>
-                            <!-- 1번째 칸 row 끝 -->
-                        </div>
-                        <!-- 1번째 칸 끝 -->
-                        
-                        <!-- 2번째 칸 -->
-                        <div class="col-md-4"> 
-                            <!-- 2번째 칸 row -->
-                            <div class="row"> 
-                                <!-- 2번째 칸 wrapper -->
-                                <div class="contact-form-wrapper">
-                                    <!-- 2번째 칸 주차여부 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">주차여부(필수)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 2번째 칸 주차여부 입력 -->    
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea class="message" name="message" id="parking" placeholder="펫시터가 방문할 시의 주차가능여부, 주차장소 등의 정보를 기입해주세요(필수)" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                <!-- <form action="assets/php/mail.php" class="contact-form"> -->
-                                    <!-- 2번째 칸 용품위치 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">용품위치(필수)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 2번째 칸 용품위치 입력 -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea class="message" name="message" id="feed" placeholder="펫시터님이 반려동물을 위해 사용할 용품들의 위치를 알려주세요(필수)" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                <!-- </form> -->
-                                </div>
-                                <!-- 2번째칸 wrapper -->
-                            </div>
-                            <!-- 2번째칸 row -->
-                        </div>  
-                        <!-- 2번째 칸 -->
-                        
-                        <!-- 3번째 칸 -->
-                        <div class="col-md-4"> 
-                            <!-- 3번째 칸 row -->
-                            <div class="row">   
-                                <!-- 3번째 칸 wrapper -->
-                                <div class="contact-form-wrapper">
-                                    <!-- 3번째 칸 배변쓰레기 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">배변 및 쓰레기 버리는법</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 3번째 칸 배변쓰레기 입력 -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea class="message" name="message" id="clean" placeholder="" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                <!-- <form action="assets/php/mail.php" class="contact-form"> -->
-                                    
-                                    <!-- 3번째 칸 비상연락처 제목 -->
-                                    <div class="row">
-                                        <div class="col-xl-10 col-lg-8 mx-auto">
-                                            <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">비상연락처</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 3번째 칸 비상연락처 입력 -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea class="message" name="message" id="emergency" placeholder="" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- 3번째칸 다음 버튼 -->
-                                    <!-- <div class="row">
-                                        <div class="col-12">
-                                            <div class="button text-center">
-                                                <button type="submit" class="theme-btn">다음</button>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                </div>
-                                <!-- 3번째 칸 wrapper -->
-                            </div>
-                                <!--3번째 칸 row  -->
-                        </div>
-                            <!--3번째 칸  -->
-                    </div>
-                    <!-- 전체 row끝  -->
-
-                    <!-- 이전버튼 -->
-                        <div >
-                            <div class="button text-center">
-                                <button type="submit" class="theme-btn" onclick="location.href='/pet/menu/reserve/resv1_mb.do'" style="display:inline-block; margin-left:1000px">이전</button>
-                                <button type="submit" class="theme-btn" style="display:inline-block; ">다음</button>
-                            </div>
-                        </div>    
-                    
-
-                </form>
-                <!-- 전체 form 끝 -->
+        
+        <!-- ========================= 펫시터 매칭-section start ========================= -->
+<section id="pricing" class="pricing-section pt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
+                <div class="section-title text-center mb-60">
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">펫시터 매칭 방법 선택</h2>
+                </div>
             </div>
-            <!-- 전체 container끝 -->
-        </section>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pricing-btn text-center wow fadeInUp" data-wow-delay=".3s">
+                    <ul class="nav justify-content-center mb-90" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">직접 선택</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-2-tab" data-bs-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">자동 매칭</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-3-tab" data-bs-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">과거에 이용했던 펫시터</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="single-pricing active mb-50">
+                    <div class="row justify-content-center">
+                  		<div class="col-lg-4">
+                            <h3>선호하는 펫시터</h3>
+                            <h4>성별</h4>
+                            	<select>
+                            		<option>남자</option>
+                            		<option>여자</option>
+                            		<option>상관 없음</option>
+                            	</select>
+                            <h4>돌봄 경험 횟수</h4>
+                            	<select>
+                            		<option>소형견 돌봄 경험이 많은 사람</option>
+                            		<option>중형견 돌봄 경험이 많은 사람</option>
+                            		<option>대형견 돌봄 경험이 많은 사람</option>
+                            		<option>상관 없음</option>
+                            	</select>
+                            <form>
+                           		<a href="javascript:void(0)" class="theme-btn" style="margin-left: 0px;">확인</a>
+                           	</form>
+                           	<p>펫시터분들을 확인해보세요!</p>
+						</div>
+						
+                  		<div class="col-lg-8 row align-self-center">
+                  		
+	                  		<div class="col-lg-4">
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/1.jpg" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+							<div class="col-lg-4">
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/3.gif" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+							<div class="col-lg-4">
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/4.png" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+						</div>
+                   
+                    </div>
+                    
+                </div>
+            </div>
+        
+            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                <div class="single-pricing active mb-50">
+                        <div class="row">
+                            <div class="col-4 justify-content-center">
+                            <h3>선호하는 펫시터</h3>
+                            <h4>성별</h4>
+                            	<select>
+                            		<option>남자</option>
+                            		<option>여자</option>
+                            		<option>상관 없음</option>
+                            	</select>
+                            <h4>돌봄 경험 횟수</h4>
+                            	<select>
+                            		<option>소형견 돌봄 경험이 많은 사람</option>
+                            		<option>중형견 돌봄 경험이 많은 사람</option>
+                            		<option>대형견 돌봄 경험이 많은 사람</option>
+                            		<option>상관 없음</option>
+                            	</select>
+                            <form>
+                           		<a href="javascript:void(0)" class="theme-btn">확인</a>
+                           	</form>
+                           	<p>펫시터분들을 확인해보세요!</p>
+						</div>
+						
+                  		<div class="col-8 justify-content-center">
+                            <h3>이용자</h3>
+                            <h4>$25.99</h4>
+                            <ul>
+                                <li>30 Users</li>
+                                <li>Minimal Report</li>
+                                <li>1GB Data Storage</li>
+                                <li>7/24 Support</li>
+                                <li>Multiple Agents</li>
+                            </ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                <div class="single-pricing active mb-50">
+                     <div class="col-lg-12 row align-self-center">
+                  		
+	                  		<div class="col-lg-4">
+	                  			<h4>12월 31일</h4>
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/1.jpg" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+							<div class="col-lg-4">
+								<h4>1월 4일</h4>
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/3.gif" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+							<div class="col-lg-4">
+								<h4>1월 7일</h4>
+		                  		<div class="card">
+									  <img src="/pet/resources/assets/images/4.png" class="card-img-top" alt="...">
+									  <div class="card-body">
+									    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									  </div>
+								</div>
+							</div>
+							
+						</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- ========================= 펫시터-section end ========================= -->
+
+	     <!-- 버튼 -->
+	     <form>
+	         <div class="button text-center pb-50">
+        		 <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv1_mb.do" style="display:inline-block; margin-left:1000px">이전</button>
+            	 <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv3_mb.do" style="display:inline-block; margin-left:0px">다음</button>
+	         </div>
+	     </form>
     </body>
 </html>

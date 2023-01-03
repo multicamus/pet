@@ -116,6 +116,73 @@
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
                                 <div class="row">
                                     <div class="col-2">
+                                        <span style="margin-right:50px"><h4>기다리는 중</h4></span>
+                                    </div>
+                                    <div class="col-10">
+                                        <span><h5>방문날짜: </h5></span>
+                                        <span><h5>0000년 00월 00일</h5></span>
+                                    </div>
+                                </div>
+                                <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
+
+                                <!-- 반려동물 사진 / 서비스정보 -->
+                                <div class="row" style="display: flex; align-items: center;  flex: 110%;">
+                                    <div class="col-2">
+                                        <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
+                                            alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
+                                    </div>
+                                    <div class="col-8 ">
+                                        <div >
+                                            <div style="font-size: 20px; ">
+                                                <span>반려동물 이름:</span>
+                                                <span>ㅇㅇㅇ</span>
+                                                <span style="margin-left:50px">돌봄 서비스 종류</span>
+                                                <span>ㅇㅇㅇ</span>
+                                            </div>
+
+                                            <div style="font-size: 20px; margin-top: 20px ;">
+                                                <span>돌봄 서비스 가격:</span>
+                                                <span>ㅇㅇㅇ</span>
+                                                <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
+                                                <span>ㅇㅇ시~ㅇㅇ시</span>
+                                            </div>    
+                                        </div>
+                                    </div>
+                    
+                                    <!-- 더보기 -->
+                                    <div class="col-2">        
+                                        <div class="button text-center" >
+                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >승 인</button><br/>
+                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >거 절</button><br/>
+                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn">더보기</button>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- 더보기 끝 -->
+                                </div>    
+                                <!-- 반려동물 사진 / 서비스정보 끝-->       
+                            </div>
+                            <!-- 돌봄예정 서비스 box content 끝 -->    
+                        </div>
+                        <!-- 돌봄예정 서비스 service box 끝-->
+                    </div>
+                    <!-- 돌봄예정 서비스 칸 끝-->
+                </div>
+                <!-- 돌봄예정 서비스 row 끝-->
+
+
+                <!-- 돌봄 예정 서비스 정보 -->
+                <!-- 돌봄예정 서비스 row -->
+                <div class="row">
+                    <!-- 돌봄예정 서비스 칸 -->
+                    <div class="col-lg-12 col-md-6">
+                        <!-- 돌봄예정 서비스 service box -->
+                        <div class="service-box box-style">
+                            <!-- 돌봄예정 서비스 box content -->
+                            <div class="box-content-style service-content">
+                                <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
+                                <div class="row">
+                                    <div class="col-2">
                                         <span style="margin-right:50px"><h4>돌봄 예정</h4></span>
                                     </div>
                                     <div class="col-10">
@@ -166,10 +233,6 @@
                     <!-- 돌봄예정 서비스 칸 끝-->
                 </div>
                 <!-- 돌봄예정 서비스 row 끝-->
-
-
-
-                
 
                 <!-- 돌봄 예정 서비스 정보 -->
                 <!-- 돌봄예정 서비스 row -->

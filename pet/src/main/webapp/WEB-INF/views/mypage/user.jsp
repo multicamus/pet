@@ -36,40 +36,46 @@
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-phone"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>연락처</h4>
-                                            <p>0984537278623</p>
-                                            <p>yourmail@gmail.com</p>
-                                        </div>
-                                    </div>
+	                                <a href="/pet/menu/mypage/pet.do">
+	                                    <div class="contact-item">
+	                                        <div class="contact-icon">
+	                                            <i class="lni lni-phone"></i>
+	                                        </div>
+	                                        <div class="contact-content">
+												<h4>반려동물 1's name</h4>
+												<p>반려동물's 종류</p>
+												<p>반려동물's 품종</p>
+	                                        </div>
+	                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-map-marker"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>주소</h4>
-                                            <p>서울시 종로구</p>
-                                            <p>대한민국</p>
-                                        </div>
-                                    </div>
+                                	<a href="/pet/menu/mypage/pet.do">
+	                                    <div class="contact-item">
+	                                        <div class="contact-icon">
+	                                            <i class="lni lni-map-marker"></i>
+	                                        </div>
+	                                        <div class="contact-content">
+	                                            <h4>반려동물 2's name</h4>
+												<p>반려동물's 종류</p>
+												<p>반려동물's 품종</p>
+	                                        </div>
+	                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-alarm-clock"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>이용시간</h4>
-                                            <p>24 Hours / 7 Days Open </p>
-                                            <p>10 AM - 5:30 PM</p>
-                                        </div>
-                                    </div>
+                                	<a href="/pet/menu/reserve/resvhistory_mb_list.do">
+	                                    <div class="contact-item">
+	                                        <div class="contact-icon">
+	                                            <i class="lni lni-alarm-clock"></i>
+	                                        </div>
+	                                        <div class="contact-content">
+	                                            <h4>나의 예약 및 결제</h4>
+												<p>예정 중인 예약</p>
+												<p>예정 중인 예약</p>
+	                                        </div>
+	                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
