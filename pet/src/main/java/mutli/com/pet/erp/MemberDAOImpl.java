@@ -5,15 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDaoImpl implements MemberDao {
+public class MemberDAOImpl implements MemberDAO {
 	SqlSession sqlSession;
 	
-	public MemberDaoImpl() {
+	public MemberDAOImpl() {
 		super();
 	}
 
 	@Autowired
-	public MemberDaoImpl(SqlSession sqlSession) {
+	public MemberDAOImpl(SqlSession sqlSession) {
 		super();
 		this.sqlSession = sqlSession;
 	}
