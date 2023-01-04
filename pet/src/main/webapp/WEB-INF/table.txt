@@ -87,7 +87,6 @@ add constraint review_reply_fk foreign key(review_no) references review(review_n
 alter table resv_history
 add constraint resv_history_fk foreign key(member_id) references job(member_id);
 
-=====================================================================================
 ===================================아래 수정본====================================
 #이용자테이블
 create table member_info(
