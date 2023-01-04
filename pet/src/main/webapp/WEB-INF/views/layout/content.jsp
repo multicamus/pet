@@ -16,7 +16,7 @@
 	                    <h2 class="mb-25 wow fadeInDown" data-wow-delay=".2s">Coming</h2>
 	                    <h1 class="mb-25 wow fadeInDown" data-wow-delay=".2s">펫시터가<br/>집으로 와요</h1>
 	                    <p class="mb-35 wow fadeInLeft" data-wow-delay=".4s">펫시터 방문 돌봄 및 산책 서비스</p>
-	                    <a href="javascript:void(0)" class="theme-btn">예약하기</a>
+	                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약하기</a>
 	                </div>
 	            </div>
 	            <div class="col-xl-7 col-lg-6">

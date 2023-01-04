@@ -25,6 +25,7 @@
 		
 		<view-controller path="/menu/reserve/resv1_mb.do" view-name="resv/resv_1"/>
 		<view-controller path="/menu/reserve/resv2_mb.do" view-name="resv/resv_2"/>
+		<view-controller path="/menu/reserve/resv3_mb.do" view-name="resv/resv_3"/>
 		<view-controller path="/menu/reserve/resvhistory_mb_list.do" view-name="resv/resvmb_list"/>
 		<view-controller path="/menu/reserve/resvhistory_mb_read.do" view-name="resv/resvmb_read"/>
 		<view-controller path="/menu/reserve/resvhistory_st_list.do" view-name="resv/resvst_list"/>
