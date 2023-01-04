@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 public class MemberDAOImpl implements MemberDAO {
 	SqlSession sqlSession;
 	
-	public MemberDAOImpl() {
-		super();
-	}
-
 	@Autowired
 	public MemberDAOImpl(SqlSession sqlSession) {
 		super();
@@ -20,8 +16,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// login
 	@Override
-	public MemberDTO login(MemberDTO loginUser) {
-		return sqlSession.selectOne("com.multi.erp.member.login", loginUser);
+	public MemberDTO login(MemberDTO loginUserInfo) {
+		return sqlSession.selectOne("mutli.com.pet.erp.login", loginUserInfo); 
 	}
 
 }

@@ -55,7 +55,7 @@
 	<!-- ========================= page-banner-section end ========================= -->
 
 	<!-- ========================= contact-section start ========================= -->
-	<section class="contact-section pt-130">
+	<section class="contact-section pt-100 pb-100">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-4">
