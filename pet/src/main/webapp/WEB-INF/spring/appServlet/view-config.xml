@@ -31,6 +31,4 @@
 		<view-controller path="/menu/reserve/resvhistory_st_list.do" view-name="resv/resvst_list"/>
 		<view-controller path="/menu/reserve/resvhistory_st_read.do" view-name="resv/resvst_read"/>
 		
-		
-		
 </beans:beans>
