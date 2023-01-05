@@ -46,6 +46,7 @@
                                 <div class="col-lg-3">
                                     <h4>이용자 성함</h4>
                                     <input type="text" class="form-control" name="member_id" id="member_id" value="${user.member_id}" required>
+
                                 </div>
                                 <div class="col-lg-3">
                                     <h4>펫시터 성함</h4>
@@ -88,6 +89,7 @@
                                     <h4>내용</h4>
                                     <div class="col-lg-12 pt-10 pb-30">
                                         <textarea name="review" id="review" placeholder="내용을 작성해주세요." rows="12" cols="102" class="form-control"></textarea>
+
                                     </div>
                                 </div>
                                 
@@ -105,12 +107,14 @@
                             </div>
                             
                             <div class="row">
+
                                <div class="button text-center">
                                    <br/>
                                    <br/>
                                    <button type="submit" class="theme-btn">등록</button>
                                    <a href="/pet/menu/review.do" role="button" type="submit" class="theme-btn">취소</a>
                                </div>
+
                             </div>
                         </form>
                         

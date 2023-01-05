@@ -7,9 +7,10 @@
 		<typeAlias type="mutli.com.pet.review.ReviewDTO" alias="review" />
 	</typeAliases>
 
+
+	<!-- mybatis configuration과 mybatis mapper를 연결 -->
 	<mappers>
 		<mapper resource="mutli/com/pet/erp/member.xml" />
 		<mapper resource="mutli/com/pet/review/review.xml" />
 	</mappers>
-
 </configuration>
