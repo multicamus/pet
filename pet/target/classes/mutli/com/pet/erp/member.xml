@@ -2,9 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mutli.com.pet.erp">
-	<select id="login" parameterType="member" resultType="member">
+	<select id="user_login" parameterType="member" resultType="member">
 		select * from member_info
 		where member_id = #{member_id} and member_pass = #{member_pass}
+	</select>
+	<select id="sitter_login" parameterType="sitter" resultType="sitter">
+		select * from sitter_info
+		where sitter_id = #{sitter_id} and sitter_pass = #{sitter_pass}
 	</select>
 </mapper>
 

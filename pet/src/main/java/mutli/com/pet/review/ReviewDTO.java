@@ -91,5 +91,14 @@ public class ReviewDTO {
 	public void setReview_file(String review_file) {
 		this.review_file = review_file;
 	}
+
+	public String getReview_rate() {
+		return review_rate;
+	}
+
+	public void setReview_rate(String review_rate) {
+		this.review_rate = review_rate;
+	}
+	
 	
 }

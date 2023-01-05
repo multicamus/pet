@@ -1,10 +1,11 @@
-package multi.com.pet.mypage;
+package mutli.com.pet.erp;
 
 import java.sql.Date;
 
-public class MypageDTO {
+public class SitterDTO {
 	String sitter_id;
 	String sitter_name;
+	String sitter_pass;
 	String sitter_code;
 	String sitter_gender;
 	String sitter_email;
@@ -20,18 +21,20 @@ public class MypageDTO {
 	String valid;
 	String sitter_career;
 	String sitter_certificate;
+	String sitter_rate;
 	
-	public MypageDTO() {
+	public SitterDTO() {
 		
 	}
-
-	public MypageDTO(String sitter_id, String sitter_name, String sitter_code, String sitter_gender,
+	
+	public SitterDTO(String sitter_id, String sitter_name, String sitter_pass, String sitter_code, String sitter_gender,
 			String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate,
 			Date sitter_enddate, String sitter_status, Date sitter_birthdate, String service_area, String sitter_info,
-			String valid, String sitter_career, String sitter_certificate) {
+			String valid, String sitter_career, String sitter_certificate, String sitter_rate) {
 		super();
 		this.sitter_id = sitter_id;
 		this.sitter_name = sitter_name;
+		this.sitter_pass = sitter_pass;
 		this.sitter_code = sitter_code;
 		this.sitter_gender = sitter_gender;
 		this.sitter_email = sitter_email;
@@ -47,17 +50,36 @@ public class MypageDTO {
 		this.valid = valid;
 		this.sitter_career = sitter_career;
 		this.sitter_certificate = sitter_certificate;
+		this.sitter_rate = sitter_rate;
 	}
 
 	@Override
 	public String toString() {
-		return "MypageDTO [sitter_id=" + sitter_id + ", sitter_name=" + sitter_name + ", sitter_code=" + sitter_code
-				+ ", sitter_gender=" + sitter_gender + ", sitter_email=" + sitter_email + ", sitter_phone="
-				+ sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
+		return "SitterDTO [sitter_id=" + sitter_id + ", sitter_name=" + sitter_name + ", sitter_pass=" + sitter_pass
+				+ ", sitter_code=" + sitter_code + ", sitter_gender=" + sitter_gender + ", sitter_email=" + sitter_email
+				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
 				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
 				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
 				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
-				+ ", sitter_certificate=" + sitter_certificate + "]";
+				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + "]";
+	}
+
+	public String getSitter_rate() {
+		return sitter_rate;
+	}
+
+
+	public void setSitter_rate(String sitter_rate) {
+		this.sitter_rate = sitter_rate;
+	}
+
+
+	public String getSitter_pass() {
+		return sitter_pass;
+	}
+
+	public void setSitter_pass(String sitter_pass) {
+		this.sitter_pass = sitter_pass;
 	}
 
 	public String getSitter_id() {

@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import mutli.com.pet.mypet.PetDTO;
+
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 	SqlSession sqlSession;
@@ -17,7 +19,18 @@ public class MemberDAOImpl implements MemberDAO {
 	// login
 	@Override
 	public MemberDTO login(MemberDTO loginUserInfo) {
-		return sqlSession.selectOne("mutli.com.pet.erp.login", loginUserInfo); 
+		return sqlSession.selectOne("mutli.com.pet.erp.user_login", loginUserInfo); 
 	}
 
+	@Override
+	public SitterDTO login(SitterDTO loginUserInfo) {
+		return sqlSession.selectOne("mutli.com.pet.erp.sitter_login", loginUserInfo);
+	}
+
+	@Override
+	public PetDTO pet(MemberDTO loginUserInfo) {
+		return sqlSession.selectOne("mutli.com.pet.mypet.mypet", loginUserInfo);
+	}
+
+	
 }
