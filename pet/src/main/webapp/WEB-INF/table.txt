@@ -192,7 +192,9 @@ create table resv_history(
     modify_date_rv date,
     review varchar2(200),
     resv_no varchar2(15),
-    review_file varchar2(50)
+    review_file varchar2(50),
+    rate number(5);
+    
 );
 
 #댓글테이블

@@ -40,7 +40,7 @@
                         <h2>이용후기 작성</h2>
                         <br />
                         <br />
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" action="/pet/review/write.do">
                             <div class="row g-3">
                                 <div class="col-sm-3">
                                     <label for="lastName" class="form-label">펫시터 성함</label>
@@ -81,9 +81,8 @@
                                 <div class="col-sm-14">
                                     <label for="lastName" class="form-label">내용</label>
                                     <div class="col-14">
-                                        <textarea name="" id="" placeholder="" rows="12" cols="102"
-                                            class="form-control ">
-                                        </textarea>
+                                        <textarea name="review" id="review" placeholder="" rows="12" cols="102"
+                                            class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -106,9 +105,8 @@
                                     <div class="button text-center ">
                                         <br/>
                                         <br/>
-                                        <a href="/pet/review" role="button" type="submit" class="theme-btn">등록/수정</button>
-                                        </a>
-                                        	<button type="submit" class="theme-btn">취소</button>
+                                        <button type="submit" class="theme-btn">등록</button>
+ 										<button type="submit" class="theme-btn">취소</button>
                                     </div>
                                 </div>
                             </div>
