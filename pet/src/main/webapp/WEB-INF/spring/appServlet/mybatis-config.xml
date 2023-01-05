@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//UTF-8" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<typeAliases>
 		<typeAlias type="mutli.com.pet.erp.MemberDTO" alias="member" />
+		<typeAlias type="mutli.com.pet.review.ReviewDTO" alias="review" />
 	</typeAliases>
 
+
+	<!-- mybatis configuration과 mybatis mapper를 연결 -->
 	<mappers>
 		<mapper resource="mutli/com/pet/erp/member.xml" />
+		<mapper resource="mutli/com/pet/review/review.xml" />
 	</mappers>
-
 </configuration>

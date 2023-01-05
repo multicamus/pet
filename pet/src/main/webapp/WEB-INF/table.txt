@@ -69,7 +69,9 @@ create table review(
     modify_date_rv date,
     review varchar2(200),
     resv_no varchar2(15),
-    review_file varchar2(30)
+    review_file varchar2(30),
+
+    review_rate number(5)
 );
 
 # 시퀀스
@@ -84,7 +86,6 @@ add constraint review_reply_fk foreign key(review_no) references review(review_n
 
 alter table resv_history
 add constraint resv_history_fk foreign key(member_id) references job(member_id);
-
 
 ===================================아래 수정본====================================
 #이용자테이블
@@ -182,8 +183,8 @@ create table resv_history(
     pet1_reserved char(1),
     pet2_reserved char(1),
     pet3_reserved char(1)
-    )
-    
+    );
+
 #이용후기 테이블
     create table review(
     review_no varchar2(15) primary key,
@@ -192,7 +193,10 @@ create table resv_history(
     modify_date_rv date,
     review varchar2(200),
     resv_no varchar2(15),
-    review_file varchar2(50)
+    review_file varchar2(50),
+    review_rate number(5)
+
+ 
 );
 
 #댓글테이블
