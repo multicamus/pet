@@ -1,3 +1,4 @@
+<%@page import="multi.com.pet.resv.ResvDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="ko">
@@ -193,6 +194,36 @@
 
       
           </style>
+    <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>   
+     
+      <script>
+
+	
+		
+ 			$(document).ready(function () {
+ 				
+ 				
+				$("#pills-1-tab").on("click", function(){
+					$("#pills-1-tab").attr("aria-selected", "true");
+					$("#match_method").attr("value", "direct-match");
+					
+				})
+				$("#pills-2-tab").on("click", function(){
+					$("#pills-2-tab").attr("aria-selected", "true");
+					$("#match_method").attr("value", "auto-match");
+				})
+				$("#pills-3-tab").on("click", function(){
+					$("#pills-3-tab").attr("aria-selected", "true");
+					$("#match_method").attr("value", "past-match")
+				})
+
+
+			})  
+
+					
+      </script>    
 </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -220,6 +251,8 @@
         <!-- ========================= 펫시터 매칭-section start ========================= -->
 <section id="pricing" class="pricing-section pt-50">
     <div class="container">
+       <form action="/pet/reserve/resv2_mb.do" method="post" >
+    	<!-- 펫시터 매칭방법 선택 제목-->
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
                 <div class="section-title text-center mb-60">
@@ -227,43 +260,49 @@
                 </div>
             </div>
         </div>
-
+		<!-- 제목끝  -->
+		
+		<!-- 직접선택 / 자동매칭 / 과거 선택 탭 -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="pricing-btn text-center wow fadeInUp" data-wow-delay=".3s">
-                    <ul class="nav justify-content-center mb-90" id="pills-tab" role="tablist">
+                    <ul class="nav justify-content-center mb-90" id="pills-tab"  role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">직접 선택</a>
+                            <a class="nav-link active"   id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab"  aria-controls="pills-1" aria-selected="true">직접 선택</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-2-tab" data-bs-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">자동 매칭</a>
+                            <a class="nav-link" id="pills-2-tab"  data-bs-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">자동 매칭</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-3-tab" data-bs-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">과거에 이용했던 펫시터</a>
+                            <a class="nav-link" id="pills-3-tab"  data-bs-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">과거에 이용했던 펫시터</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <!-- 선택탭끝 -->
         
+        <!-- 내용 시작 -->
         <div class="tab-content" id="pills-tabContent">
+        	<!-- 직접선택 시작 -->
             <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="single-pricing active mb-50">
+                 
                     <div class="row justify-content-center">
                   		<div class="col-lg-4">
                             <h3>선호하는 펫시터</h3>
                             <h4>성별</h4>
-                            	<select>
-                            		<option>남자</option>
-                            		<option>여자</option>
-                            		<option>상관 없음</option>
+                            	<select name="prefer_gender" id="prefer_gender">
+                            		<option value="male">남자</option>
+                            		<option value="female">여자</option>
+                            		<option value="allgender">상관 없음</option>
                             	</select>
                             <h4>돌봄 경험 횟수</h4>
-                            	<select>
-                            		<option>소형견 돌봄 경험이 많은 사람</option>
-                            		<option>중형견 돌봄 경험이 많은 사람</option>
-                            		<option>대형견 돌봄 경험이 많은 사람</option>
-                            		<option>상관 없음</option>
+                            	<select name="prefer_size" id="prefer_size">
+                            		<option value="small">소형견 돌봄 경험이 많은 사람</option>
+                            		<option value="medium">중형견 돌봄 경험이 많은 사람</option>
+                            		<option value="large">대형견 돌봄 경험이 많은 사람</option>
+                            		<option value="allsize" >상관 없음</option>
                             	</select>
                             <form>
                            		<a href="javascript:void(0)" class="theme-btn" style="margin-left: 0px;">확인</a>
@@ -306,24 +345,26 @@
                     
                 </div>
             </div>
-        
+        	<!-- 직접선택 끝 -->
+        	
+        	<!-- 자동매칭 시작 -->
             <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <div class="single-pricing active mb-50">
                         <div class="row">
                             <div class="col-4 justify-content-center">
                             <h3>선호하는 펫시터</h3>
                             <h4>성별</h4>
-                            	<select>
-                            		<option>남자</option>
-                            		<option>여자</option>
-                            		<option>상관 없음</option>
+                            	<select name="prefer_gender">
+                            		<option value="male">남자</option>
+                            		<option value="female">여자</option>
+                            		<option value="allgender">상관 없음</option>
                             	</select>
                             <h4>돌봄 경험 횟수</h4>
-                            	<select>
-                            		<option>소형견 돌봄 경험이 많은 사람</option>
-                            		<option>중형견 돌봄 경험이 많은 사람</option>
-                            		<option>대형견 돌봄 경험이 많은 사람</option>
-                            		<option>상관 없음</option>
+                            	<select name="prefer_size">
+                            		<option value="small">소형견 돌봄 경험이 많은 사람</option>
+                            		<option value="medium">중형견 돌봄 경험이 많은 사람</option>
+                            		<option value="large">대형견 돌봄 경험이 많은 사람</option>
+                            		<option value="allsize">상관 없음</option>
                             	</select>
                             <form>
                            		<a href="javascript:void(0)" class="theme-btn">확인</a>
@@ -345,7 +386,9 @@
                     </div>
                 </div>
             </div>
+            <!-- 자동매칭끝 -->
             
+            <!-- 과거리스트 시작 -->
             <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                 <div class="single-pricing active mb-50">
                      <div class="col-lg-12 row align-self-center">
@@ -383,18 +426,45 @@
 						</div>
                 </div>
             </div>
+            <!-- 과거끝 -->
+		     <!-- 버튼 -->
+		     
+		         <div class="button text-center pb-50">
+	        		 <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:1000px">이전</button>
+	            	 <!-- <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv3_mb.do" style="display:inline-block; margin-left:0px">다음</button> -->
+					<button type="submit" id="nextbtn" class="theme-btn" style="display:inline-block; margin-left:0px">다음</button>
+		         </div>
             
+        <!-- input hidden -->
+        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
+        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
+        <input type="hidden" name="service_time" value="${resvdto.service_time }">
+        <input type="hidden" name="default_service" value="${resvdto.default_service }">
+        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
+        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
+        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
+        <input type="hidden" name="service_note" value="${resvdto.service_note }">
+        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
+        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
+        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
+        <input type="hidden" id="match_method" name="match_method"  value="direct_match">
         </div>
+        <!-- 내용끝 -->
+        
+        
+		         
+		     
+	   </form>
+	   <!-- form끝 -->  
     </div>
 </section>
 <!-- ========================= 펫시터-section end ========================= -->
+<script>
+	
+	
 
-	     <!-- 버튼 -->
-	     <form>
-	         <div class="button text-center pb-50">
-        		 <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv1_mb.do" style="display:inline-block; margin-left:1000px">이전</button>
-            	 <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv3_mb.do" style="display:inline-block; margin-left:0px">다음</button>
-	         </div>
-	     </form>
+</script>
+
     </body>
 </html>

@@ -162,7 +162,7 @@ create table resv_history(
     service_time number(3),
     sitter_id varchar2(15),
     service_note varchar2(100),
-    defulat_service char(1),
+    default_service char(1),
     bath_servie char(1),
     walk_service char(1),
     beauty_service char(1),

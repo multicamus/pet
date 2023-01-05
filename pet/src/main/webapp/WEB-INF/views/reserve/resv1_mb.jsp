@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>resv1_mb</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
           select {
           border-radius: 25px;
@@ -162,6 +163,18 @@
 
       
           </style>
+          
+          <script>
+          		$(document).ready(function() {
+					$('#nextbtn').on("click", function() {
+						//alert("ajax");
+						
+						
+						})
+						
+					})
+				
+          </script>
 </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -192,7 +205,7 @@
             <!-- 전체 container -->
             <div class="container">
                 <!-- 전체 form -->
-                <form action="/pet/menu/reserve/resv2_mb.do" class="contact-form">
+                <form action="/pet/reserve/resv1_mb.do" method="post" class="contact-form">
                     <!-- 전체 row -->
                     <div class="row">
 
@@ -218,13 +231,13 @@
                                         <div class="col-12" style="margin-bottom: 15px; font-size: 20px;">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" name="pet" >이용자의 반려동물1  
+                                                    <input type="checkbox" value="pet1" name="pet_list"  id="pet1">이용자의 반려동물1  
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" name="pet" >이용자의 반려동물2
+                                                    <input type="checkbox" value="pet2" name="pet_list" id="pet2">이용자의 반려동물2
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" name="pet" >이용자의 반려동물3
+                                                    <input type="checkbox" value="pet3" name="pet_list" id="pet3">이용자의 반려동물3
                                                 </div>
                                             </div>
                                         </div>                                              
@@ -243,25 +256,25 @@
                                         <div class="mb-3">
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                 <div class="form_check_btn radio_male">
-                                                    <input id="check-1" type="checkbox" name="servicecode" checked onClick="return false;">
+                                                    <input id="check-1" value="default_service" type="checkbox" name="servicecode" checked onClick="return false;">
                                                     <label for="check-1">[기본]돌봄(25,000원)</label>
                                                 </div>
                                             </div> 
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
-                                                    <input id="check-2" type="checkbox" name="servicecode" >
+                                                    <input id="check-2" value="bath_service" type="checkbox" name="servicecode" >
                                                     <label for="check-2">[추가]목욕(+5,000원)</label>
                                                 </div>
                                             </div>
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
-                                                    <input id="check-3" type="checkbox"  name="servicecode">
+                                                    <input id="check-3" value="walk_service" type="checkbox"  name="servicecode">
                                                     <label for="check-3">[추가]산책(+3,000원)</label>
                                                 </div>
                                             </div>
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
-                                                    <input id="check-4" type="checkbox" class="servicecode">
+                                                    <input id="check-4" value="beauty_service" type="checkbox" class="servicecode">
                                                     <label for="check-4">[추가]미용(+5,000원)</label>
                                                 </div>
                                             </div>
@@ -278,7 +291,7 @@
                                     <!-- 3번째 칸 돌봄시 요청 및 주의사항 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="message" id="emergency" placeholder="" rows="10" style="width: 500px;"></textarea>
+                                            <textarea class="message" name="service_note" id="emergency" placeholder="" rows="10" style="width: 500px;"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -305,8 +318,8 @@
                                     <!-- 2번째 칸 방문날짜 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="date">날짜를 선택해주세요<br/>
-                                                <input type="date" id="date">
+                                            <label for="date" >날짜를 선택해주세요<br/>
+                                                <input type="date" id="date" name="visit_date">
                                             </label>
                                         </div>
                                     </div>
@@ -323,20 +336,20 @@
                                     <div class="row">
                                         <div class="col-12">
                                         방문시간을 선택해주세요<br/>
-                                            <select>
-                                                <option>오전 8:00</option>
-                                                <option>오전 9:00</option>
-                                                <option>오전 10:00</option>
-                                                <option>오전 11:00</option>
-                                                <option>오후 12:00</option>
-                                                <option>오후 1:00</option>
-                                                <option>오후 2:00</option>
-                                                <option>오후 3:00</option>
-                                                <option>오후 4:00</option>
-                                                <option>오후 5:00</option>
-                                                <option>오후 6:00</option>
-                                                <option>오후 7:00</option>
-                                                <option>오후 8:00</option>
+                                            <select name="service_starttime">
+                                                <option value="8">오전 8:00</option>
+                                                <option value="9">오전 9:00</option>
+                                                <option value="10">오전 10:00</option>
+                                                <option value="11">오전 11:00</option>
+                                                <option value="12">오후 12:00</option>
+                                                <option value="13">오후 1:00</option>
+                                                <option value="14">오후 2:00</option>
+                                                <option value="15">오후 3:00</option>
+                                                <option value="16">오후 4:00</option>
+                                                <option value="17">오후 5:00</option>
+                                                <option value="18">오후 6:00</option>
+                                                <option value="19">오후 7:00</option>
+                                                <option value="20">오후 8:00</option>
                                             </select> 
                                         </div>
                                     </div>
@@ -356,19 +369,19 @@
                                                 <div class="mb-3">
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-8" type="radio" name="servicehour"  >
+                                                            <input id="radio-8" type="radio" name="service_time"  value="1">
                                                             <label for="radio-8">1시간</label>
                                                         </div>
                                                     </div> 
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-9" type="radio" name="servicehour" >
+                                                            <input id="radio-9" type="radio" name="service_time" value="2">
                                                             <label for="radio-9">2시간</label>
                                                         </div>
                                                     </div>
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >       
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-10" type="radio" name="servicehour" >
+                                                            <input id="radio-10" type="radio" name="service_time" value="3" >
                                                             <label for="radio-10">3시간</label>
                                                         </div>
                                                     </div> 
@@ -388,7 +401,7 @@
                     <!-- 다음버튼 -->
                         <div class="col-12">
                             <div class="button text-center pb-50">
-                                <button type="submit" class="theme-btn" onclick="location.href='/pet/menu/reserve/resv2_mb.do'" style="margin-left: 1150px;">다음</button>
+                                <button id="nextbtn" type="submit" class="theme-btn"  style="margin-left: 1150px;">다음</button>
                                 
                             </div>
                         </div>
