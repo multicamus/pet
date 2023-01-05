@@ -26,7 +26,8 @@
 			<div class="row align-items-center">
 				<div class="col-lg-12">
 					<nav class="navbar navbar-expand-lg">
-						<a class="navbar-brand" href="/pet"> <img src="/pet/resources/assets/img/logo/logo.svg" alt="Logo"></a>
+						<a class="navbar-brand" href="/pet"> <img src="/pet/resources/assets/img/logo/logo.svg" alt="Logo">
+						</a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse"
 							data-bs-target="#navbarSupportedContent"
@@ -38,7 +39,6 @@
 						<div class="collapse navbar-collapse sub-menu-bar"
 							id="navbarSupportedContent">
 							<ul id="nav" class="navbar-nav ms-auto">
-								<p>안녕하세요. ${user.member_id}</p>
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
 									data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
@@ -53,7 +53,6 @@
 								</li>
 
 								<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
-								<li class="nav-item"><a class="page-scroll active" href="/pet/erp/logout.do">로그아웃</a></li>
 								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"

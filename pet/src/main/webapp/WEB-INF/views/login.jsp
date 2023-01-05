@@ -42,25 +42,24 @@
 							                     </div>
 							                </div>
 							                
-							                <form action="/pet/erp/login.do" class="contact-form" method="post">
+							                <form action="#" class="contact-form">
 							                      <div class="row">
 							                          <div class="col-md-10">
-							                              <input type="text" name="member_id" id="member_id" placeholder="아이디" required>
+							                              <input type="text" name="id" id="id" placeholder="아이디" required>
 							                          </div>
 							                      </div>
 							                      <div class="row">
 							                          <div class="col-md-10">
-							                              <input type="text" name="member_pass" id="member_pass" placeholder="패스워드" required>
+							                              <input type="text" name="pass" id="pass" placeholder="패스워드" required>
 							                          </div>
 							                      </div>
-							                      <div class="pt-50">
-						                             <button type="submit" class="theme-btn">로그인</button>
-						                             <button type="submit" class="theme-btn">카카오 로그인</button>
-					                              </div>
 						                 	</form>
 						                 	
-						                 </div>
-			                             
+						                </div>
+			                             <div class="pt-50">
+				                            <a href="javascript:void(0)" class="theme-btn">로그인</a>
+				                            <a href="javascript:void(0)" class="theme-btn">카카오 로그인</a>
+			                            </div>
 			                        </div>
 			                    </div>
 			                </div>
