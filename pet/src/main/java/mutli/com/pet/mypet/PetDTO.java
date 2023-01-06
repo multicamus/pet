@@ -1,5 +1,6 @@
 package mutli.com.pet.mypet;
-import oracle.sql.DATE;
+
+import java.sql.Date;
 
 public class PetDTO {
     private String pet_id;
@@ -8,7 +9,7 @@ public class PetDTO {
     private String pet_gender;
     private String pet_code;
     private String pet_kind;
-    private DATE pet_birthdate;
+    private Date pet_birthdate;
     private String pet_weight;
     private String pet_size;
 	private String neuter;
@@ -23,7 +24,7 @@ public class PetDTO {
 	}
 
 	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
-			DATE pet_birthdate, String pet_weight, String pet_size, String neuter, String animalhospital_name,
+			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String animalhospital_name,
 			String animalhospital_addr, String pet_photo, String pet_note, String pet_number) {
 		super();
 		this.pet_id = pet_id;
@@ -100,11 +101,11 @@ public class PetDTO {
 		this.pet_kind = pet_kind;
 	}
 
-	public DATE getPet_birthdate() {
+	public Date getPet_birthdate() {
 		return pet_birthdate;
 	}
 
-	public void setPet_birthdate(DATE pet_birthdate) {
+	public void setPet_birthdate(Date pet_birthdate) {
 		this.pet_birthdate = pet_birthdate;
 	}
 

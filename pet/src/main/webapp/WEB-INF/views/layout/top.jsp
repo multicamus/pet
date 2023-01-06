@@ -37,7 +37,7 @@
 							<ul id="nav" class="navbar-nav ms-auto">
 								<c:choose>
 									<c:when test="${user!=null}">
-										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님^^7</a></li>
+										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.code}님^^7</a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 									</c:when>
@@ -57,7 +57,7 @@
 								</li>
 								
 								<c:choose>
-									<c:when test="${user==null}">
+									<c:when test="${user == null}">
 										<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
 									</c:when>
 									<c:otherwise>
@@ -77,22 +77,35 @@
 										<li class="nav-item"><a href="/pet/menu/review/detail.do">이용 후기 상세</a></li>
 									</ul>
 								</li>
-
-								<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
 								
-								<li class="nav-item"><a
-									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-									data-bs-toggle="collapse" data-bs-target="#submenu-1-4"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">마이페이지</a>
-									
-									<ul class="sub-menu collapse" id="submenu-1-4">
-										<li class="nav-item"><a href="/pet/menu/mypage/admin.do">Admin</a></li>
-										<li class="nav-item"><a href="/pet/menu/mypage/user.do">User</a></li>
-										<li class="nav-item"><a href="/pet/menu/mypage/sitter.do">Pet Sitter</a></li>
-									</ul>
-								</li>
-									
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="#">예약하기</a></li>
+									</c:when>
+									<c:when test="${user.code == 'B'}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item"><a class="page-scroll" href="#">예약확인</a></li>
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="#">마이페이지</a></li>
+									</c:when>
+									<c:when test="${user.code == 'A'}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/admin.do">마이페이지</a></li>
+									</c:when>
+									<c:when test="${user.code == 'B'}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/user.do">마이페이지</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/sitter.do">마이페이지</a></li>
+									</c:otherwise>
+								</c:choose>
+								
 								<li class="nav-item"><a class="page-scroll" target="_blank" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
 							</ul>
 

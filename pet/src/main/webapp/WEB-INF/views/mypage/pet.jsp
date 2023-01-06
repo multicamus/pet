@@ -132,7 +132,7 @@
 						<div class="row">
 							<div class="col-xl-10 col-lg-8 mx-auto">
 								<div class="section-title text-center mb-50">
-									<span class="wow fadeInDown" data-wow-delay=".2s">XXX님,
+									<span class="wow fadeInDown" data-wow-delay=".2s">${user.member_id }님,
 										안녕하세요!</span>
 									<h2 class="wow fadeInUp" data-wow-delay=".4s">
 										반려동물의 정보를 입력하고<br> 수정해주세요

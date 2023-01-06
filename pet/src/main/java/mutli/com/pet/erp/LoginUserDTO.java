@@ -8,6 +8,7 @@ public class LoginUserDTO {
 //	SitterDTO sitter;
 //	MemberDTO member;
 	
+	private String code;
 	private String name;
 	
 	private String sitter_id;
@@ -42,10 +43,11 @@ public class LoginUserDTO {
 	private String member_status;
 	
 	// 멤버용
-	public LoginUserDTO(String name, String member_id, String member_no, String member_gender, String member_email,
+	public LoginUserDTO(String code, String name, String member_id, String member_no, String member_gender, String member_email,
 			String member_phone, String member_addr1, String member_addr2, MultipartFile member_photo, Date start_date,
 			Date end_date, String member_code, String member_status) {
 		super();
+		this.code = code;
 		this.name = name;
 		this.member_id = member_id;
 		this.member_no = member_no;
@@ -62,11 +64,12 @@ public class LoginUserDTO {
 	}
 	
 	// 시터용
-	public LoginUserDTO(String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
+	public LoginUserDTO(String code, String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
 			String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate, Date sitter_enddate,
 			String sitter_status, Date sitter_birthdate, String service_area, String sitter_info, String valid,
 			String sitter_career, String sitter_certificate, String sitter_rate) {
 		super();
+		this.code = code;
 		this.name = name;
 		this.sitter_id = sitter_id;
 		this.sitter_code = sitter_code;
@@ -87,6 +90,13 @@ public class LoginUserDTO {
 		this.sitter_rate = sitter_rate;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public LoginUserDTO(String name) {
 		super();

@@ -1,93 +1,3 @@
-# 테이블
-create table sitter_info(
-    sitter_id varchar2(15) primary key,
-    sitter_name varchar2(15),
-	sitter_code char(1),
-	sitter_gender char(1),
-	sitter_email varchar2(15),
-	sitter_phone varchar2(15),
-	sitter_addr1 varchar2(20),
-	sitter_addr2 varchar2(20),
-	sitter_joindate date,
-	sitter_changedate date,
-	sitter_state char(1),
-	sitter_birthdate date,
-	service_area varchar2(20),
-	sitter_intro varchar2(200),
-	valid char1,
-	sitter_career varchar2(20),
-	sitter_certificate varchar2(15)
-);
-
-create table pet_info(
-    pet_id varchar2(15) primary key,
-    member_id varchar2(15),
-    pet_name varchar2(15),
-    pet_gender char(1),
-	pet_code varchar2(15),
-	pet_kind varchar2(15),
-	pet_birthdate date,
-	pet_weight number,
-	pet_size number,
-	neuter char(1),
-	animalhospital_name varchar2(20),
-	animalhospital_addr varchar2(20),
-	pet_photo varchar2(30),
-	pet_note varchar2(200),
-	pet_number char(1)
-);
-
-create table member_info(
-    member_id varchar2(15) primary key,
-    member_pass varchar2(15),
-    member_name varchar2(15),
-    member_gender char(1),
-    member_email varchar2(15),
-    member_phone varchar2(15),
-    member_addr1 varchar2(15),
-    member_addr2 varchar2(15),
-    member_photo varchar2(30),
-    member_startdate date,
-    member_code char(1),
-    member_statusid char(1),
-    member_enddate date
-);
-
-create table review_reply(
-    reply_no varchar2(15) primary key,
-    review_no varchar2(15),
-    sitter_id varchar2(15),
-    reply varchar2(100),
-    write_date_rp date,
-    modify_date_rp date
-);
-
-create table review(
-    review_no varchar2(15) primary key,
-    member_id varchar2(15),
-    write_date_rv date,
-    modify_date_rv date,
-    review varchar2(200),
-    resv_no varchar2(15),
-    review_file varchar2(30),
-
-    review_rate number(5)
-);
-
-# 시퀀스
-create sequence review_seq;
-
-# 제약조건
-alter table pet_info
-add constraint pet_info_fk foreign key(member_id) references member_info(member_id);
-
-alter table review_reply
-add constraint review_reply_fk foreign key(review_no) references review(review_no);
-
-alter table resv_history
-add constraint resv_history_fk foreign key(member_id) references job(member_id);
-
-===================================아래 수정본====================================
 #이용자테이블
 create table member_info(
     member_id varchar2(15) primary key,
@@ -103,6 +13,7 @@ create table member_info(
     member_status char(1),    
     member_startdate date,
     member_enddate date
+    code varchar2(3) → usertype varchar2(3)
 );
 
 #반려동물테이블
@@ -198,8 +109,6 @@ create table resv_history(
     resv_no varchar2(15),
     review_file varchar2(50),
     review_rate number(5)
-
- 
 );
 
 #댓글테이블
@@ -212,6 +121,18 @@ create table resv_history(
     modify_date_rp date
 );
 
+# 시퀀스
+create sequence review_seq;
+
+# 제약조건
+alter table pet_info
+add constraint pet_info_fk foreign key(member_id) references member_info(member_id);
+
+alter table review_reply
+add constraint review_reply_fk foreign key(review_no) references review(review_no);
+
+alter table resv_history
+add constraint resv_history_fk foreign key(member_id) references job(member_id);
 
 
 

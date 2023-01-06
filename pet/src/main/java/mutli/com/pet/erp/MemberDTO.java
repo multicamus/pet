@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MemberDTO {
+	private String code;
 	private String member_id;
 	private String member_pass;
 	private String member_no;
@@ -24,10 +25,11 @@ public class MemberDTO {
 		super();
 	}
 	
-	public MemberDTO(String member_id, String member_pass, String member_no, String member_name, String member_gender,
-			String member_email, String member_phone, String member_addr1, String member_addr2,
+	public MemberDTO(String code, String member_id, String member_pass, String member_no, String member_name,
+			String member_gender, String member_email, String member_phone, String member_addr1, String member_addr2,
 			MultipartFile member_photo, Date start_date, Date end_date, String member_code, String member_status) {
 		super();
+		this.code = code;
 		this.member_id = member_id;
 		this.member_pass = member_pass;
 		this.member_no = member_no;
@@ -43,16 +45,24 @@ public class MemberDTO {
 		this.member_code = member_code;
 		this.member_status = member_status;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MemberDTO [member_id=" + member_id + ", member_pass=" + member_pass + ", member_no=" + member_no
-				+ ", member_name=" + member_name + ", member_gender=" + member_gender + ", member_email=" + member_email
-				+ ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2=" + member_addr2
-				+ ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date=" + end_date
-				+ ", member_code=" + member_code + ", member_status=" + member_status + "]";
+		return "MemberDTO [code=" + code + ", member_id=" + member_id + ", member_pass=" + member_pass + ", member_no="
+				+ member_no + ", member_name=" + member_name + ", member_gender=" + member_gender + ", member_email="
+				+ member_email + ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2="
+				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
+				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
 	}
-	
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getMember_id() {
 		return member_id;
 	}
