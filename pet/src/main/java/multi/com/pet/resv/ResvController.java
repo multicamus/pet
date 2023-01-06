@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ResvController {
 	
-
 	@RequestMapping("/reserve/resv1_mb.do")
 	public String resv1(ResvDTO resvdto, String servicecode, String pet_list, Model model) {
 		System.out.println("resv1컨트롤러");
@@ -76,19 +75,20 @@ public class ResvController {
 		System.out.println(size);
 		System.out.println(method);
 		
-		String[] genderArr = gender.split(",");
-		String[] sizeArr = size.split(",");
-		resvdto.setMatch_method(method);
-		if(method.equals("direct_match")) {
-			resvdto.setPrefer_gender(genderArr[0]);
-			resvdto.setPrefer_size(sizeArr[0]);
-		}else if(method.equals("auto-match")) {
-			resvdto.setPrefer_gender(genderArr[1]);
-			resvdto.setPrefer_size(sizeArr[1]);
-		}else {
-			resvdto.setPrefer_gender(null);
-			resvdto.setPrefer_size(null);
-		}
+//		String[] genderArr = gender.split(",");
+//		String[] sizeArr = size.split(",");
+//		resvdto.setMatch_method(method);
+//		if(method.equals("direct_match")) {
+//			resvdto.setPrefer_gender(genderArr[0]);
+//			resvdto.setPrefer_size(sizeArr[0]);
+//		}else if(method.equals("auto-match")) {
+//			resvdto.setPrefer_gender(genderArr[1]);
+//			resvdto.setPrefer_size(sizeArr[1]);
+//		}else {
+//			resvdto.setPrefer_gender(null);
+//			resvdto.setPrefer_size(null);
+//		}
+		
 		System.out.println(resvdto);
 		model.addAttribute("resvdto", resvdto);
 		return "resv/resv_3";

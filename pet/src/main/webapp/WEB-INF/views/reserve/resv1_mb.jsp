@@ -231,13 +231,13 @@
                                         <div class="col-12" style="margin-bottom: 15px; font-size: 20px;">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" value="pet1" name="pet_list"  id="pet1">이용자의 반려동물1  
+                                                    <input type="checkbox" value="pet1" name="pet_list" id="pet1" required>${pet.pet_name }  
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" value="pet2" name="pet_list" id="pet2">이용자의 반려동물2
+                                                    <input type="checkbox" value="pet2" name="pet_list" id="pet2">${pet.pet_name }
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="checkbox" value="pet3" name="pet_list" id="pet3">이용자의 반려동물3
+                                                    <input type="checkbox" value="pet3" name="pet_list" id="pet3">${pet.pet_name }
                                                 </div>
                                             </div>
                                         </div>                                              
@@ -247,7 +247,7 @@
                                     <div class="row">
                                         <div class="col-xl-10 col-lg-8 mx-auto">
                                             <div class="section-title text-center mb-20">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-top:20px;" >서비스 선택</span>
+                                                <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-top:20px;">서비스 선택</span>
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                                     <div class="row">
                                         <div class="col-xl-10 col-lg-8 mx-auto">
                                             <div class="section-title text-center mb-20" style="margin-top:20px">
-                                                <span class="wow fadeInDown" data-wow-delay=".2s">돌봄 시 요청 및 주의사항</span>
+                                                <span class="wow fadeInDown" data-wow-delay=".2s" >돌봄 시 요청 및 주의사항</span>
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +291,7 @@
                                     <!-- 3번째 칸 돌봄시 요청 및 주의사항 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="service_note" id="emergency" placeholder="" rows="10" style="width: 500px;"></textarea>
+                                            <textarea class="message" name="service_note" id="emergency" placeholder="주의 사항을 입력 해주세요." rows="10" style="width: 500px;" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -319,7 +319,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="date" >날짜를 선택해주세요<br/>
-                                                <input type="date" id="date" name="visit_date">
+                                                <input type="date" id="date" name="visit_date" required>
                                             </label>
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                         방문시간을 선택해주세요<br/>
-                                            <select name="service_starttime">
+                                            <select name="service_starttime" required>
                                                 <option value="8">오전 8:00</option>
                                                 <option value="9">오전 9:00</option>
                                                 <option value="10">오전 10:00</option>
@@ -365,11 +365,11 @@
                                     <div class="row">
                                         <div class="col-12">
                                         이용시간을 선택해주세요
-                                            <div  class="row" style="margin-top: 15px;" id="servicehour">
+                                            <div class="row" style="margin-top: 15px;" id="servicehour">
                                                 <div class="mb-3">
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-8" type="radio" name="service_time"  value="1">
+                                                            <input id="radio-8" type="radio" name="service_time" value="1" required>
                                                             <label for="radio-8">1시간</label>
                                                         </div>
                                                     </div> 
