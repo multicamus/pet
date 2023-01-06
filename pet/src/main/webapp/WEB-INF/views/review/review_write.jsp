@@ -29,8 +29,8 @@
         </div>
     </section>
     <!-- ========================= page-banner-section end ========================= -->
-    <body class="">
-        <div class="container">
+    <body class="container">
+        <div class="col-lg-12">
             <main>
                 <div class="text-center" style ="padding: 20px;">    
                 </div>
@@ -38,81 +38,80 @@
                     <div class="col-md-12 col-lg-12">
                         <h4 class="mb-3"></h4>
                         <h2>이용후기 작성</h2>
-                        <br />
-                        <br />
-                        <form class="needs-validation" novalidate>
-                            <div class="row g-3">
-                                <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">펫시터 성함</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        입력시 피드백
+                        <br/>
+                        <br/>
+                        
+                        <form class="needs-validation" action="/pet/review/insert.do">
+                            <div class="row lg-3">
+                                <div class="col-lg-3">
+                                    <h4>이용자 성함</h4>
+                                    <input type="text" class="form-control" name="member_id" id="member_id" value="${user.member_id}" required>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <h4>펫시터 성함</h4>
+                                    <input type="text" class="form-control" name="sitter_name" id="sitter_name" value="${user.member_id}" required>
+                                </div>
+                                
+                                <div class="col-lg-8 pt-30">
+                                	<h4>평점</h4>
+                                </div>
+                                
+                                <div class="row align-items-center pt-10 pl-50">
+                                
+                                    <div class="form-check col-1">
+                                        <input id="review_rate" name="review_rate" type="radio" class="form-check-input" value="1" required>
+                                        <label class="form-check-label" for="review_rate">1점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate2" name="review_rate" type="radio" class="form-check-input" value="2" required>
+                                        <label class="form-check-label" for="review_rate2">2점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate3" name="review_rate" type="radio" class="form-check-input" value="3" required>
+                                        <label class="form-check-label" for="review_rate3">3점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate4" name="review_rate" type="radio" class="form-check-input" value="4" required>
+                                        <label class="form-check-label" for="review_rate4">4점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate5" name="review_rate" type="radio" class="form-check-input" value="5" checked required>
+                                        <label class="form-check-label" for="review_rate5">5점</label>
                                     </div>
                                 </div>
-                                <label for="lastName" class="form-label">평점</label>
-                                <div class="row align-items-center">
-                                    <div class="form-check col-1">
-                                        <input id="" name="paymentMethod" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for=""> 1 점</label>
-                                    </div>
-                                    <div class="form-check col-1">
-                                        <input id="" name="paymentMethod" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="">2점</label>
-                                    </div>
-                                    <div class="form-check col-1">
-                                        <input id="" name="paymentMethod" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="">3점</label>
-                                    </div>
-                                    <div class="form-check col-1">
-                                        <input id="" name="paymentMethod" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="">4점</label>
-                                    </div>
-                                    <div class="form-check col-1">
-                                        <input id="" name="paymentMethod" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="">5점</label>
+	                                
+                                <div class="col-lg-12 pt-30">
+                                    <h4>내용</h4>
+                                    <div class="col-lg-12 pt-10 pb-30">
+                                        <textarea name="review" id="review" placeholder="내용을 작성해주세요." rows="12" cols="102" class="form-control"></textarea>
+
                                     </div>
                                 </div>
-                                <div class="col-sm-14">
-                                    <label for="lastName" class="form-label">내용</label>
-                                    <div class="col-14">
-                                        <textarea name="" id="" placeholder="" rows="12" cols="102"
-                                            class="form-control ">
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="address" class="form-label">첨부파일</label>
+                                
+                                <div class="col-lg-12">
+                                    <h4>첨부파일</h4>
                                     <div class="row align-items-center">
-                                        <div class="col-1">
-                                            <button class=" btn btn-primary  " type="submit">file</button>
+                                        <div class="col-lg-1 pt-10">
+                                            <button class="btn btn-primary" type="submit">file</button>
                                         </div>
-                                        <div class="col-11">
-                                            <input type="text" class="form-control " id="" placeholder="" required>
+                                        <div class="col-lg-11 pt-10">
+                                            <input type="text" class="form-control" name="review_file" id="review_file" placeholder="파일은 000 mb 제한 입니다." required>
                                         </div>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        입력시 피드백
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="button text-center ">
-                                        <br/>
-                                        <br/>
-                                        <a href="/pet/review" role="button" type="submit" class="theme-btn">등록/수정</button>
-                                        </a>
-                                        	<button type="submit" class="theme-btn">취소</button>
-                                    </div>
-                                </div>
+
+                               <div class="button text-center">
+                                   <button type="submit" class="theme-btn">등록</button>
+                                   <a href="/pet/menu/review.do" role="button" type="submit" class="theme-btn">취소</a>
+                               </div>
+
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </main>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <html class="no-js" lang="ko">
 <head>
 <title>Top</title>
@@ -10,7 +9,6 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="/pet/resources/assets/img/favicon.png">
-	
 	<!-- ========================= CSS here ========================= -->
 	<link rel="stylesheet" href="/pet/resources/assets/css/bootstrap-5.0.0-beta1.min.css">
 	<link rel="stylesheet" href="/pet/resources/assets/css/LineIcons.2.0.css">
@@ -26,8 +24,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-12">
 					<nav class="navbar navbar-expand-lg">
-						<a class="navbar-brand" href="/pet"> <img src="/pet/resources/assets/img/logo/logo.svg" alt="Logo">
-						</a>
+						<a class="navbar-brand" href="/pet"> <img style="width:100px " src="/pet/resources/assets/img/logo/logo1.png" alt="Logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse"
 							data-bs-target="#navbarSupportedContent"
@@ -36,9 +33,16 @@
 							<span class="toggler-icon"></span> <span class="toggler-icon"></span>
 							<span class="toggler-icon"></span>
 						</button>
-						<div class="collapse navbar-collapse sub-menu-bar"
-							id="navbarSupportedContent">
+						<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 							<ul id="nav" class="navbar-nav ms-auto">
+								<c:choose>
+									<c:when test="${user!=null}">
+										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님^^7</a></li>
+										<li class="nav-item"><a class="page-scroll"></a></li>
+										<li class="nav-item"><a class="page-scroll"></a></li>
+									</c:when>
+								</c:choose>
+								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
 									data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
@@ -51,8 +55,15 @@
 										<li class="nav-item"><a href="/pet/views/404.html">방문 목욕과 미용</a></li>
 									</ul>
 								</li>
-
-								<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
+								
+								<c:choose>
+									<c:when test="${user==null}">
+										<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item"><a class="page-scroll active" href="/pet/erp/logout.do">로그아웃</a></li>
+									</c:otherwise>
+								</c:choose>
 								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
@@ -68,7 +79,7 @@
 								</li>
 
 								<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
-									
+								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
 									data-bs-toggle="collapse" data-bs-target="#submenu-1-4"

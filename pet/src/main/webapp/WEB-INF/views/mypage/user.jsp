@@ -16,7 +16,7 @@
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">Home</a></li>
+                                        <li class="breadcrumb-item" aria-current="page"><a href="/pet">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">page</li>
                                     </ol>
                                 </nav>
@@ -42,9 +42,9 @@
 	                                            <i class="lni lni-phone"></i>
 	                                        </div>
 	                                        <div class="contact-content">
-												<h4>반려동물 1's name</h4>
-												<p>반려동물's 종류</p>
-												<p>반려동물's 품종</p>
+												<h4>${pet.pet_name }</h4>
+												<p>${pet.pet_code }</p>
+												<p>${pet.pet_kind }</p>
 	                                        </div>
 	                                    </div>
                                     </a>
@@ -87,25 +87,24 @@
                                     <div class="section-title text-center mb-50">
                                         <span class="wow fadeInDown" data-wow-delay=".2s">XXX님, 안녕하세요!</span>
                                         <h2 class="wow fadeInUp" data-wow-delay=".4s">이용자님의 정보를 입력하고<br> 수정해주세요</h2>
-                                        <!-- <p class="wow fadeInUp" data-wow-delay=".6s">언제든지 열려있습니다. </p> -->
                                     </div>
                                 </div>
                             </div>
                             <form action="assets/php/mail.php" class="contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" id="name" placeholder="이름" required>
+                                        <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" name="email" id="email" placeholder="Email" required>
+                                        <input type="email" name="email" id="email" placeholder="Email" value="${user.member_email}" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">번호 변경</button></br>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" required>
+                                        <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.member_phone}" required>
                                     </div>
-                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소변경</button></br>
-                                        <input type="text" name="address" id="address" placeholder="주소" required> 
+                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소 변경</button></br>
+                                        <input type="text" name="address" id="address" placeholder="주소" value="${user.member_addr1}" required> 
                                     </div>
                                 </div>
                                 <div class="row">
