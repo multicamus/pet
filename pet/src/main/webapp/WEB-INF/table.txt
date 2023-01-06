@@ -1,3 +1,5 @@
+#DB테이블
+
 #이용자테이블
 create table member_info(
     member_id varchar2(15) primary key,

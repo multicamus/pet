@@ -205,7 +205,7 @@
  			$(document).ready(function () {
  				
  				
-				$("#pills-1-tab").on("click", function(){
+				/* $("#pills-1-tab").on("click", function(){
 					$("#pills-1-tab").attr("aria-selected", "true");
 					$("#match_method").attr("value", "direct-match");
 					
@@ -217,6 +217,12 @@
 				$("#pills-3-tab").on("click", function(){
 					$("#pills-3-tab").attr("aria-selected", "true");
 					$("#match_method").attr("value", "past-match")
+				}) */
+				
+				
+				$(".nav-link").on("click", function(){
+					sel = $(this).attr("aria-selected", "true");
+					alert(sel)
 				})
 
 
@@ -268,7 +274,7 @@
                 <div class="pricing-btn text-center wow fadeInUp" data-wow-delay=".3s">
                     <ul class="nav justify-content-center mb-90" id="pills-tab"  role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active"   id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab"  aria-controls="pills-1" aria-selected="true">직접 선택</a>
+                            <a class="nav-link active"   id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab"  aria-controls="pills-1" aria-selected="false">직접 선택</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-2-tab"  data-bs-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">자동 매칭</a>
@@ -285,6 +291,8 @@
         <!-- 내용 시작 -->
         <div class="tab-content" id="pills-tabContent">
         	<!-- 직접선택 시작 -->
+        <form action="/pet/reserve/resv2_mb.do" method="post" >
+        	
             <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="single-pricing active mb-50">
                  
@@ -346,7 +354,9 @@
                 </div>
             </div>
         	<!-- 직접선택 끝 -->
+        </form>	
         	
+        <form action="/pet/reserve/resv2_mb.do" method="post" >
         	<!-- 자동매칭 시작 -->
             <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <div class="single-pricing active mb-50">
@@ -387,7 +397,9 @@
                 </div>
             </div>
             <!-- 자동매칭끝 -->
-            
+         </form>   
+         
+        <form action="/pet/reserve/resv2_mb.do" method="post" >       
             <!-- 과거리스트 시작 -->
             <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                 <div class="single-pricing active mb-50">
@@ -427,6 +439,7 @@
                 </div>
             </div>
             <!-- 과거끝 -->
+         </form>   
 		     <!-- 버튼 -->
 		     
 		         <div class="button text-center pb-50">
