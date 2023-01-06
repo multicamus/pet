@@ -128,6 +128,9 @@ create table pet_info(
 #펫시터 테이블
 create table sitter_info(
     sitter_id varchar2(15) primary key,
+    
+    sitter_pass varchar2(15),
+    
     sitter_name varchar2(15),
 	sitter_code char(1),
 	sitter_gender char(1),

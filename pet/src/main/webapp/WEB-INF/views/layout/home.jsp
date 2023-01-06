@@ -26,7 +26,7 @@
     </div>
     <!-- preloader end -->
 	<div>
-		<tiles:insertAttribute name="top" />
+		<tiles:insertAttribute name="top" ignore="true" />
 	</div>
 	
 	<div>

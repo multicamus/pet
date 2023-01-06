@@ -56,34 +56,30 @@
                                 <div class="col-lg-8 pt-30">
                                 	<h4>평점</h4>
                                 </div>
-                                <div>
-	                                <input type="radio" id="review_rate" name="review_rate" value="1" checked>1점
-	                                <input type="radio" id="review_rate" name="review_rate" value="2" >2점
-	                                <input type="radio" id="review_rate" name="review_rate" value="3" >3점
-	                                <input type="radio" id="review_rate" name="review_rate" value="4" >4점
+                                
+                                <div class="row align-items-center pt-10 pl-50">
+                                
+                                    <div class="form-check col-1">
+                                        <input id="review_rate" name="review_rate" type="radio" class="form-check-input" value="1" required>
+                                        <label class="form-check-label" for="review_rate">1점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate2" name="review_rate" type="radio" class="form-check-input" value="2" required>
+                                        <label class="form-check-label" for="review_rate2">2점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate3" name="review_rate" type="radio" class="form-check-input" value="3" required>
+                                        <label class="form-check-label" for="review_rate3">3점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate4" name="review_rate" type="radio" class="form-check-input" value="4" required>
+                                        <label class="form-check-label" for="review_rate4">4점</label>
+                                    </div>
+                                    <div class="form-check col-1">
+                                        <input id="review_rate5" name="review_rate" type="radio" class="form-check-input" value="5" checked required>
+                                        <label class="form-check-label" for="review_rate5">5점</label>
+                                    </div>
                                 </div>
-<!-- 	                                <div class="row align-items-center pt-10 pl-50"> -->
-<!-- 	                                    <div class="form-check col-1"> -->
-<!-- 	                                        <input id="review_rate" name="review_rate" type="radio" class="form-check-input" value="1" required> -->
-<!-- 	                                        <label class="form-check-label" for="review_rate">1점</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="form-check col-1"> -->
-<!-- 	                                        <input id="review_rate2" name="review_rate" type="radio" class="form-check-input" value="2" required> -->
-<!-- 	                                        <label class="form-check-label" for="review_rate2">2점</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="form-check col-1"> -->
-<!-- 	                                        <input id="review_rate3" name="review_rate" type="radio" class="form-check-input" value="3" required> -->
-<!-- 	                                        <label class="form-check-label" for="review_rate3">3점</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="form-check col-1"> -->
-<!-- 	                                        <input id="review_rate4" name="review_rate" type="radio" class="form-check-input" value="4" required> -->
-<!-- 	                                        <label class="form-check-label" for="review_rate4">4점</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="form-check col-1"> -->
-<!-- 	                                        <input id="review_rate5" name="review_rate" type="radio" class="form-check-input" value="5" checked required> -->
-<!-- 	                                        <label class="form-check-label" for="review_rate5">5점</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                </div> -->
 	                                
                                 <div class="col-lg-12 pt-30">
                                     <h4>내용</h4>
@@ -109,8 +105,6 @@
                             <div class="row">
 
                                <div class="button text-center">
-                                   <br/>
-                                   <br/>
                                    <button type="submit" class="theme-btn">등록</button>
                                    <a href="/pet/menu/review.do" role="button" type="submit" class="theme-btn">취소</a>
                                </div>

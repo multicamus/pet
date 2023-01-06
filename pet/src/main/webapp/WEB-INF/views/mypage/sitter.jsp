@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="ko">
     <head>
@@ -16,7 +17,7 @@
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">Home</a></li>
+                                        <li class="breadcrumb-item" aria-current="page"><a href="/pet">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">page</li>
                                     </ol>
                                 </nav>
@@ -58,6 +59,7 @@
 	                                        <div class="contact-content">
 	                                            <h4>나의 점수</h4>
 	                                            <p>별점으로 표시</p>
+	                                            <p>${user.sitter_rate}</p>
 	                                            <p>가장 최근 후기</p>
 	                                        </div>
 	                                    </div>
@@ -71,7 +73,7 @@
                                         </div>
                                         <div class="contact-content">
                                             <h4>자격증</h4>
-                                            <p>자격증</p>
+                                            <p>${user.sitter_certificate}</p>
                                             <p>자격증</p>
                                             <p><a href="#">등록</a></p>
                                             <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
@@ -96,35 +98,35 @@
                             <form action="assets/php/mail.php" class="contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" id="name" placeholder="이름" required>
+                                        <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" name="email" id="email" placeholder="Email" required>
+                                        <input type="email" name="email" id="email" placeholder="Email" value="${user.sitter_email}" required>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6" ><button class=" btn btn-primary " style="margin-left: 30px;"  type="submit">번호 변경</button></br>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" required>
+                                    <div class="col-md-6" ><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">번호 변경</button></br>
+                                        <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" required>
                                     </div>
                                     <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소 변경</button></br>
-                                        <input type="text" name="address" id="address" placeholder="주소" required>
+                                        <input type="text" name="address" id="address" placeholder="주소" value="${user.sitter_addr1}" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" >
-                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" required>
+                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" value="${user.sitter_code}" required>
                                     </div>
                                 </div>
                                 	<div class="row">
 	                                    <div class="col-12">
 	                                        <h4>자기 소개</h4>
-	                                        <textarea name="message" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5"></textarea>
+	                                        <textarea name="message" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5">${user.sitter_info}</textarea>
 	                                    </div>
 	                                </div>
 	                                <div class="row">
 	                                    <div class="col-12">
 	                                        <h4>서비스 가능 지역</h4>
-	                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5"></textarea>
+	                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5">${user.service_area}</textarea>
 	                                    </div>
 	                                </div>
                                 <div>
