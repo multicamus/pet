@@ -19,7 +19,7 @@
         
 
         font-family: inherit;  
-        background: url('arrow.jpg') no-repeat 95% 50%; 
+		/* background: url('/pet/resources/assets/img/arrow.jpg') no-repeat 95% 50%;  */
         
         -webkit-appearance: none; 
         -moz-appearance: none;

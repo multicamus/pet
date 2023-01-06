@@ -197,6 +197,7 @@
     <script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>   
+<<<<<<< HEAD
      
       <script>
 
@@ -229,35 +230,53 @@
 			})  
 
 					
+=======
+    <script>
+		$(document).ready(function () {
+			$("#pills-1-tab").on("click", function(){
+				$("#pills-1-tab").attr("aria-selected", "true");
+				$("#match_method").attr("value", "direct-match");
+				
+			})
+			$("#pills-2-tab").on("click", function(){
+				$("#pills-2-tab").attr("aria-selected", "true");
+				$("#match_method").attr("value", "auto-match");
+			})
+			$("#pills-3-tab").on("click", function(){
+				$("#pills-3-tab").attr("aria-selected", "true");
+				$("#match_method").attr("value", "past-match")
+			})
+		})  
+>>>>>>> refs/remotes/origin/main-old
       </script>    
 </head>
     <body>
-        <!-- ========================= page-banner-section start ========================= -->
-        <section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="banner-content">
-                            <h2 class="text-white">예약하기</h2>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item" aria-current="page"><a href="/pet/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">예약하기</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
+<!-- ========================= page-banner-section start ========================= -->
+<section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="banner-content">
+                    <h2 class="text-white">예약하기</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" aria-current="page"><a href="/pet/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">예약하기</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ========================= page-banner-section end ========================= -->
+        </div>
+    </div>
+</section>
+<!-- ========================= page-banner-section end ========================= -->
         
-        <!-- ========================= 펫시터 매칭-section start ========================= -->
+<!-- ========================= 펫시터 매칭-section start ========================= -->
 <section id="pricing" class="pricing-section pt-50">
     <div class="container">
-       <form action="/pet/reserve/resv2_mb.do" method="post" >
+       
     	<!-- 펫시터 매칭방법 선택 제목-->
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
@@ -274,7 +293,11 @@
                 <div class="pricing-btn text-center wow fadeInUp" data-wow-delay=".3s">
                     <ul class="nav justify-content-center mb-90" id="pills-tab"  role="tablist">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link active"   id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab"  aria-controls="pills-1" aria-selected="false">직접 선택</a>
+=======
+                            <a class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" href="#pills-1" role="tab"  aria-controls="pills-1" aria-selected="true">직접 선택</a>
+>>>>>>> refs/remotes/origin/main-old
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-2-tab"  data-bs-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">자동 매칭</a>
@@ -295,31 +318,29 @@
         	
             <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="single-pricing active mb-50">
-                 
                     <div class="row justify-content-center">
-                  		<div class="col-lg-4">
-                            <h3>선호하는 펫시터</h3>
-                            <h4>성별</h4>
-                            	<select name="prefer_gender" id="prefer_gender">
-                            		<option value="male">남자</option>
-                            		<option value="female">여자</option>
-                            		<option value="allgender">상관 없음</option>
-                            	</select>
-                            <h4>돌봄 경험 횟수</h4>
-                            	<select name="prefer_size" id="prefer_size">
-                            		<option value="small">소형견 돌봄 경험이 많은 사람</option>
-                            		<option value="medium">중형견 돌봄 경험이 많은 사람</option>
-                            		<option value="large">대형견 돌봄 경험이 많은 사람</option>
-                            		<option value="allsize" >상관 없음</option>
-                            	</select>
-                            <form>
+                    	<form action="/pet/reserve/resv2_mb.do" method="post" >
+	                  		<div class="col-lg-4">
+	                  			<input type="hidden" id="match_method" name="match_method"  value="direct_match">
+	                            <h3>선호하는 펫시터</h3>
+	                            <h4>성별</h4>
+	                            	<select name="prefer_gender" id="prefer_gender">
+	                            		<option value="male">남자</option>
+	                            		<option value="female">여자</option>
+	                            		<option value="allgender">상관 없음</option>
+	                            	</select>
+	                            <h4>돌봄 경험 횟수</h4>
+	                            	<select name="prefer_size" id="prefer_size">
+	                            		<option value="small">소형견 돌봄 경험이 많은 사람</option>
+	                            		<option value="medium">중형견 돌봄 경험이 많은 사람</option>
+	                            		<option value="large">대형견 돌봄 경험이 많은 사람</option>
+	                            		<option value="allsize" >상관 없음</option>
+	                            	</select>
                            		<a href="javascript:void(0)" class="theme-btn" style="margin-left: 0px;">확인</a>
-                           	</form>
-                           	<p>펫시터분들을 확인해보세요!</p>
-						</div>
+                           		<p>펫시터분들을 확인해보세요!</p>
+							</div>
 						
                   		<div class="col-lg-8 row align-self-center">
-                  		
 	                  		<div class="col-lg-4">
 		                  		<div class="card">
 									  <img src="/pet/resources/assets/images/1.jpg" class="card-img-top" alt="...">
@@ -348,9 +369,14 @@
 							</div>
 							
 						</div>
-                   
+						<div>
+					         <div class="button text-center pb-50">
+					       		 <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:800px">이전</button>
+								<button type="submit" id="nextbtn" class="theme-btn" style="display:inline-block; margin-left:0px">다음</button>
+					         </div>
+						</div>
+                  	 </form>
                     </div>
-                    
                 </div>
             </div>
         	<!-- 직접선택 끝 -->
@@ -360,8 +386,10 @@
         	<!-- 자동매칭 시작 -->
             <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <div class="single-pricing active mb-50">
+               		 <form action="/pet/reserve/resv2_mb.do" method="post" >
                         <div class="row">
                             <div class="col-4 justify-content-center">
+                            <input type="hidden" id="match_method" name="match_method"  value="auto_match">
                             <h3>선호하는 펫시터</h3>
                             <h4>성별</h4>
                             	<select name="prefer_gender">
@@ -376,24 +404,29 @@
                             		<option value="large">대형견 돌봄 경험이 많은 사람</option>
                             		<option value="allsize">상관 없음</option>
                             	</select>
-                            <form>
+                            	
                            		<a href="javascript:void(0)" class="theme-btn">확인</a>
-                           	</form>
-                           	<p>펫시터분들을 확인해보세요!</p>
-						</div>
+                           		<p>펫시터분들을 확인해보세요!</p>
+							</div>
 						
-                  		<div class="col-8 justify-content-center">
-                            <h3>이용자</h3>
-                            <h4>$25.99</h4>
-                            <ul>
-                                <li>30 Users</li>
-                                <li>Minimal Report</li>
-                                <li>1GB Data Storage</li>
-                                <li>7/24 Support</li>
-                                <li>Multiple Agents</li>
-                            </ul>
-						</div>
-                    </div>
+	                  		<div class="col-8 justify-content-center">
+	                            <h3>이용자</h3>
+	                            <h4>$25.99</h4>
+	                            <ul>
+	                                <li>30 Users</li>
+	                                <li>Minimal Report</li>
+	                                <li>1GB Data Storage</li>
+	                                <li>7/24 Support</li>
+	                                <li>Multiple Agents</li>
+	                            </ul>
+							</div>
+                    	</div>
+			                    	  
+				         <div class="button text-center pb-50">
+				       		 <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:800px">이전</button>
+							<button type="submit" id="nextbtn" class="theme-btn" style="display:inline-block; margin-left:0px">다음</button>
+				         </div>
+                    </form>
                 </div>
             </div>
             <!-- 자동매칭끝 -->
@@ -404,8 +437,9 @@
             <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                 <div class="single-pricing active mb-50">
                      <div class="col-lg-12 row align-self-center">
-                  		
+                     	<form action="/pet/reserve/resv2_mb.do" method="post" >
 	                  		<div class="col-lg-4">
+	                  		<input type="hidden" id="match_method" name="match_method"  value="past_match">
 	                  			<h4>12월 31일</h4>
 		                  		<div class="card">
 									  <img src="/pet/resources/assets/images/1.jpg" class="card-img-top" alt="...">
@@ -435,40 +469,36 @@
 								</div>
 							</div>
 							
+							  
+						         <div class="button text-center pb-50">
+						       		 <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:700px">이전</button>
+									<button type="submit" id="nextbtn" class="theme-btn" style="display:inline-block; margin-left:0px">다음</button>
+						         </div>
+							</form>
 						</div>
                 </div>
             </div>
             <!-- 과거끝 -->
          </form>   
 		     <!-- 버튼 -->
-		     
-		         <div class="button text-center pb-50">
-	        		 <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:1000px">이전</button>
-	            	 <!-- <button type="submit" class="theme-btn" formaction="/pet/menu/reserve/resv3_mb.do" style="display:inline-block; margin-left:0px">다음</button> -->
-					<button type="submit" id="nextbtn" class="theme-btn" style="display:inline-block; margin-left:0px">다음</button>
-		         </div>
+		   
             
-        <!-- input hidden -->
-        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
-        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
-        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
-        <input type="hidden" name="service_time" value="${resvdto.service_time }">
-        <input type="hidden" name="default_service" value="${resvdto.default_service }">
-        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
-        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
-        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
-        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-        <input type="hidden" id="match_method" name="match_method"  value="direct_match">
+	        <!-- input hidden -->
+	        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+	        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
+	        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
+	        <input type="hidden" name="service_time" value="${resvdto.service_time }">
+	        <input type="hidden" name="default_service" value="${resvdto.default_service }">
+	        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
+	        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
+	        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
+	        <input type="hidden" name="service_note" value="${resvdto.service_note }">
+	        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
+	        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
+	        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
         </div>
         <!-- 내용끝 -->
-        
-        
-		         
 		     
-	   </form>
 	   <!-- form끝 -->  
     </div>
 </section>
