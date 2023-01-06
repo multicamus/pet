@@ -104,42 +104,29 @@
                                     <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">번호 변경</button></br>
                                         <input type="text" name="phone" id="phone" placeholder="전화번호" required>
                                     </div>
-                                 <div class="col-md-3">
-                                      <input type="text" class="form-control m-input" name="postcode" id="postcode" placeholder="우편번호" readonly />
+                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소변경</button></br>
+                                        <input type="text" name="address" id="address" placeholder="주소" required> 
                                     </div>
-                                    <div class="col-md-4 postcode-btn">
-                                      <button type="button" class="btn btn-primary" onclick="execDaumPostcode()">우편번호 찾기</button>
-                                    </div>
-                                    <div class="col-md-4 offset-md-5" style="margin-left: 75px; padding-left:10px; " >
-                                      <input
-                                        type="text"
-                                        class="form-control m-input"
-                                        name="address"
-                                        id="address"
-                                        placeholder="도로명 주소"
-                                        readonly
-                                      />
-                                    </div>
-                                    <div class="col-md-4 offset-md-5" style="margin-left: 65px;">
-                                      <input
-                                        type="text"
-                                        class="form-control m-input"
-                                        name="detailAddress"
-                                        placeholder="상세 주소"
-                                        required
-                                      />
-                                    </div>
- 
                                 </div>
-                                </div>
-                           
-                             
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>서비스 이용 지역</h4>
+                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5">
+                                        </textarea>
+                                    </div>
+                                    </div>
+                                    <div>
+                                        <button class=" btn btn-primary " type="submit">서울시 종로구</button>
+                                        <button class=" btn btn-primary " type="submit">서울시 성북구</button>
+                                        <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
+                                        <button class=" btn btn-primary " type="submit">서울시 영등포구</button>    
+                                    </div>
                                     <br>
                                     <br>                    
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="button text-center">
-                                            <button type="submit" class="theme-btn">수정</button>
+                                            <button type="submit" class="theme-btn">등록/수정</button>
                                             <button type="reset" class="theme-btn">취소</button>
                                         </div>
                                     </div>

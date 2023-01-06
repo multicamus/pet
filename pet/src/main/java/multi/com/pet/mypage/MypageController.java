@@ -56,7 +56,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("/mypage/read.do")
-	public String read(String board_no, String state, Model model) {
+	public String read(String sitter_id, String state, Model model) {
 		// ModelAndView mav = new ModelAndView();
 		MypageDTO mypage = service.getSitter_info(sitter_id);
 		
