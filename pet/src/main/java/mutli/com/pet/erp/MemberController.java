@@ -29,11 +29,11 @@ public class MemberController {
 	public String login(MemberDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		MemberDTO user = service.login(loginUserInfo);
 		PetDTO pet = service.pet(loginUserInfo);
-		System.out.println(pet);
 		String view = "";
 		
 		if(user!=null) {
-			model.addAttribute("user", new LoginUserDTO(user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status()));
+			LoginUserDTO loginUser = new LoginUserDTO(user.getCode(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status());
+			model.addAttribute("user", loginUser);
 			HttpSession hs = hsr.getSession();
 			hs.setAttribute("pet", pet);
 			view = "home";
@@ -47,9 +47,8 @@ public class MemberController {
 	public String login(SitterDTO loginUserInfo, Model model) {
 		SitterDTO user = service.login(loginUserInfo);
 		String view = "";
-		System.out.println(user);
 		if(user!=null) {
-			model.addAttribute("user", new LoginUserDTO(user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_career(), user.getSitter_certificate(), user.getSitter_rate()));
+			model.addAttribute("user", new LoginUserDTO(user.getCode(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_career(), user.getSitter_certificate(), user.getSitter_rate()));
 			view = "home";
 		}else {
 			view = "login";

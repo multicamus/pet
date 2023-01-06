@@ -3,35 +3,50 @@ package mutli.com.pet.erp;
 import java.sql.Date;
 
 public class SitterDTO {
-	String sitter_id;
-	String sitter_name;
-	String sitter_pass;
-	String sitter_code;
-	String sitter_gender;
-	String sitter_email;
-	String sitter_phone;
-	String sitter_addr1;
-	String sitter_addr2;
-	Date sitter_startdate;
-	Date sitter_enddate;
-	String sitter_status;
-	Date sitter_birthdate;
-	String service_area;
-	String sitter_info;
-	String valid;
-	String sitter_career;
-	String sitter_certificate;
-	String sitter_rate;
+	private String code;
+	private String sitter_id;
+	private String sitter_name;
+	private String sitter_pass;
+	private String sitter_code;
+	private String sitter_gender;
+	private String sitter_email;
+	private String sitter_phone;
+	private String sitter_addr1;
+	private String sitter_addr2;
+	private Date sitter_startdate;
+	private Date sitter_enddate;
+	private String sitter_status;
+	private Date sitter_birthdate;
+	private String service_area;
+	private String sitter_info;
+	private String valid;
+	private String sitter_career;
+	private String sitter_certificate;
+	private String sitter_rate;
 	
 	public SitterDTO() {
 		
 	}
 	
-	public SitterDTO(String sitter_id, String sitter_name, String sitter_pass, String sitter_code, String sitter_gender,
-			String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate,
-			Date sitter_enddate, String sitter_status, Date sitter_birthdate, String service_area, String sitter_info,
-			String valid, String sitter_career, String sitter_certificate, String sitter_rate) {
+	@Override
+	public String toString() {
+		return "SitterDTO [code=" + code + ", sitter_id=" + sitter_id + ", sitter_name=" + sitter_name
+				+ ", sitter_pass=" + sitter_pass + ", sitter_code=" + sitter_code + ", sitter_gender=" + sitter_gender
+				+ ", sitter_email=" + sitter_email + ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1
+				+ ", sitter_addr2=" + sitter_addr2 + ", sitter_startdate=" + sitter_startdate + ", sitter_enddate="
+				+ sitter_enddate + ", sitter_status=" + sitter_status + ", sitter_birthdate=" + sitter_birthdate
+				+ ", service_area=" + service_area + ", sitter_info=" + sitter_info + ", valid=" + valid
+				+ ", sitter_career=" + sitter_career + ", sitter_certificate=" + sitter_certificate + ", sitter_rate="
+				+ sitter_rate + "]";
+	}
+
+	public SitterDTO(String code, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
+			String sitter_gender, String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2,
+			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
+			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
+			String sitter_rate) {
 		super();
+		this.code = code;
 		this.sitter_id = sitter_id;
 		this.sitter_name = sitter_name;
 		this.sitter_pass = sitter_pass;
@@ -53,15 +68,13 @@ public class SitterDTO {
 		this.sitter_rate = sitter_rate;
 	}
 
-	@Override
-	public String toString() {
-		return "SitterDTO [sitter_id=" + sitter_id + ", sitter_name=" + sitter_name + ", sitter_pass=" + sitter_pass
-				+ ", sitter_code=" + sitter_code + ", sitter_gender=" + sitter_gender + ", sitter_email=" + sitter_email
-				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
-				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
-				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
-				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
-				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + "]";
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getSitter_rate() {
