@@ -19,13 +19,11 @@
 		select * from dual
 	</insert> -->
 		
-	<!-- <select id="read" resultType="" parameterType="String">
-		select * from review where review = #{review}
-	</select> -->
+
 	
 	<select id="read" resultType="review" >
 		select * from review
-	</select>
+	</select> 
 	
 	
 </mapper>

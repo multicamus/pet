@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 @Controller
-@RequestMapping("/review")
 public class ReviewController {
 	FileUploadLogic fileuploadService;
 	ReviewService service;
@@ -30,18 +29,19 @@ public class ReviewController {
 	
 
 	//텍스트용
-	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/insert.do", method = RequestMethod.GET)
 	public String insert(ReviewDTO review) {
 		System.out.println("ReviewDTO : "+review);
 		service.insert(review);
 		return "review";
 	}
 	
-	@RequestMapping("/read.do")
+	@RequestMapping("/menu/review.do")
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("review");
 		List<ReviewDTO> readlist = service.read();
 		mav.addObject("review",readlist);
+		System.out.println(readlist);
 		return mav;
 	}
 	

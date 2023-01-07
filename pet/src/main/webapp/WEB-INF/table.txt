@@ -198,13 +198,15 @@ create table resv_history(
     review varchar2(200),
     resv_no varchar2(15),
     review_file varchar2(50),
-    review_rate number(5)
+    review_rate number(5),
+    
+  
     
     //파일추가 컬럼 (ReviewFileDTO) 
     originalFilename varchar2(25),
     reviewFileno varchar2(25),
     storeFilename varchar2(25),
-    review_no2 varchar2(25),
+    review_no2 varchar2(25)
 );
 
 #댓글테이블

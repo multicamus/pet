@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -30,142 +32,61 @@
 	<!-- ========================= page-banner-section end ========================= -->
 
 	<!-- ========================= feature-section start ========================= -->
+
+
+
 	<section class="feature-section pt-130">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
 					<div class="section-title text-center mb-55">
-						<span class="wow fadeInDown" data-wow-delay=".2s">00개의 후기</span>
+						<span class="wow fadeInDown" data-wow-delay=".2s">${fn:length(review)}개의
+							후기</span>
 						<h2 class="wow fadeInUp" data-wow-delay=".4s">실시간 이용후기</h2>
 					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<a href="/pet/menu/review/detail.do?id=">
-						<div class="feature-box box-style">
-							<div style="display: flex; position: relative;">
-								<img src="/pet/resources/assets/images/dog3.jpg"
-									style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-							</div>
-							<br />
-							<div style="display: flex; flex-direction: column;">
-								<!--후기 제목 -->
-								<h4>인천 서구</h4>
-								<div class="row">
-									<div class="col-2">
-										<p
-											style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">10분
-											전</p>
-									</div>
-									<div class="col-3">
-										<p
-											style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점
-											5점</p>
+			<c:forEach var="review" items="${review}">
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<a href="/pet/menu/review/detail.do?id=">
+							<div class="feature-box box-style">
+								<div style="display: flex; position: relative;">
+									<img src="/pet/resources/assets/images/dog3.jpg"
+										style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+								</div>
+								<br />
+								<div style="display: flex; flex-direction: column;">
+									<!--후기 제목 -->
+									<h4>인천 서구</h4>
+									<div class="row">
+										<div class="col-2">
+											<p
+												style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
+										</div>
+										<div class="col-3">
+											<p
+												style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점
+												${review.review_rate }</p>
+										</div>
 									</div>
 								</div>
-							</div>
-							<br />
-							<!-- 후기 내용 -->
-							<div class="box-content-style feature-content">
-								<p>${review}</p>
-								<c:forEach var="board" items="${boardlist}">
-									<tr>
-										<td>${board.board_no}</td>
-										<td><a
-											href="/erp/board/read.do?board_no=${board.board_no}&state=READ">${board.title}</a></td>
-										<td>${board.id }</td>
-										<td>${board.write_date }</td>
-										<td><a href="/erp/board/delete.do?board_no=${board.board_no}">삭제</a></td>
-									</tr>
-								</c:forEach>
-							</div>
-							<br />
-					</a>
-					<div>
-						<button type="button" class="btn btn-secondary btn-sm"
-							style="z-index: 1;"
-							onclick="location.href='javascript:showPopUp()' ">댓글</button>
+								<br />
+								<!-- 후기 내용 -->
+
+								<div class="box-content-style feature-content">
+									${review.review}</div>
+								<br />
+						</a>
+						<div>
+							<button type="button" class="btn btn-secondary btn-sm"
+								style="z-index: 1;"
+								onclick="location.href='javascript:showPopUp()' ">댓글</button>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6">
-				<a href="/pet/menu/review/detail.do?id=">
-					<div class="feature-box box-style">
-						<div style="display: flex; position: relative;">
-							<img src="/pet/resources/assets/images/dog1.jpg"
-								style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-						</div>
-						<br />
-						<div style="display: flex; flex-direction: column;">
-							<h4>서울 강남구</h4>
-							<div class="row">
-								<div class="col-3">
-									<p
-										style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">1시간
-										전</p>
-								</div>
-								<div class="col-3">
-									<p
-										style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점
-										5점</p>
-								</div>
-							</div>
-						</div>
-						<br />
-						<div class="box-content-style feature-content">
-							${review.review}
-							<p>시터님 덕분에 루피젤리 오동통하게 잘살구있네요!!! 항상감사합니다!!! 덕분에 휴가 잘다녀왔어요!
-								다음에또부탁드릴게요~☺️👉🏻👈🏻 시터님도 따뜻한연말보내시구 내년에 좋은일 많이 일어나시길바랄게요~~🫶</p>
-						</div>
-
-						<br />
-				</a>
-				<div>
-					<button type="button" class="btn btn-secondary btn-sm"
-						onclick="location.href='javascript:showPopUp()' ">댓글</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6">
-			<a href="/pet/menu/review/detail.do?id=">
-				<div class="feature-box box-style">
-					<div style="display: flex; position: relative;">
-						<img src="/pet/resources/assets/images/dog2.jpg"
-							style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-					</div>
-					<br />
-					<div style="display: flex; flex-direction: column;">
-						<h4>서울 마포구</h4>
-						<div class="row">
-							<div class="col-2">
-								<p
-									style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">어제
-								</p>
-							</div>
-							<div class="col-3">
-								<p
-									style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점
-									5점</p>
-							</div>
-						</div>
-					</div>
-					<br />
-					<div class="box-content-style feature-content">
-						<p>50분이나 산책해주셨다니!! 반달이 정말 신났겠어요!!! 추운 날씨에 감사합니다~~ 아침저녁으로 산책하면서
-							야외배변하니 패드가 깨끗한가봐요ㅎㅎㅎㅎ</p>
-					</div>
-					<br />
-			</a>
-			<div>
-				<button type="button" class="btn btn-secondary btn-sm"
-					onclick="location.href='javascript:showPopUp()' ">댓글</button>
-			</div>
-		</div>
-		</div>
+			</c:forEach>
 	</section>
 </body>
 <script type="text/javascript">

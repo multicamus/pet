@@ -32,6 +32,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	@Override
 	public List<ReviewDTO> read() {
 		List<ReviewDTO> list = sqlSession.selectList("mutli.com.pet.review.read");
+		System.out.println("daoImpl " + list);
 		return list;
 	}
 
