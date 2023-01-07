@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="col-xl-10 col-lg-8 mx-auto">
                                     <div class="section-title text-center mb-50">
-                                        <span class="wow fadeInDown" data-wow-delay=".2s">XXX님, 안녕하세요!</span>
+                                        <span class="wow fadeInDown" data-wow-delay=".2s">${user.member_id}님, 안녕하세요!</span>
                                         <h2 class="wow fadeInUp" data-wow-delay=".4s">이용자님의 정보를 입력하고<br> 수정해주세요</h2>
                                         <!-- <p class="wow fadeInUp" data-wow-delay=".6s">언제든지 열려있습니다. </p> -->
                                     </div>
@@ -94,53 +94,29 @@
                             <form action="assets/php/mail.php" class="contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" id="name" placeholder="이름" required>
+                                        <input type="text" name="name" id="name" placeholder="이름" disabled="disabled">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" name="email" id="email" placeholder="Email" required>
+                                        <input type="email" name="email" id="email" placeholder="Email" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">번호 변경</button></br>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" required>
+                                    <div class="col-md-6"></br>
+                                        <input type="text" name="phone" id="phone" placeholder="전화번호" disabled="disabled">
                                     </div>
-                                 <div class="col-md-3">
-                                      <input type="text" class="form-control m-input" name="postcode" id="postcode" placeholder="우편번호" readonly />
+                                    <div class="col-md-6"></br>
+                                        <input type="text" name="address" id="address" placeholder="주소" disabled="disabled"> 
                                     </div>
-                                    <div class="col-md-4 postcode-btn">
-                                      <button type="button" class="btn btn-primary" onclick="execDaumPostcode()">우편번호 찾기</button>
-                                    </div>
-                                    <div class="col-md-4 offset-md-5" style="margin-left: 75px; padding-left:10px; " >
-                                      <input
-                                        type="text"
-                                        class="form-control m-input"
-                                        name="address"
-                                        id="address"
-                                        placeholder="도로명 주소"
-                                        readonly
-                                      />
-                                    </div>
-                                    <div class="col-md-4 offset-md-5" style="margin-left: 65px;">
-                                      <input
-                                        type="text"
-                                        class="form-control m-input"
-                                        name="detailAddress"
-                                        placeholder="상세 주소"
-                                        required
-                                      />
-                                    </div>
- 
                                 </div>
-                                </div>
-                           
                              
+                                 
                                     <br>
                                     <br>                    
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="button text-center">
-                                            <button type="submit" class="theme-btn">수정</button>
-                                            <button type="reset" class="theme-btn">취소</button>
+                                            <button onclick="location='/pet/src/main/webapp/WEB-INF/views/mypage/user2.jsp'" type="submit" class="theme-btn">수정</button>
+                                            <button onclick="location='/pet/src/main/webapp/WEB-INF/views/mypage/user.jsp'" type="reset" class="theme-btn">취소</button>
                                         </div>
                                     </div>
                                 </div>

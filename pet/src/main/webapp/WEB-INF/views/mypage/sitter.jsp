@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!doctype html>
 <html class="no-js" lang="ko">
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
+        <script type="text/javascript">
+        
+        
+        </script>
     </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -86,7 +91,7 @@
                             <div class="row">
                                 <div class="col-xl-10 col-lg-8 mx-auto">
                                     <div class="section-title text-center mb-50">
-                                        <span class="wow fadeInDown" data-wow-delay=".2s">XXX님, 안녕하세요!</span>
+                                        <span class="wow fadeInDown" data-wow-delay=".2s">${user.sitter_id}님, 안녕하세요!</span>
                                         <h2 class="wow fadeInUp" data-wow-delay=".4s">시터님의 정보를 입력하고 <br>수정해주세요</h2>
                                         <!-- <p class="wow fadeInUp" data-wow-delay=".6s">언제든지 열려있습니다. </p> -->
                                         
@@ -96,35 +101,35 @@
                             <form action="assets/php/mail.php" class="contact-form">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" id="name" placeholder="이름" required>
+                                        <input type="text" name="name" id="name" placeholder="이름" disabled="disabled">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" name="email" id="email" placeholder="Email" required>
+                                        <input type="email" name="email" id="email" placeholder="Email" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6" ><button class=" btn btn-primary " style="margin-left: 30px;"  type="submit">번호 변경</button></br>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" required>
+                                    <div class="col-md-6" ></br>
+                                        <input type="text" name="phone" id="phone" placeholder="전화번호" disabled="disabled">
                                     </div>
-                                    <div class="col-md-6"><button class=" btn btn-primary " style="margin-left: 30px;" type="submit">주소 변경</button></br>
-                                        <input type="text" name="address" id="address" placeholder="주소" required>
+                                    <div class="col-md-6"></br>
+                                        <input type="text" name="address" id="address" placeholder="주소" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" >
-                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" required>
+                                        <input type="text" name="sitter" id="sitter" placeholder="펫 종류" disabled="disabled">
                                     </div>
                                 </div>
                                 	<div class="row">
 	                                    <div class="col-12">
 	                                        <h4>자기 소개</h4>
-	                                        <textarea name="message" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5"></textarea>
+	                                        <textarea name="message" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5" disabled="disabled"></textarea>
 	                                    </div>
 	                                </div>
 	                                <div class="row">
 	                                    <div class="col-12">
 	                                        <h4>서비스 가능 지역</h4>
-	                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="5"></textarea>
+	                                       
 	                                    </div>
 	                                </div>
                                 <div>
@@ -137,8 +142,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="button text-center">
-                                            <button type="submit" class="theme-btn">등록/수정</button>
-                                            <button type="reset" class="theme-btn">취소</button>
+                                            <button onclick="location='/pet/src/main/webapp/WEB-INF/views/mypage/sitter2.jsp'" type="submit" class="theme-btn">수정</button>
+                                            <button onclick="location='/pet/src/main/webapp/WEB-INF/views/mypage/sitter.jsp'" type="reset" class="theme-btn">취소</button>
                                         </div>
                                     </div>
                                 </div>
