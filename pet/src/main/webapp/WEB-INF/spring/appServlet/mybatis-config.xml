@@ -8,7 +8,6 @@
 		<typeAlias type="mutli.com.pet.erp.MemberDTO" alias="member" />
 		<typeAlias type="mutli.com.pet.erp.SitterDTO" alias="sitter" />
 
-
 		
 		<typeAlias type="mutli.com.pet.review.ReviewDTO" alias="review" />
 	</typeAliases>

@@ -67,7 +67,7 @@
 	</beans:bean>
 	<mongo:repositories base-package="spring.data.mongodb.score"/>
 	
-	<context:component-scan base-package="mutli.com.pet" />
+	<context:component-scan base-package="mutli" />
 	<context:component-scan base-package="multi"/>
 	
 	

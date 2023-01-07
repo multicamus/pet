@@ -189,7 +189,8 @@ create table resv_history(
     );
 
 #이용후기 테이블
-    create table review(
+	//기존 컬럼(ReviewDTO)
+    create table review(  
     review_no varchar2(15) primary key,
     member_id varchar2(15),
     write_date_rv date,
@@ -198,8 +199,12 @@ create table resv_history(
     resv_no varchar2(15),
     review_file varchar2(50),
     review_rate number(5)
-
- 
+    
+    //파일추가 컬럼 (ReviewFileDTO) 
+    originalFilename varchar2(25),
+    reviewFileno varchar2(25),
+    storeFilename varchar2(25),
+    review_no2 varchar2(25),
 );
 
 #댓글테이블

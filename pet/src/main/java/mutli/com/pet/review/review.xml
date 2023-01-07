@@ -3,7 +3,29 @@
 
 <mapper namespace="mutli.com.pet.review">
 	<insert id="insert" parameterType="review">
-		insert into review (review_no, member_id, write_date_rv, review)
-		values(review_seq.nextval, #{member_id}, sysdate, #{review})
+		insert into review (review_no,
+		member_id, write_date_rv, review,review_rate)
+		values(review_seq.nextval, #{member_id}, sysdate,
+		#{review},#{review_rate})
 	</insert>
+
+	<!-- <insert id="fileinsert" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="file" separator="">
+			into review
+			(review_no2,originalFilename,storeFilename,reviewFileno)
+			values(review_seq.currval,#{file.originalFilename},#{file.storeFilename},#{file.reviewFileno})
+		</foreach>
+		select * from dual
+	</insert> -->
+		
+	<!-- <select id="read" resultType="" parameterType="String">
+		select * from review where review = #{review}
+	</select> -->
+	
+	<select id="read" resultType="review" >
+		select * from review
+	</select>
+	
+	
 </mapper>
