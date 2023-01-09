@@ -37,7 +37,7 @@
 
 	<section class="feature-section pt-130">
 		<div class="container">
-			<div class="row">
+			<div class="">
 				<div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
 					<div class="section-title text-center mb-55">
 						<span class="wow fadeInDown" data-wow-delay=".2s">${fn:length(review)}개의
@@ -46,20 +46,27 @@
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<c:forEach var="review" items="${review}">
-				<div class="row">
-					<div class="col-lg-4 col-md-6">
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-lg-10 row">
+				<c:forEach var="review" items="${review}">
+
+					<div class="col-lg-4 col-md-4">
 						<a href="/pet/menu/review/detail.do?id=">
-							<div class="feature-box box-style">
+							<div class="feature-box box-style" style="float: left;">
 								<div style="display: flex; position: relative;">
-									<img src="/pet/resources/assets/images/dog3.jpg"
+									<img
+										src="/pet/resources/assets/images/${review.member_photo}.jpg"
 										style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+
 								</div>
 								<br />
+
 								<div style="display: flex; flex-direction: column;">
-									<!--후기 제목 -->
-									<h4>인천 서구</h4>
+									<!--후기 지역 -->
+									<h4>${review.member_addr1 }</h4>
 									<div class="row">
 										<div class="col-2">
 											<p
@@ -72,21 +79,24 @@
 										</div>
 									</div>
 								</div>
-								<br />
+										<br/>
 								<!-- 후기 내용 -->
 
 								<div class="box-content-style feature-content">
 									${review.review}</div>
 								<br />
 						</a>
-						<div>
-							<button type="button" class="btn btn-secondary btn-sm"
-								style="z-index: 1;"
-								onclick="location.href='javascript:showPopUp()' ">댓글</button>
-						</div>
+								<div>
+									<button type="button" class="btn btn-secondary btn-sm"
+										style="z-index: 1;"
+										onclick="location.href='javascript:showPopUp()' ">댓글</button>
+								</div>
+							</div>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
+			<div class="col-1"></div>
+		</div>
 	</section>
 </body>
 <script type="text/javascript">

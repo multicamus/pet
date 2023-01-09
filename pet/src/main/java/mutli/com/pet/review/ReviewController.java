@@ -39,10 +39,11 @@ public class ReviewController {
 	@RequestMapping("/menu/review.do")
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("review");
-		List<ReviewDTO> readlist = service.read();
+		List<Review2DTO> readlist = service.read();
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;
+		
 	}
 	
 	//텍스트 + 파일용

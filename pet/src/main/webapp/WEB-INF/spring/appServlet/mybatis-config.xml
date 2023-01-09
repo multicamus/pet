@@ -10,6 +10,7 @@
 
 		
 		<typeAlias type="mutli.com.pet.review.ReviewDTO" alias="review" />
+		<typeAlias type="mutli.com.pet.review.Review2DTO" alias="review2" />
 	</typeAliases>
 
 

@@ -8,5 +8,5 @@ public interface ReviewDAO {
 	int insertFile(List<ReviewFileDTO> reviewfiledtolist);
 	
 	
-	List<ReviewDTO> read();
+	List<Review2DTO> read();
 }

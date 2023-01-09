@@ -7,7 +7,7 @@ public interface ReviewService {
 	int insert(ReviewDTO review);
 	int insert(ReviewDTO review, List<ReviewFileDTO> reviewfiledtolist);
 	
-	List<ReviewDTO> read();
+	List<Review2DTO> read();
 	
 	
 }

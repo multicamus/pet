@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public List<ReviewDTO> read() {
+	public List<Review2DTO> read() {
 		return dao.read();
 	}
 	
