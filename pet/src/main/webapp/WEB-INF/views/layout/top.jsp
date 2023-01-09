@@ -37,7 +37,7 @@
 							<ul id="nav" class="navbar-nav ms-auto">
 								<c:choose>
 									<c:when test="${user!=null}">
-										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.code}님^^7</a></li>
+										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님^^7</a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 									</c:when>
@@ -82,7 +82,7 @@
 									<c:when test="${user == null}">
 										<li class="nav-item"><a class="page-scroll" href="#">예약하기</a></li>
 									</c:when>
-									<c:when test="${user.code == 'B'}">
+									<c:when test="${user.user_type == 'M'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
 									</c:when>
 									<c:otherwise>
@@ -95,10 +95,10 @@
 									<c:when test="${user == null}">
 										<li class="nav-item"><a class="page-scroll" href="#">마이페이지</a></li>
 									</c:when>
-									<c:when test="${user.code == 'A'}">
+									<c:when test="${user.user_type == 'A'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/admin.do">마이페이지</a></li>
 									</c:when>
-									<c:when test="${user.code == 'B'}">
+									<c:when test="${user.user_type == 'M'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/user.do">마이페이지</a></li>
 									</c:when>
 									<c:otherwise>

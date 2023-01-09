@@ -16,12 +16,18 @@
 		
 		<view-controller path="/menu/review.do" view-name="review"/>
 		<view-controller path="/menu/review/write.do" view-name="review/write"/>
-		<view-controller path="/menu/review/detail.do" view-name="review/detail"/>
+		<view-controller path="/menu/review/read.do" view-name="review/read"/>
+		<view-controller path="/menu/review/update.do" view-name="review/update"/>
 		
 		<view-controller path="/menu/mypage/admin.do" view-name="mypage/admin"/>
 		<view-controller path="/menu/mypage/pet.do" view-name="mypage/pet"/>
+		<view-controller path="/menu/mypage/pet_update.do" view-name="mypage/pet_update"/>
+		<view-controller path="/menu/mypage/pet_register.do" view-name="mypage/pet_register"/>
+		
 		<view-controller path="/menu/mypage/sitter.do" view-name="mypage/sitter"/>
+		<view-controller path="/menu/mypage/sitter_update.do" view-name="mypage/sitter_update"/>
 		<view-controller path="/menu/mypage/user.do" view-name="mypage/user"/>
+		<view-controller path="/menu/mypage/user_update.do" view-name="mypage/user_update"/>
 		
  		<view-controller path="/menu/reserve/resv1_mb.do" view-name="resv/resv_1"/>	
 		<view-controller path="/menu/reserve/resv2_mb.do" view-name="resv/resv_2"/> 

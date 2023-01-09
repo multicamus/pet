@@ -19,7 +19,7 @@
         
 
         font-family: inherit;  
-		/* background: url('/pet/resources/assets/img/arrow.jpg') no-repeat 95% 50%;  */
+        background: url('arrow.jpg') no-repeat 95% 50%; 
         
         -webkit-appearance: none; 
         -moz-appearance: none;
@@ -320,21 +320,21 @@
                         </div>
                     </div>    
 					        <!-- input hidden -->
-        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
-        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
-        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
-        <input type="hidden" name="service_time" value="${resvdto.service_time }">
-        <input type="hidden" name="default_service" value="${resvdto.default_service }">
-        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
-        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
-        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
-        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
-        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
-        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >                    
+					        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+					        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
+					        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
+					        <input type="hidden" name="service_time" value="${resvdto.service_time }">
+					        <input type="hidden" name="default_service" value="${resvdto.default_service }">
+					        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
+					        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
+					        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
+					        <input type="hidden" name="service_note" value="${resvdto.service_note }">
+					        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
+					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
+					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
+					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
+					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
+					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >                    
                     </div>
                     <!-- 전체 row끝  -->
 

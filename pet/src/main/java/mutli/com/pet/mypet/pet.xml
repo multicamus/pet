@@ -2,12 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mutli.com.pet.mypet">
+
 	<select id="mypet" parameterType="member" resultType="pet">
-		select p.* 
-		from pet_info p, member_info m
-		where m.member_id = p.member_id
-		  and m.member_id = #{member_id} and m.member_pass = #{member_pass}
+		SELECT p.* 
+		FROM pet_info p, member_info m
+		WHERE m.member_id = p.member_id
+		  AND m.member_id = #{member_id} and m.member_pass = #{member_pass}
 	</select>
+	
+	<select id="read" parameterType="String" resultType="pet">
+		SELECT * 
+		FROM pet_info
+		WHERE pet_id = #{pet_id}
+	</select>
+	
+	<!-- , pet_photo = #{pet_photo} -->
+	<update id="update" parameterType="pet">
+		UPDATE pet_info 
+		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, animalhospital_name = #{animalhospital_name}, animalhospital_addr = #{animalhospital_addr}, pet_note = #{pet_note}       
+		WHERE pet_id = #{pet_id}
+	</update>
+	
+	<insert id="insert" parameterType="pet">
+		INSERT into pet_info
+		VALUES (pet_id = #{pet_id}, member_id = #{member_id}, pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, animalhospital_name = #{animalhospital_name}, animalhospital_addr = #{animalhospital_addr}, pet_photo = #{pet_photo}, pet_note = #{pet_note}, pet_number = #{pet_number} )
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		DELETE pet_info
+		WHERE pet_id = #{pet_id}
+	</delete>
+	
 	
 </mapper>
 

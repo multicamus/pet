@@ -1,5 +1,7 @@
 package mutli.com.pet.erp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,26 +17,57 @@ public class MemberServiceImpl implements MemberService {
 		this.dao = dao;
 	}
 
+	// login - member
 	@Override
 	public MemberDTO login(MemberDTO loginUserInfo) {
 		MemberDTO user = dao.login(loginUserInfo);
 		return user;
 	}
-	
+
+	// login - sitter
 	@Override
 	public SitterDTO login(SitterDTO loginUserInfo) {
 		SitterDTO user = dao.login(loginUserInfo);
 		return user;
 	}
 
+	// login - pet
 	@Override
-	public PetDTO pet(MemberDTO loginUser) {
-		PetDTO pet = dao.pet(loginUser);
-		return pet;
+	public List<PetDTO> petList(MemberDTO loginUser) {
+		return dao.petList(loginUser);
 	}
 	
+	// update
+	@Override
+	public int update(SitterDTO sitter) {
+		return dao.update(sitter);
+	}
+
+	@Override
+	public int update(MemberDTO member) {
+		return dao.update(member);
+	}
 	
-	
-	
+	// insert
+	@Override
+	public int insert(SitterDTO sitter) {
+		return dao.insert(sitter);
+	}
+
+	@Override
+	public int insert(MemberDTO member) {
+		return dao.insert(member);
+	}
+
+	// delete
+	@Override
+	public int delete(SitterDTO sitter) {
+		return dao.delete(sitter);
+	}
+
+	@Override
+	public int delete(MemberDTO member) {
+		return dao.delete(member);
+	}
 
 }
