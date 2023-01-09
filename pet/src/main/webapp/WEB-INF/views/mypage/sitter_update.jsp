@@ -88,52 +88,55 @@
                             <div class="row">
                                 <div class="col-xl-10 col-lg-8 mx-auto">
                                     <div class="section-title text-center mb-50">
-                                        <span class="wow fadeInDown" data-wow-delay=".2s">${user.name }님, 안녕하세요!</span>
-                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">시터님의 정보를 확인하세요!</h2>
+                                        <span class="wow fadeInDown" data-wow-delay=".2s">${user.name}님, 안녕하세요!</span>
+                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">시터님의 정보를 입력하고 <br>수정해주세요</h2>
+                                        <!-- <p class="wow fadeInUp" data-wow-delay=".6s">언제든지 열려있습니다. </p> -->
                                         
                                     </div>
                                 </div>
                             </div>
-                                <div class="contact-form">
-                                    <div>
+                            <form action="/pet/erp/sitter/update.do" class="contact-form">
+                               	 	<div>
                                     	<h4>이름</h4>
-                                        <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" disabled>
+                                        <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" required>
                                     </div>
                                     <div>
                                     	<h4>이메일</h4>
-                                        <input type="email" name="email" id="email" placeholder="Email" value="${user.sitter_email}" disabled>
+                                        <input type="email" name="email" id="email" placeholder="Email" value="${user.sitter_email}" required>
                                     </div>
                                     	<h4>연락처</h4>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" disabled>
+                                        <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" required>
                                     <div>
                                     	<h4>주소</h4>
-                                        <input type="text" name="address" id="address" placeholder="주소" value="${user.sitter_addr1}" disabled>
+                                        <input type="text" name="address" id="address" placeholder="주소" value="${user.sitter_addr1}" required>
                                     </div>
                                     <div>
                                     	<h4>펫시터 종류</h4>
-                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" value="${user.sitter_code}" disabled>
+                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" value="${user.sitter_code}" required>
                                     </div>
                                     <div class="col-12">
                                         <h4>자기 소개</h4>
-                                        <textarea name="sitter_info" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5" disabled>${user.sitter_info}</textarea>
+                                        <textarea name="sitter_info" id="자기소개" placeholder="남들에게 보여질 자기소개를 입력해주세요" rows="5">${user.sitter_info}</textarea>
                                     </div>
                                     <div class="col-12">
                                         <h4>서비스 가능 지역</h4>
-                                        <div class="pt-20">
+                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="1">${user.service_area}</textarea>
+                                        <div>
 			                               <button class=" btn btn-primary " type="submit">서울시 종로구</button>
 			                               <button class=" btn btn-primary " type="submit">서울시 성북구</button>
 			                               <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
 		                                </div>
 	                                </div>
             
-                                <div class="row pt-100">
-                                    <div class="col-12">
-                                        <div class="button text-center">
-                                            <a type="button" class="theme-btn" href="/pet/menu/mypage/sitter_update.do">수정</a>
-                                        </div>
-                                    </div>
-                                </div>
-                      	    </div>
+	                                <div class="row pt-100">
+	                                    <div class="col-12">
+	                                        <div class="button text-center">
+	                                            <button type="submit" class="theme-btn">확인</button>
+	                                            <a type="button" class="theme-btn" href="/pet/menu/mypage/sitter.do">취소</a>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

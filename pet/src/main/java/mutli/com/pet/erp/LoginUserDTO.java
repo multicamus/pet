@@ -8,7 +8,7 @@ public class LoginUserDTO {
 //	SitterDTO sitter;
 //	MemberDTO member;
 	
-	private String code;
+	private String user_type;
 	private String name;
 	
 	private String sitter_id;
@@ -41,13 +41,14 @@ public class LoginUserDTO {
 	private Date end_date;
 	private String member_code;
 	private String member_status;
+	private String member_shortAddr;
 	
 	// 멤버용
-	public LoginUserDTO(String code, String name, String member_id, String member_no, String member_gender, String member_email,
+	public LoginUserDTO(String user_type, String name, String member_id, String member_no, String member_gender, String member_email,
 			String member_phone, String member_addr1, String member_addr2, MultipartFile member_photo, Date start_date,
 			Date end_date, String member_code, String member_status) {
 		super();
-		this.code = code;
+		this.user_type = user_type;
 		this.name = name;
 		this.member_id = member_id;
 		this.member_no = member_no;
@@ -64,12 +65,12 @@ public class LoginUserDTO {
 	}
 	
 	// 시터용
-	public LoginUserDTO(String code, String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
+	public LoginUserDTO(String user_type, String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
 			String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate, Date sitter_enddate,
 			String sitter_status, Date sitter_birthdate, String service_area, String sitter_info, String valid,
 			String sitter_career, String sitter_certificate, String sitter_rate) {
 		super();
-		this.code = code;
+		this.user_type = user_type;
 		this.name = name;
 		this.sitter_id = sitter_id;
 		this.sitter_code = sitter_code;
@@ -90,12 +91,27 @@ public class LoginUserDTO {
 		this.sitter_rate = sitter_rate;
 	}
 
-	public String getCode() {
-		return code;
+	@Override
+	public String toString() {
+		return "LoginUserDTO [user_type=" + user_type + ", name=" + name + ", sitter_id=" + sitter_id + ", sitter_code="
+				+ sitter_code + ", sitter_gender=" + sitter_gender + ", sitter_email=" + sitter_email
+				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
+				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
+				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
+				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
+				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", member_id="
+				+ member_id + ", member_no=" + member_no + ", member_gender=" + member_gender + ", member_email="
+				+ member_email + ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2="
+				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
+				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
 
 	public LoginUserDTO(String name) {
@@ -341,6 +357,26 @@ public class LoginUserDTO {
 
 	public void setMember_status(String member_status) {
 		this.member_status = member_status;
+	}
+	
+	public String getMember_shortAddr() {
+		return member_shortAddr;
+	}
+	
+	public void setMember_shortAddr(String member_shortAddr) {
+		String newAddr = member_addr1;
+		String shortAddr; //최종적으로 들어갈 간략주소 변수
+		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else {
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[1]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
+		}
+		this.member_shortAddr = shortAddr;
 	}
 	
 	

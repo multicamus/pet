@@ -1,0 +1,22 @@
+#이용후기 테이블
+    create table review(
+    review_no varchar2(15) primary key,
+    member_id varchar2(15),
+    write_date_rv date,
+    modify_date_rv date,
+    review varchar2(200),
+    resv_no varchar2(15),
+    review_file varchar2(50),
+    review_rate number(5)
+);
+================================================================================================================================================
+insert into review
+values (review_seq.nextval, 
+	'test', 
+	sysdate,
+	sysdate,
+	'감사합니다.', 
+	'1', 
+	'test',
+	'5'
+	) 
