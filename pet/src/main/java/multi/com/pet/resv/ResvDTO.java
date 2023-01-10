@@ -5,9 +5,9 @@ import java.sql.Date;
 public class ResvDTO {
 	private String resv_no;
 	private String member_id;
-	private Date resv_date;
-	private Date resv_change_date;
-	private char resv_state='0';
+	private Date resv_date = getTodayDate();
+	private Date resv_change_date = getTodayDate();
+	private int resv_state=0;
 	private String pay_method;
 	private Date visit_date;
 	private String  visit_place;
@@ -19,6 +19,7 @@ public class ResvDTO {
 	private char walk_service='N';
 	private char beauty_service='N';
 	private String  sitter_id;
+	private String sitter_name;
 	private String  service_note;
 	private int total_price;
 	private String match_method;
@@ -32,9 +33,12 @@ public class ResvDTO {
 	private String supplies_place;
 	private String  cleaning_method;
 	private String emergency_phone;
-	private String  pet1_reserved;
-	private String pet2_reserved;
-	private String pet3_reserved;
+//	private String  pet1_reserved;
+//	private String pet2_reserved;
+//	private String pet3_reserved;
+	private String pet_idlist;
+	private String pet_codelist;
+	private String pet_namelist;
 	
 	public ResvDTO() {
 		// TODO Auto-generated constructor stub
@@ -56,8 +60,7 @@ public class ResvDTO {
 	
 	//resv2페이지(예약페이지2번째)의 hidden타입
 	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time,
-			char default_service, char bath_service, char walk_service, char beauty_service, String service_note,
-			String pet1_reserved, String pet2_reserved, String pet3_reserved) {
+			char default_service, char bath_service, char walk_service, char beauty_service, String service_note) {
 		super();
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
@@ -69,9 +72,7 @@ public class ResvDTO {
 		this.walk_service = walk_service;
 		this.beauty_service = beauty_service;
 		this.service_note = service_note;
-		this.pet1_reserved = pet1_reserved;
-		this.pet2_reserved = pet2_reserved;
-		this.pet3_reserved = pet3_reserved;
+	
 	}
 	
 	
@@ -81,32 +82,30 @@ public class ResvDTO {
 	public ResvDTO(Date visit_date, int service_starttime, int service_endtime, int service_time, char default_service,
 			char bath_service, char walk_service, char beauty_service, String service_note, String match_method,
 			String prefer_gender, String prefer_size, String visit_method, String common_pass, String home_pass,
-			String direct_meet, String parking, String supplies_place, String cleaning_method, String emergency_phone,
-			String pet1_reserved, String pet2_reserved, String pet3_reserved) {
+			String direct_meet, String parking, String supplies_place, String cleaning_method, String emergency_phone
+			) {
 		super();
-		this.visit_date = visit_date;
-		this.service_starttime = service_starttime;
-		this.service_endtime = service_endtime;
-		this.service_time = service_time;
-		this.default_service = default_service;
-		this.bath_service = bath_service;
-		this.walk_service = walk_service;
-		this.beauty_service = beauty_service;
+		this.visit_date = visit_date; 
+		this.service_starttime = service_starttime; 
+		this.service_endtime = service_endtime; 
+		this.service_time = service_time; 
+		this.default_service = default_service;   
+		this.bath_service = bath_service; 
+		this.walk_service = walk_service; 
+		this.beauty_service = beauty_service; 
 		this.service_note = service_note;
-		this.match_method = match_method;
-		this.prefer_gender = prefer_gender;
-		this.prefer_size = prefer_size;
-		this.visit_method = visit_method;
-		this.common_pass = common_pass;
-		this.home_pass = home_pass;
-		this.direct_meet = direct_meet;
-		this.parking = parking;
-		this.supplies_place = supplies_place;
-		this.cleaning_method = cleaning_method;
-		this.emergency_phone = emergency_phone;
-		this.pet1_reserved = pet1_reserved;
-		this.pet2_reserved = pet2_reserved;
-		this.pet3_reserved = pet3_reserved;
+		this.match_method = match_method; 
+		this.prefer_gender = prefer_gender; 
+		this.prefer_size = prefer_size; 
+		this.visit_method = visit_method;  
+		this.common_pass = common_pass; 
+		this.home_pass = home_pass; 
+		this.direct_meet = direct_meet; 
+		this.parking = parking; 
+		this.supplies_place = supplies_place; 
+		this.cleaning_method = cleaning_method; 
+		this.emergency_phone = emergency_phone; 
+
 	}
 	public String getResv_no() {
 		return resv_no;
@@ -129,6 +128,8 @@ public class ResvDTO {
 	}
 
 	public void setResv_date(Date resv_date) {
+		
+		
 		this.resv_date = resv_date;
 	}
 
@@ -137,14 +138,15 @@ public class ResvDTO {
 	}
 
 	public void setResv_change_date(Date resv_change_date) {
+		
 		this.resv_change_date = resv_change_date;
 	}
 
-	public char getResv_state() {
+	public int getResv_state() {
 		return resv_state;
 	}
 
-	public void setResv_state(char resv_state) {
+	public void setResv_state(int resv_state) {
 		this.resv_state = resv_state;
 	}
 
@@ -342,30 +344,95 @@ public class ResvDTO {
 		this.emergency_phone = emergency_phone;
 	}
 
-	public String getPet1_reserved() {
-		return pet1_reserved;
-	}
 
-	public void setPet1_reserved(String pet1_reserved) {
-		this.pet1_reserved = pet1_reserved;
-	}
 
-	public String getPet2_reserved() {
-		return pet2_reserved;
-	}
+	
 
-	public void setPet2_reserved(String pet2_reserved) {
-		this.pet2_reserved = pet2_reserved;
+	
+	
+	public String getPet_idlist() {
+		return pet_idlist;
 	}
-
-	public String getPet3_reserved() {
-		return pet3_reserved;
+	public void setPet_idlist(String pet_idlist) {
+		this.pet_idlist = pet_idlist;
 	}
-
-	public void setPet3_reserved(String pet3_reserved) {
-		this.pet3_reserved = pet3_reserved;
+	public String getPet_codelist() {
+		return pet_codelist;
 	}
+	public void setPet_codelist(String pet_codelist) {
+		this.pet_codelist = pet_codelist;
+	}
+	
+	
+	public String getPet_namelist() {
+		return pet_namelist;
+	}
+	public void setPet_namelist(String pet_namelist) {
+		this.pet_namelist = pet_namelist;
+	}
+	
+	
+	public String getSitter_name() {
+		return sitter_name;
+	}
+	public void setSitter_name(String sitter_name) {
+		this.sitter_name = sitter_name;
+	}
+	
+	
 
+	
+	
+
+	public ResvDTO(String resv_no, String member_id, Date resv_date, Date resv_change_date, int resv_state,
+			String pay_method, Date visit_date, String visit_place, int service_starttime, int service_endtime,
+			int service_time, char default_service, char bath_service, char walk_service, char beauty_service,
+			String sitter_id, String sitter_name, String service_note, int total_price, String match_method,
+			String prefer_gender, String prefer_size, String visit_method, String common_pass, String home_pass,
+			String direct_meet, String parking, String supplies_place, String cleaning_method, String emergency_phone,
+			String pet_idlist, String pet_codelist,
+			String pet_namelist) {
+		super();
+		this.resv_no = resv_no;
+		this.member_id = member_id;
+		this.resv_date = resv_date;
+		this.resv_change_date = resv_change_date;
+		this.resv_state = resv_state;
+		this.pay_method = pay_method;
+		this.visit_date = visit_date;
+		this.visit_place = visit_place;
+		this.service_starttime = service_starttime;
+		this.service_endtime = service_endtime;
+		this.service_time = service_time;
+		this.default_service = default_service;
+		this.bath_service = bath_service;
+		this.walk_service = walk_service;
+		this.beauty_service = beauty_service;
+		this.sitter_id = sitter_id;
+		this.sitter_name = sitter_name;
+		this.service_note = service_note;
+		this.total_price = total_price;
+		this.match_method = match_method;
+		this.prefer_gender = prefer_gender;
+		this.prefer_size = prefer_size;
+		this.visit_method = visit_method;
+		this.common_pass = common_pass;
+		this.home_pass = home_pass;
+		this.direct_meet = direct_meet;
+		this.parking = parking;
+		this.supplies_place = supplies_place;
+		this.cleaning_method = cleaning_method;
+		this.emergency_phone = emergency_phone;
+
+		this.pet_idlist = pet_idlist;
+		this.pet_codelist = pet_codelist;
+		this.pet_namelist = pet_namelist;
+	}
+	public static Date getTodayDate() {
+		long miliseconds = System.currentTimeMillis();
+        Date date = new Date(miliseconds);
+        return date;
+	}
 	@Override
 	public String toString() {
 		return "ResvDTO [resv_no=" + resv_no + ", member_id=" + member_id + ", resv_date=" + resv_date
@@ -373,18 +440,14 @@ public class ResvDTO {
 				+ ", visit_date=" + visit_date + ", visit_place=" + visit_place + ", service_starttime="
 				+ service_starttime + ", service_endtime=" + service_endtime + ", service_time=" + service_time
 				+ ", default_service=" + default_service + ", bath_service=" + bath_service + ", walk_service="
-				+ walk_service + ", beauty_service=" + beauty_service + ", sitter_id=" + sitter_id + ", service_note="
-				+ service_note + ", total_price=" + total_price + ", match_method=" + match_method + ", prefer_gender="
-				+ prefer_gender + ", prefer_size=" + prefer_size
-				+ ", visit_method=" + visit_method + ", common_pass=" + common_pass + ", home_pass=" + home_pass
-				+ ", direct_meet=" + direct_meet + ", parking=" + parking + ", supplies_place=" + supplies_place
-				+ ", cleaning_method=" + cleaning_method + ", emergency_phone=" + emergency_phone + ", pet1_reserved="
-				+ pet1_reserved + ", pet2_reserved=" + pet2_reserved + ", pet3_reserved=" + pet3_reserved + "]";
+				+ walk_service + ", beauty_service=" + beauty_service + ", sitter_id=" + sitter_id + ", sitter_name="
+				+ sitter_name + ", service_note=" + service_note + ", total_price=" + total_price + ", match_method="
+				+ match_method + ", prefer_gender=" + prefer_gender + ", prefer_size=" + prefer_size + ", visit_method="
+				+ visit_method + ", common_pass=" + common_pass + ", home_pass=" + home_pass + ", direct_meet="
+				+ direct_meet + ", parking=" + parking + ", supplies_place=" + supplies_place + ", cleaning_method="
+				+ cleaning_method + ", emergency_phone=" + emergency_phone +", pet_idlist=" + pet_idlist
+				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + "]";
 	}
-
-	
-
-
 	
 	
 	

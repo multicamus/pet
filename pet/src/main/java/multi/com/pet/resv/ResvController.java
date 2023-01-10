@@ -1,17 +1,39 @@
 package multi.com.pet.resv;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import mutli.com.pet.erp.LoginUserDTO;
+import mutli.com.pet.erp.SitterDTO;
 
 @Controller
 public class ResvController {
 	
+	ResvService service;
+	
+	@Autowired
+	public ResvController(ResvService service) {
+		super();
+		this.service = service;
+	}
+
+
 	@RequestMapping("/reserve/resv1_mb.do")
-	public String resv1(ResvDTO resvdto, String servicecode, String pet_list, Model model) {
+	public String resv1(ResvDTO resvdto, String servicecode, String pet_idlist, String pet_codelist,  HttpSession session, Model model) {
 		System.out.println("resv1컨트롤러");
 		System.out.println(resvdto);
 		System.out.println(servicecode);
+		System.out.println(pet_idlist);
+
+
 		
 		//나열된 servicecode의 문자열을 ","를 기준으로 split
 		String[] servicecodeArr = servicecode.split(",");
@@ -33,61 +55,59 @@ public class ResvController {
 		resvdto.setService_endtime(endtime);
 		
 		
-		//pet_list에 pet1이 포함되어있으면 pet1_reserved = "Y" 아니면 "N"
-		if(pet_list.contains("pet1")) {
-			resvdto.setPet1_reserved("Y");
+		/*
+		 * //pet_list에 pet1이 포함되어있으면 pet1_reserved = "Y" 아니면 "N"
+		 * if(pet_list.contains("pet1")) { resvdto.setPet1_reserved("Y"); }else {
+		 * resvdto.setPet1_reserved("N"); }
+		 * 
+		 * //pet_list에 pet2이 포함되어있으면 pet2_reserved = "Y" 아니면 "N"
+		 * if(pet_list.contains("pet2")) { resvdto.setPet2_reserved("Y"); }else {
+		 * resvdto.setPet2_reserved("N"); }
+		 * 
+		 * //pet_list에 pet3이 포함되어있으면 pet3_reserved = "Y" 아니면 "N"
+		 * if(pet_list.contains("pet3")) { resvdto.setPet3_reserved("Y"); }else {
+		 * resvdto.setPet3_reserved("N"); }
+		 */
+		
+		
+		
+		
+		
+		//pet_codelist에 DOG, CAT 둘다 포함이 되어있으면
+		if(pet_codelist.contains("CAT")&&pet_codelist.contains("DOG")) {
+			model.addAttribute("pet_codearray", "A");
+		}else if(pet_codelist.contains("CAT")) {
+			model.addAttribute("pet_codearray", "C");
 		}else {
-			resvdto.setPet1_reserved("N");
+			model.addAttribute("pet_codearray", "D");
 		}
 		
-		//pet_list에 pet2이 포함되어있으면 pet2_reserved = "Y" 아니면 "N"		
-		if(pet_list.contains("pet2")) {
-			resvdto.setPet2_reserved("Y");
-		}else {
-			resvdto.setPet2_reserved("N");
-		}
-
-		//pet_list에 pet3이 포함되어있으면 pet3_reserved = "Y" 아니면 "N"
-		if(pet_list.contains("pet3")) {
-			resvdto.setPet3_reserved("Y");
-		}else {
-			resvdto.setPet3_reserved("N");
-		}
 		
+	
 		
 		System.out.println(resvdto);
 		
 		//resvdto를 가지고 지정뷰로 이동
 		model.addAttribute("resvdto", resvdto);
+		
 		return "resv/resv_2";
 	}
 
 	
 	@RequestMapping("/reserve/resv2_mb.do")
-	public String resv2(ResvDTO resvdto, Model model) {
+	public String resv2(ResvDTO resvdto, String sitter_name, Model model) {
 		System.out.println("컨트롤러");
 		System.out.println(resvdto);
+		System.out.println("sittername:"+sitter_name);
 		String gender = resvdto.getPrefer_gender(); //선호 성별
 		String size= resvdto.getPrefer_size(); //선호 사이즈
-		String method = resvdto.getMatch_method(); //선호 방법
+		String method = resvdto.getMatch_method(); //매칭 방법
 		
 		System.out.println(gender);
 		System.out.println(size);
 		System.out.println(method);
 		
-//		String[] genderArr = gender.split(",");
-//		String[] sizeArr = size.split(",");
-//		resvdto.setMatch_method(method);
-//		if(method.equals("direct_match")) {
-//			resvdto.setPrefer_gender(genderArr[0]);
-//			resvdto.setPrefer_size(sizeArr[0]);
-//		}else if(method.equals("auto-match")) {
-//			resvdto.setPrefer_gender(genderArr[1]);
-//			resvdto.setPrefer_size(sizeArr[1]);
-//		}else {
-//			resvdto.setPrefer_gender(null);
-//			resvdto.setPrefer_size(null);
-//		}
+
 		
 		System.out.println(resvdto);
 		model.addAttribute("resvdto", resvdto);
@@ -98,9 +118,89 @@ public class ResvController {
 	public String resv3(ResvDTO resvdto, Model model) {
 		System.out.println("컨트롤러3");
 		System.out.println(resvdto);
+		System.out.println(resvdto.getPet_codelist());
+		System.out.println(resvdto.getPet_idlist());
+		System.out.println(resvdto.getPet_namelist());
+		
+		String[] idArray = resvdto.getPet_idlist().split(",");
+		String[] codeArray = resvdto.getPet_codelist().split(",");
+		String[] nameArray = resvdto.getPet_namelist().split(",");
+		for(int i=0; i<nameArray.length;i++) {
+			System.out.println("nameArray:"+nameArray[i]);
+		}
+		
+		ArrayList<String> idlist = new ArrayList<String>();
+		ArrayList<String> codelist = new ArrayList<String>();
+		ArrayList<String> namelist = new ArrayList<String>();
+		
+		for(int i=0; i<idArray.length;i++) {
+			idlist.add(idArray[i]);
+			codelist.add(codeArray[i]);
+			namelist.add(nameArray[i]);
+		}
 
+		
+		model.addAttribute("idlist", idlist);
+		model.addAttribute("codelist", codelist);		
+		model.addAttribute("namelist", namelist);
+		model.addAttribute("test", "test");
+		
 		model.addAttribute("resvdto", resvdto);
-		return "resv/resvmb_list";
+		return "resv/resv_pay";
+	}
+	
+	@RequestMapping("/reserve/insert.do")
+	public String insert(ResvDTO resvdto, Model model, HttpSession session) {
+		System.out.println("예약테이블에 넣기 컨트롤러");
+		System.out.println(resvdto);
+		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
+		String id = user.getMember_id();
+		String addr = user.getMember_addr1() + " " + user.getMember_addr2();
+		resvdto.setMember_id(id);
+		resvdto.setVisit_place(addr);
+		
+		System.out.println(resvdto);
+		service.insert(resvdto);
+		
+		return "home";
+	}
+	
+	
+	@RequestMapping(value="/sitter/ajax/list.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public List<SitterDTO> directlist(String gender, String size, String code, HttpSession session){
+		System.out.println(gender);
+		System.out.println(size);
+		System.out.println(code);
+		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
+		user.setMember_shortAddr(""); //user의 주소를 간략한 주소로 바꾼다(예: 서울광역시 금천구)
+		String shortAddr = user.getMember_shortAddr();
+		System.out.println(shortAddr);
+		List<SitterDTO> sitterlist =  service.directlist(gender, size, code, shortAddr);
+		//불러온 시터중에서 관리자가 포함되어 있다면 빼기
+		for(int i=0;i<sitterlist.size();i++) {
+			if(sitterlist.get(i).getSitter_id().equals("admin")) {
+				sitterlist.remove(sitterlist.get(i));
+			}
+		}
+		
+		System.out.println(sitterlist);
+		
+		return sitterlist;
+	}
+	
+	@RequestMapping(value="/sitter/ajax/read.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	SitterDTO readSitter(String sitter_id) {
+		System.out.println(sitter_id);
+		SitterDTO sitter = service.readSitter(sitter_id);
+		sitter.setSitter_age(0);
+		sitter.setSitter_shortAddr("");
+		System.out.println(sitter.getSitter_age());
+		System.out.println(sitter.getSitter_shortAddr());
+		
+		System.out.println(sitter);
+		return sitter;
 	}
 	
 	

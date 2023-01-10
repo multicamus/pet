@@ -1,5 +1,7 @@
 package mutli.com.pet.erp;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,8 +30,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public PetDTO pet(MemberDTO loginUserInfo) {
-		return sqlSession.selectOne("mutli.com.pet.mypet.mypet", loginUserInfo);
+	public List<PetDTO> pet(MemberDTO loginUserInfo) {
+		return sqlSession.selectList("mutli.com.pet.mypet.mypet", loginUserInfo);
 	}
 
 	

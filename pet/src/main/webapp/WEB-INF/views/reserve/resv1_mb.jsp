@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -226,19 +227,19 @@
                                         <span class="wow fadeInDown" data-wow-delay=".2s" style="margin-bottom: 30px; font-weight: bold;">반려동물은 세 마리까지 서비스 가능합니다.<br>
                                                                                             두 마리(+10,000원), 세 마리(+20,000)</span>
                                     </div>
-                                    <!-- 1번째 칸 반려동물 등록 입력 -->
+                                    <!-- 펫dto를 리스트객체로 한것을 불러아서 반복문으로 화면에 뿌리기 -->
                                     <div class="row">
                                         <div class="col-12" style="margin-bottom: 15px; font-size: 20px;">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <input type="checkbox" value="pet1" name="pet_list" id="pet1" required>${pet.pet_name }  
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="checkbox" value="pet2" name="pet_list" id="pet2">${pet.pet_name }
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="checkbox" value="pet3" name="pet_list" id="pet3">${pet.pet_name }
-                                                </div>
+                                            <div class="row" >
+                                            	<c:forEach var="pet" items="${mypetlist }" varStatus="status">
+	                                                <div class="col-md-4"  >
+	                                                    <label for="petnamelist${status.count }"  style=" cursor: pointer;">
+	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" name="pet_namelist" >${pet.pet_name }
+	                                                    	<input type="hidden" id="petcodelist${status.count }" value="${pet.pet_code }" name="pet_codelist" >
+	                                               			<input type="hidden" id="petidlist${status.count }" value="${pet.pet_id }" name="pet_idlist">
+	                                               		</label>
+	                                                </div>
+                                                </c:forEach>
                                             </div>
                                         </div>                                              
                                     </div>
@@ -257,25 +258,25 @@
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                 <div class="form_check_btn radio_male">
                                                     <input id="check-1" value="default_service" type="checkbox" name="servicecode" checked onClick="return false;">
-                                                    <label for="check-1">[기본]돌봄(25,000원)</label>
+                                                    <label for="check-1" style="cursor:pointer;">[기본]돌봄(25,000원)</label>
                                                 </div>
                                             </div> 
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
                                                     <input id="check-2" value="bath_service" type="checkbox" name="servicecode" >
-                                                    <label for="check-2">[추가]목욕(+5,000원)</label>
+                                                    <label for="check-2" style="cursor:pointer;">[추가]목욕(+5,000원)</label>
                                                 </div>
                                             </div>
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
                                                     <input id="check-3" value="walk_service" type="checkbox"  name="servicecode">
-                                                    <label for="check-3">[추가]산책(+3,000원)</label>
+                                                    <label for="check-3" style="cursor:pointer;">[추가]산책(+3,000원)</label>
                                                 </div>
                                             </div>
                                             <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                 <div class="form_check_btn">
                                                     <input id="check-4" value="beauty_service" type="checkbox" class="servicecode">
-                                                    <label for="check-4">[추가]미용(+5,000원)</label>
+                                                    <label for="check-4" style="cursor:pointer;">[추가]미용(+5,000원)</label>
                                                 </div>
                                             </div>
                                         </div>                                              
@@ -319,7 +320,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="date" >날짜를 선택해주세요<br/>
-                                                <input type="date" id="date" name="visit_date" required>
+                                                <input type="date" id="date" name="visit_date" >
                                             </label>
                                         </div>
                                     </div>
@@ -336,7 +337,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                         방문시간을 선택해주세요<br/>
-                                            <select name="service_starttime" required>
+                                            <select name="service_starttime" style="cursor:pointer;" required>
                                                 <option value="8">오전 8:00</option>
                                                 <option value="9">오전 9:00</option>
                                                 <option value="10">오전 10:00</option>
@@ -370,19 +371,19 @@
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                         <div class="form_radio_btn radio_hour">
                                                             <input id="radio-8" type="radio" name="service_time" value="1" required>
-                                                            <label for="radio-8">1시간</label>
+                                                            <label for="radio-8" style="cursor:pointer;">1시간</label>
                                                         </div>
                                                     </div> 
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                         <div class="form_radio_btn radio_hour">
                                                             <input id="radio-9" type="radio" name="service_time" value="2">
-                                                            <label for="radio-9">2시간</label>
+                                                            <label for="radio-9" style="cursor:pointer;">2시간</label>
                                                         </div>
                                                     </div>
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >       
                                                         <div class="form_radio_btn radio_hour">
                                                             <input id="radio-10" type="radio" name="service_time" value="3" >
-                                                            <label for="radio-10">3시간</label>
+                                                            <label for="radio-10" style="cursor:pointer;">3시간</label>
                                                         </div>
                                                     </div> 
                                                 </div>                                              

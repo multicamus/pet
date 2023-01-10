@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mutli.com.pet.resv">
+	<select id="directlistAllgender" parameterType="Map" resultType="sitter">
+		select * from sitter_info
+		<where>
+			<if test='code=="D" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and small_career >= 5
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and small_career >= 5
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and medium_career >= 5
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and medium_career >= 5
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and large_career >= 5
+						]]>
+					and service_area LIKE '%' || #{shortAddr} || '%'	
+			</if>
+			<if test='code=="A" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and large_career >= 5
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='A')
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="C"'>
+					<![CDATA[						
+							(sitter_code='A' or sitter_code ='C')
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="directlistBygender" parameterType="Map" resultType="sitter">
+		select * from sitter_info
+		<where>
+			<if test='code=="D" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and small_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and small_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and medium_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and medium_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and large_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and large_career >= 5
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="A" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="D" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+			<if test='code=="C"'>
+					<![CDATA[						
+							(sitter_code='A' or sitter_code ='C')
+							and sitter_gender = #{gender}
+						]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="readsitter" parameterType="String" resultType="sitter">
+			select * from sitter_info
+			where sitter_id = #{sitter_id}
+	</select>
+	
+	 <insert id="insert" parameterType="resv">
+			insert into resv_history
+			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, #{resv_date},
+						#{resv_change_date}, #{resv_state}, null, #{visit_date}, #{visit_place}, 
+						#{service_starttime}, #{service_endtime}, #{service_time}, #{sitter_id}, #{service_note},
+						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, 5000,
+						#{match_method}, #{prefer_gender}, #{prefer_size}, #{visit_method}, #{common_pass},
+						#{home_pass}, #{direct_meet}, #{parking}, #{supplies_place}, #{cleaning_method},
+						#{emergency_phone}) 
+	</insert> 
+	
+</mapper>
+
