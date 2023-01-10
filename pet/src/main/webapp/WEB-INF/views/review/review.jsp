@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="mutli.com.pet.review.ReviewDTO"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -8,6 +11,22 @@
 </head>
 
 <body>
+	<script type="text/javascript">
+// 		문서가 실행되면 익명의 함수를 실행하겠다.
+// 		자바스크립트에서 자바가 공유해준 데이터를 사용 - EL 을 사용
+// 		"${category}" = request.getAttribute('category')
+// 		var review = "${review}" // 컨트롤러 요청하고 Resp 될 때 값을 받아서 셋팅
+		alert(review);
+// 		$(document).ready(function() {
+// 			$("#category").val(category).attr("selected", "selected");
+// 			$("#category").change(function() {
+// 				alert("test");
+//  				Controller 가 실행 되도록
+//  				Select 를 선택하면 Controller 가 실행되고 parameter 로 category 가 파라미터의 값으로 현재 선택한 select 의 value 속성값이 지정
+// 				location.href="/erp/board/list.do?category="+encodeURI($(this).val())						
+// 			});
+// 		});                                                                                                                                                                                                                                    
+	</script>
 	<!-- ========================= page-banner-section start ========================= -->
 	<section class="page-banner-section pt-200 pb-200 img-bg" style="background-image: url('/pet/resources/assets/images/dog.jpg')">
 		<div class="container">
@@ -33,7 +52,7 @@
 			<div class="row">
 				<div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
 					<div class="section-title text-center mb-55">
-						<span class="wow fadeInDown" data-wow-delay=".2s">00개의 후기</span>
+						<span class="wow fadeInDown" data-wow-delay=".2s">${fn:length(reviewList)}개의 후기</span>
 						<h2 class="wow fadeInUp" data-wow-delay=".4s">실시간 이용후기</h2>
 					</div>
 				</div>
@@ -71,8 +90,7 @@
 							<br />
 							</a>
 						<div>
-							<button type="button" class="btn btn-secondary btn-sm" style="z-index: 1;"
-							onclick="location.href='javascript:showPopUp()' ">댓글</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="z-index: 1;" onclick="location.href='javascript:showPopUp()' ">댓글</button>
 						</div>
 					</div>
 				</div>
@@ -81,10 +99,8 @@
 					<a href="/pet/menu/review/detail.do?id=">
 					<div class="feature-box box-style">
 						<div style="display: flex; position: relative;">
-							<img src="/pet/resources/assets/images/dog1.jpg"
-								style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+							<img src="/pet/resources/assets/images/dog1.jpg" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 						</div>
-						<br />
 						<div style="display: flex; flex-direction: column;">
 							<h4>서울 강남구</h4>
 							<div class="row">
@@ -107,8 +123,7 @@
 						<br/>
 						</a>
 						<div>
-							<button type="button" class="btn btn-secondary btn-sm"
-								onclick="location.href='javascript:showPopUp()' ">댓글</button>
+							<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='javascript:showPopUp()' ">댓글</button>
 						</div>
 					</div>
 				</div>
@@ -144,11 +159,34 @@
 						<br />
 						</a>
 						<div>
-							<button type="button" class="btn btn-secondary btn-sm"
-								onclick="location.href='javascript:showPopUp()' ">댓글</button>
+							<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='javascript:showPopUp()' ">댓글</button>
 						</div>
 					</div>
 				</div>
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>내용</th>
+						<th>작성자</th>
+						<th>등록일</th>
+						<th>평점</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="review" items="${reviewList}">
+						<tr>
+							<td>${review.review_no}</td>
+							<td><a href="/pet/review/read.do?review_no=${review.review_no}&state=READ">${review.review}</a></td>
+							<td>${review.member_id}</td>
+							<td>${review.write_date_rv}</td>
+							<td>${review.review_rate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</section>
 </body>
 	<script type="text/javascript">

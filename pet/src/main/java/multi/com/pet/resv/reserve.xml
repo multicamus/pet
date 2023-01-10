@@ -148,6 +148,7 @@
 			where sitter_id = #{sitter_id}
 	</select>
 	
+<<<<<<< HEAD
 	 <insert id="insert" parameterType="resv">
 			insert into resv_history
 			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, #{resv_date},
@@ -159,5 +160,7 @@
 						#{emergency_phone}) 
 	</insert> 
 	
+=======
+>>>>>>> refs/remotes/origin/main-old
 </mapper>
 

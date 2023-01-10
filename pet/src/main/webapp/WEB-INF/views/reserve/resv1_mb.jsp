@@ -233,10 +233,15 @@
                                             <div class="row" >
                                             	<c:forEach var="pet" items="${mypetlist }" varStatus="status">
 	                                                <div class="col-md-4"  >
+<<<<<<< HEAD
 	                                                    <label for="petnamelist${status.count }"  style=" cursor: pointer;">
 	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" name="pet_namelist" >${pet.pet_name }
 	                                                    	<input type="hidden" id="petcodelist${status.count }" value="${pet.pet_code }" name="pet_codelist" >
 	                                               			<input type="hidden" id="petidlist${status.count }" value="${pet.pet_id }" name="pet_idlist">
+=======
+	                                                    <label for="mypetcheckpet${status.count }"  style=" cursor: pointer;">
+	                                                    	<input type="checkbox" id="mypetcheckpet${status.count }" value="pet${status.count }/${pet.pet_code}" name="pet_list" >${pet.pet_name }
+>>>>>>> refs/remotes/origin/main-old
 	                                               		</label>
 	                                                </div>
                                                 </c:forEach>

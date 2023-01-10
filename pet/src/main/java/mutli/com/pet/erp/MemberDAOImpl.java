@@ -18,21 +18,67 @@ public class MemberDAOImpl implements MemberDAO {
 		this.sqlSession = sqlSession;
 	}
 
-	// login
+	// login - member
 	@Override
 	public MemberDTO login(MemberDTO loginUserInfo) {
 		return sqlSession.selectOne("mutli.com.pet.erp.user_login", loginUserInfo); 
 	}
 
+	// login - pet
+	@Override
+	public List<PetDTO> petList(MemberDTO loginUserInfo) {
+		return sqlSession.selectList("mutli.com.pet.mypet.mypet", loginUserInfo);
+	}
+	
+	// login - sitter
 	@Override
 	public SitterDTO login(SitterDTO loginUserInfo) {
 		return sqlSession.selectOne("mutli.com.pet.erp.sitter_login", loginUserInfo);
 	}
+	
+	// update
+	@Override
+	public int update(SitterDTO sitter) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
+	}
 
 	@Override
+<<<<<<< HEAD
 	public List<PetDTO> pet(MemberDTO loginUserInfo) {
 		return sqlSession.selectList("mutli.com.pet.mypet.mypet", loginUserInfo);
+=======
+	public int update(MemberDTO member) {
+		return sqlSession.update("mutli.com.pet.erp.member_update", member);
+>>>>>>> refs/remotes/origin/main-old
 	}
+	
+	// insert
+	@Override
+	public int insert(SitterDTO sitter) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mutli.com.pet.erp.sitter_insert", sitter);
+	}
+
+	@Override
+	public int insert(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mutli.com.pet.erp.insert_member", member);
+	}
+
+	// delete
+	@Override
+	public int delete(SitterDTO sitter) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mutli.com.pet.erp.sitter_delete", sitter);
+	}
+				
+	@Override
+	public int delete(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mutli.com.pet.erp.member_delete", member);
+	}
+	
+	
 
 	
 }

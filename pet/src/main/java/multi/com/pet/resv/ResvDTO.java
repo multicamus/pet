@@ -44,23 +44,22 @@ public class ResvDTO {
 		// TODO Auto-generated constructor stub
 	}
 	//resv1페이지(예약페이지 1번째)에서 입력할때
-	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, 
-			String service_note) 
-	{
+	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, String service_note) {
 		super();
-
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
 		this.service_starttime = service_starttime;
 		this.service_time = service_time;
 		this.service_note = service_note;
-		
 	}
-
 	
 	//resv2페이지(예약페이지2번째)의 hidden타입
+<<<<<<< HEAD
 	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time,
 			char default_service, char bath_service, char walk_service, char beauty_service, String service_note) {
+=======
+	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time, char default_service, char bath_service, char walk_service, char beauty_service, String service_note,String pet1_reserved, String pet2_reserved, String pet3_reserved) {
+>>>>>>> refs/remotes/origin/main-old
 		super();
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
@@ -74,10 +73,6 @@ public class ResvDTO {
 		this.service_note = service_note;
 	
 	}
-	
-	
-	
-	
 	
 	public ResvDTO(Date visit_date, int service_starttime, int service_endtime, int service_time, char default_service,
 			char bath_service, char walk_service, char beauty_service, String service_note, String match_method,
@@ -107,6 +102,7 @@ public class ResvDTO {
 		this.emergency_phone = emergency_phone; 
 
 	}
+	
 	public String getResv_no() {
 		return resv_no;
 	}

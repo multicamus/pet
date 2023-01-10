@@ -6,6 +6,7 @@
 # 이용자 테이블
 >>>>>>> refs/remotes/origin/main-old
 create table member_info(
+	user_type varchar2(3)
     member_id varchar2(15) primary key,
     member_pass varchar2(15),
     member_name varchar2(15),
@@ -19,9 +20,7 @@ create table member_info(
     member_status char(1),    
     member_startdate date,
     member_enddate date
-    code varchar2(3) → usertype varchar2(3)
 );
-
 
 # 반려동물 테이블
 create table pet_info(
@@ -42,13 +41,11 @@ create table pet_info(
 	pet_number char(1)
 );
 
-
 # 펫시터 테이블
 create table sitter_info(
+	user_type varchar2(3)
     sitter_id varchar2(15) primary key,
-    
     sitter_pass varchar2(15),
-    
     sitter_name varchar2(15),
 	sitter_code char(1),
 	sitter_gender char(1),
@@ -63,12 +60,13 @@ create table sitter_info(
 	service_area varchar2(50),
 	sitter_intro varchar2(200),
 	valid char(1),
-	sitter_career varchar2(20),
+	small_career VARCHAR2(32),
+	medium_career VARCHAR2(32),
+	large_career VARCHAR2(32),
+	cat_career VARCHAR2(32),
+	sitter_photo VARCHAR2(32),
 	sitter_certificate varchar2(15)
-	
-	code varchar2(3) → usertype varchar2(3)
 );
-
 
 # 예약내역 테이블
 create table resv_history(
@@ -165,11 +163,11 @@ values
 	('test', 'test', '이지은',
 	'2', 'leejieun@naver.com', 'B') → code 를 usertype 으로 변경하고, 'M' 으로 Setting 할 것 
 
+
 alter table 
 	pet_info 
 modify 
-	(ANIMALHOSPITAL_addr VARCHAR2(32));
-
+	(pet_kind VARCHAR2(32));
 alter table 
 	sitter_info 
 add 
@@ -183,14 +181,15 @@ values
 where 
 	pet_id = 'admin'
 
-update 
-	sitter_info 
-set 
-	code = 'S'
-where
-	 sitter_id = 'admin'
-
-
+UPDATE 
+	member_info 
+SET
+	usertype = 'M'
+WHERE
+	 member_id = 'test'
+	
+ALTER TABLE sitter_info
+RENAME COLUMN code to usertype;
 ================================================================================================
 # mapper 쿼리문 정리
 select * from pet_info p, member_info m

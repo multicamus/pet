@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
@@ -16,7 +17,14 @@
 	                    <h2 class="mb-25 wow fadeInDown" data-wow-delay=".2s">Coming</h2>
 	                    <h1 class="mb-25 wow fadeInDown" data-wow-delay=".2s">펫시터가<br/>집으로 와요</h1>
 	                    <p class="mb-35 wow fadeInLeft" data-wow-delay=".4s">펫시터 방문 돌봄 및 산책 서비스</p>
-	                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약하기</a>
+	                    <c:choose>
+		                    <c:when test="${user==null }">
+		                    	<a href="/pet/menu/login.do" class="theme-btn">예약하기</a>
+		                    </c:when>
+		                    <c:otherwise>
+			                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약하기</a>
+		                    </c:otherwise>
+	                    </c:choose>
 	                </div>
 	            </div>
 	            <div class="col-xl-7 col-lg-6">

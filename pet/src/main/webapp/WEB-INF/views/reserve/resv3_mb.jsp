@@ -329,6 +329,7 @@
 					        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 					        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 					        <input type="hidden" name="service_note" value="${resvdto.service_note }">
+<<<<<<< HEAD
 					        <%-- <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
 					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
 					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
@@ -343,6 +344,14 @@
 						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
 						
 					                            
+=======
+					        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
+					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
+					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
+					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
+					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
+					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >                    
+>>>>>>> refs/remotes/origin/main-old
                     </div>
                     <!-- 전체 row끝  -->
 

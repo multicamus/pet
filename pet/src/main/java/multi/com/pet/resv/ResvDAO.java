@@ -8,5 +8,8 @@ public interface ResvDAO {
 	List<SitterDTO> directlistAllgender(String size, String code, String shortAddr);
 	List<SitterDTO> directlistBygender(String gender, String size, String code, String shortAddr);
 	SitterDTO readSitter(String sitter_id);
+<<<<<<< HEAD
 	int insert(ResvDTO resvdto);
+=======
+>>>>>>> refs/remotes/origin/main-old
 }

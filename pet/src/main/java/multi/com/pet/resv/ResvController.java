@@ -1,6 +1,9 @@
 package multi.com.pet.resv;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> refs/remotes/origin/main-old
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,12 +13,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/main-old
 import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.SitterDTO;
 
 @Controller
 public class ResvController {
+	ResvService service;
+	
+	@Autowired
+	public ResvController(ResvService service) {
+		super();
+		this.service = service;
+	}
 	
 	ResvService service;
 	
@@ -27,12 +40,20 @@ public class ResvController {
 
 
 	@RequestMapping("/reserve/resv1_mb.do")
+<<<<<<< HEAD
 	public String resv1(ResvDTO resvdto, String servicecode, String pet_idlist, String pet_codelist,  HttpSession session, Model model) {
+=======
+	public String resv1(ResvDTO resvdto, String servicecode, String pet_list, String pet_codelist, Model model) {
+>>>>>>> refs/remotes/origin/main-old
 		System.out.println("resv1컨트롤러");
 		System.out.println(resvdto);
 		System.out.println(servicecode);
+<<<<<<< HEAD
 		System.out.println(pet_idlist);
 
+=======
+		System.out.println(pet_list);
+>>>>>>> refs/remotes/origin/main-old
 
 		
 		//나열된 servicecode의 문자열을 ","를 기준으로 split
@@ -83,7 +104,19 @@ public class ResvController {
 		}
 		
 		
+<<<<<<< HEAD
 	
+=======
+		//pet_list에 DOG, CAT 둘다 포함이 되어있으면
+		if(pet_list.contains("CAT")&&pet_list.contains("DOG")) {
+			model.addAttribute("pet_codelist", "A");
+		}else if(pet_list.contains("CAT")) {
+			model.addAttribute("pet_codelist", "C");
+		}else {
+			model.addAttribute("pet_codelist", "D");
+		}
+		
+>>>>>>> refs/remotes/origin/main-old
 		
 		System.out.println(resvdto);
 		
@@ -200,6 +233,48 @@ public class ResvController {
 		System.out.println(sitter.getSitter_shortAddr());
 		
 		System.out.println(sitter);
+		return sitter;
+	}
+	
+	@RequestMapping(value="/sitter/ajax/list.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public List<SitterDTO> directlist(String gender, String size, String code, HttpSession session){
+		System.out.println(gender);
+		System.out.println(size);
+		System.out.println(code);
+		
+		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
+		user.setMember_shortAddr(""); //user의 주소를 간략한 주소로 바꾼다(예: 서울광역시 금천구)
+		String shortAddr = user.getMember_shortAddr();
+		
+		System.out.println(shortAddr);
+		
+		List<SitterDTO> sitterlist =  service.directlist(gender, size, code, shortAddr);
+		//불러온 시터중에서 관리자가 포함되어 있다면 빼기
+		for(int i=0;i<sitterlist.size();i++) {
+			if(sitterlist.get(i).getSitter_id().equals("admin")) {
+				sitterlist.remove(sitterlist.get(i));
+			}
+		}
+		
+		System.out.println(sitterlist);
+		
+		return sitterlist;
+	}
+	
+	@RequestMapping(value="/sitter/ajax/read.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	SitterDTO readSitter(String sitter_id) {
+		System.out.println(sitter_id);
+		
+		SitterDTO sitter = service.readSitter(sitter_id);
+		sitter.setSitter_age(0);
+		sitter.setSitter_shortAddr("");
+		
+		System.out.println(sitter.getSitter_age());
+		System.out.println(sitter.getSitter_shortAddr());
+		System.out.println(sitter);
+		
 		return sitter;
 	}
 	

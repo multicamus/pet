@@ -95,6 +95,23 @@ public class LoginUserDTO {
 
 	public String getUser_type() {
 		return user_type;
+	@Override
+	public String toString() {
+		return "LoginUserDTO [user_type=" + user_type + ", name=" + name + ", sitter_id=" + sitter_id + ", sitter_code="
+				+ sitter_code + ", sitter_gender=" + sitter_gender + ", sitter_email=" + sitter_email
+				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
+				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
+				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
+				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
+				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", member_id="
+				+ member_id + ", member_no=" + member_no + ", member_gender=" + member_gender + ", member_email="
+				+ member_email + ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2="
+				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
+				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
+	}
+
+	public String getUser_type() {
+		return user_type;
 	}
 
 	public void setUser_type(String user_type) {

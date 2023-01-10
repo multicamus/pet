@@ -33,8 +33,5 @@
 	<definition name="resv/resvst_read" extends="main">
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resvhistory_st_read.jsp" />
 	</definition>
-	
-
-	
 </tiles-definitions>
 

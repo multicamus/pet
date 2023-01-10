@@ -37,6 +37,16 @@ public class SitterDTO {
 	
 	
 	
+	private String small_career;
+	private String medium_career;
+	private String large_career;
+	private String cat_career;
+	private String sitter_photo;
+	
+	//추가함 by 최여경
+	private int sitter_age;
+	private String sitter_shortAddr; //00시 00구 혹은 경기도 00시 00구로 축약시킨 주소 String
+	
 	public SitterDTO() {
 		
 	}
@@ -52,7 +62,7 @@ public class SitterDTO {
 				+ ", sitter_career=" + sitter_career + ", sitter_certificate=" + sitter_certificate + ", sitter_rate="
 				+ sitter_rate + ", small_career=" + small_career + ", medium_career=" + medium_career
 				+ ", large_career=" + large_career + ", cat_career=" + cat_career + ", sitter_photo=" + sitter_photo
-				+ "]";
+				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr "]";
 	}
 
 	public SitterDTO(String user_type, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
@@ -60,7 +70,7 @@ public class SitterDTO {
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
 			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
 			String sitter_rate, String small_career, String medium_career, String large_career, String cat_career,
-			String sitter_photo) {
+			String sitter_photo, int sitter_age, String sitter_shortAddr) {
 		super();
 		this.user_type = user_type;
 		this.sitter_id = sitter_id;
@@ -87,6 +97,8 @@ public class SitterDTO {
 		this.large_career = large_career;
 		this.cat_career = cat_career;
 		this.sitter_photo = sitter_photo;
+		this.sitter_age = sitter_age;
+		this.sitter_shortAddr = sitter_shortAddr;
 	}
 
 
