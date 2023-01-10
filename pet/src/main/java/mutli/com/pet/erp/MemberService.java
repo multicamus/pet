@@ -8,9 +8,14 @@ public interface MemberService {
 	// 로그인
 	MemberDTO login(MemberDTO loginUser);
 	List<PetDTO> petList(MemberDTO loginUser);
+	List<PetDTO> petList(String member_id);
 	
 	// 로그인
 	SitterDTO login(SitterDTO loginUser);
+	
+	// 읽기
+	MemberDTO member_read(String member_id);
+	SitterDTO sitter_read(String sitter_id);
 	
 	// 업데이트
 	int update(SitterDTO sitter);

@@ -12,14 +12,12 @@
 	        <div class="row">
 	            <div class="col-xl-3 col-lg-4 col-md-6">
 	                <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
-	                    <a href="index.html" class="logo mb-30"><img src="/pet/resources/assets/img/logo/logo.svg" alt="logo"></a>
+	                    <a href="#" class="logo mb-30"><img src="/pet/resources/assets/img/logo/logo4.png" style="width: 100px;" alt="logo"></a>
 	                    <p class="mb-30 footer-desc">
 	                    나는 한때 내가<br/>
 	                    이 세상에 사라지길 바랬어<br/>
 						온 세상이 너무나 캄캄해<br/>
 						매일 밤을 울던 날<br/>
-						차라리 내가 사라지면 <br/>
-						마음이 편할까<br/>
 	                    </p>
 	                </div>
 	            </div>

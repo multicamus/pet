@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import mutli.com.pet.mypet.PetDTO;
 
+
 @Controller
 @RequestMapping("/erp")
 @SessionAttributes("user")
@@ -65,26 +66,50 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/member/read.do", method = RequestMethod.GET)
+	public String member_read(String member_id, String state, Model model) {
+		MemberDTO member = service.member_read(member_id);
+		String view = "";
+		switch (state) {
+		case "READ":
+			view = "mypage/user";
+			break;
+		default:
+			view = "mypage/user_update";
+			break;
+		}
+		model.addAttribute("member", member);
+		return view;
+	}
+	
+	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
+	public String sitter_read(String sitter_id, String state, Model model) {
+		SitterDTO sitter = service.sitter_read(sitter_id);
+		String view = "";
+		switch (state) {
+		case "READ":
+			view = "mypage/sitter";
+			break;
+		default:
+			view = "mypage/sitter_update";
+			break;
+		}
+		model.addAttribute("sitter", sitter);
+		return view;
+	}
+	
 	@RequestMapping(value = "/member/update.do", method = RequestMethod.POST)
 	public String member_update(MemberDTO member) {
 		service.update(member);
-		return "mypage/user";
-		// 업데이트 이후 DB는 업데이트 되나, 뷰에 뿌려지질 않음
+		return "redirect:/erp/member/read.do?member_id=" + member.getMember_id() + "&state=READ";
 	}
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
 	public String sitter_update(SitterDTO sitter) {
-		System.out.println(sitter); 
-		return "mypage/sitter";
+		System.out.println(sitter);
+		service.update(sitter);
+		
+		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
-	
-	@RequestMapping(value = "/pet/update.do", method = RequestMethod.POST)
-	public String pet_update(PetDTO pet) {
-		return "mypage/pet";
-	}
-	
-	
-
-
 	
 }

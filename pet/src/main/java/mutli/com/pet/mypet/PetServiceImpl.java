@@ -15,8 +15,7 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 	public int insert(PetDTO pet) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(pet);
 	}
 
 	@Override

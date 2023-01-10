@@ -65,22 +65,11 @@
 									</c:otherwise>
 								</c:choose>
 								
-								<li class="nav-item"><a
-									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-									data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">이용 후기</a>
-									
-									<ul class="sub-menu collapse" id="submenu-1-2">
-										<li class="nav-item"><a href="/pet/menu/review.do">이용 후기 게시판</a></li>
-										<li class="nav-item"><a href="/pet/menu/review/write.do">이용 후기 작성</a></li>
-										<li class="nav-item"><a href="/pet/menu/review/detail.do">이용 후기 상세</a></li>
-									</ul>
-								</li>
+								<li class="nav-item"><a class="page-scroll" href="/pet/menu/review.do">이용 후기</a></li>
 								
 								<c:choose>
 									<c:when test="${user == null}">
-										<li class="nav-item"><a class="page-scroll" href="#">예약하기</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/login.do">예약하기</a></li>
 									</c:when>
 									<c:when test="${user.user_type == 'M'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
@@ -90,25 +79,23 @@
 									</c:otherwise>
 								</c:choose>
 								
-								
 								<c:choose>
 									<c:when test="${user == null}">
-										<li class="nav-item"><a class="page-scroll" href="#">마이페이지</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/login.do">마이페이지</a></li>
 									</c:when>
 									<c:when test="${user.user_type == 'A'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/admin.do">마이페이지</a></li>
 									</c:when>
 									<c:when test="${user.user_type == 'M'}">
-										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/user.do">마이페이지</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/member/read.do?member_id=${user.member_id }&state=READ">마이페이지</a></li>
 									</c:when>
 									<c:otherwise>
-										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/sitter.do">마이페이지</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/sitter/read.do?sitter_id=${user.sitter_id}&state=READ">마이페이지</a></li>
 									</c:otherwise>
 								</c:choose>
 								
 								<li class="nav-item"><a class="page-scroll" target="_blank" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
 							</ul>
-
 						</div>
 						<!-- navbar collapse -->
 					</nav>
@@ -118,9 +105,7 @@
 			<!-- row -->
 		</div>
 		<!-- container -->
-		
 	<!-- ========================= JS here ========================= -->
-
 	<script src="/pet/resources/assets/js/bootstrap.bundle-5.0.0-beta1.min.js"></script>
 	<script src="/pet/resources/assets/js/contact-form.js"></script>
 	<script src="/pet/resources/assets/js/count-up.min.js"></script>
@@ -130,7 +115,6 @@
 	<script src="/pet/resources/assets/js/wow.min.js"></script>
 	<script src="/pet/resources/assets/js/imagesloaded.min.js"></script>
 	<script src="/pet/resources/assets/js/main.js"></script>
-
-	</header>
+</header>
 </body>
 </html>

@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="col-xl-10 col-lg-8 mx-auto">
                                     <div class="section-title text-center mb-50">
-                                        <span class="wow fadeInDown" data-wow-delay=".2s">${user.name} 님, 안녕하세요!</span>
+                                        <span class="wow fadeInDown" data-wow-delay=".2s">${member.member_name} 님, 안녕하세요!</span>
                                         <h2 class="wow fadeInUp" data-wow-delay=".4s">이용자님의 정보를 입력하고<br> 수정해주세요</h2>
                                     </div>
                                 </div>
@@ -82,32 +82,54 @@
                             <form action="/pet/erp/member/update.do" method="post" class="contact-form">
                                 <div class="row">
                                     <div class="col-lg-8">
-                                    	이름 : <input type="text" name="member_name" id="name" placeholder="이름" value="${user.name}" required>
+                                    	이름 : <input type="text" name="member_name" id="name" placeholder="이름" value="${member.member_name}" required>
                                     </div>
                                     <div class="col-lg-8">
-                                    	성별 : <input type="text" name="member_gender" id="gender" placeholder="성별" value="${user.member_gender}" required>
+			                        	성별 : 
+			                        	<c:choose>
+				                        	<c:when test="${member.member_gender == 'W'}">
+				                        		<div class="form-check form-check-inline">
+												  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M">
+												  <label class="form-check-label" for="inlineRadio1">남자</label>
+												</div>
+												<div class="form-check form-check-inline">
+												  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" checked="checked">
+												  <label class="form-check-label" for="inlineRadio2">여자</label>
+												</div>
+				                        	</c:when>
+				                        	<c:otherwise>
+				                        		<div class="form-check form-check-inline">
+												  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M" checked="checked">
+												  <label class="form-check-label" for="inlineRadio1">남자</label>
+												</div>
+												<div class="form-check form-check-inline">
+												  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W">
+												  <label class="form-check-label" for="inlineRadio2">여자</label>
+												</div>
+				                        	</c:otherwise>
+			                        	</c:choose>
+			                        </div>
+                                    <div class="col-lg-8">
+                                    	이메일 : <input class="col-lg-2" type="email" name="member_email" id="email" placeholder="Email" value="${member.member_email}" required>
                                     </div>
                                     <div class="col-lg-8">
-                                    	이메일 : <input class="col-lg-2" type="email" name="member_email" id="email" placeholder="Email" value="${user.member_email}" required>
+                                    	연락처 : <input type="text" name="member_phone" id="phone" placeholder="연락처" value="${member.member_phone}" required>
                                     </div>
                                     <div class="col-lg-8">
-                                    	연락처 : <input type="text" name="member_phone" id="phone" placeholder="연락처" value="${user.member_phone}" required>
+                                    	주소: <input type="text" name="member_addr1" id="addr1" placeholder="주소" value="${member.member_addr1}" required> 
                                     </div>
                                     <div class="col-lg-8">
-                                    	주소: <input type="text" name="member_addr1" id="addr1" placeholder="주소" value="${user.member_addr1}" required> 
+                                    	상세 주소: <input type="text" name="member_addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" required> 
                                     </div>
                                     <div class="col-lg-8">
-                                    	상세 주소: <input type="text" name="member_addr2" id="addr2" placeholder="상세 주소" value="${user.member_addr2}" required> 
+                                    	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" required> 
                                     </div>
-                                    <div class="col-lg-8">
-                                    	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${user.member_photo}" required> 
-                                    </div>
-                                    <input type="hidden" name="member_id" value="${user.member_id}">
+                                    <input type="hidden" name="member_id" value="${member.member_id}">
                                 </div>
                                 <div class="row">
                                     <div class="button text-center">
                                         <button type="submit" class="theme-btn">확인</button>
-                                        <a type="button" class="theme-btn" href="/pet/menu/mypage/user.do">취소</a>
+                                        <a type="button" class="theme-btn" href="/pet/erp/member/read.do?member_id=${member.member_id}&state=READ">취소</a>
                                     </div>
                                 </div>
                             </form>

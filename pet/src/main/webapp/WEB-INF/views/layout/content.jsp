@@ -248,50 +248,59 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="service-box box-style">
+            <div class="col-lg-6 col-md-5" style="padding-right: 30px;">
+                <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-capsule"></i>
                     </div>
-                    <div class="box-content-style service-content">
-                        <h4>4단계 신원 검증</h4>
+                    <div class="box-content-style service-content row justify-content-center">
+                        <div class="col-lg-auto">
+                        	<h4>4단계 신원 검증</h4>
+                        </div>
                         <p>신분증 사본 제출, 등초본 인증, 신원보증 부대, 펫시터 계약서로 신원을 4단계 검증합니다.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="service-box box-style">
+            <div class="col-lg-6 col-md-5" style="padding-left: 30px;">
+                <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-bootstrap"></i>
                     </div>
-                    <div class="box-content-style service-content">
-                        <h4>모든 돌봄 과정 촬영</h4>
+                    <div class="box-content-style service-content row justify-content-center">
+                    	<div class="col-lg-auto">
+                        	<h4>모든 돌봄 과정 촬영</h4>
+                        </div>
                         <p>펫시터의 카메라 착용을 의무화하고 있으며 모든 과정이 촬영되어 실시간으로 중계됩니다.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="service-box box-style">
+            <div class="col-lg-6 col-md-5" style="padding-right: 30px;">
+                <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-dashboard"></i>
                     </div>
-                    <div class="box-content-style service-content">
-                        <h4>안전 보상 프로그램</h4>
+                    <div class="box-content-style service-content row justify-content-center">
+                        <div class="col-lg-auto">
+                        	<h4>안전 보상 프로그램</h4>
+                        </div>
                         <p>서비스 이용중 예상치 못한 사건/사고 발생시 체계적인 안전 보상 프로그램이 적용됩니다.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="service-box box-style">
+            <div class="col-lg-6 col-md-5" style="padding-left: 30px;">
+                <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-layers"></i>
                     </div>
-                    <div class="box-content-style service-content">
-                        <h4>최고 전문진과 교육 협업</h4>
+                    <div class="box-content-style service-content row justify-content-center">
+                        <div class="col-lg-auto">
+                        	<h4>최고 전문진과 교육 협업</h4>
+                        </div>
                         <p>TV 동물농장 출연중이신 이찬종 대표님과 펫시터 이론 및 실습 교육을 협업하고 있습니다.</p>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </section>

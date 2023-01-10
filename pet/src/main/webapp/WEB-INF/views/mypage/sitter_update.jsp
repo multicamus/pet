@@ -95,24 +95,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="/pet/erp/sitter/update.do" class="contact-form">
+                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
                                	 	<div>
                                     	<h4>이름</h4>
-                                        <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" required>
+                                        <input type="text" name="sitter_name" id="name" placeholder="이름" value="${user.name}" required>
+                                    </div>
+                               	 	<div>
+                                    	<h4>성별</h4>
+                                    	<div class="form-check form-check-inline">
+	                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" required>
+	                                        <label class="form-check-label" for="genderM">남자</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+	                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" required>
+	                                        <label class="form-check-label" for="genderW">여자</label>
+                                        </div>
                                     </div>
                                     <div>
                                     	<h4>이메일</h4>
-                                        <input type="email" name="email" id="email" placeholder="Email" value="${user.sitter_email}" required>
+                                        <input type="email" name="sitter_email" id="email" placeholder="Email" value="${user.sitter_email}" required>
+                                    </div>
+                                    <div>
+                                    	<h4>생일</h4>
+                                        <input type="date" name="sitter_birthdate" id="birthday" placeholder="생일" value="${user.sitter_birthdate}" required>
                                     </div>
                                     	<h4>연락처</h4>
-                                        <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" required>
+                                        <input type="text" name="sitter_phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" required>
                                     <div>
                                     	<h4>주소</h4>
-                                        <input type="text" name="address" id="address" placeholder="주소" value="${user.sitter_addr1}" required>
+                                        <input type="text" name="sitter_addr" id="address" placeholder="주소" value="${user.sitter_addr1}" required>
+                                        <input type="text" name="sitter_addr2" id="address" placeholder="상세 주소" value="${user.sitter_addr1}" required>
                                     </div>
                                     <div>
                                     	<h4>펫시터 종류</h4>
-                                        <input type="text" name="sitter" id="sitter" placeholder="펫시터 종류" value="${user.sitter_code}" required>
+                                        <input type="text" name="sitter_code" id="sitter" placeholder="펫시터 종류" value="${user.sitter_code}" required>
                                     </div>
                                     <div class="col-12">
                                         <h4>자기 소개</h4>
@@ -120,13 +136,17 @@
                                     </div>
                                     <div class="col-12">
                                         <h4>서비스 가능 지역</h4>
-                                        <textarea name="message" id="message" placeholder="서비스 가능구역 입력" rows="1">${user.service_area}</textarea>
+                                        <textarea name="service_area" id="message" placeholder="서비스 가능구역 입력" rows="1"></textarea>
                                         <div>
-			                               <button class=" btn btn-primary " type="submit">서울시 종로구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 성북구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
+			                               <button class="btn btn-primary " type="button">${user.service_area}</button>
+			                               <button class="btn btn-primary " type="button">서울시 성북구</button>
+			                               <button class="btn btn-primary " type="button">서울시 마포구</button> 
 		                                </div>
 	                                </div>
+	                                
+	                                <!-- hidden start -->
+	                                <input type="hidden" name="sitter_id" value="${user.sitter_id}">
+	                                <!-- hidden end -->
             
 	                                <div class="row pt-100">
 	                                    <div class="col-12">
