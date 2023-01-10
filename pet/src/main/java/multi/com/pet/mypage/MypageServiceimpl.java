@@ -3,11 +3,12 @@ package multi.com.pet.mypage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import multi.com.pet.mypage.MypageDAO;
 import multi.com.pet.mypage.MypageDTO;
 
-
+@Service
 public class MypageServiceimpl implements MypageService {
 	MypageDAO dao;
 	

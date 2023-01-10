@@ -48,7 +48,7 @@
 									<ul class="sub-menu collapse" id="submenu-1-1">
 										<li class="nav-item"><a href="/pet/menu/service/care.do">방문 돌봄</a></li>
 										<li class="nav-item"><a href="/pet/menu/service/walk.do">방문 산책</a></li>
-										<li class="nav-item"><a href="/pet/views/404.html">방문 목욕과 미용</a></li>
+										<li class="nav-item"><a href="/pet/menu/service/beauty.do">방문 목욕과 미용</a></li>
 									</ul>
 								</li>
 

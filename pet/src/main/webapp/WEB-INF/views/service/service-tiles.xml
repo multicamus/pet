@@ -10,5 +10,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/service/walk_info.jsp" />
 	</definition>
 	
+	<definition name="service/beauty" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/service/wash_beauty.jsp" />
+	</definition>
+	
 </tiles-definitions>
 
