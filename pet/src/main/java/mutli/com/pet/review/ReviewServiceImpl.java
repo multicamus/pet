@@ -61,10 +61,5 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.read_detail(review_no);
 	}
 	
-	/*
-	 * @Override public Review2DTO read_update_after(Review2DTO review) { int result
-	 * = dao.update(review); Review2DTO result2 =
-	 * dao.read_detail(review.getReview_no()); return result2; }
-	 */
  
 }

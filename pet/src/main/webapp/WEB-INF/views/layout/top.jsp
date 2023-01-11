@@ -74,7 +74,7 @@
 									<ul class="sub-menu collapse" id="submenu-1-2">
 										<li class="nav-item"><a href="/pet/menu/review.do">이용 후기 게시판</a></li>
 										<li class="nav-item"><a href="/pet/menu/review/write.do">이용 후기 작성</a></li>
-										<li class="nav-item"><a href="/pet/menu/review/detail.do">이용 후기 상세</a></li>
+										<!-- <li class="nav-item"><a href="/pet/menu/review/detail.do">이용 후기 상세</a></li> -->
 									</ul>
 								</li>
 

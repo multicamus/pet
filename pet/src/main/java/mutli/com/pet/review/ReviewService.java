@@ -11,7 +11,6 @@ public interface ReviewService {
 	Review2DTO read_detail(String review_no);
 	Review2DTO read_update(String review_no);
 
-	/* Review2DTO read_update_after(Review2DTO review); */
 	List<Review2DTO> read();
 	int update(Review2DTO review);
 	int delete(String review_no);

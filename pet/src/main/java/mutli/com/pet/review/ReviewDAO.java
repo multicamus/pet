@@ -14,6 +14,5 @@ public interface ReviewDAO {
 	int update(Review2DTO review);
 	int delete(String review_no);
 	
-	/* Review2DTO read_update_after(Review2DTO review); */
 	
 }

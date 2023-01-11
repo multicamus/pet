@@ -27,8 +27,8 @@
 
 			<div class="row" style="display: flex; align-items: center">
 				<div class="col-lg-2 col-md-6">
-					<a
-						href="/pet/menu/review/detail.do?review_no=${review.review_no-1}&state=READ"
+					<a 
+						href="/pet/menu/review/detail.do?review_no=${review.review_no}&state=READ"
 						style="float: right;"><img
 						src="/pet/resources/assets/images/direction_left.png"
 						style="width: 50px; height: 50px"></a>
@@ -107,7 +107,7 @@
 
 				<div class="col-lg-2 col-md-6">
 					<a
-						href="/pet/menu/review/detail.do?review_no=${review.review_no+1}&state=READ"><img
+						href="/pet/menu/review/detail.do?review_no=${review.review_no}&state=READ"><img
 						src="/pet/resources/assets/images/direction_left.png"
 						style="width: 50px; height: 50px; transform: rotateY(180deg)"></a>
 				</div>

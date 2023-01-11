@@ -57,10 +57,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no);
 	}
 
-	/*
-	 * @Override public Review2DTO read_update_after(Review2DTO review_no) { return
-	 * sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no); }
-	 */
 
 	
 

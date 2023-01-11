@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,21 +27,16 @@ public class ReviewController {
 		this.service = service;
 	}
 	
-	
-	
-	//이용후기등록후 뷰 
-	@RequestMapping(value = "/review/insert.do", method = RequestMethod.GET)
+	//이용후기등록  
+	@RequestMapping(value = "/review/insert.do", method = RequestMethod.POST)
 	public String insert(ReviewDTO review) {
 	//	System.out.println("ReviewDTO : "+review);
 		service.insert(review);
-		return "review";
+		return "redirect:/menu/review.do";
 	}
 	
-	
-	
-	
 	//게시판 뷰
-	@RequestMapping("/menu/review.do")
+	@RequestMapping(value= "/menu/review.do", method = RequestMethod.GET)
 	public ModelAndView read() {
 		ModelAndView mav = new ModelAndView("review");
 		List<Review2DTO> readlist = service.read();
@@ -48,10 +44,23 @@ public class ReviewController {
 	//	System.out.println(readlist);
 		return mav;
 	}
+	//앞으로 뒤로 버튼을 누를 때 마다 db연동해서 번호리스트를 배열로 갖고 있기
+	//앞으로 버튼을 누르면 하나씩 앞에 있는 것을 보여주다가 맨 앞인 경우에는 1을 셋팅하거나 alert띄우기
+	//뒤로 버튼을 누르면 하나씩 뒤에 있는 것을 보여주다가 맨 뒤의 게시글인 경우에는 마지막 게시글번호를 셋팅한 후 alert띄우기
+	//Ajax로 구현하기
+	//1. 컨트롤러에 ajax로 요청을 받을 수 있도록 메소드를 만들기
+	//     erp프로젝트의 jsp는 etcview의 jsp파일, 컨트롤러는 com.multi.erp.etc패키지에 AjaxTestController분석
+	//     BoardController와 boardlist_jstl.jsp를 분석 
+	//   서비스, dao, mappper도 정의하기
+	//   1) 뒤로 버튼을 눌렀을때 ajax로 컨트롤러를 요청하면서 review_no받아오기 부터 처리 컨트롤러에 메소드를 추가하고 데이터가 넘어오는 지 출력
+	//2. 조회할 데이터
+	//   => 전체 목록을 게시글번호로 정렬해서 받아오거나 
+	 
+	
 	
 	//게시판 상세보기
-	@RequestMapping("/menu/review/detail.do")
-	public ModelAndView read_detail(String review_no) {
+	@RequestMapping(value= "/menu/review/detail.do", method = RequestMethod.GET)
+	public ModelAndView read_detail(String review_no) { 
 		ModelAndView mav = new ModelAndView("review/detail");
 		Review2DTO readlist = service.read_detail(review_no);
 		
@@ -70,15 +79,15 @@ public class ReviewController {
 	
 	//수정할 데이터를 모두 입력한 후 실제 업데이트를 수행할 때 필요한 메소드
 	@RequestMapping(value = "/review/update.do",method = RequestMethod.POST)
-	public String update(Review2DTO review) {
-		//int result = service.update(review);
-		Review2DTO data = service.read_update_after(review);
-		return "review/detail";
+	public String update(Review2DTO review) { 
+		int result = service.update(review);
+		return "redirect:/menu/review/detail.do?review_no="+review.getReview_no();
 	}
 	
 	
+	
 	//게시판 수정 뷰
-	@RequestMapping("/review/update_read.do")
+	@RequestMapping(value ="/review/update_read.do",method = RequestMethod.GET )
 	public ModelAndView read_update(String review_no) {
 		ModelAndView mav = new ModelAndView("review/update");
 		Review2DTO readlist = service.read_update(review_no);

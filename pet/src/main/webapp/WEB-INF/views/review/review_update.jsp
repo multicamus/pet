@@ -25,8 +25,7 @@
 				</div>
 			</div>
 
-			<form class="contact-form" action="/pet/review/update.do"
-				method="post">
+			<form class="contact-form" action="/pet/review/update.do" method="post">
 				<div class="row" style="display: flex; align-items: center;">
 					<div class="col-lg-2 col-md-6"></div>
 
