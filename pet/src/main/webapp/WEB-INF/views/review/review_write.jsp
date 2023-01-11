@@ -116,18 +116,14 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="row">
-
 							<div class="button text-center">
 								<button type="submit" class="theme-btn">등록</button>
 								<a href="/pet/menu/review.do" role="button" type="submit"
 									class="theme-btn">취소</a>
 							</div>
-
 						</div>
 					</form>
-
 				</div>
 			</div>
 		</main>

@@ -7,6 +7,13 @@ public interface ReviewDAO {
 	int insert(ReviewDTO review);
 	int insertFile(List<ReviewFileDTO> reviewfiledtolist);
 	
-	
+	Review2DTO read_detail(String review_no);
 	List<Review2DTO> read();
+
+	Review2DTO read_update(String review_no);
+	int update(Review2DTO review);
+	int delete(String review_no);
+	
+	/* Review2DTO read_update_after(Review2DTO review); */
+	
 }

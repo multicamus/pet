@@ -36,6 +36,33 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return list;
 	}
 
+	@Override
+	public int update(Review2DTO review) {
+		System.out.println(review);
+		return sqlSession.update("mutli.com.pet.review.update", review);
+	}
+
+	@Override
+	public int delete(String review_no) {
+		return sqlSession.delete("mutli.com.pet.review.delete",review_no);
+	}
+
+	@Override
+	public Review2DTO read_update(String review_no) {
+		return sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no);
+	}
+
+	@Override
+	public Review2DTO read_detail(String review_no) {
+		return sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no);
+	}
+
+	/*
+	 * @Override public Review2DTO read_update_after(Review2DTO review_no) { return
+	 * sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no); }
+	 */
+
 	
 
+	
 }

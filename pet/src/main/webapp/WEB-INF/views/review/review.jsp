@@ -54,7 +54,7 @@
 				<c:forEach var="review" items="${review}">
 
 					<div class="col-lg-4 col-md-4">
-						<a href="/pet/menu/review/detail.do?id=">
+						<a href="/pet/menu/review/detail.do?review_no=${review.review_no}">
 							<div class="feature-box box-style" style="float: left;">
 								<div style="display: flex; position: relative;">
 									<img
@@ -79,23 +79,23 @@
 										</div>
 									</div>
 								</div>
-										<br/>
+								<br />
 								<!-- 후기 내용 -->
 
 								<div class="box-content-style feature-content">
 									${review.review}</div>
 								<br />
 						</a>
-								<div>
-									<button type="button" class="btn btn-secondary btn-sm"
-										style="z-index: 1;"
-										onclick="location.href='javascript:showPopUp()' ">댓글</button>
-								</div>
-							</div>
+						<div>
+							<button type="button" class="btn btn-secondary btn-sm"
+								style="z-index: 1;"
+								onclick="location.href='javascript:showPopUp()' ">댓글</button>
+						</div>
 					</div>
-				</c:forEach>
 			</div>
-			<div class="col-1"></div>
+			</c:forEach>
+		</div>
+		<div class="col-1"></div>
 		</div>
 	</section>
 </body>

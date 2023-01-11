@@ -14,5 +14,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/review/review.jsp" />
 	</definition>
 	
+	<definition name="review/update" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/review/review_update.jsp" />
+	</definition>
+	
 </tiles-definitions>
 

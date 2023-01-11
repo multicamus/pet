@@ -35,8 +35,36 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review2DTO> read() {
 		return dao.read();
 	}
+
+
+	@Override
+	public int update(Review2DTO review) {
+		return dao.update(review);	
+		}
+
+
+	@Override
+	public int delete(String review_no) {
+		return dao.delete(review_no);
+	}
+
+
+	@Override
+	public Review2DTO read_update(String review_no) {
+		System.out.println("=======서비스======");
+		return dao.read_update(review_no);
+	}
+
+
+	@Override
+	public Review2DTO read_detail(String review_no) {
+		return dao.read_detail(review_no);
+	}
 	
-	
-	
-	
+	/*
+	 * @Override public Review2DTO read_update_after(Review2DTO review) { int result
+	 * = dao.update(review); Review2DTO result2 =
+	 * dao.read_detail(review.getReview_no()); return result2; }
+	 */
+ 
 }
