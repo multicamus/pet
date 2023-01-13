@@ -67,27 +67,28 @@ public class MemberDAOImpl implements MemberDAO {
 	// insert
 	@Override
 	public int insert(SitterDTO sitter) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("mutli.com.pet.erp.sitter_insert", sitter);
 	}
 
 	@Override
 	public int insert(MemberDTO member) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("mutli.com.pet.erp.insert_member", member);
+		return sqlSession.update("mutli.com.pet.erp.member_insert", member);
 	}
 
 	// delete
 	@Override
 	public int delete(SitterDTO sitter) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("mutli.com.pet.erp.sitter_delete", sitter);
 	}
 				
 	@Override
 	public int delete(MemberDTO member) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("mutli.com.pet.erp.member_delete", member);
+	}
+
+	@Override
+	public List<SitterDTO> sitterList() {
+		return sqlSession.selectList("mutli.com.pet.erp.sitterList");
 	}
 	
 	

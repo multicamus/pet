@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
 
 @Controller
@@ -35,7 +36,8 @@ public class PetController {
 			hs.removeAttribute("mypetlist");
 			
 			List<PetDTO> petList = ms.petList(member_id);
-			model.addAttribute("mypetlist", petList);
+			System.out.println(petList);
+			hs.setAttribute("mypetlist", petList);
 		}
 		
 		return "redirect:/mypet/read.do?pet_id=" + pet_id + "&state=READ";
@@ -68,9 +70,9 @@ public class PetController {
 			hs.removeAttribute("mypetlist");
 			
 			List<PetDTO> petList = ms.petList(member_id);
-			model.addAttribute("mypetlist", petList);
+			System.out.println(petList);
+			hs.setAttribute("mypetlist", petList);
 		} 
-		
 		return "redirect:/mypet/read.do?pet_id=" + pet.getPet_id() + "&state=READ";
 	}
 	
@@ -78,15 +80,17 @@ public class PetController {
 	@RequestMapping(value="/delete.do")
 	public String delete(String pet_id, String member_id, HttpServletRequest hsr, Model model) {
 		int result = ps.delete(pet_id);
+		MemberDTO member = ms.member_read(member_id);
 		
 		if(result == 1) {
 			HttpSession hs = hsr.getSession();
 			hs.removeAttribute("mypetlist");
 			
 			List<PetDTO> petList = ms.petList(member_id);
-			model.addAttribute("mypetlist", petList);
+			hs.setAttribute("mypetlist", petList);
 		} 
-		return "redirect:/erp/member/read.do?membert_id=" + member_id + "&state=READ";
+		model.addAttribute("member", member);
+		return "mypage/user";
 	}
 
 }

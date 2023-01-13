@@ -30,9 +30,10 @@ public class LoginUserDTO {
 	private	String sitter_rate;
 	
 	private String member_id;
-	private String member_no;
-	private String member_gender;
+	private String member_no; 
+	// 필요 없는 테이블인 같음
 	private String member_email;
+	private String member_gender;
 	private String member_phone;
 	private String member_addr1;
 	private String member_addr2;

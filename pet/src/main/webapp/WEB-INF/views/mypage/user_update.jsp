@@ -89,21 +89,21 @@
 			                        	<c:choose>
 				                        	<c:when test="${member.member_gender == 'W'}">
 				                        		<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M">
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" checked="checked">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" checked="checked">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:when>
 				                        	<c:otherwise>
 				                        		<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M" checked="checked">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M" checked="checked">
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:otherwise>

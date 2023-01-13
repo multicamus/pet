@@ -57,9 +57,6 @@
 						<c:when test="${fn:length(mypetlist) == 0}">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
-									<div class="contact-icon">
-										<img src="">
-									</div>
 									<div class="contact-content">
 										<h4>우리 귀여운 반려동물을<br/> 등록 해주세요!</h4>
 										<p><a type="button" href="/pet/menu/mypage/pet_register.do" class="theme-btn">+ 추가 등록</a></p>
@@ -140,9 +137,6 @@
 	                        </div>
 	                        <div class="col-lg-8">
 	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" disabled> 
-	                        </div>
-	                        <div class="col-lg-8">
-	                        	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" disabled> 
 	                        </div>
 	                        
 	                        <div class="col-12">

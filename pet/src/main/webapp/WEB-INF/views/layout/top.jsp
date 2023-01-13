@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
-<title>Top</title>
+	<title>Top</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="description" content="">
@@ -43,6 +43,8 @@
 									</c:when>
 								</c:choose>
 								
+								<li class="nav-item"><a class="page-scroll" href="/pet/erp/user/register.do">회원가입</a></li>
+								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
 									data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
@@ -61,7 +63,8 @@
 										<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
 									</c:when>
 									<c:otherwise>
-										<li class="nav-item"><a class="page-scroll active" href="/pet/erp/logout.do">로그아웃</a></li>
+										<li class="nav-item"><a class="page-scroll active" href="/pet/erp/logout.do" onclick="">로그아웃</a></li>
+										<!-- href="javascript:kakaoDisconnect()" -->
 									</c:otherwise>
 								</c:choose>
 								
@@ -84,7 +87,7 @@
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/login.do">마이페이지</a></li>
 									</c:when>
 									<c:when test="${user.user_type == 'A'}">
-										<li class="nav-item"><a class="page-scroll" href="/pet/menu/mypage/admin.do">마이페이지</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/admin.do">마이페이지</a></li>
 									</c:when>
 									<c:when test="${user.user_type == 'M'}">
 										<li class="nav-item"><a class="page-scroll" href="/pet/erp/member/read.do?member_id=${user.member_id }&state=READ">마이페이지</a></li>
@@ -94,7 +97,7 @@
 									</c:otherwise>
 								</c:choose>
 								
-								<li class="nav-item"><a class="page-scroll" target="_blank" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
+								<li class="nav-item"><a class="page-scroll" href="/pet/menu/test.do">TEST</a></li>
 							</ul>
 						</div>
 						<!-- navbar collapse -->
@@ -115,6 +118,33 @@
 	<script src="/pet/resources/assets/js/wow.min.js"></script>
 	<script src="/pet/resources/assets/js/imagesloaded.min.js"></script>
 	<script src="/pet/resources/assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+		window.Kakao.init("176a754969c2e6ccc0c8ada366726398");
+
+		function kakaoLogout() {
+			Kakao.Auth.logout()
+			  .then(function(response) {
+			    console.log(Kakao.Auth.getAccessToken()); // null
+			  })
+			  .catch(function(error) {
+			    console.log('Not logged in.');
+			  });
+		}
+		
+		function kakaoDisconnect(){
+			Kakao.API.request({
+				  url: '/v1/user/unlink',
+				})
+				  .then(function(response) {
+				    console.log(response);
+				  })
+				  .catch(function(error) {
+				    console.log(error);
+				  });
+		}
+	</script>
 </header>
 </body>
 </html>

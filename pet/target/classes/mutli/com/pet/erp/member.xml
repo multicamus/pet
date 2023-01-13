@@ -44,13 +44,17 @@
 	<!-- update end-->
 	
 	<!-- insert start -->
-	<insert id="member_insert">
-		INSERT INTO member_info
-		VALUES ()
+	<insert id="member_insert" parameterType="member">
+		INSERT INTO member_info (
+			member_id, member_pass, member_gender, member_name, member_email, member_phone, member_addr1, member_addr2, member_status, member_startdate, user_type)
+		VALUES (
+			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type} ) 
 	</insert>
-	<insert id="sitter_insert">
-		INSERT INTO sitter_info
-		VALUES () 
+	<insert id="sitter_insert" parameterType="sitter">
+		INSERT INTO sitter_info (
+			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, sitter_photo, valid)
+		VALUES (
+			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, #{sitter_photo}, '0')
 	</insert>
 	<!-- insert end -->
 	
@@ -64,6 +68,14 @@
 	 	WHERE sitter_id = #{sitter_id}
 	</delete>
 	<!-- delete end -->
+	
+	<!-- sitter list start -->
+	<select id="sitterList" resultType="sitter">
+		select * from sitter_info
+		
+		
+	</select>
+	<!-- sitter list end -->
 	
 </mapper>
 

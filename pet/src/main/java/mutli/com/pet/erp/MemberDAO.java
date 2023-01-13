@@ -29,5 +29,8 @@ public interface MemberDAO {
 	int delete(SitterDTO sitter);
 	int delete(MemberDTO member);
 	
+	// sitter list
+	List<SitterDTO> sitterList();
+	
 
 }

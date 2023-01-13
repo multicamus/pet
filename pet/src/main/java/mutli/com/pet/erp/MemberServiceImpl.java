@@ -87,4 +87,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.delete(member);
 	}
 
+	@Override
+	public List<SitterDTO> sitterList() {
+		return dao.sitterList();
+	}
+	
+
 }
