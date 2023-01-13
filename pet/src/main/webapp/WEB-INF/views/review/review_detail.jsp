@@ -4,7 +4,63 @@
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <title>Review Detail</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#review_no").on("click", function() {
+			no = "${review.review_no}"
+			alert("test~~~~" + no)
+
+			var querydata = {
+				"review_no" : no
+			}
+			$.ajax({
+				url : "/pet/menu/review/ajax_detail.do",
+				type : "get",
+				data : querydata,
+				dataType : "json",
+				success : function(data) {
+					$("#review_no").text(data.review_no)
+				},
+				error : error_run
+			})
+		})
+})
+
+	function error_run() {
+		alert("error")
+	}
+	
+	$(document).ready(function() {
+		$("#review_no2").on("click", function() {
+			no = "${review.review_no}"
+			alert("test~~~~" + no)
+
+			var querydata = {
+				"review_no2" : no
+			}
+			$.ajax({
+				url : "/pet/menu/review/ajax_detail.do",
+				type : "get",
+				data : querydata,
+				dataType : "json",
+				success : function(data) {
+					$("#review_no2").text(data.review_no2)
+				},
+				error : error_run
+			})
+		})
+})
+
+	function error_run() {
+		alert("error")
+	}
+	
+	
+	
+</script>
 </head>
 
 <body>
@@ -26,13 +82,14 @@
 			</div>
 
 			<div class="row" style="display: flex; align-items: center">
-				<div class="col-lg-2 col-md-6">
-					<a 
-						href="/pet/menu/review/detail.do?review_no=${review.review_no}&state=READ"
-						style="float: right;"><img
+
+
+				<div class="col-lg-2 col-md-6" id="review_no">
+					<a name="review_no" href="#" style="float: right;"> <img
 						src="/pet/resources/assets/images/direction_left.png"
 						style="width: 50px; height: 50px"></a>
 				</div>
+
 
 				<div class="col-lg-8 col-md-6">
 					<div class="feature-box box-style">
@@ -95,7 +152,7 @@
 							<p>${review.review}</p>
 						</div>
 					</div>
-					<a href="/pet/menu/review.do"
+					<a href="http://localhost:8088/pet/menu/review.do"
 						style="margin: auto; width: 304px; height: 59px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">
 						<span
 						style="font-size: 26px; margin-bottom: 2px; color: #6A92FE; margin-right: 6px">+</span>
@@ -104,10 +161,8 @@
 							후기 보기</p>
 					</a>
 				</div>
-
-				<div class="col-lg-2 col-md-6">
-					<a
-						href="/pet/menu/review/detail.do?review_no=${review.review_no}&state=READ"><img
+				<div class="col-lg-2 col-md-6" id="review_no2">
+					<a name="review_no2" href="#" style="float: left;"> <img
 						src="/pet/resources/assets/images/direction_left.png"
 						style="width: 50px; height: 50px; transform: rotateY(180deg)"></a>
 				</div>

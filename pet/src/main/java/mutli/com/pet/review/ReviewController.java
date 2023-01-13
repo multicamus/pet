@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
@@ -44,6 +45,8 @@ public class ReviewController {
 	//	System.out.println(readlist);
 		return mav;
 	}
+	
+	
 	//앞으로 뒤로 버튼을 누를 때 마다 db연동해서 번호리스트를 배열로 갖고 있기
 	//앞으로 버튼을 누르면 하나씩 앞에 있는 것을 보여주다가 맨 앞인 경우에는 1을 셋팅하거나 alert띄우기
 	//뒤로 버튼을 누르면 하나씩 뒤에 있는 것을 보여주다가 맨 뒤의 게시글인 경우에는 마지막 게시글번호를 셋팅한 후 alert띄우기
@@ -56,6 +59,16 @@ public class ReviewController {
 	//2. 조회할 데이터
 	//   => 전체 목록을 게시글번호로 정렬해서 받아오거나 
 	 
+	@RequestMapping(value ="/menu/review/ajax_detail.do" ,produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public List<Review2DTO> ajax(String review_no) {
+		System.out.println("*******"+review_no);
+		List<Review2DTO> ajax = service.read_detail_ajax(review_no);
+		System.out.println("ajax 테스트" + ajax);
+		return ajax; 
+	} 
+	
+	
 	
 	
 	//게시판 상세보기
@@ -77,7 +90,7 @@ public class ReviewController {
 	// => update페이지로 response
 	// => update페이지에서 조회결과를 수정할 수 있도록 출력
 	
-	//수정할 데이터를 모두 입력한 후 실제 업데이트를 수행할 때 필요한 메소드
+	// 실제 수정컨트롤러
 	@RequestMapping(value = "/review/update.do",method = RequestMethod.POST)
 	public String update(Review2DTO review) { 
 		int result = service.update(review);
