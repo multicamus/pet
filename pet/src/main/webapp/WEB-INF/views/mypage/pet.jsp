@@ -40,7 +40,7 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item" aria-current="page"><a href="/">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page"><a href="/pet/">${pet.pet_name }</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="/pet/">${pet.pet_name }'s Page</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -51,7 +51,7 @@
 </section>
 <!-- ========================= page-banner-section end ========================= -->
 
-	<!-- ========================= contact-section start ========================= -->
+<!-- ========================= contact-section start ========================= -->
 	<section class="contact-section pt-100 pb-100">
 		<div class="container">
 			<div class="row">
@@ -69,14 +69,13 @@
 											<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
 											<p>${pet.pet_code}</p>
 											<p>${pet.pet_kind}</p>
-											<p>${fn:length(mypetlist)}</p>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
 							<!-- 동물 정보 끝 -->
 							<c:choose>
-								<c:when test="${fn:length(mypetlist) == 1}">
+								<c:when test="${fn:length(mypetlist) != 3}">
 									<div class="col-12 col-md-6 col-xl-12">
 										<div class="contact-item">
 											<div class="contact-icon">
@@ -127,26 +126,49 @@
 
 								<div>
 									<fieldset>
-										<legend>성별 ${pet.pet_gender }</legend>
-										<div class="row">
-											<div class="col-1">
-												<div>
-													<p></p>
-													<input type="radio" id="gender_m" name="pet_gender" value="m" disabled> 
-													<input type="radio" id="gender_w" name="pet_gender" value="w" checked disabled>
-												</div>
-											</div>
-											<div class="col-11" style="margin-left: -20px;">
-												<div>
-													<label for="gender_m" style="display: inline-block">남자아이</label>
-												</div>
-												<div class="col-11" style="margin-left: -2px;">
-													<div style="padding-top: 17px;">
-														<label for="gender_w" style="display: inline-block">여자아이</label>
+										<legend>성별</legend>
+										<c:choose>
+											<c:when test="${pet.pet_gender=='M'}">
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="gender_m" name="pet_gender" value="M" required checked="checked"> 
+															<input type="radio" id="gender_w" name="pet_gender" value="F" required>
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="gender_m" style="display: inline-block">남자아이</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="gender_w" style="display: inline-block">여자아이</label>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>
-										</div>
+											</c:when>
+											<c:otherwise>
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="gender_m" name="pet_gender" value="M" required> 
+															<input type="radio" id="gender_w" name="pet_gender" value="F" required checked="checked">
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="gender_m" style="display: inline-block">남자아이</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="gender_w" style="display: inline-block">여자아이</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</fieldset>
 								</div>
 								
@@ -156,35 +178,45 @@
 											<input type="text" name="birth" id="birth" placeholder="생일" value="${pet.pet_birthdate }"	disabled="disabled">
 										<legend>품종</legend>
 											<input type="text" name="kind" id="kind" placeholder="품종" value="${pet.pet_kind }" disabled>
-										<legend>상세 품종</legend> 
-											<input type="text" name="detailkind" id="dkind" placeholder="상세품종" value="${pet.pet_kind }" disabled>
-										<legend>몸무게</legend>
+										<legend>몸무게(kg)</legend>
 											<input type="text" name="weight" id="weight" placeholder="몸무게" value="${pet.pet_weight }" disabled>
-										<legend>크기</legend>
+										<legend>크기(cm)</legend>
 											<input type="text" name="height" id="height" placeholder="크기" value="${pet.pet_size }" disabled>
 									</div>
 
 									<div>
 										<fieldset>
-											<legend>중성화 ${pet.neuter}</legend>
-											<div class="row">
-												<div class="col-1">
-													<div>
-														<input type="radio" id="neutral_y" name="neutral" value="yes" disabled="disabled"> 
-														<input type="radio" id="neutral_n" name="neutral" value="no" disabled="disabled" checked="checked">
-													</div>
-												</div>
-												<div class="col-11" style="margin-left: -20px;">
-													<div>
-														<label for="neutral_y" style="display: inline-block">중성화 했어요</label>
-													</div>
-													<div class="col-11" style="margin-left: -2px;">
-														<div style="padding-top: 17px;">
+											<legend>중성화</legend>
+											<c:choose>
+												<c:when test="${pet.neuter=='Y'}">
+													<div class="row">
+														<div class="col-1">
+															<div>
+																<input type="radio" id="neutral_y" name="neuter" value="Y" disabled="disabled" checked="checked"> 
+																<input type="radio" id="neutral_n" name="neuter" value="N" disabled="disabled">
+															</div>
+														</div>
+														<div class="col-11">
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
 															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
 														</div>
 													</div>
-												</div>
-											</div>
+												</c:when>
+												<c:otherwise>
+													<div class="row">
+														<div class="col-1">
+															<div>
+																<input type="radio" id="neutral_y" name="neuter" value="Y" disabled="disabled"> 
+																<input type="radio" id="neutral_n" name="neuter" value="N" disabled="disabled" checked="checked">
+															</div>
+														</div>
+														<div class="col-11">
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
+															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
 										</fieldset>
 									</div>
 									

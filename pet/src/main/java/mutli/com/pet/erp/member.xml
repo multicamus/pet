@@ -13,7 +13,23 @@
 	</select>
 	<!-- login -->
 	
-	<!-- update -->	
+	<!-- read_member start -->
+	<select id="member_read" parameterType="String" resultType="member">
+		SELECT * 
+		FROM member_info 
+		WHERE member_id = #{member_id}
+	</select>	
+	<!-- read_member end-->
+	
+	<!-- read_sitter start -->
+	<select id="sitter_read" parameterType="String" resultType="sitter">
+		SELECT * 
+		FROM sitter_info
+		WHERE sitter_id = #{sitter_id}
+	</select>	
+	<!-- read_sitter end -->
+		
+	<!-- update start -->	
 	<update id="member_update" parameterType="member">
 		UPDATE member_info
 		SET member_gender = #{member_gender}, member_email = #{member_email}, member_phone = ${member_phone}, member_addr1 = #{member_addr1}, member_addr2 = #{member_addr2}
@@ -22,23 +38,27 @@
 	<!-- member_photo = #{member_photo} -->
 	<update id="sitter_update" parameterType="sitter">
 		UPDATE sitter_info
-		SET sitter_gender = #{sitter_gender}, sitter_email = #{sitter_email}, sitter_phone = ${sitter_phone}, sitter_addr1 = #{sitter_addr1}, sitter_addr2 = #{sitter_addr2}, sitter_photo = #{sitter_photo}
+		SET sitter_gender = #{sitter_gender}
 		WHERE sitter_id = #{sitter_id}
 	</update>
-	<!-- update -->
+	<!-- update end-->
 	
-	<!-- insert -->
-	<insert id="member_insert">
-		INSERT INTO member_info
-		VALUES ()
+	<!-- insert start -->
+	<insert id="member_insert" parameterType="member">
+		INSERT INTO member_info (
+			member_id, member_pass, member_gender, member_name, member_email, member_phone, member_addr1, member_addr2, member_status, member_startdate, user_type)
+		VALUES (
+			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type} ) 
 	</insert>
-	<insert id="sitter_insert">
-		INSERT INTO sitter_info
-		VALUES () 
+	<insert id="sitter_insert" parameterType="sitter">
+		INSERT INTO sitter_info (
+			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, sitter_photo, valid)
+		VALUES (
+			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, #{sitter_photo}, '0')
 	</insert>
-	<!-- insert -->
+	<!-- insert end -->
 	
-	<!-- delete -->
+	<!-- delete start -->
 	<delete id="member_delete">
 		DELETE member_info
 		WHERE member_id = #{member_id}
@@ -47,7 +67,15 @@
 	 	DELETE sitter_info
 	 	WHERE sitter_id = #{sitter_id}
 	</delete>
-	<!-- delete -->
+	<!-- delete end -->
+	
+	<!-- sitter list start -->
+	<select id="sitterList" resultType="sitter">
+		select * from sitter_info
+		
+		
+	</select>
+	<!-- sitter list end -->
 	
 </mapper>
 

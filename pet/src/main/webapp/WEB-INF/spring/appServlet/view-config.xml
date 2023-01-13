@@ -7,7 +7,10 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 		
+		<view-controller path="/menu/test.do" view-name="test"/>
+		
 		<view-controller path="/menu/login.do" view-name="login"/>
+		<view-controller path="/menu/register.do" view-name="register"/>
 		<view-controller path="/menu/review/popup.do" view-name="review/popup"/>
 		<view-controller path="/menu/admin/popup.do" view-name="admin/popup"/>
 		

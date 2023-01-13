@@ -32,6 +32,5 @@ values (review_seq.nextval,
 	sysdate,
 	'감사합니다.', 
 	'1', 
-	'test',
-	'5'
+	'test'
 	) 

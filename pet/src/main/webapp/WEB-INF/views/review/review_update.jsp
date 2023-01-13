@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-2">
 								<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점: ${review.review_rate} 5점</p>
-								<input type="text" name="review_rate" id="review_rate" placeholder="5" required="required">
+								<input type="text" name="review_rate" id="review_rate" placeholder="" required="required">
 							</div>
 						</div>
 					</div>

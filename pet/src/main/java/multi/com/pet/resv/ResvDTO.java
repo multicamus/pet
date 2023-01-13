@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ResvDTO {
 	private String resv_no;
 	private String member_id;
+	
 	private Date resv_date;
 	private Date resv_change_date;
 	private char resv_state='0';
@@ -265,7 +266,6 @@ public class ResvDTO {
 	public void setPrefer_size(String prefer_size) {
 		this.prefer_size = prefer_size;
 	}
-
 	
 
 	public String getVisit_method() {
@@ -371,12 +371,6 @@ public class ResvDTO {
 				+ ", cleaning_method=" + cleaning_method + ", emergency_phone=" + emergency_phone + ", pet1_reserved="
 				+ pet1_reserved + ", pet2_reserved=" + pet2_reserved + ", pet3_reserved=" + pet3_reserved + "]";
 	}
-
-	
-
-
-	
-	
 	
 	
 }

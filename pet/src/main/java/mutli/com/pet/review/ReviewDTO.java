@@ -12,12 +12,15 @@ public class ReviewDTO {
 	private String review_file;
 	private String review_rate;
 	
+	private String member_addr1;
+	private String member_photo;
+	
 	public ReviewDTO() {
 		super();
 	}
 
 	public ReviewDTO(String review_no, String member_id, Date write_date_rv, Date modify_date_rv, String review,
-			String resv_no, String review_file, String review_rate) {
+			String resv_no, String review_file, String review_rate, String member_addr1, String member_photo) {
 		super();
 		this.review_no = review_no;
 		this.member_id = member_id;
@@ -27,6 +30,8 @@ public class ReviewDTO {
 		this.resv_no = resv_no;
 		this.review_file = review_file;
 		this.review_rate = review_rate;
+		this.member_addr1 = member_addr1;
+		this.member_photo = member_photo;
 	}
 
 	@Override
@@ -34,6 +39,22 @@ public class ReviewDTO {
 		return "ReviewDTO [review_no=" + review_no + ", member_id=" + member_id + ", write_date_rv=" + write_date_rv
 				+ ", modify_date_rv=" + modify_date_rv + ", review=" + review + ", resv_no=" + resv_no
 				+ ", review_file=" + review_file + ", review_rate=" + review_rate + "]";
+	}
+
+	public String getMember_addr1() {
+		return member_addr1;
+	}
+
+	public void setMember_addr1(String member_addr1) {
+		this.member_addr1 = member_addr1;
+	}
+
+	public String getMember_photo() {
+		return member_photo;
+	}
+
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
 	}
 
 	public String getReview_no() {

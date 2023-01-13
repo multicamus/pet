@@ -155,6 +155,7 @@
                                     <div class="col-2">        
                                         <div class="button text-center" >
                                             <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_mb_read.do'" class="theme-btn">더보기</button>
+                                            <a type="button" href="/pet/menu/review/write.do" class="theme-btn">후기 남기기</a>
                                         </div>
                                     </div>
                                     <!-- 더보기 끝 -->
@@ -168,10 +169,6 @@
                     <!-- 돌봄예정 서비스 칸 끝-->
                 </div>
                 <!-- 돌봄예정 서비스 row 끝-->
-
-
-
-                
 
                 <!-- 돌봄 예정 서비스 정보 -->
                 <!-- 돌봄예정 서비스 row -->

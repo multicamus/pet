@@ -4,7 +4,9 @@
 <mapper namespace="mutli.com.pet.review">
 	
 	<select id="reviewList" resultType="review">
-		select * from review
+		SELECT r.*, m.member_addr1
+		FROM review r, member_info m
+		WHERE r.member_id = m.member_id
 	</select>
 
 	<insert id="insert" parameterType="review">
@@ -19,8 +21,7 @@
 	
 	<update id="update" parameterType="review">
 		UPDATE review
-		SET	(modify_date_rv, review, review_file)
-		  = (#{modify_date_rv}, #{review}, #{review_file})
+		SET	modify_date_rv = sysdate, review = #{review}, review_file = #{review_file}
 		WHERE review_no = #{review_no}
 	</update>
 	
