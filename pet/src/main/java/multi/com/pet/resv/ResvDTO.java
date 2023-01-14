@@ -5,16 +5,9 @@ import java.sql.Date;
 public class ResvDTO {
 	private String resv_no;
 	private String member_id;
-<<<<<<< HEAD
 	private String resv_date;
 	private String resv_change_date;
 	private int resv_status=0;
-=======
-	
-	private Date resv_date;
-	private Date resv_change_date;
-	private char resv_state='0';
->>>>>>> refs/remotes/origin/se
 	private String pay_method;
 	private Date visit_date;
 	private String  visit_place;
@@ -446,7 +439,7 @@ public class ResvDTO {
 				+ cleaning_method + ", emergency_phone=" + emergency_phone +", pet_idlist=" + pet_idlist
 				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + "]";
 	}
-<<<<<<< HEAD
+
 	
 	
 	public static Date getTodayDate() {
@@ -454,9 +447,6 @@ public class ResvDTO {
 		Date date = new Date(miliseconds);
 		return date;
 	}
-	
-=======
->>>>>>> refs/remotes/origin/se
-	
+
 	
 }

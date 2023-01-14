@@ -24,10 +24,7 @@ public class SitterDTO {
 	private String valid;
 	private String sitter_certificate;
 	private String sitter_rate;
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/se
 	private String small_career;
 	private String medium_career;
 	private String large_career;
