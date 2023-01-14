@@ -37,7 +37,6 @@ public class ReviewController {
 	public String read(String review_no, String state, Model model) {
 		ReviewDTO review = service.read(review_no);
 		model.addAttribute("review", review);
-		System.out.println(review);
 		
 		String view = "";
 		switch (state) {
@@ -48,7 +47,6 @@ public class ReviewController {
 			view = "review/update";
 			break;
 		}
-		
 		return view;
 	}
 	
@@ -56,7 +54,7 @@ public class ReviewController {
 	public String update(ReviewDTO review) {
 		System.out.println(review);
 		service.update(review);
-		return "redirect:/review/read.do";
+		return "redirect:/review/read.do?review_no=" + review.getReview_no() + "&state=READ";
 	}
 	
 	@RequestMapping(value = "/review/delete.do")

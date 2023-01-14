@@ -58,7 +58,7 @@ create table sitter_info(
 	sitter_state char(1),
 	sitter_birthdate date,
 	service_area varchar2(50),
-	sitter_intro varchar2(200),
+	sitter_info varchar2(200),
 	valid char(1),
 	small_career VARCHAR2(32),
 	medium_career VARCHAR2(32),

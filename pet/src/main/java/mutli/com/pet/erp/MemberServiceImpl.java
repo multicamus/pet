@@ -16,7 +16,7 @@ public class MemberServiceImpl implements MemberService {
 		super();
 		this.dao = dao;
 	}
-
+	
 	// login - member
 	@Override
 	public MemberDTO login(MemberDTO loginUserInfo) {
@@ -36,6 +36,23 @@ public class MemberServiceImpl implements MemberService {
 	public List<PetDTO> petList(MemberDTO loginUser) {
 		return dao.petList(loginUser);
 
+	}
+	
+	@Override
+	public List<PetDTO> petList(String member_id) {
+		return dao.petList(member_id);
+	}
+	
+	// read - sitter
+	@Override
+	public SitterDTO sitter_read(String sitter_id) {
+		return dao.sitter_read(sitter_id);
+	}
+	
+	// read - member
+	@Override
+	public MemberDTO member_read(String member_id) {
+		return dao.member_read(member_id);
 	}
 	
 	// update
@@ -70,5 +87,11 @@ public class MemberServiceImpl implements MemberService {
 	public int delete(MemberDTO member) {
 		return dao.delete(member);
 	}
+
+	@Override
+	public List<SitterDTO> sitterList() {
+		return dao.sitterList();
+	}
+	
 
 }

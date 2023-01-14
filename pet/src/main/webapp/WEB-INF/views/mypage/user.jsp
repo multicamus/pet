@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -18,7 +19,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item" aria-current="page"><a href="/pet">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">${user.name}님</li>
+                                <li class="breadcrumb-item active" aria-current="page">${member.member_id}님</li>
                             </ol>
                         </nav>
                     </div>
@@ -52,7 +53,18 @@
 						</div>
 					</c:forEach>
 					<!-- 동물 정보 끝 -->
-					
+					<c:choose>
+						<c:when test="${fn:length(mypetlist) == 0}">
+							<div class="col-12 col-md-6 col-xl-12">
+								<div class="contact-item">
+									<div class="contact-content">
+										<h4>우리 귀여운 반려동물을<br/> 등록 해주세요!</h4>
+										<p><a type="button" href="/pet/menu/mypage/pet_register.do" class="theme-btn">+ 추가 등록</a></p>
+									</div>
+								</div>
+							</div>
+						</c:when>
+					</c:choose>
 					<!-- 예약 정보 시작 -->
 					<div class="col-12 col-md-6 col-xl-12">
 						<div class="contact-item">
@@ -76,8 +88,8 @@
 	                 <div class="row">
 	                     <div class="col-xl-10 col-lg-8 mx-auto">
 	                         <div class="section-title text-center mb-50">
-	                            <span class="wow fadeInDown" data-wow-delay=".2s">${user.name}님, 안녕하세요!</span>
-	                            <h2 class="wow fadeInUp" data-wow-delay=".4s">${user.name}님, 안녕하세요!</h2>
+	                            <span class="wow fadeInDown" data-wow-delay=".2s">${member.member_id}님, 안녕하세요!</span>
+	                            <h2 class="wow fadeInUp" data-wow-delay=".4s">${member.member_name}님, 안녕하세요!</h2>
 	                        </div>
 	                    </div>
 	                </div>
@@ -85,30 +97,51 @@
 	                <div class="contact-form">
 	                    <div class="row">
 	                        <div class="col-lg-8">
-	                        	이름 : <input type="text" name="name" id="name" placeholder="이름" value="${user.name}" disabled>
+	                        	이름 : <input type="text" name="name" id="name" placeholder="이름" value="${member.member_name}" disabled>
+	                        </div>
+	                        
+	                        <div class="col-lg-8">
+	                        	성별 : 
+	                        	<c:choose>
+		                        	<c:when test="${member.member_gender == 'W'}">
+		                        		<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M" disabled="disabled">
+										  <label class="form-check-label" for="inlineRadio1">남자</label>
+										</div>
+										<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" checked="checked" disabled="disabled">
+										  <label class="form-check-label" for="inlineRadio2">여자</label>
+										</div>
+		                        	</c:when>
+		                        	<c:otherwise>
+		                        		<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M" checked="checked" disabled="disabled">
+										  <label class="form-check-label" for="inlineRadio1">남자</label>
+										</div>
+										<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" disabled="disabled">
+										  <label class="form-check-label" for="inlineRadio2">여자</label>
+										</div>
+		                        	</c:otherwise>
+	                        	</c:choose>
+	                        </div>
+	                        
+	                        <div class="col-lg-8">
+	                        	이메일 : <input class="col-lg-2" type="email" name="email" id="email" placeholder="Email" value="${member.member_email}" disabled>
 	                        </div>
 	                        <div class="col-lg-8">
-	                        	성별 : <input type="text" name="gender" id="gender" placeholder="성별" value="${user.member_gender}" disabled>
+	                        	연락처 : <input type="tel" name="phone" id="phone" placeholder="연락처" value="${member.member_phone}" disabled>
 	                        </div>
 	                        <div class="col-lg-8">
-	                        	이메일 : <input class="col-lg-2" type="email" name="email" id="email" placeholder="Email" value="${user.member_email}" disabled>
+	                        	주소: <input type="text" name="addr1" id="addr1" placeholder="주소" value="${member.member_addr1}" disabled> 
 	                        </div>
 	                        <div class="col-lg-8">
-	                        	연락처 : <input type="text" name="phone" id="phone" placeholder="연락처" value="${user.member_phone}" disabled>
-	                        </div>
-	                        <div class="col-lg-8">
-	                        	주소: <input type="text" name="addr1" id="addr1" placeholder="주소" value="${user.member_addr1}" disabled> 
-	                        </div>
-	                        <div class="col-lg-8">
-	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${user.member_addr2}" disabled> 
-	                        </div>
-	                        <div class="col-lg-8">
-	                        	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${user.member_photo}" disabled> 
+	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" disabled> 
 	                        </div>
 	                        
 	                        <div class="col-12">
 	                            <div class="button text-center">
-	                                <a type="button" class="theme-btn" href="/pet/menu/mypage/user_update.do">수정</a>
+	                                <a type="button" class="theme-btn" href="/pet/erp/member/read.do?member_id=${member.member_id}&state=UPDATE">수정</a>
 	                            </div>
 	                        </div>
 	                        

@@ -40,7 +40,7 @@
 								</div>
 							</div>
 							<c:choose>
-								<c:when test="${user == null}">
+								<c:when test="${user.member_id == review.member_id}">
 									<div class="col-lg-2">
 										<a href="/pet/review/read.do?review_no=${review.review_no}&state=UPDATE" style="margin: auto; width: 80px; height: 40px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">
 										<p style="font-weight: 600; color: #6A92FE; font-size: 12px; line-height: 40px">수정</p></a>

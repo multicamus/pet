@@ -16,6 +16,7 @@ public class SitterDTO {
 	private String sitter_addr2;
 	private Date sitter_startdate;
 	private Date sitter_enddate;
+//	private String sitter_state;
 	private String sitter_status;
 	private Date sitter_birthdate;
 	private String service_area;
@@ -23,6 +24,10 @@ public class SitterDTO {
 	private String valid;
 	private String sitter_certificate;
 	private String sitter_rate;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/se
 	private String small_career;
 	private String medium_career;
 	private String large_career;
