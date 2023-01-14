@@ -82,7 +82,6 @@
 									</ul>
 								</li>
 
-								<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
 								
 								<c:choose>
 									<c:when test="${user == null}">
