@@ -61,11 +61,14 @@ public class ReviewController {
 	 
 	@RequestMapping(value ="/menu/review/ajax_detail.do" ,produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public List<Review2DTO> ajax(String review_no) {
+	public String ajax(String review_no) {
 		System.out.println("*******"+review_no);
-		List<Review2DTO> ajax = service.read_detail_ajax(review_no);
-		System.out.println("ajax 테스트" + ajax);
-		return ajax; 
+		service.read_detail_ajax(review_no);
+		
+//		List<Review2DTO> ajax = null;
+//		System.out.println("service 테스트" + ajax);
+//		System.out.println("ajax 테스트" + ajax);
+		return "ajax";
 	} 
 	
 	

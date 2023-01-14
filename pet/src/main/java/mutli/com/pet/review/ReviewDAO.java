@@ -14,8 +14,7 @@ public interface ReviewDAO {
 	int update(Review2DTO review);
 	int delete(String review_no);
 	
-	
-	List<Review2DTO> read_detail_ajax(String review_no);
+	Review2DTO read_detail_ajax(String review_no);
 	
 	
 }

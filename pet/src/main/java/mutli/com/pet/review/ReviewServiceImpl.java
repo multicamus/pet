@@ -47,25 +47,23 @@ public class ReviewServiceImpl implements ReviewService {
 	public int delete(String review_no) {
 		return dao.delete(review_no);
 	}
-
-
+	
+	
 	@Override
 	public Review2DTO read_update(String review_no) {
 		System.out.println("=======서비스======");
 		return dao.read_update(review_no);
 	}
-
-
+	
 	@Override
 	public Review2DTO read_detail(String review_no) {
 		return dao.read_detail(review_no);
 	}
-
+	
 	@Override
-	public List<Review2DTO> read_detail_ajax(String review_no) {
-		List<Review2DTO> ajax = dao.read_detail_ajax(review_no);
-		return ajax;
+	public Review2DTO read_detail_ajax(String review_no) {
+		System.out.println("Service read_detail_ajax");
+		return dao.read_detail_ajax(review_no);
 	}
 	
- 
 }
