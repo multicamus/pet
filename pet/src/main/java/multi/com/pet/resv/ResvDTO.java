@@ -5,9 +5,9 @@ import java.sql.Date;
 public class ResvDTO {
 	private String resv_no;
 	private String member_id;
-	private Date resv_date = getTodayDate();
-	private Date resv_change_date = getTodayDate();
-	private int resv_state=0;
+	private String resv_date;
+	private String resv_change_date;
+	private int resv_status=0;
 	private String pay_method;
 	private Date visit_date;
 	private String  visit_place;
@@ -21,7 +21,7 @@ public class ResvDTO {
 	private String  sitter_id;
 	private String sitter_name;
 	private String  service_note;
-	private int total_price;
+	private int total_price=25000;
 	private String match_method;
 	private String prefer_gender;
 	private String  prefer_size;
@@ -33,9 +33,6 @@ public class ResvDTO {
 	private String supplies_place;
 	private String  cleaning_method;
 	private String emergency_phone;
-//	private String  pet1_reserved;
-//	private String pet2_reserved;
-//	private String pet3_reserved;
 	private String pet_idlist;
 	private String pet_codelist;
 	private String pet_namelist;
@@ -44,22 +41,23 @@ public class ResvDTO {
 		// TODO Auto-generated constructor stub
 	}
 	//resv1페이지(예약페이지 1번째)에서 입력할때
-	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, String service_note) {
+	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, 
+			String service_note) 
+	{
 		super();
+
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
 		this.service_starttime = service_starttime;
 		this.service_time = service_time;
 		this.service_note = service_note;
+		
 	}
+
 	
 	//resv2페이지(예약페이지2번째)의 hidden타입
-<<<<<<< HEAD
 	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time,
 			char default_service, char bath_service, char walk_service, char beauty_service, String service_note) {
-=======
-	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time, char default_service, char bath_service, char walk_service, char beauty_service, String service_note,String pet1_reserved, String pet2_reserved, String pet3_reserved) {
->>>>>>> refs/remotes/origin/main-old
 		super();
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
@@ -73,6 +71,10 @@ public class ResvDTO {
 		this.service_note = service_note;
 	
 	}
+	
+	
+	
+	
 	
 	public ResvDTO(Date visit_date, int service_starttime, int service_endtime, int service_time, char default_service,
 			char bath_service, char walk_service, char beauty_service, String service_note, String match_method,
@@ -102,7 +104,6 @@ public class ResvDTO {
 		this.emergency_phone = emergency_phone; 
 
 	}
-	
 	public String getResv_no() {
 		return resv_no;
 	}
@@ -119,31 +120,31 @@ public class ResvDTO {
 		this.member_id = member_id;
 	}
 
-	public Date getResv_date() {
+	public String getResv_date() {
 		return resv_date;
 	}
 
-	public void setResv_date(Date resv_date) {
+	public void setResv_date(String resv_date) {
 		
 		
 		this.resv_date = resv_date;
 	}
 
-	public Date getResv_change_date() {
+	public String getResv_change_date() {
 		return resv_change_date;
 	}
 
-	public void setResv_change_date(Date resv_change_date) {
+	public void setResv_change_date(String resv_change_date) {
 		
 		this.resv_change_date = resv_change_date;
 	}
 
-	public int getResv_state() {
-		return resv_state;
+	public int getResv_status() {
+		return resv_status;
 	}
 
-	public void setResv_state(int resv_state) {
-		this.resv_state = resv_state;
+	public void setResv_status(int resv_status) {
+		this.resv_status = resv_status;
 	}
 
 	public String getPay_method() {
@@ -380,7 +381,7 @@ public class ResvDTO {
 	
 	
 
-	public ResvDTO(String resv_no, String member_id, Date resv_date, Date resv_change_date, int resv_state,
+	public ResvDTO(String resv_no, String member_id, String resv_date, String resv_change_date, int resv_status,
 			String pay_method, Date visit_date, String visit_place, int service_starttime, int service_endtime,
 			int service_time, char default_service, char bath_service, char walk_service, char beauty_service,
 			String sitter_id, String sitter_name, String service_note, int total_price, String match_method,
@@ -393,7 +394,7 @@ public class ResvDTO {
 		this.member_id = member_id;
 		this.resv_date = resv_date;
 		this.resv_change_date = resv_change_date;
-		this.resv_state = resv_state;
+		this.resv_status = resv_status;
 		this.pay_method = pay_method;
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
@@ -424,15 +425,10 @@ public class ResvDTO {
 		this.pet_codelist = pet_codelist;
 		this.pet_namelist = pet_namelist;
 	}
-	public static Date getTodayDate() {
-		long miliseconds = System.currentTimeMillis();
-        Date date = new Date(miliseconds);
-        return date;
-	}
 	@Override
 	public String toString() {
 		return "ResvDTO [resv_no=" + resv_no + ", member_id=" + member_id + ", resv_date=" + resv_date
-				+ ", resv_change_date=" + resv_change_date + ", resv_state=" + resv_state + ", pay_method=" + pay_method
+				+ ", resv_change_date=" + resv_change_date + ", resv_status=" + resv_status + ", pay_method=" + pay_method
 				+ ", visit_date=" + visit_date + ", visit_place=" + visit_place + ", service_starttime="
 				+ service_starttime + ", service_endtime=" + service_endtime + ", service_time=" + service_time
 				+ ", default_service=" + default_service + ", bath_service=" + bath_service + ", walk_service="
@@ -445,6 +441,12 @@ public class ResvDTO {
 				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + "]";
 	}
 	
+	
+	public static Date getTodayDate() {
+		long miliseconds = System.currentTimeMillis();
+		Date date = new Date(miliseconds);
+		return date;
+	}
 	
 	
 	

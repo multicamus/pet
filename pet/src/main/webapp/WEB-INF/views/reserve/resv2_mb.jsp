@@ -374,7 +374,7 @@ thead {
 			$("#direct_button").on("click", function(){
 				var gender = $("#prefer_gender option:selected").val();
 				var size = $("#prefer_size option:selected").val();
-<<<<<<< HEAD
+
 				var code = $("#pet_codearray").val()
 				
 				$.ajax({
@@ -501,133 +501,7 @@ thead {
 								//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
 								$("#sitter_id").attr("value", id);
 								$("#sitter_name").attr("value", name);
-								
-								
-=======
-				var code = $("#pet_codelist").val()
-				
-				$.ajax({
-					url : "/pet/sitter/ajax/list.do",
-					type: "get",
-					data : {
-						"gender" : gender,
-						"size" : size,
-						"code" : code
-					},
-					success:function(data){
-						
-						mydata = "";
-						for(i=0;i<data.length;i++){
-							mydata = mydata + 
-							"<div class='col-lg-4 cardbox'>"
-							+"<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
-								  +"<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
-								  +"<div class='card-body'>"
-									    	+"<p class='card-text'>"
-									    	+"<span id='sittername'>"
-									    	+data[i].sitter_name
-									    	+"</span>"
-									    	+"</p><br/>"
-									    +"<div class=row>"
-									    	
-									    	+"<div class=col-6>"
-											    +"<div  class='detailread' id=" +  data[i].sitter_id+">" 
-											    	+"<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
-										    	+"</div>"  
-									    	+"</div>"
-									    	
-									    	+"<div class=col-6>"
-										    	+"<div   id='" +  data[i].sitter_id +"select'>" 
-										    		+"<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "'><span id='selectspan'>선택</span></button>"
-								    			+"</div>" 
-								    		+"</div>"
-								    		
-							    		 +"</div>"
-								  +"</div>"
-							+"</div>"
-						+"</div>"
-						}
-						$("#directsitterlist").empty();
-						$("#directsitterlist").append(mydata);
-						
-						$(".detailread").on("click", function(event){
-							sitter_id = $(this).attr("id");
-							  $.ajax({
-								url:"/pet/sitter/ajax/read.do",
-								type: "get",
-								data: {
-									"sitter_id": sitter_id
-								},
-								success:function(sitter){
-									
-									sitter_code = sitter.sitter_code;
-									if(sitter_code =="D"){
-										sitter_code  = "강아지"
-									}else if(sitter_code =="C"){
-										sitter_code  = "고양이"
-									}else{
-										sitter_code  = "강아지 고양이"
-									}
-									
-									sitter_gender = sitter.sitter_gender;
-									if(sitter_gender == "M"){
-										sitter_gender = "남자"
-									}else{
-										sitter_gender = "여자"
-									}
-									
-								   mydata = "";
-								   mydata = mydata + "<h3 style='margin-bottom: 10%; color:#3e62eb;'>펫시터 상세정보</h3>";
-							       mydata = mydata + "<table><thead><tr>"  
-							       mydata = mydata +"<th>이름</th><td style='color:black;'>"+sitter.sitter_name+"</td></tr></thread>";
-							       mydata = mydata +"<tr><th>만 나이</th><td style='color:black;'>"+sitter.sitter_age+"</td></tr>";
-							       mydata = mydata +"<tr><th>성별</th><td style='color:black;'>"+sitter_gender+"</td></tr>";
-							        mydata = mydata +"<tr><th>사는 지역</th><td style='color:black;'>"+sitter.sitter_shortAddr+"</td></tr>";
-							        mydata = mydata +"<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"+sitter_code+"</td></tr>";
-							        mydata = mydata +"<tr><th>자기소개</th><td style='color:black;'>"+sitter.sitter_info+"</td></tr></table>";  
-							        
-							        $("#detailcontent").empty();
-							        $("#detailcontent").append(mydata);
-							        
-								},
-								error:function(data){
-									
-								}
-							})
-							$(".modal").fadeIn();
-						})
-						
-						
-						
-						$(".selectsitter").on("click", function(){
-							//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
-							preCardId = "#"+$(".card[selected=selected]").attr("id");
-							
-							$(".card").css("border-color", ''); 
-							
-							//현재 선택한 시터의 id
-							id = $(this).attr("value")
-							//cardid는 (sitter의 id+card)
-							cardId = "#"+ id + "card";
-							
-							//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
-							if(cardId == preCardId){
-								//selected속성과 테두리속성을 해제시킨다
-								$(".card").css("border-color", '');
-								$(".card").removeAttr("selected");
-								//input태그의 sitter_id의 value값을 초기화시킨다
-								$("#sitter_id").attr("value", "");
-							}else{//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
-							    //기존의 selected속성과 테두리속성을 모두 해제시킨다.
-								$(".card").css("border-color", '');
-								$(".card").removeAttr("selected");
-								//현재 누른 카드에 selected속성과 테두리css를 적용시킨다.
-								$(cardId).attr("selected", "selected");
-								$(cardId).css("border-color", "#3763eb");
-								$(cardId).css("border-width", "5pt");
-								//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
-								$("#sitter_id").attr("value", id);
->>>>>>> refs/remotes/origin/main-old
+
 							}
 						})
 						
@@ -647,12 +521,7 @@ thead {
 				
 				
 			})
-			
-		
-						
-			
-			
-			
+
 		})
       </script>    
       
@@ -733,7 +602,7 @@ thead {
 		                            		<option value="F">여자</option>
 		                            		<option value="A">상관 없음</option>
 		                            	</select>
-<<<<<<< HEAD
+
 		                            <c:if test="${pet_codearray=='A' || pet_codearray=='D'}"> 
 			                            <h4>돌봄 경험 횟수</h4>
 			                            	<select name="prefer_size" id="prefer_size">
@@ -744,18 +613,8 @@ thead {
 			                            	</select>
 		                            </c:if>		
 		                            <input type="hidden" id="pet_codearray" value="${pet_codearray }"/>
-=======
-		                            <c:if test="${pet_codelist=='A' || pet_codelist=='D'}"> 
-			                            <h4>돌봄 경험 횟수</h4>
-			                            	<select name="prefer_size" id="prefer_size">
-			                            		<option value="S">소형견 돌봄 경험이 많은 사람</option>
-			                            		<option value="M">중형견 돌봄 경험이 많은 사람</option>
-			                            		<option value="L">대형견 돌봄 경험이 많은 사람</option>
-			                            		<option value="A" >상관 없음</option>
-			                            	</select>
-		                            </c:if>		
-		                            <input type="hidden" id="pet_codelist" value="${pet_codelist }"/>
->>>>>>> refs/remotes/origin/main-old
+
+		                            
 	                           		<a href="javascript:void(0)" class="theme-btn" id="direct_button" style="margin-left: 0px;">확인</a>
 	                           		<p>펫시터분들을 확인해보세요!</p>
 								</div>
@@ -782,21 +641,14 @@ thead {
 				        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 				        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 				        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-<<<<<<< HEAD
-<%-- 				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
+
 						<input type="hidden" name="sitter_id" id="sitter_id" value="">
 						<input type="hidden" name="sitter_name" id="sitter_name" value="">
 						<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
 						<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
 						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
-=======
-				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-						<input type="hidden" name="sitter_id" id="sitter_id" value="">
->>>>>>> refs/remotes/origin/main-old
+						<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+
                   	 </form>
                     </div>
                 </div>
@@ -859,18 +711,13 @@ thead {
 				        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 				        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 				        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-<<<<<<< HEAD
-<%-- 				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
+
+
 				         <input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
 				         <input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
 						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
-=======
-				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
->>>>>>> refs/remotes/origin/main-old
+						<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+
 				         
                     </form>
                 </div>
@@ -931,22 +778,15 @@ thead {
 							        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 							        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 							        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-<<<<<<< HEAD
-							        <%-- <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-							        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-							        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
+
 									<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">				
 									<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
 									<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
 									<input type="hidden" name="sitter_id" id="sitter_id" value="">
 									<input type="hidden" name="sitter_name" id="sitter_name" value="">
+									<input type="hidden" name="total_price" value="${resvdto.total_price }">	
 									
-=======
-							        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-							        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-							        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-													
->>>>>>> refs/remotes/origin/main-old
+
 							</form>
 						</div>
                 </div>

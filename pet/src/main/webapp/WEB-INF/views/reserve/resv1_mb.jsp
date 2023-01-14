@@ -167,13 +167,76 @@
           
           <script>
           		$(document).ready(function() {
-					$('#nextbtn').on("click", function() {
-						//alert("ajax");
+          			//한 반려동물의 이름, 종, id를 같은 클래스로 묶음
+          			//한 반려동물의 이름 체크박스의 체크여부에 변화가 일어나면
+          			$("input:checkbox[name='pet_namelist']").on("change", function(){
+          				//해당 이름체크박스의 체크 여부를 가져온다.
+          				val = $(this).is(":checked")
+          				//해당 이름체크박스의 클래스 이름을 가져온다
+          				classname = $(this).attr("class")
+          				//해당 클래스의 이름, 종, id 체크박스의 체크 여부를 위의 체크여부(val)로 바꾼다
+          				$("."+classname).prop("checked", val);
+          				
 						
+          			})
 						
+          			$("#date").on("change", function(){
+          				//선택한 날짜를 가져온다.
+          				date = $("#date").prop("value");
+          				//오늘 날짜를 가녀온다
+          				var now = new Date();
+
+				        var year= now.getFullYear();
+				        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+				        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+				        var todaydate = year + '-' + mon + '-' + day;
+				        
+				        
+				        
+				        var hours = ('0' + now.getHours()).slice(-2); 
+				        var minutes = ('0' + now.getMinutes()).slice(-2);
+				        var todaydatetime = hours + '' + minutes;
+				       
+				        todaytime = Number(todaydatetime)
+				        
+				       
+				        sel = $("select[name='service_starttime'] option")
+				       
+				      	
+				        //전에 disabled되어있던 시간option에 disalbed를 다 해제시킨다
+				         $("select[name='service_starttime'] option").prop("disabled", false)
+          					//만약에 오늘날짜와 예약날짜가 같다면
+				         	if(date===todaydate){
+          						
+          						 //모든 시간선택 option들에 대해서 반복문을 돌린다.
+          						 for(i=0;i<sel.length;i++){
+          							 //i번째 시간 option의 값을 불러온다.
+	          						 starttime = $("select[name='service_starttime'] option:eq("+i+")").attr("value")
+		          					 //현재시간에 2시간을 더한 시간보다 i번째 시간 option이 작으면 disabled처리 시킨다.
+	          						 if((todaytime+300) > starttime * 100){
+		          						val = $("select[name='service_starttime'] option:eq("+i+")")
+		          						val.prop("disabled", true)
+		          						
+		          					}
+          						
+          						}  
+				        } 
+          				 
+          			})
+          			
+          			$("#service_starttime").on("change", function(){
+          				
+          				val = $("#service_starttime option:selected").val();
+          				
+          				 if(val==20){
+          					$("#threehours").hide();
+          				} 
+          			})
+          			
+          			
 						})
 						
-					})
+				
 				
           </script>
 </head>
@@ -207,6 +270,7 @@
             <div class="container">
                 <!-- 전체 form -->
                 <form action="/pet/reserve/resv1_mb.do" method="post" class="contact-form">
+                	
                     <!-- 전체 row -->
                     <div class="row">
 
@@ -233,15 +297,12 @@
                                             <div class="row" >
                                             	<c:forEach var="pet" items="${mypetlist }" varStatus="status">
 	                                                <div class="col-md-4"  >
-<<<<<<< HEAD
-	                                                    <label for="petnamelist${status.count }"  style=" cursor: pointer;">
-	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" name="pet_namelist" >${pet.pet_name }
-	                                                    	<input type="hidden" id="petcodelist${status.count }" value="${pet.pet_code }" name="pet_codelist" >
-	                                               			<input type="hidden" id="petidlist${status.count }" value="${pet.pet_id }" name="pet_idlist">
-=======
-	                                                    <label for="mypetcheckpet${status.count }"  style=" cursor: pointer;">
-	                                                    	<input type="checkbox" id="mypetcheckpet${status.count }" value="pet${status.count }/${pet.pet_code}" name="pet_list" >${pet.pet_name }
->>>>>>> refs/remotes/origin/main-old
+
+	                                                    <label for="petnamelist${status.count }"  style=" cursor: pointer; ">
+	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" class="selectpet${status.count }" name="pet_namelist" >${pet.pet_name }
+	                                                    	 <input type="checkbox" id="petcodelist${status.count }" value="${pet.pet_code }" class="selectpet${status.count }" name="pet_codelist" style="display:none;">
+	                                               			<input type="checkbox" id="petidlist${status.count }" value="${pet.pet_id }" class="selectpet${status.count }" name="pet_idlist" style="display:none;"> 
+
 	                                               		</label>
 	                                                </div>
                                                 </c:forEach>
@@ -342,7 +403,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                         방문시간을 선택해주세요<br/>
-                                            <select name="service_starttime" style="cursor:pointer;" required>
+                                            <select id="service_starttime" name="service_starttime" style="cursor:pointer;" required>
                                                 <option value="8">오전 8:00</option>
                                                 <option value="9">오전 9:00</option>
                                                 <option value="10">오전 10:00</option>
@@ -370,24 +431,27 @@
                                     <!-- 2번째 칸 이용시간 입력=============== -->
                                     <div class="row">
                                         <div class="col-12">
-                                        이용시간을 선택해주세요
+                                        <div id="timeexplain">
+                                       		 <p>이용시간을 선택해주세요</p>
+                                       		 <p style="color: red; font-weight:bold;">※서비스 이용종료시간은 밤 10까지입니다.</p>
+                                        </div>
                                             <div class="row" style="margin-top: 15px;" id="servicehour">
                                                 <div class="mb-3">
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-8" type="radio" name="service_time" value="1" required>
+                                                            <input id="radio-8" type="radio" class="service_time" name="service_time" value="1" required>
                                                             <label for="radio-8" style="cursor:pointer;">1시간</label>
                                                         </div>
                                                     </div> 
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >                
                                                         <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-9" type="radio" name="service_time" value="2">
+                                                            <input id="radio-9" type="radio" class="service_time" name="service_time" value="2">
                                                             <label for="radio-9" style="cursor:pointer;">2시간</label>
                                                         </div>
                                                     </div>
                                                     <div class="form_toggle row-vh d-flex flex-row justify-content-between" >       
-                                                        <div class="form_radio_btn radio_hour">
-                                                            <input id="radio-10" type="radio" name="service_time" value="3" >
+                                                        <div class="form_radio_btn radio_hour" id="threehours">
+                                                            <input id="radio-10" type="radio" class="service_time" name="service_time" value="3" >
                                                             <label for="radio-10" style="cursor:pointer;">3시간</label>
                                                         </div>
                                                     </div> 

@@ -143,24 +143,66 @@
 		</where>
 	</select>
 	
+	<!-- 시터 id로 시터 정보 row 가져오기 -->
 	<select id="readsitter" parameterType="String" resultType="sitter">
 			select * from sitter_info
 			where sitter_id = #{sitter_id}
 	</select>
 	
-<<<<<<< HEAD
+	<!-- 예약내역테이블에 예약정보 집어넣기 -->
 	 <insert id="insert" parameterType="resv">
 			insert into resv_history
-			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, #{resv_date},
-						#{resv_change_date}, #{resv_state}, null, #{visit_date}, #{visit_place}, 
+			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, to_char(sysdate,'yyyy-mm-dd hh24:mi'),
+						  to_char(sysdate,'yyyy-mm-dd hh24:mi'), #{resv_status}, null, #{visit_date}, #{visit_place}, 
 						#{service_starttime}, #{service_endtime}, #{service_time}, #{sitter_id}, #{service_note},
-						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, 5000,
+						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, #{total_price},
 						#{match_method}, #{prefer_gender}, #{prefer_size}, #{visit_method}, #{common_pass},
 						#{home_pass}, #{direct_meet}, #{parking}, #{supplies_place}, #{cleaning_method},
-						#{emergency_phone}) 
+						#{emergency_phone}, #{pet_codelist}) 
 	</insert> 
 	
-=======
->>>>>>> refs/remotes/origin/main-old
+	<!-- 이용자id로 예약내역rows 가져오기 -->
+	<select id="mbresvlist" parameterType="String" resultType="resv">
+			select * from resv_history
+			where member_id = #{member_id}
+			order by resv_no desc
+	</select>
+	
+	<!-- 시터id로 예약내역rows 가져오기  -->
+	<select id="stresvlist" parameterType="String" resultType="resv">
+			select * from resv_history
+			where sitter_id = #{sitter_id}
+			order by resv_no asc
+	</select>
+	<!-- 예약번호로 예약내역 row가져오기 -->
+	<select id="resvread" parameterType="String" resultType="resv">
+			select * from resv_history
+			where resv_no = #{resv_no}
+	</select>
+	
+	<!-- 기간내에 매칭승인을 못받으면 자동으로 취소되도록 update  -->
+	<update id="changestatus">
+			update resv_history
+			set resv_status = 2,
+			resv_change_date = TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')
+			where resv_status = 0
+            <![CDATA[						
+			and (TO_DATE(visit_date || ' ' || LPAD(service_starttime, 2, '0' || ':00:00'), 'YYYY-MM-DD HH24:MI:SS') 
+            - TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60 < 120
+			]]>
+	
+	</update>
+	<!-- 이용자가 결제취소할경우  -->
+	<update id="mbcancelresv" parameterType="String">
+			update resv_history
+			set resv_status = 3
+			where resv_no=#{resv_no}
+	</update>
+	<!-- 펫시터가 승인거절할경우  -->
+	<update id="stcancelresv" parameterType="String">
+			update resv_history
+			set resv_status = 4
+			where resv_no=#{resv_no}
+	</update>
 </mapper>
 

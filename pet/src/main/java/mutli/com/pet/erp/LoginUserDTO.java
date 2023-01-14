@@ -25,7 +25,6 @@ public class LoginUserDTO {
 	private String service_area;
 	private String sitter_info;
 	private String valid;
-	private String sitter_career;
 	private	String sitter_certificate;
 	private	String sitter_rate;
 	
@@ -68,7 +67,7 @@ public class LoginUserDTO {
 	public LoginUserDTO(String user_type, String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
 			String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate, Date sitter_enddate,
 			String sitter_status, Date sitter_birthdate, String service_area, String sitter_info, String valid,
-			String sitter_career, String sitter_certificate, String sitter_rate) {
+			String sitter_certificate, String sitter_rate) {
 		super();
 		this.user_type = user_type;
 		this.name = name;
@@ -86,15 +85,13 @@ public class LoginUserDTO {
 		this.service_area = service_area;
 		this.sitter_info = sitter_info;
 		this.valid = valid;
-		this.sitter_career = sitter_career;
 		this.sitter_certificate = sitter_certificate;
 		this.sitter_rate = sitter_rate;
 	}
 
 
 
-	public String getUser_type() {
-		return user_type;
+
 	@Override
 	public String toString() {
 		return "LoginUserDTO [user_type=" + user_type + ", name=" + name + ", sitter_id=" + sitter_id + ", sitter_code="
@@ -102,8 +99,7 @@ public class LoginUserDTO {
 				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
 				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
 				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
-				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
-				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", member_id="
+				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", member_id="
 				+ member_id + ", member_no=" + member_no + ", member_gender=" + member_gender + ", member_email="
 				+ member_email + ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2="
 				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
@@ -251,13 +247,7 @@ public class LoginUserDTO {
 		this.valid = valid;
 	}
 
-	public String getSitter_career() {
-		return sitter_career;
-	}
 
-	public void setSitter_career(String sitter_career) {
-		this.sitter_career = sitter_career;
-	}
 
 	public String getSitter_certificate() {
 		return sitter_certificate;

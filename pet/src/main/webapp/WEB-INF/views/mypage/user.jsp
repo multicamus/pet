@@ -60,7 +60,7 @@
 								<i class="lni lni-alarm-clock"></i>
 							</div>
 							<div class="contact-content">
-								<h4><a href="/pet/menu/reserve/resvhistory_mb_list.do">나의 예약 및 결제</a></h4>
+								<h4><a href="/pet/reserve/list.do">나의 예약 및 결제</a></h4>
 								<p>예정 중인 예약</p>
 								<p>예정 중인 예약</p>
 							</div>

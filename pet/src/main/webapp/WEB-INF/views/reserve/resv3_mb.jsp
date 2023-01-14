@@ -321,6 +321,7 @@
                     </div>    
 					        <!-- input hidden -->
 					        <input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+					        <input type="hidden" name="visit_place" value="${resvdto.visit_place }">
 					        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
 					        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
 					        <input type="hidden" name="service_time" value="${resvdto.service_time }">
@@ -329,10 +330,8 @@
 					        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 					        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 					        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-<<<<<<< HEAD
-					        <%-- <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
+
+					    
 					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
 					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
 					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >
@@ -342,16 +341,9 @@
 						<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
 						<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
 						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
-						
-					                            
-=======
-					        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
-					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
-					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >                    
->>>>>>> refs/remotes/origin/main-old
+						<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+					    <input type="hidden" name="emergency_phone" value="${resvdto.emergency_phone }">	                        
+
                     </div>
                     <!-- 전체 row끝  -->
 

@@ -42,14 +42,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
 	}
 
-	@Override
-<<<<<<< HEAD
-	public List<PetDTO> pet(MemberDTO loginUserInfo) {
-		return sqlSession.selectList("mutli.com.pet.mypet.mypet", loginUserInfo);
-=======
+
 	public int update(MemberDTO member) {
 		return sqlSession.update("mutli.com.pet.erp.member_update", member);
->>>>>>> refs/remotes/origin/main-old
+
 	}
 	
 	// insert

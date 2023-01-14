@@ -1,9 +1,16 @@
+<%@page import="multi.com.pet.resv.ResvDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.Date" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!doctype html>
 <html class="no-js" lang="ko">
     <head>
         <meta charset="utf-8">
-        <title>resvhistory_st_list</title>
+        <title>resvhistory mb list</title>
         <style>
             .form_radio_btn {
 			 width: 200px; 
@@ -50,7 +57,21 @@
         .service-box{
             width:1200px;
         }
+        
         </style>    
+       <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    	</script>  
+        <script>
+        	<%
+        		//가져온 model에서 revlist 리스트 객체를 꺼낸다.
+        		List<ResvDTO> resvlist = (List<ResvDTO>) request.getAttribute("resvlist");
+
+				%>
+					
+        </script>
+        
+        
     </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -59,12 +80,12 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="banner-content">
-                            <h2 class="text-white">돌봄내역</h2>
+                            <h2 class="text-white">예약 및 결제내역</h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item" aria-current="page"><a href="/pet/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">돌봄내역</li>
+                                        <li class="breadcrumb-item active" aria-current="page">예약 및 결제내역</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -86,8 +107,8 @@
                             <div class="col-md-6">
                                 <div class="resv_history" >
                                     <div class="form_radio_btn radio_gender">
-                                        <input id="radio-20" type="radio" name="reserved" >
-                                        <label for="radio-20" >진행예약</label>
+                                        <input id="radio-20" type="radio" name="reserved" checked>
+                                        <label for="radio-20" style="cursor: pointer;" checked>진행예약</label>
                                     </div>
                                 </div> 
                             </div>
@@ -95,7 +116,7 @@
                                 <div class="resv_history" >
                                     <div class="form_radio_btn radio_gender">
                                         <input id="radio-21" type="radio" name="reserved"  >
-                                        <label for="radio-21">지난예약</label>
+                                        <label for="radio-21" style="cursor: pointer;">지난예약</label>
                                     </div>
                                 </div>                                         
                             </div>
@@ -106,6 +127,34 @@
 
                 <!-- 돌봄 예정 서비스 정보 -->
                 <!-- 돌봄예정 서비스 row -->
+                <%for(ResvDTO resvdto: resvlist){//예약내역리스트에서 예약내역 객체를 하나씩 가져온다. 
+                	//예약내역의 방문날짜를 Date객체에 담는다
+                	Date date = resvdto.getVisit_date();
+            		//System.out.println(date);
+            		//년월일 사이의 하이픈(-)을 빼준다
+    				SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+            		//년월일에 서비스시작시간을 붙인다.
+    				String startdate = sf.format(date) + resvdto.getService_starttime()+"00";
+    				//년월일에 서비스종료시간을 붙인다.
+            		String enddate = sf.format(date) + resvdto.getService_endtime()+"00";
+    				//현재 날짜와 시간을 가져와서 다 붙여있는 식으로 뽑아낸다.
+            		Date nowdate = new Date();
+            		SimpleDateFormat sf2 = new SimpleDateFormat("yyyyMMddHHmm");
+            		//문자열로 바꾼다.
+            		String sysdate = sf2.format(nowdate);
+            		
+            		//두 날짜 스트링 변수를 정수로 바꾼다
+            		long start = Long.valueOf(startdate);
+            		
+            		long now = Long.valueOf(sysdate);
+            		long end = Long.valueOf(enddate);
+            		SimpleDateFormat sf3 = new SimpleDateFormat("yyyy년 MM월 dd일");
+					String hangeuldate = sf3.format(date);
+               
+                	System.out.println("예약번호list:"+resvdto.getResv_no());
+					
+					
+                if(start>now){ %>
                 <div class="row">
                     <!-- 돌봄예정 서비스 칸 -->
                     <div class="col-lg-12 col-md-6">
@@ -116,11 +165,28 @@
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
                                 <div class="row">
                                     <div class="col-2">
-                                        <span style="margin-right:50px"><h4>기다리는 중</h4></span>
+                                    	<% if(start<=now&&now<=end){
+                                    			if(resvdto.getResv_status()==1){%>
+                                        			<span style="margin-right:50px"><h4>돌봄 중</h4></span>
+                                        	<%}else{ %>
+                                        			<span style="margin-right:50px; color:red;"><h4>예약 취소</h4></span>
+                                        	<%} %>
+                                        	
+                                        	
+                                        <%}else{ 
+	                                       		 if(resvdto.getResv_status()==0){%>
+	                                      			<span style="margin-right:50px;"><h4 style="text-align:center;">매칭 승인 <br> 대기중</h4></span>
+	                                      	<%}else if(resvdto.getResv_status()==1){ %>
+	                                      			<span style="margin-right:50px"><h4>돌봄 예정</h4></span>
+	                                      	<%}else{%>
+                                        			<span style="margin-right:50px; color:red;"><h4>예약 취소</h4></span>
+	                                  		<%}%>	 
+	                                  		
+	                                     <%} %>	  
                                     </div>
                                     <div class="col-10">
                                         <span><h5>방문날짜: </h5></span>
-                                        <span><h5>0000년 00월 00일</h5></span>
+                                        <span><h5><%= hangeuldate %></h5></span>
                                     </div>
                                 </div>
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
@@ -135,27 +201,45 @@
                                         <div >
                                             <div style="font-size: 20px; ">
                                                 <span>반려동물 이름:</span>
-                                                <span>ㅇㅇㅇ</span>
-                                                <span style="margin-left:50px">돌봄 서비스 종류</span>
-                                                <span>ㅇㅇㅇ</span>
+                                                <span><%=resvdto.getPet_namelist() %></span>
+                                                <span style="margin-left:50px">돌봄 서비스 종류: </span>
+                                                <span>돌봄(기본)<%if(resvdto.getWalk_service() == 'Y')  {%>
+                                                   							+ 산책
+                                                   	<%}%>	
+                                                   	<%if(resvdto.getBath_service() == 'Y')  {%>
+                                                   							+ 목욕
+                                                   	<%}%>	
+                                                   	<%if(resvdto.getBeauty_service() == 'Y')  {%>
+                                                   							+ 미용
+                                                   	<%}%></span>
                                             </div>
 
                                             <div style="font-size: 20px; margin-top: 20px ;">
                                                 <span>돌봄 서비스 가격:</span>
                                                 <span>ㅇㅇㅇ</span>
                                                 <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span>ㅇㅇ시~ㅇㅇ시</span>
+                                                <span> <% if(resvdto.getService_starttime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 <%= resvdto.getService_starttime()%>시</span>
+                                                    <%}else if(resvdto.getService_starttime() == 12){%>
+                                                    	<span style="font-size:20px">오후 <%= resvdto.getService_starttime()%>시</span>
+                                                    <%}else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_starttime() - 12 %>시</span>
+                                                   <% } %> ~<% if(resvdto.getService_endtime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 <%=resvdto.getService_endtime() %>시</span>
+                                                    <%}else if(resvdto.getService_endtime() == 12){%>
+                                                    	<span style="font-size:20px">오후 <%=resvdto.getService_endtime() %>시</span>
+                                                    <% }else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_endtime() - 12 %>시</span>
+                                                   <% } %> 
                                             </div>    
                                         </div>
                                     </div>
-                    
+                                   
+                    				
                                     <!-- 더보기 -->
                                     <div class="col-2">        
                                         <div class="button text-center" >
-                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >승 인</button><br/>
-                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >거 절</button><br/>
-                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn">더보기</button>
-                                            
+                                            <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                     </div>
                                     <!-- 더보기 끝 -->
@@ -169,11 +253,8 @@
                     <!-- 돌봄예정 서비스 칸 끝-->
                 </div>
                 <!-- 돌봄예정 서비스 row 끝-->
-
-
-                <!-- 돌봄 예정 서비스 정보 -->
-                <!-- 돌봄예정 서비스 row -->
-                <div class="row">
+				<%}else{ %>
+                 <div class="row">
                     <!-- 돌봄예정 서비스 칸 -->
                     <div class="col-lg-12 col-md-6">
                         <!-- 돌봄예정 서비스 service box -->
@@ -183,11 +264,19 @@
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
                                 <div class="row">
                                     <div class="col-2">
-                                        <span style="margin-right:50px"><h4>돌봄 예정</h4></span>
+                                    	
+                                    		<%if(resvdto.getResv_status()==1){%>
+                                        			<span style="margin-right:50px"><h4>돌봄 완료</h4></span>
+                                        	<%}else{ %>
+                                        			<span style="margin-right:50px; color:red;"><h4>예약 취소</h4></span>
+                                        	<%} %>
+                                        	
+                                        	
+                                          
                                     </div>
                                     <div class="col-10">
                                         <span><h5>방문날짜: </h5></span>
-                                        <span><h5>0000년 00월 00일</h5></span>
+                                        <span><h5><%= hangeuldate %></h5></span>
                                     </div>
                                 </div>
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
@@ -202,24 +291,45 @@
                                         <div >
                                             <div style="font-size: 20px; ">
                                                 <span>반려동물 이름:</span>
-                                                <span>ㅇㅇㅇ</span>
-                                                <span style="margin-left:50px">돌봄 서비스 종류</span>
-                                                <span>ㅇㅇㅇ</span>
+                                                <span><%=resvdto.getPet_namelist() %></span>
+                                                <span style="margin-left:50px">돌봄 서비스 종류: </span>
+                                                <span>돌봄(기본)<%if(resvdto.getWalk_service() == 'Y')  {%>
+                                                   							+ 산책
+                                                   	<%}%>	
+                                                   	<%if(resvdto.getBath_service() == 'Y')  {%>
+                                                   							+ 목욕
+                                                   	<%}%>	
+                                                   	<%if(resvdto.getBeauty_service() == 'Y')  {%>
+                                                   							+ 미용
+                                                   	<%}%></span>
                                             </div>
 
                                             <div style="font-size: 20px; margin-top: 20px ;">
                                                 <span>돌봄 서비스 가격:</span>
                                                 <span>ㅇㅇㅇ</span>
                                                 <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span>ㅇㅇ시~ㅇㅇ시</span>
+                                                <span> <% if(resvdto.getService_starttime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 <%= resvdto.getService_starttime()%>시</span>
+                                                    <%}else if(resvdto.getService_starttime() == 12){%>
+                                                    	<span style="font-size:20px">오후 <%= resvdto.getService_starttime()%>시</span>
+                                                    <%}else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_starttime() - 12 %>시</span>
+                                                   <% } %> ~<% if(resvdto.getService_endtime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 <%=resvdto.getService_endtime() %>시</span>
+                                                    <%}else if(resvdto.getService_endtime() == 12){%>
+                                                    	<span style="font-size:20px">오후 <%=resvdto.getService_endtime() %>시</span>
+                                                    <% }else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_endtime() - 12 %>시</span>
+                                                   <% } %> 
                                             </div>    
                                         </div>
                                     </div>
-                    
+                                   
+                    				
                                     <!-- 더보기 -->
                                     <div class="col-2">        
                                         <div class="button text-center" >
-                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >더보기</button>
+                                            <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                     </div>
                                     <!-- 더보기 끝 -->
@@ -233,72 +343,11 @@
                     <!-- 돌봄예정 서비스 칸 끝-->
                 </div>
                 <!-- 돌봄예정 서비스 row 끝-->
-
-                <!-- 돌봄 예정 서비스 정보 -->
-                <!-- 돌봄예정 서비스 row -->
-                <div class="row">
-                    <!-- 돌봄예정 서비스 칸 -->
-                    <div class="col-lg-12 col-md-6">
-                        <!-- 돌봄예정 서비스 service box -->
-                        <div class="service-box box-style">
-                            <!-- 돌봄예정 서비스 box content -->
-                            <div class="box-content-style service-content">
-                                <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
-                                <div class="row">
-                                    <div class="col-2">
-                                        <span style="margin-right:50px"><h4  style="color:red">예약 취소</h4></span>
-                                    </div>
-                                    <div class="col-10">
-                                        <span><h5>방문날짜: </h5></span>
-                                        <span><h5>0000년 00월 00일</h5></span>
-                                    </div>
-                                </div>
-                                <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
-
-                                <!-- 반려동물 사진 / 서비스정보 -->
-                                <div class="row" style="display: flex; align-items: center;  flex: 110%;">
-                                    <div class="col-2">
-                                        <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
-                                            alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
-                                    </div>
-                                    <div class="col-8 ">
-                                        <div >
-                                            <div style="font-size: 20px; ">
-                                                <span>반려동물 이름:</span>
-                                                <span>ㅇㅇㅇ</span>
-                                                <span style="margin-left:50px">돌봄 서비스 종류</span>
-                                                <span>ㅇㅇㅇ</span>
-                                            </div>
-
-                                            <div style="font-size: 20px; margin-top: 20px ;">
-                                                <span>돌봄 서비스 가격:</span>
-                                                <span>ㅇㅇㅇ</span>
-                                                <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span>ㅇㅇ시~ㅇㅇ시</span>
-                                            </div>    
-                                        </div>
-                                    </div>
-                    
-                                    <!-- 더보기 -->
-                                    <div class="col-2">        
-                                        <div class="button text-center" >
-                                            <button type="submit" onclick="location.href='/pet/menu/reserve/resvhistory_st_read.do'" class="theme-btn" >더보기</button>
-                                        </div>
-                                    </div>
-                                    <!-- 더보기 끝 -->
-                                </div>    
-                                <!-- 반려동물 사진 / 서비스정보 끝-->       
-                            </div>
-                            <!-- 돌봄예정 서비스 box content 끝 -->    
-                        </div>
-                        <!-- 돌봄예정 서비스 service box 끝-->
-                    </div>
-                    <!-- 돌봄예정 서비스 칸 끝-->
-                </div>
-                <!-- 돌봄예정 서비스 row 끝-->
+               <%} %>
+                <%} %>
+                
             </div>
             <!-- 컨테이너 끝 -->
         </section>            
-        <!-- ========================= service-section end ========================= -->
     </body>
 </html>

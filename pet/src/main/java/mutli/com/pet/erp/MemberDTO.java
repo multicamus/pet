@@ -59,23 +59,15 @@ public class MemberDTO {
 				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
 	}
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> refs/remotes/origin/main-old
 	public String getUser_type() {
 		return user_type;
 	}
 
-<<<<<<< HEAD
+
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
-=======
-	public void setUser_type(String usertype) {
-		this.user_type = usertype;
->>>>>>> refs/remotes/origin/main-old
-	}
+	}	
 
 	public String getMember_id() {
 		return member_id;

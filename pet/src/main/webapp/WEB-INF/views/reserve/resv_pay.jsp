@@ -146,7 +146,7 @@
                                             <!-- 예약상세정보 -->
                                             <div style="margin-top:20px; ">
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">동물이름: </h5> 
+                                                    <h5 style="line-height:200%;display: inline;">동물이름: </h5> 
                                                    		  <% for(int i=0; i<namelist.size();i++){
                                                    			 		if(codelist.get(i).equals("DOG")){%>
                                                    			 	<span style="font-size:20px"><%= namelist.get(i) %> (강아지)</span>			
@@ -155,49 +155,17 @@
                                                    			 <%} %>
                                                    		 <%} %>
                                                 </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">예약날짜:</h5> 
-                                                    <span style="font-size:20px">${resvdto.resv_date }</span>
-                                                </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">취소여부:</h5> 
-                                                    	<%if(resvdto.getResv_state() == 0) {%>
+                                                <%-- <div>
+                                                    <h5 style="line-height:200%;display: inline;">취소여부:</h5> 
+                                                    	<%if(resvdto.getResv_status() == 0) {%>
                                                     		<span style="font-size:20px">취소 안함</span>
                                                     	<%}else{ %>
-                                                    		<span style="font-size:20px">취소함</span>
+                                                    		<span style="font-size:20px;">취소함</span>
                                                     	<%} %>
-                                                </div>
+                                                </div> --%>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">서비스 이용 날짜:</h5> 
-                                                    <span style="font-size:20px">${resvdto.visit_date }</span>
-                                                </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">서비스 이용 시작시간:</h5> 
-                                                    
-                                                     <% if(resvdto.getService_starttime() < 12) { %>
-                                                   	 	<span style="font-size:20px">오전 ${resvdto.service_starttime }시</span>
-                                                    <%}else if(resvdto.getService_starttime() == 12){%>
-                                                    	<span style="font-size:20px">오후 ${resvdto.service_starttime }시</span>
-                                                    <% }else {%>
-                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_starttime() - 12 %>시</span>
-                                                   <% } %> 
-                                                </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">서비스 이용 종료시간:</h5> 
-                                                    <% if(resvdto.getService_endtime() < 12) { %>
-                                                   	 	<span style="font-size:20px">오전 ${resvdto.service_endtime }시</span>
-                                                    <%}else if(resvdto.getService_endtime() == 12){%>
-                                                    	<span style="font-size:20px">오후 ${resvdto.service_endtime }시</span>
-                                                    <% }else {%>
-                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_endtime() - 12 %>시</span>
-                                                   <% } %> 
-                                                </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">총 서비스 이용시간:</h5> 
-                                                    <span style="font-size:20px"><%=resvdto.getService_endtime() - resvdto.getService_starttime() %>시간</span>
-                                                </div>
-                                                <div>
-                                                    <h5 style="line-height:500%;display: inline;">서비스 종류:</h5> 
+                                                
+                                                    <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
                                                     	<span style="font-size:20px">돌봄(기본)
                                                     <%if(resvdto.getWalk_service() == 'Y')  {%>
                                                    							+ 산책
@@ -210,11 +178,83 @@
                                                    	<%}%></span>						
                                                 </div>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">주의사항:</h5> 
+                                                    <h5 style="line-height:200%;display: inline; ">서비스 장소:</h5> 
+                                                    <span style="font-size: 20px;  ">${resvdto.visit_place }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">서비스 이용 날짜:</h5> 
+                                                    <span style="font-size:20px">${resvdto.visit_date }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">서비스 이용 시작시간:</h5> 
+                                                    
+                                                     <% if(resvdto.getService_starttime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 ${resvdto.service_starttime }시</span>
+                                                    <%}else if(resvdto.getService_starttime() == 12){%>
+                                                    	<span style="font-size:20px">오후 ${resvdto.service_starttime }시</span>
+                                                    <% }else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_starttime() - 12 %>시</span>
+                                                   <% } %> 
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">서비스 이용 종료시간:</h5> 
+                                                    <% if(resvdto.getService_endtime() < 12) { %>
+                                                   	 	<span style="font-size:20px">오전 ${resvdto.service_endtime }시</span>
+                                                    <%}else if(resvdto.getService_endtime() == 12){%>
+                                                    	<span style="font-size:20px">오후 ${resvdto.service_endtime }시</span>
+                                                    <% }else {%>
+                                                   	 	<span style="font-size:20px">오후 <%= resvdto.getService_endtime() - 12 %>시</span>
+                                                   <% } %> 
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">총 서비스 이용시간:</h5> 
+                                                    <span style="font-size:20px"><%=resvdto.getService_endtime() - resvdto.getService_starttime() %>시간</span>
+                                                </div>
+                                                
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">주의사항:</h5> 
                                                     <span style="font-size:20px">${resvdto.service_note }</span>
                                                 </div>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">매칭방법:</h5> 
+                                                    <h5 style="line-height:200%;display: inline;">방문방법:</h5> 
+                                                    <c:if test="${resvdto.visit_method == 'pass_visit' }">
+                                                    	<span style="font-size:20px">집 비밀번호 누르고 들어가기</span>
+                                                	</c:if>
+                                                	<c:if test="${resvdto.visit_method == 'direct_visit' }">
+                                                    	<span style="font-size:20px">밖에서 직접만남</span>
+                                                	</c:if>
+                                                </div>
+                                                <div>
+                                                	<%if(resvdto.getVisit_method().equals("pass_visit")){ %>
+                                                    <h5 style="line-height:200%;display: inline;">공동현관비밀번호:</h5> 
+                                                    <span style="font-size:20px">${resvdto.common_pass }</span>
+                                                	<h5 style="line-height:200%;display: inline;">집현관비밀번호:</h5> 
+                                                	<span style="font-size:20px">${resvdto.home_pass }</span>
+                                                	
+                                                	<% }else{%>
+                                                	 <h5 style="line-height:200%;display: inline;">직접만남 특이사항:</h5> 
+                                                    <span style="font-size:20px">${resvdto.direct_meet }</span>
+                                                	
+                                                	<% }%>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">주차여부</h5> 
+                                                    <span style="font-size:20px">${resvdto.parking }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">용품장소:</h5> 
+                                                    <span style="font-size:20px">${resvdto.supplies_place }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">배변 및 쓰레기 버리는 방법 및 장소:</h5> 
+                                                    <span style="font-size:20px">${resvdto.cleaning_method }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">비상긴급전화번호</h5> 
+                                                    <span style="font-size:20px">${resvdto.emergency_phone }</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">매칭방법:</h5> 
                                                     <c:if test="${resvdto.match_method eq 'direct_match' }">
                                                     	<span style="font-size:20px">직접선택</span>
                                                     </c:if>
@@ -286,20 +326,20 @@
                                             <!-- 결제상세정보 -->
                                             <div style="margin-top:20px; ">
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">결제 상태:</h5> 
+                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
                                                     <span style="font-size:20px">결제 완료</span>
                                                 </div>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">결제 날짜:</h5> 
+                                                    <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
                                                     <span style="font-size:20px">ㅇㅇㅇㅇ-ㅇㅇ-ㅇㅇ</span>
                                                 </div>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">결제방법:</h5> 
+                                                    <h5 style="line-height:200%;display: inline;">결제방법:</h5> 
                                                     <span style="font-size:20px">삼성비자/일시불</span>
                                                 </div>
                                                 <div>
-                                                    <h5 style="line-height:500%;display: inline;">지불금액:</h5> 
-                                                    <span style="font-size:20px">27,000원</span>
+                                                    <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
+                                                    <span style="font-size:20px">${resvdto.total_price }원</span>
                                                 </div>
                                             </div>
                                             <!-- 결제상세정보끝 -->
@@ -322,7 +362,7 @@
                     </div>
                     
                     <!-- 이전버튼 -->
-                    <div class="button text-center pb-50" style="margin-top: -60%;">
+                    <div class="button text-center pb-50" style="margin-top: -50%;">
 						             <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:1000px">이전</button>	
 	                 </div>
                     
@@ -330,6 +370,7 @@
                 </div>
                 <!-- 예약/결제 내역 row 끝 -->
                 			<input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+                			<input type="hidden" name="visit_place" value="${resvdto.visit_place }">
 					        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
 					        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
 					        <input type="hidden" name="service_time" value="${resvdto.service_time }">
@@ -338,9 +379,6 @@
 					        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 					        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 					        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-					        <%-- <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-					        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-					        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }"> --%>
 					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
 					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
 					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >
@@ -357,7 +395,7 @@
 							<input type="hidden" name="supplies_place" value="${resvdto.supplies_place }">	
 							<input type="hidden" name="cleaning_method" value="${resvdto.cleaning_method }">
 							<input type="hidden" name="emergency_phone" value="${resvdto.emergency_phone }">	
-						 
+						 	<input type="hidden" name="total_price" value="${resvdto.total_price }">	
 						
             </form>
             </div>

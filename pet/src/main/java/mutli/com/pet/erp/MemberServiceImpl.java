@@ -33,14 +33,9 @@ public class MemberServiceImpl implements MemberService {
 
 	// login - pet
 	@Override
-<<<<<<< HEAD
-	public List<PetDTO> pet(MemberDTO loginUser) {
-		List<PetDTO> mypetlist = dao.pet(loginUser);
-		return mypetlist;
-=======
 	public List<PetDTO> petList(MemberDTO loginUser) {
 		return dao.petList(loginUser);
->>>>>>> refs/remotes/origin/main-old
+
 	}
 	
 	// update
