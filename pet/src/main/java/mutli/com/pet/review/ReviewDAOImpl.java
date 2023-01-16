@@ -26,8 +26,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public int insertFile(List<ReviewFileDTO> reviewfiledtolist) {
-		//return sqlSession.insert("mutli.com.pet.review.fileinsert", reviewfiledtolist);
-		return 0;
+		return sqlSession.insert("mutli.com.pet.review.fileinsert", reviewfiledtolist);
 	}
 
 
@@ -61,7 +60,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public Review2DTO read_detail_ajax(String review_no) {
-		return sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax",review_no);
+		Review2DTO data = sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax",review_no);
+		System.out.println("data=> " + data);
+		return data;
 	}
 
 	

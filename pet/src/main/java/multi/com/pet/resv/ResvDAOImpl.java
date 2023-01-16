@@ -89,6 +89,12 @@ public  class ResvDAOImpl implements ResvDAO {
 	public int stcancelResv(String resv_no) {
 		return sqlsession.update("mutli.com.pet.resv.stcancelresv", resv_no);
 	}
+	
+	//펫시터가 승인을 수락함(resv_status -> 1로 바뀜)
+	@Override
+	public int approve(String resv_no) {
+		return sqlsession.update("mutli.com.pet.resv.approve", resv_no);
+	}
 
 
 

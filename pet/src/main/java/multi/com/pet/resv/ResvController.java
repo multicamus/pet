@@ -2,25 +2,31 @@ package multi.com.pet.resv;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import mutli.com.pet.erp.LoginUserDTO;
+import mutli.com.pet.erp.MemberDTO;
+import mutli.com.pet.erp.MemberService;
 import mutli.com.pet.erp.SitterDTO;
 
 @Controller
 public class ResvController {
 	ResvService service;
+	MemberService mbservice;
 	
 	@Autowired
-	public ResvController(ResvService service) {
+	public ResvController(ResvService service, MemberService mbservice) {
 		super();
 		this.service = service;
+		this.mbservice = mbservice;
 	}
-
 
 	@RequestMapping("/reserve/resv1_mb.do")
 	public String resv1(ResvDTO resvdto, String servicecode, String pet_idlist, String pet_codelist,  HttpSession session, Model model) {
@@ -48,7 +54,7 @@ public class ResvController {
 			}
 			
 		}
-		
+
 		//시작시간+서비스시간 = 종료시간 설정
 		int endtime= resvdto.getService_starttime()+resvdto.getService_time();
 		resvdto.setService_endtime(endtime);
@@ -96,6 +102,10 @@ public class ResvController {
 		String[] idArray = resvdto.getPet_idlist().split(",");
 		String[] codeArray = resvdto.getPet_codelist().split(",");
 		String[] nameArray = resvdto.getPet_namelist().split(",");
+		String simpleAddr = resvdto.getVisit_place();
+		
+		SitterDTO sitter = mbservice.sitter_read(resvdto.getSitter_id());
+		sitter.setSitter_age(sitter.calcAge());
 		
 		if(idArray.length == 2) {
 			resvdto.setTotal_price(resvdto.getTotal_price()+10000);
@@ -128,7 +138,7 @@ public class ResvController {
 		model.addAttribute("codelist", codelist);		
 		model.addAttribute("namelist", namelist);
 		model.addAttribute("test", "test");
-		
+		model.addAttribute("sitter", sitter);
 		model.addAttribute("resvdto", resvdto);
 		return "resv/resv_pay";
 	}
@@ -163,8 +173,8 @@ public class ResvController {
 
 		// 예약리스트를 불러올때 예약상태(resv_status)
 		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절 
-		service.changeStatus();
-		
+		int count = service.changeStatus();
+		System.out.println("count:"+count);
 		List<ResvDTO> resvlist = service.resvlist(user);
 		
 		String view = "";
@@ -176,20 +186,32 @@ public class ResvController {
 
 		}
 		
+		
+		
 		model.addAttribute("resvlist", resvlist);
 		System.out.println(resvlist);
 		return view;
 	}
 	
 	@RequestMapping("/reserve/read.do")
-	public String read(String resv_no, Model model) {
+	public String read(String resv_no, Model model, HttpSession session) {
 		System.out.println("예약번호:"+resv_no);
 		ResvDTO resvdto = service.resvread(resv_no);
 		String[] codearray = resvdto.getPet_codelist().split(",");
 		String[] namearray = resvdto.getPet_namelist().split(",");
 		
+		String memberid = resvdto.getMember_id();
+		MemberDTO member = (MemberDTO) mbservice.member_read(memberid);
+		String addr1 = member.getMember_addr1();
+		member.setMember_age(member.calcAge());
+		
+		
 		SitterDTO sitter = service.readSitter(resvdto.getSitter_id());
 		String sitter_name =  sitter.getSitter_name();
+		sitter.setSitter_age(sitter.calcAge());
+		
+		
+		
 		resvdto.setSitter_name(sitter_name);
 		
 		List<String> codelist = new ArrayList<String>();
@@ -200,15 +222,38 @@ public class ResvController {
 			namelist.add(namearray[i]);
 		}
 		
+		String view = "";
+		
+		LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
+		if(user.getUser_type().equals("M")) {
+			view = "resv/resvmb_read";
+			model.addAttribute("sitter", sitter);
+			model.addAttribute("member", member);
+
+		}else {
+			view = "resv/resvst_read";
+			model.addAttribute("member", member);
+		}
+		
 		
 		model.addAttribute("codelist", codelist);
 		model.addAttribute("namelist", namelist);
-		
 		model.addAttribute("resvdto", resvdto);
+		model.addAttribute("addr1", addr1);
 		System.out.println(resvdto);
 		System.out.println(resvdto.getPet_codelist());
 		System.out.println(resvdto.getPet_namelist());
-		return "resv/resvmb_read";
+		return view;
+	}
+	
+	@RequestMapping("/reserve/approve.do")
+	public String approve(String resv_no, Model model, HttpSession session) {
+		System.out.println("매칭승인");
+		LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
+		service.approve(resv_no);
+		System.out.println(user);
+		session.setAttribute("user", user);
+		return "redirect:/reserve/list.do";
 	}
 	
 	@RequestMapping("/reserve/cancel.do")
@@ -229,7 +274,6 @@ public class ResvController {
 		System.out.println(size);
 		System.out.println(code);
 		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
-		user.setMember_shortAddr(""); //user의 주소를 간략한 주소로 바꾼다(예: 서울광역시 금천구)
 		String shortAddr = user.getMember_shortAddr();
 		System.out.println(shortAddr);
 		List<SitterDTO> sitterlist =  service.directlist(gender, size, code, shortAddr);
@@ -238,6 +282,7 @@ public class ResvController {
 			if(sitterlist.get(i).getSitter_id().equals("admin")) {
 				sitterlist.remove(sitterlist.get(i));
 			}
+
 		}
 		
 		System.out.println(sitterlist);
@@ -250,8 +295,9 @@ public class ResvController {
 	SitterDTO readSitter(String sitter_id) {
 		System.out.println(sitter_id);
 		SitterDTO sitter = service.readSitter(sitter_id);
-		sitter.setSitter_age(0);
+		//sitter.calcAge(sitter.getSitter_birthdate());
 		sitter.setSitter_shortAddr("");
+		sitter.setSitter_age(sitter.calcAge());
 		System.out.println(sitter.getSitter_age());
 		System.out.println(sitter.getSitter_shortAddr());
 		

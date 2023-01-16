@@ -16,6 +16,7 @@ public interface ResvDAO {
 	int changeStatus();
 	//예약취소
 	int mbcancelResv(String resv_no);
-	int stcancelResv(String resv_no);
-
+	int stcancelResv(String resv_no);	
+	//예약매칭승인(by 시터)
+	int approve(String resv_no);
 }
