@@ -14,6 +14,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resv3_mb.jsp" />
 	</definition>
 	
+	<definition name="resv/resv_pay" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/reserve/resv_pay.jsp" />
+	</definition>
+	
 	<definition name="resv/resvmb_list" extends="main">
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resvhistory_mb_list.jsp" />
 	</definition>
@@ -29,5 +33,8 @@
 	<definition name="resv/resvst_read" extends="main">
 		<put-attribute name="content" value="/WEB-INF/views/reserve/resvhistory_st_read.jsp" />
 	</definition>
+	
+
+	
 </tiles-definitions>
 

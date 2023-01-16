@@ -3,19 +3,20 @@ package mutli.com.pet.review;
 import java.util.List;
 
 public interface ReviewService {
-	// list
-	List<ReviewDTO> reviewList();
-		
+
 	// insert
 	int insert(ReviewDTO review);
-	
-	// read
-	ReviewDTO read(String review_no);
-	
-	// update
-	int update(ReviewDTO review);
-	
-	// delete
-	int delete(String review_no);
 
+	int insert(ReviewDTO review, List<ReviewFileDTO> reviewfiledtolist);
+	
+	
+	Review2DTO read_detail(String review_no);
+	Review2DTO read_update(String review_no);
+
+
+	List<Review2DTO> read();
+	int update(Review2DTO review);
+	int delete(String review_no);
+	
+	Review2DTO read_detail_ajax(String review_no);
 }

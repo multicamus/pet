@@ -9,6 +9,7 @@ public interface MemberDAO {
 	MemberDTO login(MemberDTO loginUserInfo);
 	List<PetDTO> petList(MemberDTO loginUserInfo);
 	List<PetDTO> petList(String member_id);
+
 	
 	// 로그인 (시터)
 	SitterDTO login(SitterDTO loginUserInfo);

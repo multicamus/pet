@@ -35,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<PetDTO> petList(MemberDTO loginUser) {
 		return dao.petList(loginUser);
+
 	}
 	
 	@Override

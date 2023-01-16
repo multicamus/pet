@@ -20,6 +20,10 @@ public class MemberDTO {
 	private Date end_date;
 	private String member_code;
 	private String member_status;
+
+	
+	//필요해서 추가함 by 최여경
+	private String member_shortAddr; //00특별시 00구와 같은 주소 문자열 변수
 	
 	public MemberDTO() {
 		super();
@@ -55,13 +59,15 @@ public class MemberDTO {
 				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
 	}
 
+
 	public String getUser_type() {
 		return user_type;
 	}
 
-	public void setUser_type(String usertype) {
-		this.user_type = usertype;
-	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}	
 
 	public String getMember_id() {
 		return member_id;
@@ -174,5 +180,26 @@ public class MemberDTO {
 	public void setMember_status(String member_status) {
 		this.member_status = member_status;
 	}
+
+	public String getMember_shortAddr() {
+		return member_shortAddr;
+	}
+
+	public void setMember_shortAddr(String member_shortAddr) {
+		String newAddr = member_addr1;
+		String shortAddr; //최종적으로 들어갈 간략주소 변수
+		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else {
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[1]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
+		}
+		this.member_shortAddr = shortAddr;
+	}
+	
 	
 }

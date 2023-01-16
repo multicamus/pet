@@ -59,9 +59,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
 	}
 
-	@Override
+
 	public int update(MemberDTO member) {
 		return sqlSession.update("mutli.com.pet.erp.member_update", member);
+
 	}
 	
 	// insert
