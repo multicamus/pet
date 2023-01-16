@@ -114,7 +114,12 @@
 									</c:otherwise>
 								</c:choose>
 								
-								<li class="nav-item"><a class="page-scroll" href="/pet/menu/test.do">TEST</a></li>
+								<c:choose>
+									<c:when test="${user.user_type == 'S'}">
+										<li class="nav-item"><a class="page-scroll" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
+									</c:when>
+								</c:choose>
+								
 							</ul>
 						</div>
 						<!-- navbar collapse -->

@@ -39,7 +39,7 @@
 	                <div class="row">
 	                    <div class="col-xl-12 col-lg-12 col-md-12">
                    	  	 	<!-- 일반 사용자 -->
-	                        <div class="single-pricing active mb-50">
+	                        <div class="single-pricing active mt-50 mb-50">
 	                            <div class="contact-form-wrapper">
 	                            	 <!-- 일반 사용자 --> 
 					                 <div class="row">
@@ -60,7 +60,7 @@
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>아이디</h4></div>
 					                          <div class="col-md-auto">
-					                              <input type="text" name="member_id" id="member_id" placeholder="아이디" required="required" value="${member.member_email }">
+					                              <input type="text" name="member_id" id="member_id" placeholder="아이디" required="required" value="">
 					                          </div>
 					                          <div class="col-md-auto" id="member_id_result"></div>
 					                      </div>
@@ -75,23 +75,23 @@
 					                       <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>성함</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="member_name" id="member_name" placeholder="ex) 오승영" required value="${member.member_name }">
+					                              <input type="text" name="member_name" id="member_name" placeholder="ex) 오승영" required value="">
 					                          </div>
 					                      </div>
 					                	  <!-- member_email start -->
 					                       <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>이메일</h4></div>
 					                          <div class="col-md-auto">
-					                              <input type="email" name="member_email" id="member_email" placeholder="ex) ohsy94@gmail.com" required value="${member.member_email }">
+					                              <input type="email" name="member_email" id="member_email" placeholder="ex) ohsy94@gmail.com" required value="">
 					                          </div>
 					                      </div>
 					                	  <!-- member_birthday start -->
-<!-- 					                      <div class="row align-items-center"> -->
-<!-- 					                      	  <div class="col-md-auto"><h4>생일</h4></div> -->
-<!-- 					                          <div class="col-md-4"> -->
-<%-- 					                              <input type="date" name="member_id" id="member_id" placeholder="ex) 2020-10-25" required value="${member.member_birthdate }"> --%>
-<!-- 					                          </div> -->
-<!-- 					                      </div> -->
+					                      <div class="row align-items-center">
+					                      	  <div class="col-md-auto"><h4>생일</h4></div>
+					                          <div class="col-md-4">
+					                              <input type="date" name="member_birthdate" id="member_birthdate" placeholder="ex) 2020-10-25" required value="">
+					                          </div>
+					                      </div>
 					                	  <!-- member_gender start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>성별</h4></div>
@@ -123,6 +123,14 @@
 					                              <input type="text" name="member_addr2" id="addr2" placeholder="611동 204호" required>
 					                          </div>
 					                      </div>
+					                      <!-- member_addr start -->
+					                      <div class="row align-items-center">
+					                   		  <div class="col-md-auto"><h4>주로 다니는 병원의 이름과 주소</h4></div>
+											  <div class="col-md-auto">
+												  <input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="" required>
+												  <input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="" required>
+											  </div>
+										  </div>
 					                      
 					                      <!-- hidden start -->
 				                      	  <input name="user_type" id="user_type" type="hidden" value="M">
@@ -173,8 +181,9 @@
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>아이디</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="sitter_id" id="sitter_id" placeholder="아이디" required="required" value="${member.member_email }">
+					                              <input type="text" name="sitter_id" id="sitter_id" placeholder="아이디" required="required" value="">
 					                          </div>
+					                          <div class="col-md-auto" id="sitter_id_result"></div>
 					                      </div>
 					                	  <!-- pass start -->
 					                      <div class="row align-items-center">
@@ -187,7 +196,7 @@
 					                       <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>성함</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="sitter_name" id="sitter_name" placeholder="ex) 오승영" required value="${member.member_name }">
+					                              <input type="text" name="sitter_name" id="sitter_name" placeholder="ex) 오승영" required value="">
 					                          </div>
 					                      </div>
 					                	  <!-- member_email start -->
@@ -245,31 +254,31 @@
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>연락처</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="sitter_phone" id="sitter_phone" placeholder="000-0000-0000" required value="000-0000-0000">
+					                              <input type="text" name="sitter_phone" id="sitter_phone" placeholder="000-0000-0000" required value="">
 					                          </div>
 					                      </div>
 					                	  <!-- sitter_addr start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>주소</h4></div>
 					                          <div class="col-md-auto">
-					                              <input type="text" name="sitter_addr1" id="siaddr1" placeholder="경기도 파주시 책향기로 371"value="경기도 파주시 책향기로 371" required>
+					                              <input type="text" name="sitter_addr1" id="siaddr1" placeholder="경기도 파주시 책향기로 371" value="" required>
 					                          </div>
 					                          <div class="col-md-3">
-					                              <input type="text" name="sitter_addr2" id="siaddr2" placeholder="611동 204호" value="371-111"required>
+					                              <input type="text" name="sitter_addr2" id="siaddr2" placeholder="000동 000호" value="" required>
 					                          </div>
 					                      </div>
 				                          <!-- service area start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>서비스 제공 구역</h4></div>
 					                          <div class="col-md-12">
-					                              <input type="text" name="service_area" id="service_area" placeholder="서울특별시 서대문구, 서울특별시 은평구, 3개 까지 등록 가능" required value="서울특별시 서대문구">
+					                              <input type="text" name="service_area" id="service_area" placeholder="서울특별시 서대문구, 서울특별시 은평구, 3개 까지 등록 가능" required value="">
 					                          </div>
 					                      </div>
 					                      <!-- sitter_intro start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>자기 소개</h4></div>
 					                          <div class="col-md-12">
-					                              <input type="text" name="sitter_info" id="sitter_info" placeholder="다른 사람들에게 보여질 자기 소개를 적어주세요!" required value="다른 사람들에게 보여질 자기 소개를 적어주세요!">
+					                              <input type="text" name="sitter_info" id="sitter_info" placeholder="다른 사람들에게 보여질 자기 소개를 적어주세요!" required value="">
 					                          </div>
 					                      </div>
 					                      <!-- sitter_photo start -->
@@ -284,13 +293,6 @@
 					                      	  <div class="col-md-auto"><h4>자격증 등록</h4></div>
 					                          <div class="col-md-auto">
 					                              <input type="text" name="sitter_certificate" id="sitter_certificate" placeholder="test">
-					                          </div>
-					                      </div>
-					                      <!-- sitter_지원서 start -->
-					                      <div class="row align-items-center">
-					                      	  <div class="col-md-auto"><h4>추가 서류 작성</h4></div>
-					                          <div class="col-md-auto">
-					                              <a type="button" class="thema-btn" class="page-scroll" target="_blank" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a>
 					                          </div>
 					                      </div>
 					                    
@@ -341,9 +343,17 @@
 	    }).open();
 	});
 	
+	document.getElementById("hospital_addr").addEventListener("click", function() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+	        document.getElementById("hospital_addr").value = data.address;
+	        }
+	    }).open();
+	});
+	
 	$(document).ready(function() {
 		$("#member_id").on("keyup", function() {
-			var member_id = {"member_id":$("#member_id").val()};
+			var member_id = {"id":$("#member_id").val()};
 			$.ajax({
 				url: "/pet/erp/member/idCheck.do",
 				type: "get",
@@ -353,8 +363,24 @@
 			})
 		})
 	})
+	
+	$(document).ready(function() {
+		$("#sitter_id").on("keyup", function() {
+			var member_id = {"id":$("#sitter_id").val()};
+			$.ajax({
+				url: "/pet/erp/member/idCheck.do",
+				type: "get",
+				data: member_id,
+				success: success_run2,
+				error: error_run
+			})
+		})
+	})
 	function success_run(msg){
 		$("#member_id_result").html("<p>" + msg + "</p>")
+	}
+	function success_run2(msg){
+		$("#sitter_id_result").html("<p>" + msg + "</p>")
 	}
 	
 	function error_run(obj, msg, statusMsg) {

@@ -37,7 +37,7 @@ public class MemberController {
 		String view = "";
 		
 		if(user!=null) {
-			LoginUserDTO loginUser = new LoginUserDTO(user.getUser_type(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status());
+			LoginUserDTO loginUser = new LoginUserDTO(user.getUser_type(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status(), user.getHospital_addr(), user.getHospital_name());
 			model.addAttribute("user", loginUser);
 			HttpSession hs = hsr.getSession();
 
@@ -85,6 +85,7 @@ public class MemberController {
 			view = "mypage/user_update";
 			break;
 		}
+		System.out.println(member);
 		model.addAttribute("member", member);
 		return view;
 	}
@@ -92,6 +93,7 @@ public class MemberController {
 	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
 	public String sitter_read(String sitter_id, String state, Model model) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
+		System.out.println(sitter);
 		String view = "";
 		switch (state) {
 		case "READ":
@@ -107,12 +109,14 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/update.do", method = RequestMethod.POST)
 	public String member_update(MemberDTO member) {
+		System.out.println(member);
 		service.update(member);
 		return "redirect:/erp/member/read.do?member_id=" + member.getMember_id() + "&state=READ";
 	}
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
 	public String sitter_update(SitterDTO sitter) {
+		System.out.println(sitter);
 		service.update(sitter);
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
@@ -139,10 +143,11 @@ public class MemberController {
 	
 	@RequestMapping(value = "user/insert.do")
 	public String insert(MemberDTO member, Model model) {
+		System.out.println(member);
 		int result = service.insert(member);
 		if(result == 1) {
 			MemberDTO user = service.login(member);
-			LoginUserDTO loginUser = new LoginUserDTO(user.getUser_type(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status());
+			LoginUserDTO loginUser = new LoginUserDTO(user.getUser_type(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status(), user.getHospital_addr(), user.getHospital_name());
 			model.addAttribute("user", loginUser);
 		}
 		return "home";
@@ -169,16 +174,24 @@ public class MemberController {
 	
 	@RequestMapping(value="member/idCheck.do", produces = "application/text;charset=utf-8")
 	@ResponseBody
-	public String ajaxtest(String member_id) {
+	public String idcheck(String id) {
+		System.out.println(id);
+		MemberDTO result = service.idcheck(id);
+		System.out.println(result);
+		SitterDTO result2 = service.sitteridcheck(id);
+		System.out.println(result2);
 		String msg = "";
-		if (member_id.equals("jang")) {
+		
+		if(result != null || result2 != null) {
 			msg = "중복 된 아이디 입니다.";
-		} else {
-			msg = "사용 가능한 아이디 입니다.";
 		}
+		else {
+			msg = "사용 가능 한 아이디 입니다.";
+		}
+		
+		
 		return msg;
 	}
-		
 
 	
 }

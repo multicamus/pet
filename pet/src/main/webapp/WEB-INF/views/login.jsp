@@ -49,7 +49,7 @@
 				                      </div>
 				                      <div class="row">
 				                          <div class="col-md-10">
-				                              <input type="pass" name="member_pass" id="member_pass" placeholder="패스워드" required>
+				                              <input type="password" name="member_pass" id="member_pass" placeholder="패스워드" required>
 				                          </div>
 				                      </div>
 				                      <div class="pt-50">
@@ -85,7 +85,7 @@
 				                      </div>
 				                      <div class="row">
 				                          <div class="col-md-10">
-				                              <input type="text" name="sitter_pass" id="sitter_pass" placeholder="패스워드" required>
+				                              <input type="password" name="sitter_pass" id="sitter_pass" placeholder="패스워드" required>
 				                          </div>
 				                      </div>
 						              <div class="pt-50">

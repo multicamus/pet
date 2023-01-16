@@ -26,13 +26,13 @@
 	<!-- , pet_photo = #{pet_photo} -->
 	<update id="update" parameterType="pet">
 		UPDATE pet_info 
-		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, animalhospital_name = #{animalhospital_name}, animalhospital_addr = #{animalhospital_addr}, pet_note = #{pet_note}       
+		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, pet_note = #{pet_note}       
 		WHERE pet_id = #{pet_id}
 	</update>
 	
 	<insert id="insert" parameterType="pet">
 		INSERT INTO pet_info (
-		pet_id,	member_id, pet_name, pet_gender, pet_code, pet_kind, pet_birthdate, pet_weight, pet_size, neuter, animalhospital_name, animalhospital_addr, pet_photo, pet_note, pet_number)
+		pet_id,	member_id, pet_name, pet_gender, pet_code, pet_kind, pet_birthdate, pet_weight, pet_size, neuter, pet_photo, pet_note, pet_number)
 		VALUES(#{pet_id}, #{member_id}, #{pet_name}, #{pet_gender}, #{pet_code}, #{pet_kind}, #{pet_birthdate}, #{pet_weight}, #{pet_size}, #{neuter}, #{pet_photo}, #{pet_note}, #{pet_number})
 	</insert>
 	

@@ -7,11 +7,13 @@ import mutli.com.pet.mypet.PetDTO;
 public interface MemberService {
 	// 로그인
 	MemberDTO login(MemberDTO loginUser);
+	SitterDTO login(SitterDTO loginUser);
 	List<PetDTO> petList(MemberDTO loginUser);
 	List<PetDTO> petList(String member_id);
-	
-	// 로그인
-	SitterDTO login(SitterDTO loginUser);
+
+	// id check
+	MemberDTO idcheck(String id);
+	SitterDTO sitteridcheck(String id);
 	
 	// 읽기
 	MemberDTO member_read(String member_id);

@@ -33,6 +33,7 @@
         <section class="contact-section pt-130">
             <div class="container">
                 <div class="row">
+                	<!-- 사이드 메뉴 -->
                     <div class="col-xl-4">
                         <div class="contact-item-wrapper">
                             <div class="row">
@@ -53,6 +54,7 @@
 								</c:forEach>
 								<!-- 동물 정보 끝 -->
                                 
+                                <!-- 예약 정보 시작 -->
                                 <div class="col-12 col-md-6 col-xl-12">
                                     <div class="contact-item">
                                         <div class="contact-icon">
@@ -65,10 +67,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <!-- 예약 정보 끝 -->
                             </div>
                         </div>
                     </div>
+                    <!-- 사이드 메뉴 끝 -->
+                    <!-- 유저 정보 -->
                     <div class="col-xl-8 pb-150">
                         <div class="contact-form-wrapper">
                             <div class="row">
@@ -81,50 +85,62 @@
                             </div>
                             <form action="/pet/erp/member/update.do" method="post" class="contact-form">
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                    	이름 : <input type="text" name="member_name" id="name" placeholder="이름" value="${member.member_name}" required>
+                                    <div class="col-lg-8 mx-auto">
+                                    	이름 : <input type="text" name="member_name" id="name" placeholder="이름" value="${member.member_name}" disabled="disabled">
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
 			                        	성별 : 
 			                        	<c:choose>
 				                        	<c:when test="${member.member_gender == 'W'}">
 				                        		<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" checked="checked">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" checked="checked" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:when>
 				                        	<c:otherwise>
 				                        		<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M" checked="checked">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M" checked="checked" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:otherwise>
 			                        	</c:choose>
 			                        </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
                                     	이메일 : <input class="col-lg-2" type="email" name="member_email" id="email" placeholder="Email" value="${member.member_email}" required>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
                                     	연락처 : <input type="text" name="member_phone" id="phone" placeholder="연락처" value="${member.member_phone}" required>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
+                                    	생일: <input type="date" name="member_birthdate" id="birthdate" placeholder="생일" value="${member.member_birthdate}" required> 
+                                    </div>
+                                    <div class="col-lg-8 mx-auto">
                                     	주소: <input type="text" name="member_addr1" id="addr1" placeholder="주소" value="${member.member_addr1}" required> 
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
                                     	상세 주소: <input type="text" name="member_addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" required> 
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 mx-auto">
                                     	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" required> 
                                     </div>
+                                    	
+									<div class="col-lg-8 mx-auto">
+										<h4>주로 다니는 병원의 이름과 주소</h4>
+										<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" required>
+										<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" required>
+									</div>
+									
+									<!-- hidden start -->
                                     <input type="hidden" name="member_id" value="${member.member_id}">
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="button text-center">
@@ -140,3 +156,23 @@
         </section>
         <!-- ========================= contact-section end ========================= -->
     </body>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript">
+		document.getElementById("addr1").addEventListener("click", function() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+		        document.getElementById("addr1").value = data.address;
+		        document.querySelector("input[id=addr2]").focus();
+		        }
+		    }).open();
+		});
+		
+		document.getElementById("hospital_addr").addEventListener("click", function() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+		        document.getElementById("hospital_addr").value = data.address;
+		        }
+		    }).open();
+		});
+	</script>
+	

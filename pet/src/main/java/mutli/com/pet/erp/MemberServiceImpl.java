@@ -92,6 +92,16 @@ public class MemberServiceImpl implements MemberService {
 	public List<SitterDTO> sitterList() {
 		return dao.sitterList();
 	}
+
+	@Override
+	public MemberDTO idcheck(String id) {
+		return dao.idcheck(id);
+	}
+	
+	@Override
+	public SitterDTO sitteridcheck(String id) {
+		return dao.sitteridcheck(id);
+	}
 	
 
 }
