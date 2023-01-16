@@ -5,6 +5,13 @@
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
+        <style>
+        	.wide{
+        	background-color: #8a8a8a;
+        	border: #8a8a8a;
+        	}
+        </style>
+        
     </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -129,12 +136,9 @@
                                     <div class="col-12">
                                         <h4>서비스 가능 지역</h4>
                                         <div class="pt-20">
-			                               <button class=" btn btn-primary " type="submit">서울시 종로구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 성북구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
-		                                </div>
-	                                </div>
-            
+                                        	<input type="text" name="service_area" value="${user.service_area }">
+                                        </div>	
+            						</div>
                                 <div class="row pt-100">
                                     <div class="col-12">
                                         <div class="button text-center">

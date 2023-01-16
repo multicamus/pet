@@ -48,7 +48,7 @@
 		INSERT INTO member_info (
 			member_id, member_pass, member_gender, member_name, member_email, member_phone, member_addr1, member_addr2, member_status, member_startdate, user_type)
 		VALUES (
-			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type} ) 
+			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type}) 
 	</insert>
 	<insert id="sitter_insert" parameterType="sitter">
 		INSERT INTO sitter_info (

@@ -156,7 +156,6 @@ public class ResvController {
 		model.addAttribute("idlist", idlist);
 		model.addAttribute("codelist", codelist);		
 		model.addAttribute("namelist", namelist);
-		model.addAttribute("test", "test");
 		model.addAttribute("sitter", sitter);
 		model.addAttribute("resvdto", resvdto);
 		return "resv/resv_pay";

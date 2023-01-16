@@ -136,13 +136,49 @@
                                     </div>
                                     <div class="col-12">
                                         <h4>서비스 가능 지역</h4>
-                                        <textarea name="service_area" id="message" placeholder="서비스 가능구역 입력" rows="1"></textarea>
-                                        <div>
-			                               <button class="btn btn-primary " type="button">${user.service_area}</button>
-			                               <button class="btn btn-primary " type="button">서울시 성북구</button>
-			                               <button class="btn btn-primary " type="button">서울시 마포구</button> 
-		                                </div>
-	                                </div>
+                                        <div class="pt-20">
+                                        	<!-- <button class=" btn btn-primary wide seoul" type="button" id="seoul">서울</button>
+			                               <button class=" btn btn-primary wide" type="button" id="suwon">경기 수원</button>
+			                               <button class=" btn btn-primary wide" type="button">인천</button>  -->
+                                        </div>
+	                                    <div class="area seoul">
+												    	<input type="checkbox" id="default1" value="서울특별시 강남구" name="service_area">
+	                                        			<label for="default1">강남구</label>
+	                                        			<input type="checkbox" id="default2" value="서울특별시 강동구" name="service_area">
+	                                        			<label for="default2">강동구</label>
+	                                        			<input type="checkbox" id="default3" value="서울특별시 강북구" name="service_area">
+	                                        			<label for="default3">강북구</label>
+	                                     </div>
+	                                     <div class="area suwon">
+												    	<input type="checkbox" id="default4"  value="경기도 수원시 영통구" name="service_area">
+	                                        			<label for="default4">영통구</label>
+	                                        			<input type="checkbox" id="default5"  value="경기도 수원시 권선구" name="service_area">
+	                                        			<label for="default5">권선구</label>
+	                                        			<input type="checkbox" id="default6"  value="경기도 수원시 장안구" name="service_area">
+	                                        			<label for="default6">장안구</label>
+	                                     </div>  
+            						</div>
+            					<script>
+            						 $(document).ready(function() {
+            							$(".area").hide();
+            							
+            							$("#seoul").on("click", function(){
+            								$(".area").hide()
+            								$(".seoul").show()
+            							})
+            							$("#suwon").on("click", function(){
+            								$(".area").hide()
+            								$(".suwon").show()
+            							})
+            							
+            							$(".narrow").on("click", function(){
+            								val = $(this).attr("value")
+            								alert(val)
+            							})
+            							
+            							$("")
+            						}) 
+            					</script>	
 	                                
 	                                <!-- hidden start -->
 	                                <input type="hidden" name="sitter_id" value="${user.sitter_id}">
