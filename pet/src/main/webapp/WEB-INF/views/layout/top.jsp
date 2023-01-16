@@ -115,7 +115,7 @@
 								</c:choose>
 								
 								<c:choose>
-									<c:when test="${user.user_type == 'S'}">
+									<c:when test="${user.valid == '0'}">
 										<li class="nav-item"><a class="page-scroll" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
 									</c:when>
 								</c:choose>

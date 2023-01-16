@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
 @Controller
@@ -68,18 +69,18 @@ public class MemberController {
 		HttpSession hs = hsr.getSession();
 		hs.invalidate();
 		status.setComplete();
-		
-		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/member/read.do", method = RequestMethod.GET)
 	public String member_read(String member_id, String state, Model model) {
 		MemberDTO member = service.member_read(member_id);
+		List<ResvDTO> resvlist = service.resvlist(member_id);
 		String view = "";
 		switch (state) {
 		case "READ":
 			view = "mypage/user";
+			model.addAttribute("resvlist", resvlist);
 			break;
 		default:
 			view = "mypage/user_update";
@@ -91,19 +92,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
-	public String sitter_read(String sitter_id, String state, Model model) {
+	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
-		System.out.println(sitter);
+		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
+		HttpSession hs = hsr.getSession();
 		String view = "";
 		switch (state) {
 		case "READ":
 			view = "mypage/sitter";
+			model.addAttribute("resvlist", resvlist);
 			break;
 		default:
 			view = "mypage/sitter_update";
 			break;
 		}
 		model.addAttribute("sitter", sitter);
+		hs.setAttribute("sitter", sitter);
 		return view;
 	}
 	
@@ -143,7 +147,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "user/insert.do")
 	public String insert(MemberDTO member, Model model) {
-		System.out.println(member);
 		int result = service.insert(member);
 		if(result == 1) {
 			MemberDTO user = service.login(member);
@@ -155,9 +158,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "sitter/insert.do")
 	public String insert(SitterDTO sitter, Model model) {
-		System.out.println(sitter);
 		int result = service.insert(sitter);
-		
 		if(result == 1) {
 			SitterDTO user = service.login(sitter);
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));
@@ -175,21 +176,15 @@ public class MemberController {
 	@RequestMapping(value="member/idCheck.do", produces = "application/text;charset=utf-8")
 	@ResponseBody
 	public String idcheck(String id) {
-		System.out.println(id);
 		MemberDTO result = service.idcheck(id);
-		System.out.println(result);
 		SitterDTO result2 = service.sitteridcheck(id);
-		System.out.println(result2);
 		String msg = "";
-		
 		if(result != null || result2 != null) {
 			msg = "중복 된 아이디 입니다.";
 		}
 		else {
 			msg = "사용 가능 한 아이디 입니다.";
 		}
-		
-		
 		return msg;
 	}
 

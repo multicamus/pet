@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="mutli.com.pet.erp.SitterDTO"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html class="no-js" lang="ko">
     <head>
@@ -36,34 +38,37 @@
                     <div class="col-xl-4">
                         <div class="contact-item-wrapper">
                             <div class="row">
+                            
+                            	<c:choose>
+	                            	<c:when test="${fn:length(resvlist) != 0}">
+										<div class="col-12 col-md-6 col-xl-12">
+											<div class="contact-item">
+												<div class="contact-icon">
+													<i class="lni lni-alarm-clock"></i>
+												</div>
+												<div class="contact-content">
+													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
+													<c:forEach var="resv" items="${resvlist}" varStatus="status">
+														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+									</c:when>
+								</c:choose>
+                                
                                 <div class="col-12 col-md-6 col-xl-12">
-                                	<a href="/pet/reserve/list.do">
-	                                    <div class="contact-item">
-	                                        <div class="contact-icon">
-	                                            <i class="lni lni-phone"></i>
-	                                        </div>
-	                                        <div class="contact-content">
-	                                            <h4>나의 예약 보기</h4>
-	                                            <p>예약 정보 띄우기</p>
-	                                            <p>예약 정보 띄우기</p>
-	                                        </div>
-	                                    </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-12">
-	                                <a href="/pet/menu/reserve/resvhistory_st_list.do">
-	                                    <div class="contact-item">
-	                                        <div class="contact-icon">
-	                                            <i class="lni lni-map-marker"></i>
-	                                        </div>
-	                                        <div class="contact-content">
-	                                            <h4>나의 점수</h4>
-	                                            <p>별점으로 표시</p>
-	                                            <p>${sitter.sitter_rate}</p>
-	                                            <p>가장 최근 후기</p>
-	                                        </div>
-	                                    </div>
-                                    </a>
+                                    <div class="contact-item">
+                                        <div class="contact-icon">
+                                            <i class="lni lni-map-marker"></i>
+                                        </div>
+                                        <div class="contact-content">
+                                            <h4><a href="/pet/menu/reserve/resvhistory_st_list.do">나의 점수</a></h4>
+                                            <p>별점으로 표시</p>
+                                            <p>${sitter.sitter_rate}</p>
+                                            <p>가장 최근 후기</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="col-12 col-md-6 col-xl-12">
@@ -80,6 +85,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -176,9 +182,13 @@
                                     <div class="row align-items-center">
                                         <h4>서비스 가능 지역</h4>
                                         <div class="pt-20">
-			                               <button class=" btn btn-primary " type="submit">서울시 종로구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 성북구</button>
-			                               <button class=" btn btn-primary " type="submit">서울시 마포구</button> 
+                                   	   		<%
+								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                   	   		String[] area = sitter.getService_area().split(",");
+                                   	   		int size = area.length;
+                                   	   		for(int i = 0; i < size; i++){%>
+                                   	   		<button class="btn btn-outline-primary" type="button"><%=area[i] %></button>
+                                   	   		<%}%>
 		                                </div>
 	                                </div>
             

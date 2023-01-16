@@ -53,21 +53,6 @@
 									</div>
 								</c:forEach>
 								<!-- 동물 정보 끝 -->
-                                
-                                <!-- 예약 정보 시작 -->
-                                <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-alarm-clock"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4><a href="/pet/menu/reserve/resvhistory_mb_list.do">나의 예약 및 결제   </a></h4>
-											<p>예정 중인 예약</p>
-											<p>예정 중인 예약</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 예약 정보 끝 -->
                             </div>
                         </div>
                     </div>

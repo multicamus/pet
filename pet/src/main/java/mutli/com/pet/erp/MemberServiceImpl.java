@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
 @Service
@@ -102,6 +103,18 @@ public class MemberServiceImpl implements MemberService {
 	public SitterDTO sitteridcheck(String id) {
 		return dao.sitteridcheck(id);
 	}
+
+	@Override
+	public List<ResvDTO> resvlist(String member_id) {
+		return dao.resvlist(member_id);
+	}
+
+	@Override
+	public List<ResvDTO> sitter_resvlist(String sitter_id) {
+		return dao.sitter_resvlist(sitter_id);
+	}
+	
+	
 	
 
 }

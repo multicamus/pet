@@ -68,7 +68,7 @@
 					
 					<!-- 예약 정보 시작 -->
 					<c:choose>
-						<c:when test="${fn:length(myresvlist) == 0}">
+						<c:when test="${fn:length(resvlist) == 0}">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
 									<div class="contact-icon">
@@ -88,8 +88,10 @@
 										<i class="lni lni-alarm-clock"></i>
 									</div>
 									<div class="contact-content">
-										<h4><a href="/pet/reserve/list.do">나의 예약 및 결제 내역</a></h4>
-										<h4><a href="/pet/reserve/list.do">+ 확인하기</a></h4>
+										<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
+										<c:forEach var="resv" items="${resvlist}" varStatus="status">
+											<p><a href="/pet/reserve/list.do">${resv.sitter_id}</a></p>
+										</c:forEach>
 									</div>
 								</div>
 							</div>

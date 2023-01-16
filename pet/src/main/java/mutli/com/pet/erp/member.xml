@@ -86,5 +86,17 @@
 		WHERE sitter_id = #{sitter_id}
 	</select>
 	
+	<!-- 예약 리스트 담기 -->
+	<select id="resvlist" parameterType="String" resultType="resv">
+		SELECT r.*
+		FROM resv_history r, member_info m
+		WHERE r.member_id = m.member_id
+		AND m.member_id = #{member_id} 
+	</select>
+	<select id="sitter_resvlist" parameterType="String" resultType="resv">
+		SELECT * FROM resv_history 
+		WHERE sitter_id = #{sitter_id}		 
+	</select>
+	
 </mapper>
 

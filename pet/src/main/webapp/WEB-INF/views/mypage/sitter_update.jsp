@@ -36,36 +36,7 @@
                     <div class="col-xl-4">
                         <div class="contact-item-wrapper">
                             <div class="row">
-                                <div class="col-12 col-md-6 col-xl-12">
-                                	<a href="/pet/menu/reserve/resvhistory_st_list.do">
-	                                    <div class="contact-item">
-	                                        <div class="contact-icon">
-	                                            <i class="lni lni-phone"></i>
-	                                        </div>
-	                                        <div class="contact-content">
-	                                            <h4>나의 예약 보기</h4>
-	                                            <p>예약 정보 띄우기</p>
-	                                            <p>예약 정보 띄우기</p>
-	                                        </div>
-	                                    </div>
-                                    </a>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-12">
-	                                <a href="/pet/menu/reserve/resvhistory_st_list.do">
-	                                    <div class="contact-item">
-	                                        <div class="contact-icon">
-	                                            <i class="lni lni-map-marker"></i>
-	                                        </div>
-	                                        <div class="contact-content">
-	                                            <h4>나의 점수</h4>
-	                                            <p>별점으로 표시</p>
-	                                            <p>${sitter.sitter_rate}</p>
-	                                            <p>가장 최근 후기</p>
-	                                        </div>
-	                                    </div>
-                                    </a>
-                                </div>
-                                
+                                <!-- 자격증 시작 -->
                                 <div class="col-12 col-md-6 col-xl-12">
                                     <div class="contact-item">
                                         <div class="contact-icon">
@@ -80,21 +51,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- 자격증 끝 -->
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- 시터 정보 시작 -->
                     <div class="col-xl-8">
                         <div class="contact-form-wrapper">
+                        	<!-- 시터 인사 시작 -->
                             <div class="row">
                                 <div class="col-xl-10 col-lg-8 mx-auto">
                                     <div class="section-title text-center mb-50">
                                         <span class="wow fadeInDown" data-wow-delay=".2s">${sitter.sitter_name}님, 안녕하세요!</span>
                                         <h2 class="wow fadeInUp" data-wow-delay=".4s">시터님의 정보를 입력하고 <br>수정해주세요</h2>
-                                        <!-- <p class="wow fadeInUp" data-wow-delay=".6s">언제든지 열려있습니다. </p> -->
-                                        
                                     </div>
                                 </div>
                             </div>
+                            <!-- 시터 인사 끝 -->
+                            
+                            <!-- 시터 정보 시작 -->
                             <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
                                	 	<div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이름</h4></div>
@@ -176,18 +152,38 @@
                                     
                                     <div class="row align-items-center">
                                         <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
-                                        <div class="col-md-auto"><textarea name="service_area" id="message" placeholder="서비스 가능구역 입력" rows="1"></textarea></div>
-                                        <div class="row col-8">
-			                               <input value="${sitter.service_area}" name="service_area" id="service_area" class="btn btn-primary" type="button">
-			                               <input value="test" name="service_area" id="service_area" class="btn btn-primary" type="button">
-			                               <input value="test" name="service_area" id="service_area" class="btn btn-primary" type="button">
-		                                </div>
+                                        <div class="col-12">
+	                                        <div class="col-md-auto pt-20">
+		                                        <button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
+					                            <button class=" btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
+					                            <button class=" btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
+			                                </div>
+			                                <div class="col-md-auto pt-20">
+			                                    <div class="area seoul">
+											    	<input type="checkbox" id="default1" value="서울특별시 강남구" name="service_area">
+				                           			<label for="default1">강남구</label>
+				                           			<input type="checkbox" id="default2" value="서울특별시 강동구" name="service_area">
+				                           			<label for="default2">강동구</label>
+				                           			<input type="checkbox" id="default3" value="서울특별시 강북구" name="service_area">
+				                           			<label for="default3">강북구</label>
+			                                    </div>
+		                                    </div>
+		                                        <div class="area suwon">
+										    	<input type="checkbox" id="default4"  value="경기도 수원시 영통구" name="service_area">
+		                               			<label for="default4">영통구</label>
+		                               			<input type="checkbox" id="default5"  value="경기도 수원시 권선구" name="service_area">
+		                               			<label for="default5">권선구</label>
+		                               			<input type="checkbox" id="default6"  value="경기도 수원시 장안구" name="service_area">
+		                               			<label for="default6">장안구</label>
+		                                    </div>
+	                                    </div>
 	                                </div>
 	                                
 	                                <!-- hidden start -->
 	                                <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
 	                                <!-- hidden end -->
-            
+	                                
+	                                <!-- button 시작 -->
 	                                <div class="row pt-100">
 	                                    <div class="col-12">
 	                                        <div class="button text-center">
@@ -196,6 +192,7 @@
 	                                        </div>
 	                                    </div>
 	                                </div>
+	                                <!-- button 끝 -->
                             </form>
                         </div>
                     </div>
@@ -213,5 +210,23 @@
 	        }
 	    }).open();
 	});
+	
+	$(document).ready(function() {
+		$(".area").hide();
+		
+		$("#seoul").on("click", function(){
+			$(".area").hide()
+			$(".seoul").show()
+		})
+		$("#suwon").on("click", function(){
+			$(".area").hide()
+			$(".suwon").show()
+		})
+		
+		$(".narrow").on("click", function(){
+			val = $(this).attr("value")
+			alert(val)
+		})
+	})
 </script>
 </html>

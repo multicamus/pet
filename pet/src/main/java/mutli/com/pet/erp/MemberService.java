@@ -2,6 +2,7 @@ package mutli.com.pet.erp;
 
 import java.util.List;
 
+import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
 public interface MemberService {
@@ -10,6 +11,8 @@ public interface MemberService {
 	SitterDTO login(SitterDTO loginUser);
 	List<PetDTO> petList(MemberDTO loginUser);
 	List<PetDTO> petList(String member_id);
+	List<ResvDTO> resvlist(String member_id);
+	List<ResvDTO> sitter_resvlist(String sitter_id);
 
 	// id check
 	MemberDTO idcheck(String id);
