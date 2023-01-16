@@ -40,7 +40,7 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item" aria-current="page"><a href="/pet/">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page"><a href="#">Register</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="#">Pet Register' Page</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -69,14 +69,13 @@
 										<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
 										<p>${pet.pet_code}</p>
 										<p>${pet.pet_kind}</p>
-										<p>${fn:length(mypetlist)}</p>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 						<!-- 동물 정보 끝 -->
 						<c:choose>
-							<c:when test="${fn:length(mypetlist) == 1}">
+							<c:when test="${fn:length(mypetlist) != 3}">
 								<div class="col-12 col-md-6 col-xl-12">
 									<div class="contact-item">
 										<div class="contact-icon">
@@ -203,7 +202,7 @@
 									</fieldset>
 								</div>
 								
-								<div class="col-md-6">
+								 <div class="col-md-6">
 									<h4>다니는 병원의 이름</h4>
 									<input type="text" name="animalhospital_name" id="hospital" placeholder="ex) 더힐동물의료센터" required>
 								</div>
@@ -211,19 +210,19 @@
 								<div class="col-md-6">
 									<h4>다니는 병원의 주소</h4>
 									<input type="text" name="animalhospital_addr" id="hospital" placeholder="ex) 서울특별시 용산구 한남동 29-6" required>
-								</div>
+								</div> 
 
 								<div class="row">
 									<div class="col-12">
 										<h4>기타 참고사항</h4>
-										<textarea name="pet_note" id="message" placeholder="ex) 처음 보는 사람을 무서워해요. " rows="3" required></textarea>
+										<textarea name="pet_note" id="message" placeholder="ex) 처음 보는 사람을 무서워해요." rows="3" required></textarea>
 									</div>
 								</div>
 							</div>
 							
 						<!-- hidden start -->
-							<input type="hidden" name="member_id"  value="${user.member_id}">
-							<input type="hidden" name="pet_id"  value="${user.member_id}_pet_${fn:length(mypetlist)+1}">
+							<input type="hidden" name="pet_id" value="${user.member_id}_pet_${fn:length(mypetlist)+1}">							
+							<input type="hidden" name="member_id" value="${user.member_id}">
 							<input type="hidden" name="pet_number" value="${fn:length(mypetlist)+1}">
 							<input type="hidden" name="pet_photo" value="test">
 						<!-- hidden end -->
@@ -241,6 +240,7 @@
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>
 </body>

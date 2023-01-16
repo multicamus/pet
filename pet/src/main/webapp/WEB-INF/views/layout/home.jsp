@@ -8,25 +8,25 @@
 </head>
 <body>
     <!-- ========================= preloader start ========================= -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--     <div class="preloader"> -->
+<!--         <div class="loader"> -->
+<!--             <div class="ytp-spinner"> -->
+<!--                 <div class="ytp-spinner-container"> -->
+<!--                     <div class="ytp-spinner-rotator"> -->
+<!--                         <div class="ytp-spinner-left"> -->
+<!--                             <div class="ytp-spinner-circle"></div> -->
+<!--                         </div> -->
+<!--                         <div class="ytp-spinner-right"> -->
+<!--                             <div class="ytp-spinner-circle"></div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
     <!-- preloader end -->
 	<div>
-		<tiles:insertAttribute name="top" />
+		<tiles:insertAttribute name="top" ignore="true" />
 	</div>
 	
 	<div>

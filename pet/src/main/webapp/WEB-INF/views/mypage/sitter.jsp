@@ -37,7 +37,7 @@
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-6 col-xl-12">
-                                	<a href="/pet/menu/reserve/resvhistory_st_list.do">
+                                	<a href="/pet/reserve/list.do">
 	                                    <div class="contact-item">
 	                                        <div class="contact-icon">
 	                                            <i class="lni lni-phone"></i>
@@ -103,11 +103,20 @@
                                     	<h4>이메일</h4>
                                         <input type="email" name="email" id="email" placeholder="Email" value="${user.sitter_email}" disabled>
                                     </div>
+                                    <div>
+                                    	<h4>생일</h4>
+                                        <input type="date" name="sitter_birthdate" id="birthday" placeholder="생일" value="${user.sitter_birthdate}" disabled="disabled">
+                                    </div>
+                                    <div>
+                                    	<h4>성별</h4>
+                                        <input type="text" name="gender" id="gender" placeholder="성별" value="${user.sitter_gender}" disabled>
+                                    </div>
                                     	<h4>연락처</h4>
                                         <input type="text" name="phone" id="phone" placeholder="전화번호" value="${user.sitter_phone}" disabled>
                                     <div>
                                     	<h4>주소</h4>
                                         <input type="text" name="address" id="address" placeholder="주소" value="${user.sitter_addr1}" disabled>
+                                        <input type="text" name="address" id="address" placeholder="상세 주소" value="${user.sitter_addr2}" disabled>
                                     </div>
                                     <div>
                                     	<h4>펫시터 종류</h4>

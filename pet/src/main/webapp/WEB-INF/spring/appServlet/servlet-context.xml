@@ -67,9 +67,24 @@
 	</beans:bean>
 	<mongo:repositories base-package="spring.data.mongodb.score"/>
 	
-	<context:component-scan base-package="mutli.com.pet" />
-	<context:component-scan base-package="multi" />
+	<!-- interceptor -->
+<!-- 	<interceptors> -->
+<!-- 		<interceptor> -->
+<!-- 			<mapping path = "/**" /> -->
+<!-- 			<exclude-mapping path="/" /> -->
+<!-- 			<exclude-mapping path="/menu/login.do" /> -->
+<!-- 			<exclude-mapping path="/emp/spirng/login.do" /> -->
+<!-- 			<exclude-mapping path="/index.do" /> -->
+<!-- 			<exclude-mapping path="/board/list.do" /> -->
+<!-- 			<exclude-mapping path="/images/**" /> -->
+<!-- 			<exclude-mapping path="/board/ajax/**" /> -->
+<!-- 			<beans:bean class = "multi.com.pet.etc.LoginInterceptor"/> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
 	
+	<context:component-scan base-package="mutli.com.pet" />
+	<context:component-scan base-package="mutli" />
+	<context:component-scan base-package="multi"/>
 	
 	
 </beans:beans>
