@@ -22,7 +22,6 @@
 		<put-attribute name="content" value="/WEB-INF/views/review/review_update.jsp" />
 	</definition>
 
-
-	
 </tiles-definitions>
+
 

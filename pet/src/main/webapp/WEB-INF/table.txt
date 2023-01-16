@@ -92,7 +92,6 @@ create table member_info(
 );
 
 
-# 반려동물 테이블
 
 # 이용후기 테이블 (ReviewDTO)
     create table review(  
@@ -145,6 +144,25 @@ create table pet_info(
 	pet_note varchar2(200),
 	pet_number char(1)
 );
+
+
+ //펫테이블-리뷰테이블  + 펫테이블-파일업로드테이블 조인해서 사진가져오기
+ select r.*,p.pet_photo,
+ from pet_info p, review r,pet_file f
+ where p.pet_id = r.review_no 
+ and f.petphoto_no = p.pet_id
+ 
+ 
+ 
+
+//펫사진 파일 테이블
+  create table pet_file(
+    pet_photo varchar2(25) primary key,
+    originalFilename varchar2(25),
+    storeFilename varchar2(25)
+	);
+
+
 
 # 펫시터 테이블
 create table sitter_info(

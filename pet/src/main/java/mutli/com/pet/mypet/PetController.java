@@ -1,5 +1,6 @@
 package mutli.com.pet.mypet;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,15 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
+import mutli.com.pet.review.FileUploadLogic;
+import mutli.com.pet.review.ReviewDTO;
+import mutli.com.pet.review.ReviewFileDTO;
 
 @Controller
 @RequestMapping("/mypet")
 public class PetController {
 	PetService ps;
 	MemberService ms;
+	FileUploadLogic2 fileuploadService;
 	
 	@Autowired
 	public PetController(PetService ps, MemberService ms) {
@@ -92,5 +100,26 @@ public class PetController {
 		model.addAttribute("member", member);
 		return "mypage/user";
 	}
-
+	
+	
+		//파일 insert
+		@RequestMapping(value = "/fileinsert.do", method = RequestMethod.POST)
+		public String fileinsert2(PetDTO pet,HttpSession session,Model model, String pet_id, String member_id, HttpServletRequest hsr) throws IllegalStateException, IOException{
+			int result = ps.insert(pet);
+			if(result == 1) {
+				HttpSession hs = hsr.getSession();
+				hs.removeAttribute("mypetlist");
+				
+				List<PetDTO> petList = ms.petList(member_id);
+				System.out.println(petList);
+				hs.setAttribute("mypetlist", petList);
+			}
+			
+			MultipartFile file = pet.getPet_photo();
+			String path =
+					WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/upload");
+			PetFileDTO petfiled =  fileuploadService.uploadFile(file, path);
+			ps.insertfile(petfiled);
+			return "redirect:/mypet/read.do";
+		}
 }

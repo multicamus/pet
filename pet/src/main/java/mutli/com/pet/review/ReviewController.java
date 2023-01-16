@@ -34,7 +34,7 @@ public class ReviewController {
 		this.service = service;
 	}
 	
-
+	
 	//이용후기등록  
 	@RequestMapping(value = "/review/insert.do", method = RequestMethod.POST)
 	public String insert(ReviewDTO review) {
@@ -71,7 +71,7 @@ public class ReviewController {
 	public String ajax(String review_no) {
 		System.out.println("*******"+review_no);
 		service.read_detail_ajax(review_no);
-		
+	
 //		List<Review2DTO> ajax = null;
 //		System.out.println("service 테스트" + ajax);
 //		System.out.println("ajax 테스트" + ajax);
@@ -83,7 +83,8 @@ public class ReviewController {
 	
 	//게시판 상세보기
 	@RequestMapping(value= "/menu/review/detail.do", method = RequestMethod.GET)
-	public ModelAndView read_detail(String review_no) { 
+	public ModelAndView read_detail(String review_no) {
+		System.out.println("ReviewController read_detail");
 		ModelAndView mav = new ModelAndView("review/read");
 		Review2DTO readlist = service.read_detail(review_no);
 		mav.addObject("review",readlist);
@@ -101,7 +102,8 @@ public class ReviewController {
 	
 	// 실제 수정컨트롤러
 	@RequestMapping(value = "/review/update.do",method = RequestMethod.POST)
-	public String update(Review2DTO review) { 
+	public String update(Review2DTO review) {
+		System.out.println("ReviewController update");
 		int result = service.update(review);
 		return "redirect:/menu/review/detail.do?review_no="+review.getReview_no();
 	}
@@ -129,41 +131,32 @@ public class ReviewController {
 	
 	
 	
-	//텍스트 + 파일용 
+	//텍스트 + 파일 insert
 	@RequestMapping(value = "/review/fileinsert.do",method = RequestMethod.POST)
 	public String write(ReviewDTO review,HttpSession session) throws IllegalStateException, IOException {
 		System.out.println("test-------");
-	//	System.out.println("board=>"+board);
-		//1. MultipartFile정보를 추출하기
 		List<MultipartFile> files = review.getReview_file();
-	
-		
-		//2. 업로드될 서버의 경로 - 실제 서버의 경로를 추출하기 위해서 context의 정보를 담고 있는 ServletContext객체를 추출
-		//=>ServletContext는 우리가 생성한 프로젝트가 서버에 배포되는 실제 경로와  context에 대한 정보를 담고 있는 객체
 		String path =
 				WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/upload");
-		//System.out.println(path);
-		
-		
-		//3. 파일업로드 서비스를 호출해서 실제 서버에 업로드되도록 작업하기
 		List<ReviewFileDTO> reviewfiledtolist =  fileuploadService.uploadFiles(files, path);
 		int count = 1;
-		//업로드된 파일의 boardfileno의 값을 셋팅 - 1부터 1,2,3,4....첨부파일마지막번호
 		for(ReviewFileDTO reviewfiledto:reviewfiledtolist) {
 			reviewfiledto.setReviewFileno(count+"");
 			count++;
 		}
-	//	System.out.println(boardfiledtolist);
-		//4. 게시글에 대한 일반적인 정보와 첨부되는 파일의 정보를 db에 저장하기
 		service.insert(review,reviewfiledtolist);
-	
 		return "redirect:/menu/review.do";
-		
 //		if reviewfilelist == null{
 //			service.insert(review,reviewfiledtolist);
 //			return "redirect:/";
 //		}else {
 //			writePage(review);
 //		}
+		
+		
+		
+	
+		
+		
 	}
 }

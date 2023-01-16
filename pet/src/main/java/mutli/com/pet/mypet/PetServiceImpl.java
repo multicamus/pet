@@ -33,4 +33,9 @@ public class PetServiceImpl implements PetService {
 		return dao.delete(pet_id);
 	}
 
+	@Override
+	public int insertfile(PetFileDTO petfiledtolist) {
+		dao.insertFile(petfiledtolist);
+		return 0;
+	}
 }

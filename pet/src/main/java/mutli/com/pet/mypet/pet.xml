@@ -41,6 +41,15 @@
 		WHERE pet_id = #{pet_id}
 	</delete>
 	
+	<!-- 펫사진 업로드  -->
+	<insert id="fileinsert" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="file" separator=" ">
+			into pet_file
+			values(review_seq.currval,#{file.originalFilename},#{file.storeFilename})
+		</foreach>
+		select * from dual
+	</insert>
 	
 </mapper>
 

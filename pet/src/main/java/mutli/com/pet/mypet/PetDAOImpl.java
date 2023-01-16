@@ -34,4 +34,9 @@ public class PetDAOImpl implements PetDAO {
 		return sqlsession.delete("mutli.com.pet.mypet.delete", pet_id);
 	}
 
+	@Override
+	public int insertFile(PetFileDTO petfiledtolist) {
+		return sqlsession.insert("mutli.com.pet.review.fileinsert", petfiledtolist);		
+	}
+
 }

@@ -103,13 +103,13 @@
 							</div>
 						</div>
 					</div>
-					<form method="post" class="contact-form" action="/pet/mypet/insert.do">
+					<form method="post" class="contact-form" action="/pet/mypet/insert.do" enctype="multipart/form-data">
 						<div class="container pb-50">
 							<div>
 								<legend>반려동물 사진</legend>
 							</div>
 							<div>
-								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo }" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
+								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
 							</div>
 						<div>
 							<fieldset>

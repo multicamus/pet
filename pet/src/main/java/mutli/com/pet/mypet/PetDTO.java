@@ -2,6 +2,8 @@ package mutli.com.pet.mypet;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PetDTO {
     private String pet_id;
     private String member_id;
@@ -15,7 +17,7 @@ public class PetDTO {
 	private String neuter;
 	private String animalhospital_name;
 	private String animalhospital_addr;
-	private String pet_photo;
+	private MultipartFile pet_photo;
 	private String pet_note;
 	private String pet_number;
 	
@@ -25,7 +27,7 @@ public class PetDTO {
 
 	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
 			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String animalhospital_name,
-			String animalhospital_addr, String pet_photo, String pet_note, String pet_number) {
+			String animalhospital_addr, MultipartFile pet_photo, String pet_note, String pet_number) {
 		super();
 		this.pet_id = pet_id;
 		this.member_id = member_id;
@@ -51,6 +53,18 @@ public class PetDTO {
 				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter
 				+ ", animalhospital_name=" + animalhospital_name + ", animalhospital_addr=" + animalhospital_addr
 				+ ", pet_photo=" + pet_photo + ", pet_note=" + pet_note + ", pet_number=" + pet_number + "]";
+	}
+	
+	
+	
+	
+
+	public MultipartFile getPet_photo() {
+		return pet_photo;
+	}
+
+	public void setPet_photo(MultipartFile pet_photo) {
+		this.pet_photo = pet_photo;
 	}
 
 	public String getPet_id() {
@@ -149,13 +163,7 @@ public class PetDTO {
 		this.animalhospital_addr = animalhospital_addr;
 	}
 
-	public String getPet_photo() {
-		return pet_photo;
-	}
-
-	public void setPet_photo(String pet_photo) {
-		this.pet_photo = pet_photo;
-	}
+	
 
 	public String getPet_note() {
 		return pet_note;
