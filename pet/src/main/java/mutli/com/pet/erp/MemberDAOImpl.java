@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
 @Repository
@@ -59,9 +60,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
 	}
 
-	@Override
+
 	public int update(MemberDTO member) {
 		return sqlSession.update("mutli.com.pet.erp.member_update", member);
+
 	}
 	
 	// insert
@@ -89,6 +91,26 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<SitterDTO> sitterList() {
 		return sqlSession.selectList("mutli.com.pet.erp.sitterList");
+	}
+
+	@Override
+	public MemberDTO idcheck(String id) {
+		return sqlSession.selectOne("mutli.com.pet.erp.idcheck", id);
+	}
+	
+	@Override
+	public SitterDTO sitteridcheck(String id) {
+		return sqlSession.selectOne("mutli.com.pet.erp.sitteridcheck", id);
+	}
+
+	// 예약 리스트
+	@Override
+	public List<ResvDTO> resvlist(String member_id) {
+		return sqlSession.selectList("mutli.com.pet.erp.resvlist", member_id);
+	}
+	@Override
+	public List<ResvDTO> sitter_resvlist(String sitter_id) {
+		return sqlSession.selectList("mutli.com.pet.erp.sitter_resvlist", sitter_id);
 	}
 	
 	

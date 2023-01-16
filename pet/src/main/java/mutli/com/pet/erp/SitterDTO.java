@@ -22,7 +22,6 @@ public class SitterDTO {
 	private String service_area;
 	private String sitter_info;
 	private String valid;
-	private String sitter_career;
 	private String sitter_certificate;
 	private String sitter_rate;
 
@@ -32,9 +31,17 @@ public class SitterDTO {
 	private String cat_career;
 	private String sitter_photo;
 	
+	
 	//추가함 by 최여경
 	private int sitter_age;
 	private String sitter_shortAddr; //00시 00구 혹은 경기도 00시 00구로 축약시킨 주소 String
+	
+
+	
+	
+	
+
+	
 	
 	public SitterDTO() {
 		
@@ -48,10 +55,10 @@ public class SitterDTO {
 				+ ", sitter_addr2=" + sitter_addr2 + ", sitter_startdate=" + sitter_startdate + ", sitter_enddate="
 				+ sitter_enddate + ", sitter_status=" + sitter_status + ", sitter_birthdate=" + sitter_birthdate
 				+ ", service_area=" + service_area + ", sitter_info=" + sitter_info + ", valid=" + valid
-				+ ", sitter_career=" + sitter_career + ", sitter_certificate=" + sitter_certificate + ", sitter_rate="
+				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate="
 				+ sitter_rate + ", small_career=" + small_career + ", medium_career=" + medium_career
 				+ ", large_career=" + large_career + ", cat_career=" + cat_career + ", sitter_photo=" + sitter_photo
-				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr + "]";
+				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr +"]";
 	}
 
 	public SitterDTO(String user_type, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
@@ -78,7 +85,6 @@ public class SitterDTO {
 		this.service_area = service_area;
 		this.sitter_info = sitter_info;
 		this.valid = valid;
-		this.sitter_career = sitter_career;
 		this.sitter_certificate = sitter_certificate;
 		this.sitter_rate = sitter_rate;
 		this.small_career = small_career;
@@ -90,128 +96,14 @@ public class SitterDTO {
 		this.sitter_shortAddr = sitter_shortAddr;
 	}
 
+
+
 	public String getUser_type() {
 		return user_type;
 	}
 
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
-	}
-
-	public String getSmall_career() {
-		return small_career;
-	}
-
-	public void setSmall_career(String small_career) {
-		this.small_career = small_career;
-	}
-
-	public String getMedium_career() {
-		return medium_career;
-	}
-
-	public void setMedium_career(String medium_career) {
-		this.medium_career = medium_career;
-	}
-
-	public String getLarge_career() {
-		return large_career;
-	}
-
-	public void setLarge_career(String large_career) {
-		this.large_career = large_career;
-	}
-
-	public String getCat_career() {
-		return cat_career;
-	}
-
-	public void setCat_career(String cat_career) {
-		this.cat_career = cat_career;
-	}
-
-	public String getSitter_photo() {
-		return sitter_photo;
-	}
-
-	public void setSitter_photo(String sitter_photo) {
-		this.sitter_photo = sitter_photo;
-	}
-
-	public int getSitter_age() {
-		return sitter_age;
-	}
-
-	public void setSitter_age(int sitter_age) {
-		Calendar cal = Calendar.getInstance();
-	        
-        int currentYear  = cal.get(Calendar.YEAR);
-        int currentMonth = cal.get(Calendar.MONTH) + 1;
-        int currentDay   = cal.get(Calendar.DAY_OF_MONTH);
-        
-        System.out.println(currentYear);
-        
-        cal.setTime(getSitter_birthdate());
-        
-        int birthYear  = cal.get(Calendar.YEAR);
-        int birthMonth  = cal.get(Calendar.MONTH);
-        int birthDay   = cal.get(Calendar.DAY_OF_MONTH);
-        System.out.println(birthYear);
-        // 만 나이 구하기 2022-1995=27 (현재년-태어난년)
-        int age = currentYear - birthYear;
-        // 만약 생일이 지나지 않았으면 -1
-        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) { 
-       	 // 5월 26일 생은 526
-            // 현재날짜 5월 25일은 525
-            // 두 수를 비교 했을 때 생일이 더 클 경우 생일이 지나지 않은 것이다.
-            age--;
-        }    
-		this.sitter_age = age;
-	}
-
-	public String getSitter_shortAddr() {
-		return sitter_shortAddr;
-	}
-
-	public void setSitter_shortAddr(String sitter_shortAddr) {
-		String newAddr=getSitter_addr1();
-		String shortAddr; //최종 간략주소를 넣을 변수
-		System.out.println(newAddr);
-		
-		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
-			newAddr =newAddr.replace("광역시", "시");
-			System.out.println(newAddr);
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
-			newAddr = newAddr.replace("특별시", "시");
-			System.out.println(newAddr);
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else {
-			System.out.println(newAddr);
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[1]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
-		}
-		this.sitter_shortAddr = shortAddr;
-	}
-
-	public String getSitter_rate() {
-		return sitter_rate;
-	}
-
-
-	public void setSitter_rate(String sitter_rate) {
-		this.sitter_rate = sitter_rate;
-	}
-
-
-	public String getSitter_pass() {
-		return sitter_pass;
-	}
-
-	public void setSitter_pass(String sitter_pass) {
-		this.sitter_pass = sitter_pass;
 	}
 
 	public String getSitter_id() {
@@ -228,6 +120,14 @@ public class SitterDTO {
 
 	public void setSitter_name(String sitter_name) {
 		this.sitter_name = sitter_name;
+	}
+
+	public String getSitter_pass() {
+		return sitter_pass;
+	}
+
+	public void setSitter_pass(String sitter_pass) {
+		this.sitter_pass = sitter_pass;
 	}
 
 	public String getSitter_code() {
@@ -334,13 +234,6 @@ public class SitterDTO {
 		this.valid = valid;
 	}
 
-	public String getSitter_career() {
-		return sitter_career;
-	}
-
-	public void setSitter_career(String sitter_career) {
-		this.sitter_career = sitter_career;
-	}
 
 	public String getSitter_certificate() {
 		return sitter_certificate;
@@ -349,6 +242,123 @@ public class SitterDTO {
 	public void setSitter_certificate(String sitter_certificate) {
 		this.sitter_certificate = sitter_certificate;
 	}
+
+	public String getSitter_rate() {
+		return sitter_rate;
+	}
+
+	public void setSitter_rate(String sitter_rate) {
+		this.sitter_rate = sitter_rate;
+	}
+
+	public String getSmall_career() {
+		return small_career;
+	}
+
+	public void setSmall_career(String small_career) {
+		this.small_career = small_career;
+	}
+
+	public String getMedium_career() {
+		return medium_career;
+	}
+
+	public void setMedium_career(String medium_career) {
+		this.medium_career = medium_career;
+	}
+
+	public String getLarge_career() {
+		return large_career;
+	}
+
+	public void setLarge_career(String large_career) {
+		this.large_career = large_career;
+	}
+
+	public String getCat_career() {
+		return cat_career;
+	}
+
+	public void setCat_career(String cat_career) {
+		this.cat_career = cat_career;
+	}
+
+	public String getSitter_photo() {
+		return sitter_photo;
+	}
+
+	public void setSitter_photo(String sitter_photo) {
+		this.sitter_photo = sitter_photo;
+	}
 	
+	public int getSitter_age() {
+		return sitter_age;
+	}
+
+	public void setSitter_age(int sitter_age) {
+		this.sitter_age = sitter_age;
+	}
+
+	public String getSitter_shortAddr() {
+		return sitter_shortAddr;
+	}
+
+	public void setSitter_shortAddr(String sitter_shortAddr) {
+		String newAddr=getSitter_addr1();
+		String shortAddr; //최종 간략주소를 넣을 변수
+		System.out.println(newAddr);
+		
+		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
+			newAddr =newAddr.replace("광역시", "시");
+			System.out.println(newAddr);
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
+			newAddr = newAddr.replace("특별시", "시");
+			System.out.println(newAddr);
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
+		}else {
+			System.out.println(newAddr);
+			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
+				if(splitAddr[2].charAt(splitAddr[2].length()-1) != '구') { //경기도 00시 00구가 아니면 
+					shortAddr = splitAddr[0] + " "+ splitAddr[1]; //경기도 00시
+				}else {// 경기도 00시 00구면 경기도 00시 00구
+				shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[2]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
+				}
+			}
+		this.sitter_shortAddr = shortAddr;
+	}
+
+	//나이 구하는 메소드
+	public  int  calcAge() {
+		 Calendar cal = Calendar.getInstance();
+	        
+        int currentYear  = cal.get(Calendar.YEAR);
+        int currentMonth = cal.get(Calendar.MONTH) + 1;
+        int currentDay   = cal.get(Calendar.DAY_OF_MONTH);
+        
+        System.out.println(currentYear);
+        
+        cal.setTime(sitter_birthdate);
+        
+        
+        
+        int birthYear  = cal.get(Calendar.YEAR);
+        int birthMonth  = cal.get(Calendar.MONTH);
+        int birthDay   = cal.get(Calendar.DAY_OF_MONTH);
+        System.out.println(birthYear);
+        // 만 나이 구하기 2022-1995=27 (현재년-태어난년)
+        int age = currentYear - birthYear;
+        // 만약 생일이 지나지 않았으면 -1
+        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) { 
+       	 // 5월 26일 생은 526
+            // 현재날짜 5월 25일은 525
+            // 두 수를 비교 했을 때 생일이 더 클 경우 생일이 지나지 않은 것이다.
+            age--;
+        }    
+       
+		return age;
+	}
 	
 }

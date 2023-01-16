@@ -5,9 +5,6 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class LoginUserDTO {
-//	SitterDTO sitter;
-//	MemberDTO member;
-	
 	private String user_type;
 	private String name;
 	
@@ -25,9 +22,10 @@ public class LoginUserDTO {
 	private String service_area;
 	private String sitter_info;
 	private String valid;
-	private String sitter_career;
 	private	String sitter_certificate;
 	private	String sitter_rate;
+	//추가 by 최여경 (01/15)
+	private String sitter_age;
 	
 	private String member_id;
 	private String member_no; 
@@ -43,11 +41,18 @@ public class LoginUserDTO {
 	private String member_code;
 	private String member_status;
 	private String member_shortAddr;
+	//멤버 생년월일 추가
+	private Date member_birthdate;
+	private int member_age;
+	//동물병원 정보를 회원정보에 넣음
+	private String hospital_name;
+	private String hospital_addr;
 	
-	// 멤버용
+	
+	// 멤버용 (동물병원 수정)
 	public LoginUserDTO(String user_type, String name, String member_id, String member_no, String member_gender, String member_email,
 			String member_phone, String member_addr1, String member_addr2, MultipartFile member_photo, Date start_date,
-			Date end_date, String member_code, String member_status) {
+			Date end_date, String member_code, String member_status, String hospital_name, String hospital_addr) {
 		super();
 		this.user_type = user_type;
 		this.name = name;
@@ -63,13 +68,15 @@ public class LoginUserDTO {
 		this.end_date = end_date;
 		this.member_code = member_code;
 		this.member_status = member_status;
+		this.hospital_addr = hospital_addr;
+		this.hospital_name = hospital_name;
 	}
 	
 	// 시터용
 	public LoginUserDTO(String user_type, String name, String sitter_id, String sitter_code, String sitter_gender, String sitter_email,
 			String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_startdate, Date sitter_enddate,
 			String sitter_status, Date sitter_birthdate, String service_area, String sitter_info, String valid,
-			String sitter_career, String sitter_certificate, String sitter_rate) {
+			String sitter_certificate, String sitter_rate) {
 		super();
 		this.user_type = user_type;
 		this.name = name;
@@ -87,10 +94,10 @@ public class LoginUserDTO {
 		this.service_area = service_area;
 		this.sitter_info = sitter_info;
 		this.valid = valid;
-		this.sitter_career = sitter_career;
 		this.sitter_certificate = sitter_certificate;
 		this.sitter_rate = sitter_rate;
 	}
+
 
 	@Override
 	public String toString() {
@@ -99,18 +106,20 @@ public class LoginUserDTO {
 				+ ", sitter_phone=" + sitter_phone + ", sitter_addr1=" + sitter_addr1 + ", sitter_addr2=" + sitter_addr2
 				+ ", sitter_startdate=" + sitter_startdate + ", sitter_enddate=" + sitter_enddate + ", sitter_status="
 				+ sitter_status + ", sitter_birthdate=" + sitter_birthdate + ", service_area=" + service_area
-				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_career=" + sitter_career
-				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", member_id="
-				+ member_id + ", member_no=" + member_no + ", member_gender=" + member_gender + ", member_email="
-				+ member_email + ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2="
-				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
-				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
+				+ ", sitter_info=" + sitter_info + ", valid=" + valid + ", sitter_certificate=" + sitter_certificate
+				+ ", sitter_rate=" + sitter_rate + ", sitter_age=" + sitter_age + ", member_id=" + member_id
+				+ ", member_no=" + member_no + ", member_email=" + member_email + ", member_gender=" + member_gender
+				+ ", member_phone=" + member_phone + ", member_addr1=" + member_addr1 + ", member_addr2=" + member_addr2
+				+ ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", member_code=" + member_code + ", member_status=" + member_status + ", member_shortAddr="
+				+ member_shortAddr + ", member_birthdate=" + member_birthdate + ", member_age=" + member_age
+				+ ", hospital_name=" + hospital_name + ", hospital_addr=" + hospital_addr + "]";
 	}
 
 	public String getUser_type() {
 		return user_type;
 	}
-
+	
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
 	}
@@ -248,13 +257,7 @@ public class LoginUserDTO {
 		this.valid = valid;
 	}
 
-	public String getSitter_career() {
-		return sitter_career;
-	}
 
-	public void setSitter_career(String sitter_career) {
-		this.sitter_career = sitter_career;
-	}
 
 	public String getSitter_certificate() {
 		return sitter_certificate;
@@ -365,6 +368,51 @@ public class LoginUserDTO {
 	}
 	
 	public void setMember_shortAddr(String member_shortAddr) {
+		this.member_shortAddr = member_shortAddr;
+	}
+
+	public Date getMember_birthdate() {
+		return member_birthdate;
+	}
+
+	public void setMember_birthdate(Date member_birthdate) {
+		this.member_birthdate = member_birthdate;
+	}
+	
+
+	public String getSitter_age() {
+		return sitter_age;
+	}
+
+	public void setSitter_age(String sitter_age) {
+		this.sitter_age = sitter_age;
+	}
+
+	public int getMember_age() {
+		return member_age;
+	}
+
+	public void setMember_age(int member_age) {
+		this.member_age = member_age;
+	}
+
+	public String getHospital_name() {
+		return hospital_name;
+	}
+
+	public void setHospital_name(String hospital_name) {
+		this.hospital_name = hospital_name;
+	}
+
+	public String getHospital_addr() {
+		return hospital_addr;
+	}
+
+	public void setHospital_addr(String hospital_addr) {
+		this.hospital_addr = hospital_addr;
+	}
+
+	public String createShortAddr() {
 		String newAddr = member_addr1;
 		String shortAddr; //최종적으로 들어갈 간략주소 변수
 		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
@@ -377,7 +425,7 @@ public class LoginUserDTO {
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
 			shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[1]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
 		}
-		this.member_shortAddr = shortAddr;
+		return shortAddr;
 	}
 	
 	

@@ -1,6 +1,3 @@
-<%@page import="mutli.com.pet.erp.MemberDTO"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="multi.com.pet.resv.ResvDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -58,51 +55,16 @@
       }
       
       </style>    
+      
       <script>
-      <%ArrayList<String> namelist = (ArrayList<String>) request.getAttribute("namelist");
-		ArrayList<String> codelist = (ArrayList<String>) request.getAttribute("codelist");
-		ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
-		
-		
-		//예약내역의 방문날짜를 Date객체에 담는다
-    	Date date = resvdto.getVisit_date();
-		//System.out.println(date);
-		//년월일 사이의 하이픈(-)을 빼준다
-		SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
-		//년월일에 서비스시작시간을 붙인다.
-		String startdate = "";
-		String enddate = "";
-		if(resvdto.getService_starttime()>=10){
-			startdate = sf.format(date) + resvdto.getService_starttime()+"00";
-		}else{
-			startdate = sf.format(date) + "0" + resvdto.getService_starttime()+"00";
-		}
-		//년월일에 서비스종료시간을 붙인다.
-		if(resvdto.getService_endtime()>=10){
-			enddate = sf.format(date) + resvdto.getService_endtime()+"00";
-		}else{
-    		enddate = sf.format(date) + "0" + resvdto.getService_endtime()+"00";    					
-		}
-		//현재 날짜와 시간을 가져와서 다 붙여있는 식으로 뽑아낸다.
-		Date nowdate = new Date();
-		SimpleDateFormat sf2 = new SimpleDateFormat("yyyyMMddHHmm");
-		//문자열로 바꾼다.
-		String sysdate = sf2.format(nowdate);
-		//두 날짜 스트링 변수를 정수로 바꾼다
-		long start = Long.valueOf(startdate);
-		long now = Long.valueOf(sysdate);
-		long end = Long.valueOf(enddate);
-
-		MemberDTO member = (MemberDTO) request.getAttribute("member");
-		System.out.println(member);		
-		%> 
+      		 <%ArrayList<String> namelist = (ArrayList<String>) request.getAttribute("namelist");
+      			ArrayList<String> codelist = (ArrayList<String>) request.getAttribute("codelist");
+      			ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
+      		%> 
       </script>
-
+      
 </head>
     <body>
-    	<input type="hidden" id="hospitalname" value="${member.hospital_name }">
-    	<input type="hidden" id="hospitaladdr" value="${member.hospital_addr }">
-    	<input type="hidden" id="addr1" value="${member.member_addr1 }">
         <!-- ========================= page-banner-section start ========================= -->
         <section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
             <div class="container">
@@ -128,8 +90,8 @@
         <!-- ========================= service-section start ========================= -->
         <section id="service" class="service-section pt-130 pb-100">
             <!-- 컨테이너 시작 -->
-            	<div class="container">
-            
+            <div class="container">
+            <form action="/pet/reserve/insert.do" method="post">
                 <!-- 진행예약/지난예약 버튼 -->
                 <div class="row" style="margin-top:-7%;">
                     <div class="col-md-4">
@@ -193,40 +155,16 @@
                                                    			 <%} %>
                                                    		 <%} %>
                                                 </div>
+                                                <%-- <div>
+                                                    <h5 style="line-height:200%;display: inline;">취소여부:</h5> 
+                                                    	<%if(resvdto.getResv_status() == 0) {%>
+                                                    		<span style="font-size:20px">취소 안함</span>
+                                                    	<%}else{ %>
+                                                    		<span style="font-size:20px;">취소함</span>
+                                                    	<%} %>
+                                                </div> --%>
                                                 <div>
-                                                    <h5 style="line-height:200%;display: inline;">예약날짜:</h5> 
-                                                    <span style="font-size:20px">${resvdto.resv_date }</span>
-                                                </div>
-                                                <div>
-													<h5 style="line-height:200%;display: inline;">취소여부:</h5> 
-                                                    	<c:choose>
-	                                                    	<c:when test="${resvdto.resv_status == 0 }">
-	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭요청중</span>
-	                                                    	</c:when>
-	                                                    	<c:when test="${resvdto.resv_status == 1 }">
-	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭완료</span>
-	                                                    	</c:when>		
-                                                    		<c:otherwise>
-	                                                    		<span style="font-size:20px; color:red; font-weight: bold;">취소됨</span>
-	                                               			</c:otherwise>
-	                                               		</c:choose>	
-	                                               </div>
-	                                               <c:if test="${resvdto.resv_status != 0 and resvdto.resv_status !=1 }">
-	                                               <div>
-	                                                    		<h5 style="line-height:200%;display: inline;">취소상세:</h5>
-	                                                    		<c:if test="${resvdto.resv_status == 2 }">
-	                                                    		<span style="font-size:20px; color:red; font-weight: bold;">매칭승인요청기간초과</span>
-	                                                    		</c:if>
-	                                                    		<c:if test="${resvdto.resv_status == 3 }">
-	                                                    		<span style="font-size:20px; color:red; font-weight: bold;">이용자가 취소함</span>
-	                                                    		</c:if>
-	                                                    		<c:if test="${resvdto.resv_status == 4 }">
-	                                                    		<span style="font-size:20px; color:red;  font-weight: bold;">펫시터가 취소함</span>
-	                                                    		</c:if>
-                                                	</div>
-                                                </c:if>
                                                 
-                                                <div>
                                                     <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
                                                     	<span style="font-size:20px">돌봄(기본)
                                                     <%if(resvdto.getWalk_service() == 'Y')  {%>
@@ -240,16 +178,9 @@
                                                    	<%}%></span>						
                                                 </div>
                                                 <div>
-                                                	<h5 style="line-height:200%;display: inline;">서비스 금액:</h5>
-                                                	<span style="font-size:20px">${resvdto.total_price }원</span>
+                                                    <h5 style="line-height:200%;display: inline; ">서비스 장소:</h5> 
+                                                    <span style="font-size: 20px;  ">${resvdto.visit_place }</span>
                                                 </div>
-                                                <div>
-                                                    <h5 style="line-height:200%;display: inline;">서비스 장소:</h5> 
- 													<%if(resvdto.getResv_status()==1) {%>
-                                                   		<span  style="font-size:20px">${resvdto.visit_place }</span>
-                                                	<%}else{ %>
-                                                		<span  style="font-size:20px">${addr1 }</span>
-                                                	<%} %>                                                </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">서비스 이용 날짜:</h5> 
                                                     <span style="font-size:20px">${resvdto.visit_date }</span>
@@ -294,7 +225,6 @@
                                                 	</c:if>
                                                 </div>
                                                 <div>
-                                                <%if(resvdto.getResv_status() ==1) {%>
                                                 	<%if(resvdto.getVisit_method().equals("pass_visit")){ %>
                                                     <h5 style="line-height:200%;display: inline;">공동현관비밀번호:</h5> 
                                                     <span style="font-size:20px">${resvdto.common_pass }</span>
@@ -306,7 +236,6 @@
                                                     <span style="font-size:20px">${resvdto.direct_meet }</span>
                                                 	
                                                 	<% }%>
-                                                <%} %>	
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">주차여부</h5> 
@@ -342,7 +271,7 @@
                                             <!-- 예약상세정보끝 -->
                                             <!-- 펫시터정보 제목 -->
                                             <div style="margin-top: 50px;">
-                                                <span style="margin:10px"><h3>이용자정보</h3></span>
+                                                <span style="margin:10px"><h3>펫시터정보</h3></span>
                                             </div>
                                             <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
                                             <div class="row">
@@ -350,15 +279,37 @@
 	                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
 	                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
                                                 </div>
-                                            	<div class="col-8">
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >이용자 : ${member.member_name }</h5>
-	                                               		<c:if test="${member.member_gender eq 'M' }">
+                                                <div class="col-8">
+	                                                <c:if test="${resvdto.match_method == 'auto_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : 자동매칭 중입니다.</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'past_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                
+	                                                
+	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+		                                                <%}else{%>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+		                                                <%} %>	
+	                                               <%} %> 
+	                                               
+	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
 	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
 	                                               		</c:if>	
-	                                               		<c:if test="${member.member_gender eq 'F' }">
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
 	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
 	                                               		</c:if>
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${member.member_age }세</h5>
+	                                               		
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
                                                </div>
                                             </div>
                                         </div>
@@ -376,168 +327,48 @@
                                 <!-- 결제정보  row-1 -->
                                 <div class="row"> 
                                     <!-- 결제정보 칸 wrapper -->
-                                    <!-- 결제정보 wrapper 끝 -->
-                                   <c:if test="${resvdto.resv_status ==0 or resvdto.resv_status == 1  }">
                                     <div class="contact-form-wrapper">
-                                    	<div class="row">
-	                                		<div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:50px ;">
-	                                              <div class="section-title text-center mb-20">
-	                                                    <span class="wow fadeInDown" data-wow-delay=".2s">돌봄 장소 위치</span>
-	                                              </div>
-	                                         </div>
-                                         
-                                         	<div id="map" style="width: 500px; height: 500px; margin: auto;"></div>
-                                         
-												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1bce72c0011761820b131bdbec94b47&libraries=services"></script>
-												<script>
-														var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-													    mapOption = {
-													        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-													        level: 3 // 지도의 확대 레벨
-													    };  
-														
-														// 지도를 생성합니다    
-														var map = new kakao.maps.Map(mapContainer, mapOption); 
-														
-														
-														
-														// 주소-좌표 변환 객체를 생성합니다
-														var geocoder = new kakao.maps.services.Geocoder();
-														
-														var addr = document.getElementById("addr1").value;
-														
-														// 주소로 좌표를 검색합니다
-														geocoder.addressSearch("서울특별시 강남구 언주로146길 18", function(result, status) {
-			
-														    // 정상적으로 검색이 완료됐으면 
-														     if (status === kakao.maps.services.Status.OK) {
-			
-														        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			
-														        // 결과값으로 받은 위치를 마커로 표시합니다
-														        var marker = new kakao.maps.Marker({
-														            map: map,
-														            position: coords
-														        });
-			
-														        // 인포윈도우로 장소에 대한 설명을 표시합니다
-														        var infowindow = new kakao.maps.InfoWindow({
-														            content: '<div style="width:150px;text-align:center;padding:6px 0;">돌봄장소</div>'
-														        });
-														        infowindow.open(map, marker);
-			
-														        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-														        map.setCenter(coords);
-														    } 
-														});    
-												</script>
-											</div>	
-                                	</div>
-                                	<!-- 동물병원위치 -->
-                                 <div class="contact-form-wrapper" >
-                                 		<div class="row">
-	                                		<div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:50px ;">
-	                                              <div class="section-title text-center mb-20">
-	                                                    <span class="wow fadeInDown" data-wow-delay=".2s">반려동물 상태에 이상이 생길 시 <br> 즉시 동물병원으로 데려가주세요!</span>
-	                                              </div>
-	                                              <h5 style="line-height:200%;display: inline;  ">동물병원이름: ${member.hospital_name }</h5> 			                  
-	                                              
-	                                         </div>
-                                         
-                                         	<div id="map2" style="width: 500px; height: 500px; margin: auto;"></div>
-                                         
-												<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1bce72c0011761820b131bdbec94b47&libraries=services"></script>
-												<script>
-														var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
-													    mapOption = {
-													        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-													        level: 3 // 지도의 확대 레벨
-													    };  
-														
-														// 지도를 생성합니다    
-														var map = new kakao.maps.Map(mapContainer, mapOption); 
-														
-														
-														
-														// 주소-좌표 변환 객체를 생성합니다
-														var geocoder = new kakao.maps.services.Geocoder();
-														
-														var hospitaladdr = document.getElementById("hospitaladdr").value;
-														
-														// 주소로 좌표를 검색합니다
-														geocoder.addressSearch(hospitaladdr, function(result, status) {
-			
-														    // 정상적으로 검색이 완료됐으면 
-														     if (status === kakao.maps.services.Status.OK) {
-			
-														        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			
-														        // 결과값으로 받은 위치를 마커로 표시합니다
-														        var marker = new kakao.maps.Marker({
-														            map: map,
-														            position: coords
-														        });
-			
-														        // 인포윈도우로 장소에 대한 설명을 표시합니다
-														        var infowindow = new kakao.maps.InfoWindow({
-														            content: '<div style="width:150px;text-align:center;padding:6px 0;">동물병원주소</div>'
-														        });
-														        infowindow.open(map, marker);
-			
-														        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-														        map.setCenter(coords);
-														    } 
-														});    
-												</script>
-											</div>	
-                                 </div>
-                                 </c:if>
-                                 <c:if test="${resvdto.resv_status == 0 or resvdto.resv_status == 1 }">
-                                  <div class="contact-form-wrapper">
                                         <!-- 결제정보 row-2 -->
                                         <div class="row">
                                             <!-- 결제정보 제목 -->
-                                            <div class="col-xl-10 col-lg-8 mx-auto" >
+                                            <div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:50px ;">
                                                 <div class="section-title text-center mb-20">
-                                                    <span class="wow fadeInDown" data-wow-delay=".2s">매칭</span>
+                                                    <span class="wow fadeInDown" data-wow-delay=".2s">결제정보</span>
                                                 </div>
                                             </div>
                                             <!-- 결제정보 제목 끝-->
 
                                             <!-- 결제상세정보 -->
-                                            
+                                            <div style="margin-top:20px; ">
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
+                                                    <span style="font-size:20px">결제 완료</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
+                                                    <span style="font-size:20px">ㅇㅇㅇㅇ-ㅇㅇ-ㅇㅇ</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">결제방법:</h5> 
+                                                    <span style="font-size:20px">삼성비자/일시불</span>
+                                                </div>
+                                                <div>
+                                                    <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
+                                                    <span style="font-size:20px">${resvdto.total_price }원</span>
+                                                </div>
+                                            </div>
                                             <!-- 결제상세정보끝 -->
-		                                     <!-- 결제상세정보끝 -->
-		                                     	<c:if test="${resvdto.resv_status == 0 }">
-		                                            <div class=row style="margin-bottom: -10%; ">
-			                                            	<div class=col-6>
-										                        <div class="button text-center pb-50" >
-										            	 			<button type="button"  class="theme-btn" onclick="location.href='/pet/reserve/approve.do?resv_no=${resvdto.resv_no }'"  style="display:inline-block; margin-left:0px">매칭승인</button>
-					                        					</div>
-					                        				</div>	
-			                        						<div class=col-6>
-					                        					<div class="button text-center pb-50" >
-										            	 			<button type="button"  class="theme-btn" onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"  style="display:inline-block; margin-left:0px">매칭취소</button>
-					                        					</div>
-				                        					</div>
-				                        			</div>		
-			                        			</c:if>
-			                        			<%if(resvdto.getResv_status() == 1 && (start<=(now+600))) {%>		
-			                        			<div style="margin: auto; ">
-				                     						<h5 style="line-height:200%;  color: #4361eb; text-align: center;">매칭이 이미 완료된 경우 서비스시작시간으로부터 <br> 6시간 이전에는  매칭취소가 불가능합니다.</h5> 			                  
-		                    					</div>     
-		                    					<%}else if(resvdto.getResv_status()==1 && (start>(now+600))){%>
-		                    					 	<div class=row style="margin-bottom: -10%; margin-top: 10%;">
-		                    					 			<div class="button text-center pb-50" >
-										            	 			<button type="button"  class="theme-btn" onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"  style="display:inline-block; margin-left:0px">매칭취소</button>
-					                        				</div>
-					                        		</div>		
-		                    					<%} %>  
+		                                            <div style="margin-bottom: -10%;">
+								                        <div class="button text-center pb-50" >
+								            	 			<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px">결제</button>
+			                        					</div>
+		                    					  </div>  
+		                    					  
                                         </div>
                                         <!-- 결제정보 row-2끝 -->
                                     </div>
-                                   </c:if> 
-                                </div> 				
+                                    <!-- 결제정보 wrapper 끝 -->
+                                </div>
                                 <!-- 결제정보  row-1끝 -->
                             </div>
                             <!-- 결제정보 컬럼 끝  -->
@@ -546,16 +377,42 @@
                     </div>
                     
                     <!-- 이전버튼 -->
-                    <div class="button text-center pb-50" style="margin-top: 2%;">
+                    <div class="button text-center pb-50" style="margin-top: -50%;">
 						             <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:1000px">이전</button>	
 	                 </div>
                     
                     <!-- 예약/결제 내역 칸 -->
                 </div>
                 <!-- 예약/결제 내역 row 끝 -->
-
+                			<input type="hidden" name="visit_date" value="${resvdto.visit_date }">
+                			<input type="hidden" name="visit_place" value="${resvdto.visit_place }">
+					        <input type="hidden" name="service_starttime" value="${resvdto.service_starttime }">
+					        <input type="hidden" name="service_endtime" value="${resvdto.service_endtime }">
+					        <input type="hidden" name="service_time" value="${resvdto.service_time }">
+					        <input type="hidden" name="default_service" value="${resvdto.default_service }">
+					        <input type="hidden" name="bath_service" value="${resvdto.bath_service }">
+					        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
+					        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
+					        <input type="hidden" name="service_note" value="${resvdto.service_note }">
+					        <input type="hidden" name="match_method" value="${resvdto.match_method}" >
+					        <input type="hidden" name="prefer_gender" value="${resvdto.prefer_gender}" >
+					        <input type="hidden" name="prefer_size" value="${resvdto.prefer_size}" >
+					        <input type="hidden" name="sitter_id" id="sitter_id" value="${resvdto.sitter_id }">
+					        <input type="hidden" name="sitter_name" id="sitter_name" value="${resvdto.sitter_name }">
+							<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
+							<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
+							<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
+							<input type="hidden" name="visit_method" value="${resvdto.visit_method }">	
+							<input type="hidden" name="common_pass" value="${resvdto.common_pass }">	
+							<input type="hidden" name="home_pass" value="${resvdto.home_pass }">	
+							<input type="hidden" name="direct_meet" value="${resvdto.direct_meet }">	
+							<input type="hidden" name="parking" value="${resvdto.parking }">	
+							<input type="hidden" name="supplies_place" value="${resvdto.supplies_place }">	
+							<input type="hidden" name="cleaning_method" value="${resvdto.cleaning_method }">
+							<input type="hidden" name="emergency_phone" value="${resvdto.emergency_phone }">	
+						 	<input type="hidden" name="total_price" value="${resvdto.total_price }">	
 						
-            
+            </form>
             </div>
             <!-- 컨테이너 끝 -->
         </section> 

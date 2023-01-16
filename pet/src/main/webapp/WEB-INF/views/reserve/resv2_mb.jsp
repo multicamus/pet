@@ -357,24 +357,17 @@ thead {
             
       
           </style>
-    <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>   
-    
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
     <script>
-	    
 		$(document).ready(function() {
-			
 			$("#nextbtn").on("click", function(){
 				value =  $("#sitter_id").attr("value")
-				
 			})
 			//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
 			$("#direct_button").on("click", function(){
 				var gender = $("#prefer_gender option:selected").val();
 				var size = $("#prefer_size option:selected").val();
-				var code = $("#pet_codelist").val()
+				var code = $("#pet_codearray").val()
 				
 				$.ajax({
 					url : "/pet/sitter/ajax/list.do",
@@ -403,13 +396,13 @@ thead {
 									    	+"<div class=col-6>"
 											    +"<div  class='detailread' id=" +  data[i].sitter_id+">" 
 											    	+"<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
-										    	+"</div>"  
+											    	+"</div>"  
 									    	+"</div>"
 									    	
 									    	+"<div class=col-6>"
-										    	+"<div   id='" +  data[i].sitter_id +"select'>" 
-										    		+"<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "'><span id='selectspan'>선택</span></button>"
-								    			+"</div>" 
+										    	+"<div id='" +  data[i].sitter_id +"select'>" 
+										    		+"<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										    	+"</div>" 
 								    		+"</div>"
 								    		
 							    		 +"</div>"
@@ -475,8 +468,9 @@ thead {
 							
 							$(".card").css("border-color", ''); 
 							
-							//현재 선택한 시터의 id
+							//현재 선택한 시터의 id와 name
 							id = $(this).attr("value")
+							name = $(this).attr("name")
 							//cardid는 (sitter의 id+card)
 							cardId = "#"+ id + "card";
 							
@@ -487,6 +481,7 @@ thead {
 								$(".card").removeAttr("selected");
 								//input태그의 sitter_id의 value값을 초기화시킨다
 								$("#sitter_id").attr("value", "");
+								$("#sitter_name").attr("value", '');
 							}else{//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
 							    //기존의 selected속성과 테두리속성을 모두 해제시킨다.
 								$(".card").css("border-color", '');
@@ -497,6 +492,8 @@ thead {
 								$(cardId).css("border-width", "5pt");
 								//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
 								$("#sitter_id").attr("value", id);
+								$("#sitter_name").attr("value", name);
+
 							}
 						})
 						
@@ -516,11 +513,7 @@ thead {
 				
 				
 			})
-			
-		
-						
-			
-			
+
 			
 		})
       </script>    
@@ -591,7 +584,7 @@ thead {
             <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="single-pricing active mb-50">
                     <div class="row justify-content-center">
-                    	<form action="/pet/reserve/resv2_mb.do" method="post" >
+                    	<form action="/pet/reserve/resv2_mb.do" method="post" id="directmatch" >
                     		<div class=row>
 		                  		<div class="col-lg-4">
 		                  			<input type="hidden" id="match_method" name="match_method"  value="direct_match">
@@ -602,7 +595,8 @@ thead {
 		                            		<option value="F">여자</option>
 		                            		<option value="A">상관 없음</option>
 		                            	</select>
-		                            <c:if test="${pet_codelist=='A' || pet_codelist=='D'}"> 
+
+		                            <c:if test="${pet_codearray=='A' || pet_codearray=='D'}"> 
 			                            <h4>돌봄 경험 횟수</h4>
 			                            	<select name="prefer_size" id="prefer_size">
 			                            		<option value="S">소형견 돌봄 경험이 많은 사람</option>
@@ -611,7 +605,9 @@ thead {
 			                            		<option value="A" >상관 없음</option>
 			                            	</select>
 		                            </c:if>		
-		                            <input type="hidden" id="pet_codelist" value="${pet_codelist }"/>
+		                            <input type="hidden" id="pet_codearray" value="${pet_codearray }"/>
+
+		                            
 	                           		<a href="javascript:void(0)" class="theme-btn" id="direct_button" style="margin-left: 0px;">확인</a>
 	                           		<p>펫시터분들을 확인해보세요!</p>
 								</div>
@@ -638,10 +634,14 @@ thead {
 				        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 				        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 				        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
+
 						<input type="hidden" name="sitter_id" id="sitter_id" value="">
+						<input type="hidden" name="sitter_name" id="sitter_name" value="">
+						<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
+						<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
+						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
+						<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+
                   	 </form>
                     </div>
                 </div>
@@ -651,7 +651,7 @@ thead {
         	<!-- 자동매칭 시작 -->
             <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <div class="single-pricing active mb-50">
-               		 <form action="/pet/reserve/resv2_mb.do" method="post" >
+               		 <form action="/pet/reserve/resv2_mb.do" method="post" onsubmit="return doAction();">
                         <div class="row">
                             <div class="col-4 justify-content-center">
                             <input type="hidden" id="match_method" name="match_method"  value="auto_match">
@@ -704,9 +704,13 @@ thead {
 				        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 				        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 				        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-				        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-				        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-				        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
+
+
+				         <input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">	
+				         <input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
+						<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
+						<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+
 				         
                     </form>
                 </div>
@@ -767,10 +771,15 @@ thead {
 							        <input type="hidden" name="walk_service" value="${resvdto.walk_service }">
 							        <input type="hidden" name="beauty_service" value="${resvdto.beauty_service }">
 							        <input type="hidden" name="service_note" value="${resvdto.service_note }">
-							        <input type="hidden" name="pet1_reserved" value="${resvdto.pet1_reserved }">
-							        <input type="hidden" name="pet2_reserved" value="${resvdto.pet2_reserved }">
-							        <input type="hidden" name="pet3_reserved" value="${resvdto.pet3_reserved }">
-													
+
+									<input type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">				
+									<input type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">	
+									<input type="hidden" name="pet_namelist" value="${resvdto.pet_namelist }">	
+									<input type="hidden" name="sitter_id" id="sitter_id" value="">
+									<input type="hidden" name="sitter_name" id="sitter_name" value="">
+									<input type="hidden" name="total_price" value="${resvdto.total_price }">	
+									
+
 							</form>
 						</div>
                 </div>
@@ -800,5 +809,16 @@ thead {
 		 		</div>
 		  </div>
 		</div>
+		<script>
+			let dm = document.getElementById("directmatch");
+			dm.addEventListener("submit", function(e){
+				let sitteridselected = document.getElementById("sitter_id")
+				if(sitteridselected.value.length == 0){
+					alert("펫시터를 선택해주세요")
+					e.preventDefault();
+				}
+			})
+			
+		</script>
     </body>
 </html>

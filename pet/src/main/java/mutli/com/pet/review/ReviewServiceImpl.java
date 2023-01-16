@@ -15,36 +15,56 @@ public class ReviewServiceImpl implements ReviewService {
 		this.dao = dao;
 	}
 	
-	// list
-	@Override
-	public List<ReviewDTO> reviewList() {
-		return dao.reviewList();
-	}
 
-	// insert
 	@Override
 	public int insert(ReviewDTO review) {
+		System.out.println(review);
 		return dao.insert(review);
 	}
 	
-	// read
+
+	
 	@Override
-	public ReviewDTO read(String review_no) {
-		return dao.read(review_no);
+	public int insert(ReviewDTO review, List<ReviewFileDTO> reviewfiledtolist) {
+		dao.insert(review);
+		dao.insertFile(reviewfiledtolist);
+		return 0;
 	}
 
-	// update
+
+
 	@Override
-	public int update(ReviewDTO review) {
-		return dao.update(review);
+	public List<Review2DTO> read() {
+		return dao.read();
 	}
 
-	// delete
+
+	@Override
+	public int update(Review2DTO review) {
+		return dao.update(review);	
+		}
+
+
 	@Override
 	public int delete(String review_no) {
 		return dao.delete(review_no);
 	}
 	
 	
-
+	@Override
+	public Review2DTO read_update(String review_no) {
+		System.out.println("=======서비스======");
+		return dao.read_update(review_no);
+	}
+	
+	@Override
+	public Review2DTO read_detail(String review_no) {
+		return dao.read_detail(review_no);
+	}
+	
+	@Override
+	public Review2DTO read_detail_ajax(String review_no) {
+		System.out.println("Service read_detail_ajax");
+		return dao.read_detail_ajax(review_no);
+	}
 }
