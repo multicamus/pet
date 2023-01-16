@@ -185,7 +185,7 @@
           				date = $("#date").prop("value");
           				//오늘 날짜를 가녀온다
           				var now = new Date();
-
+	
 				        var year= now.getFullYear();
 				        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
 				        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();

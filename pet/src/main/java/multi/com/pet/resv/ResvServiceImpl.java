@@ -11,11 +11,13 @@ import mutli.com.pet.erp.SitterDTO;
 @Service
 public class ResvServiceImpl implements ResvService {
 	ResvDAO dao;
+	
 	@Autowired
 	public ResvServiceImpl(ResvDAO dao) {
 		super();
 		this.dao = dao;
 	}
+	
 	@Override
 	public List<SitterDTO> directlist(String gender, String size, String code, String shortAddr) {
 		if(gender.equals("A")) {
@@ -29,12 +31,14 @@ public class ResvServiceImpl implements ResvService {
 	@Override
 	public SitterDTO readSitter(String sitter_id) {
 		return dao.readSitter(sitter_id);
+		
 	}
 	@Override
 	public int insert(ResvDTO resvdto) {
 		System.out.println("insert서비스");
 		return dao.insert(resvdto);
 	}
+	
 	@Override
 	public List<ResvDTO> resvlist(LoginUserDTO user) {
 		if(user!=null) {
@@ -54,10 +58,12 @@ public class ResvServiceImpl implements ResvService {
 			return null;
 		}
 	}
+	
 	@Override
 	public ResvDTO resvread(String resv_no) {
 		return dao.resvread(resv_no);
 	}
+	
 	@Override
 	public int changeStatus() {
 		return dao.changeStatus();

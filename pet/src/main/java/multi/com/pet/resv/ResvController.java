@@ -1,26 +1,18 @@
 package multi.com.pet.resv;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import mutli.com.pet.erp.LoginUserDTO;
-import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.SitterDTO;
 
 @Controller
 public class ResvController {
-	
 	ResvService service;
 	
 	@Autowired
@@ -37,8 +29,6 @@ public class ResvController {
 		System.out.println(servicecode);
 		System.out.println(pet_idlist);
 		System.out.println(pet_codelist);
-		
-		
 		
 		//나열된 servicecode의 문자열을 ","를 기준으로 split
 		String[] servicecodeArr = servicecode.split(",");
@@ -59,10 +49,6 @@ public class ResvController {
 			
 		}
 		
-		
-		
-		
-		
 		//시작시간+서비스시간 = 종료시간 설정
 		int endtime= resvdto.getService_starttime()+resvdto.getService_time();
 		resvdto.setService_endtime(endtime);
@@ -75,10 +61,7 @@ public class ResvController {
 		}else {
 			model.addAttribute("pet_codearray", "D");
 		}
-		
-		
-	
-		
+
 		System.out.println(resvdto);
 		
 		//resvdto를 가지고 지정뷰로 이동
@@ -97,13 +80,9 @@ public class ResvController {
 		String size= resvdto.getPrefer_size(); //선호 사이즈
 		String method = resvdto.getMatch_method(); //매칭 방법
 		
-		
-		
 		System.out.println(gender);
 		System.out.println(size);
 		System.out.println(method);
-		
-
 		
 		System.out.println(resvdto);
 		model.addAttribute("resvdto", resvdto);

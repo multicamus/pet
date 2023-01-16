@@ -20,7 +20,6 @@ public class MemberDTO {
 	private Date end_date;
 	private String member_code;
 	private String member_status;
-
 	
 	//필요해서 추가함 by 최여경
 	private String member_shortAddr; //00특별시 00구와 같은 주소 문자열 변수
@@ -58,7 +57,6 @@ public class MemberDTO {
 				+ member_addr2 + ", member_photo=" + member_photo + ", start_date=" + start_date + ", end_date="
 				+ end_date + ", member_code=" + member_code + ", member_status=" + member_status + "]";
 	}
-
 
 	public String getUser_type() {
 		return user_type;

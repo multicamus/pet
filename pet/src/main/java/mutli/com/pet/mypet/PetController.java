@@ -25,24 +25,7 @@ public class PetController {
 		this.ps = ps;
 		this.ms = ms;
 	}
-
-	// insert
-	@RequestMapping(value="/insert.do")
-	public String insert(PetDTO pet, Model model, String pet_id, String member_id, HttpServletRequest hsr) {
-		int result = ps.insert(pet);
-		
-		if(result == 1) {
-			HttpSession hs = hsr.getSession();
-			hs.removeAttribute("mypetlist");
-			
-			List<PetDTO> petList = ms.petList(member_id);
-			System.out.println(petList);
-			hs.setAttribute("mypetlist", petList);
-		}
-		
-		return "redirect:/mypet/read.do?pet_id=" + pet_id + "&state=READ";
-	}
-
+	
 	// read
 	@RequestMapping(value="/read.do")
 	public String read(String pet_id, String state, Model model) {
@@ -60,6 +43,23 @@ public class PetController {
 		return view;
 	}
 	
+	// insert
+	@RequestMapping(value="/insert.do")
+	public String insert(PetDTO pet, Model model, String pet_id, String member_id, HttpServletRequest hsr) {
+		int result = ps.insert(pet);
+		
+		if(result == 1) {
+			HttpSession hs = hsr.getSession();
+			hs.removeAttribute("mypetlist");
+			System.out.println(member_id);
+			List<PetDTO> petList = ms.petList(member_id);
+			System.out.println("☆☆☆☆☆☆☆"+petList);
+			hs.setAttribute("mypetlist", petList);
+		}
+		
+		return "redirect:/mypet/read.do?pet_id=" + pet_id + "&state=READ";
+	}
+	
 	// update
 	@RequestMapping(value="/update.do")
 	public String update(PetDTO pet, String member_id, HttpServletRequest hsr, Model model) {
@@ -72,6 +72,7 @@ public class PetController {
 			List<PetDTO> petList = ms.petList(member_id);
 			System.out.println(petList);
 			hs.setAttribute("mypetlist", petList);
+			System.out.println("*****" + petList);
 		} 
 		return "redirect:/mypet/read.do?pet_id=" + pet.getPet_id() + "&state=READ";
 	}
@@ -85,9 +86,9 @@ public class PetController {
 		if(result == 1) {
 			HttpSession hs = hsr.getSession();
 			hs.removeAttribute("mypetlist");
-			
 			List<PetDTO> petList = ms.petList(member_id);
 			hs.setAttribute("mypetlist", petList);
+			System.out.println("#######"+petList);
 		} 
 		model.addAttribute("member", member);
 		return "mypage/user";

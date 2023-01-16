@@ -64,8 +64,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpServletRequest hsr) {
+		HttpSession hs = hsr.getSession();
+		hs.invalidate();
 		status.setComplete();
+		
+		
 		return "redirect:/";
 	}
 	

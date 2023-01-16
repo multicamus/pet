@@ -65,6 +65,7 @@
 							</div>
 						</c:when>
 					</c:choose>
+					
 					<!-- 예약 정보 시작 -->
 					<div class="col-12 col-md-6 col-xl-12">
 						<div class="contact-item">
@@ -78,6 +79,23 @@
 							</div>
 						</div>
 					</div>
+					<c:choose>
+						<c:when test="${fn:length(myresvlist) == 0}">
+							<div class="col-12 col-md-6 col-xl-12">
+								<div class="row contact-item">
+									<div class="row contact-content">
+										<div class="col-2 contact-icon">
+											<i class="lni lni-alarm-clock"></i>
+										</div>
+										<div class="col-8">
+											<h4>펫시터 예약을 <br/>시작 해보세요!</h4>
+										</div>
+										<p><a type="button" href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">+ 추가 등록</a></p>
+									</div>
+								</div>
+							</div>
+						</c:when>
+					</c:choose>
 					<!-- 예약 정보 끝 -->
 				</div>
 			</div>

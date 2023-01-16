@@ -14,7 +14,7 @@
 		SELECT p.* 
 		FROM pet_info p, member_info m
 		WHERE m.member_id = p.member_id
-		  AND m.member_id = #{member_id} and m.member_pass = #{member_pass}
+		  AND m.member_id = #{member_id}
 	</select>
 	
 	<select id="read" parameterType="String" resultType="pet">

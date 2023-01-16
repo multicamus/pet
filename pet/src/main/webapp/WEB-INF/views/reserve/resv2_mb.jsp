@@ -357,24 +357,16 @@ thead {
             
       
           </style>
-    <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>   
-    
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
     <script>
-	    
 		$(document).ready(function() {
-			
 			$("#nextbtn").on("click", function(){
 				value =  $("#sitter_id").attr("value")
-				
 			})
 			//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
 			$("#direct_button").on("click", function(){
 				var gender = $("#prefer_gender option:selected").val();
 				var size = $("#prefer_size option:selected").val();
-
 				var code = $("#pet_codearray").val()
 				
 				$.ajax({
@@ -408,7 +400,7 @@ thead {
 									    	+"</div>"
 									    	
 									    	+"<div class=col-6>"
-										    	+"<div   id='" +  data[i].sitter_id +"select'>" 
+										    	+"<div id='" +  data[i].sitter_id +"select'>" 
 										    		+"<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
 										    	+"</div>" 
 								    		+"</div>"
