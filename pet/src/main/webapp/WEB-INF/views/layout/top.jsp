@@ -43,7 +43,11 @@
 									</c:when>
 								</c:choose>
 								
-								<li class="nav-item"><a class="page-scroll" href="/pet/erp/user/register.do">회원가입</a></li>
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/user/register.do">회원가입</a></li>
+									</c:when>
+								</c:choose>
 								
 								<li class="nav-item"><a
 									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
