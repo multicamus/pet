@@ -227,6 +227,14 @@
 			val = $(this).attr("value")
 			alert(val)
 		})
-	})
+		
+		$("input[type='checkbox']").on("click", function(){
+			let count = $("input:checked[type='checkbox']").length;
+			if(count>3){
+				$(this).prop("checked", false);
+				alert("3개까지만 선택 할 수 있습니다.")
+			}
+		});
+	});
 </script>
 </html>
