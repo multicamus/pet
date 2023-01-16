@@ -33,7 +33,12 @@
 <!-- ========================= contact-section start ========================= -->
 <section class="contact-section pt-130">
 	<div class="container">	
-		<h2>관리자 페이지</h2>
+		<h2>관리자 페이지</h2></br>
+		<div class="container">
+		<h7><b>전체 시터:</b></h7></br>
+		<h7><b>승인완료 시터:</b></h7>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<h7><b>미승인 시터:</b></h7>
+		</div>
 			<div class="container">	
 				<div class="container row align-items-center pb-30">
 					<div class="col-lg-6"></div>
@@ -43,6 +48,7 @@
 							<option value="id">아이디</option>
 							<option value="name">이름</option>
 							<option value="email">이메일 주소</option>
+							<option value="phone">전화번호</option>
 							<option value="valid">미승인</option>
 						</select>
 					</div>
