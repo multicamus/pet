@@ -1,7 +1,7 @@
 package mutli.com.pet.review;
 
 public class ReviewFileDTO {
-	private String review_no2;
+	private String review_no;
 	private String originalFilename;
 	private String storeFilename;
 	private String reviewFileno;
@@ -25,9 +25,9 @@ public class ReviewFileDTO {
 	}
 	
 	//select
-	public ReviewFileDTO(String review_no2, String originalFilename, String storeFilename, String reviewFileno) {
+	public ReviewFileDTO(String review_no, String originalFilename, String storeFilename, String reviewFileno) {
 		super();
-		this.review_no2 = review_no2;
+		this.review_no = review_no;
 		this.originalFilename = originalFilename;
 		this.storeFilename = storeFilename;
 		this.reviewFileno = reviewFileno;
@@ -36,17 +36,18 @@ public class ReviewFileDTO {
 
 	@Override
 	public String toString() {
-		return "ReviewFileDTO [review_no=" + review_no2 + ", originalFilename=" + originalFilename + ", storeFilename="
+		return "ReviewFileDTO [review_no=" + review_no + ", originalFilename=" + originalFilename + ", storeFilename="
 				+ storeFilename + ", reviewFileno=" + reviewFileno + "]";
 	}
 	
 
 	public String getReview_no() {
-		return review_no2;
+		return review_no;
+		
 	}
 
 	public void setReview_no(String review_no) {
-		this.review_no2 = review_no;
+		this.review_no = review_no;
 	}
 
 	public String getReviewFileno() {
@@ -69,7 +70,4 @@ public class ReviewFileDTO {
 	public void setStoreFilename(String storeFilename) {
 		this.storeFilename = storeFilename;
 	}
-
-	
-		
 }
