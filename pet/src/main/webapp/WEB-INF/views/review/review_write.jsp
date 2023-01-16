@@ -43,8 +43,8 @@
 					<h2>이용후기 작성</h2>
 					<br /> <br />
 
-
-					<form class="needs-validation" action="/pet/review/insert.do" method="post">
+					<form class="needs-validation" action="/pet/review/fileinsert.do"
+						method="post" enctype="multipart/form-data">
 						<div class="row lg-3">
 							<div class="col-lg-3">
 								<h4>이용자 성함</h4>
@@ -103,16 +103,20 @@
 							<div class="col-lg-12">
 								<h4>첨부파일</h4>
 								<div class="row align-items-center">
-									<div class="col-lg-1 pt-10">
-										<!-- <input type="file" class="form-control input-lg" name=""
-											id="files" placeholder="파일선택" multiple="multiple"> -->
+									<!-- <div class="col-lg-1 pt-10">
+										<input type="file" class="form-control input-lg" name=""
+											id="files" placeholder="파일선택" multiple="multiple">
 
 									</div>
-									<div class="col-lg-11 pt-10">
-										<!-- <input type="text" class="form-control" name="review_file"
-											id="review_file" placeholder="파일은 000 mb 제한 입니다." required> -->
-
+ -->									<!-- <div class="col-lg-11 pt-10">
+										<input type="text" class="form-control" name="review_file"
+											id="review_file" placeholder="파일은 000 mb 제한 입니다." required>
+									</div> -->
+									<div class="col-md-8">
+										<input type="file" class="form-control input-lg" name="review_file"
+											id="review_file" placeholder="파일선택" multiple="multiple">
 									</div>
+
 								</div>
 							</div>
 						</div>

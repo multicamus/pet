@@ -41,7 +41,7 @@
                         <br/>
                         <br/>
                         
-                        <form class="needs-validation" action="/pet/review/insert.do">
+                        <form class="needs-validation" action="/pet/review/fileinsert.do">
                             <div class="row lg-3">
                                 <div class="col-lg-3">
                                     <h4>이용자 성함</h4>

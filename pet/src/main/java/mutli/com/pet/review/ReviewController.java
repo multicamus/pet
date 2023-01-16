@@ -38,10 +38,8 @@ public class ReviewController {
 	//이용후기등록  
 	@RequestMapping(value = "/review/insert.do", method = RequestMethod.POST)
 	public String insert(ReviewDTO review) {
-
 	//	System.out.println("ReviewDTO : "+review);
 		service.insert(review);
-
 		return "redirect:/menu/review.do";
 	}
 	
@@ -86,9 +84,8 @@ public class ReviewController {
 	//게시판 상세보기
 	@RequestMapping(value= "/menu/review/detail.do", method = RequestMethod.GET)
 	public ModelAndView read_detail(String review_no) { 
-		ModelAndView mav = new ModelAndView("review/detail");
+		ModelAndView mav = new ModelAndView("review/read");
 		Review2DTO readlist = service.read_detail(review_no);
-		
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;
@@ -132,14 +129,14 @@ public class ReviewController {
 	
 	
 	
-	//텍스트 + 파일용
-	@RequestMapping(value = "/",method = RequestMethod.POST)
+	//텍스트 + 파일용 
+	@RequestMapping(value = "/review/fileinsert.do",method = RequestMethod.POST)
 	public String write(ReviewDTO review,HttpSession session) throws IllegalStateException, IOException {
 		System.out.println("test-------");
 	//	System.out.println("board=>"+board);
 		//1. MultipartFile정보를 추출하기
 		List<MultipartFile> files = review.getReview_file();
-		
+	
 		
 		//2. 업로드될 서버의 경로 - 실제 서버의 경로를 추출하기 위해서 context의 정보를 담고 있는 ServletContext객체를 추출
 		//=>ServletContext는 우리가 생성한 프로젝트가 서버에 배포되는 실제 경로와  context에 대한 정보를 담고 있는 객체
@@ -159,8 +156,8 @@ public class ReviewController {
 	//	System.out.println(boardfiledtolist);
 		//4. 게시글에 대한 일반적인 정보와 첨부되는 파일의 정보를 db에 저장하기
 		service.insert(review,reviewfiledtolist);
-		return "review";
-		
+	
+		return "redirect:/menu/review.do";
 		
 //		if reviewfilelist == null{
 //			service.insert(review,reviewfiledtolist);

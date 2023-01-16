@@ -67,8 +67,4 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("Service read_detail_ajax");
 		return dao.read_detail_ajax(review_no);
 	}
-
-
-
-	
 }

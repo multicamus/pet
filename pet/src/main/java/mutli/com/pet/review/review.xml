@@ -25,39 +25,42 @@
 	</insert>
 
 
-	<!-- <insert id="fileinsert" parameterType="java.util.List"> insert all 
-		<foreach collection="list" item="file" separator=""> into review (review_no2,originalFilename,storeFilename,reviewFileno) 
-		values(review_seq.currval,#{file.originalFilename},#{file.storeFilename},#{file.reviewFileno}) 
-		</foreach> select * from dual </insert> -->
+	<insert id="fileinsert" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="file" separator="">
+			into review_file
+			values(review_seq.currval,#{file.originalFilename},#{file.reviewFileno},#{file.storeFilename})
+		</foreach>
+		select * from dual
+	</insert>
 
 
-	<select id="read_detail_ajax" parameterType="review2" resultType="review2">
+	<select id="read_detail_ajax" parameterType="review2"
+		resultType="review2">
 		select *
 		from review
-		where review_no = (select data.review_no_prev
+		where review_no = (select
+		data.review_no_prev
 		from ( select to_number(r.review_no) no
-		, lag(r.review_no) over(order by to_number(r.review_no)) as
+		,
+		lag(r.review_no) over(order by to_number(r.review_no)) as
 		review_no_prev
-		,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next
+		,lead(r.review_no) over(order by to_number(r.review_no))
+		as review_no_next
 		from review r
-		where r.review_no in (select review_no from review)
+		where r.review_no in (select review_no
+		from review)
 		order by to_number(r.review_no) asc) data
-		where data.no =${review.review_no})
+		where data.no
+		=#{review.review_no})
 	</select>
 
-	<!-- <select id="read_detail_ajax" resultType="review2">
-		select *
-		from review
-		where review_no = (select data.review_no_prev
-		from ( select to_number(r.review_no) no
-		, lag(r.review_no) over(order by to_number(r.review_no)) as
-		review_no_prev
-		,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next
-		from review r
-		where r.review_no in (select review_no from review)
-		order by to_number(r.review_no) asc) data
-		where data.no =15)
-	</select> -->
+	<!-- <select id="read_detail_ajax" resultType="review2"> select * from review 
+		where review_no = (select data.review_no_prev from ( select to_number(r.review_no) 
+		no , lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev 
+		,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next 
+		from review r where r.review_no in (select review_no from review) order by 
+		to_number(r.review_no) asc) data where data.no =15) </select> -->
 
 	<select id="read" resultType="review2">
 		select

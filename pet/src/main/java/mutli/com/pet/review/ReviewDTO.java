@@ -21,9 +21,7 @@ public class ReviewDTO {
 	}
 
 	public ReviewDTO(String review_no, String member_id, Date write_date_rv, Date modify_date_rv, String review,
-
 		String resv_no, List<MultipartFile> review_file, String review_rate) {
-
 		super();
 		this.review_no = review_no;
 		this.member_id = member_id;
