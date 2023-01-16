@@ -37,7 +37,7 @@
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-6 col-xl-12">
-                                	<a href="/pet/menu/reserve/resvhistory_st_list.do">
+                                	<a href="/pet/reserve/list.do">
 	                                    <div class="contact-item">
 	                                        <div class="contact-icon">
 	                                            <i class="lni lni-phone"></i>

@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="multi.com.pet.resv.ResvDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -59,10 +61,44 @@
       <%ArrayList<String> namelist = (ArrayList<String>) request.getAttribute("namelist");
 		ArrayList<String> codelist = (ArrayList<String>) request.getAttribute("codelist");
 		ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
+		
+		//예약내역의 방문날짜를 Date객체에 담는다
+    	Date date = resvdto.getVisit_date();
+		//System.out.println(date);
+		//년월일 사이의 하이픈(-)을 빼준다
+		SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+		//년월일에 서비스시작시간을 붙인다.
+		String startdate = "";
+		String enddate = "";
+		if(resvdto.getService_starttime()>=10){
+			startdate = sf.format(date) + resvdto.getService_starttime()+"00";
+		}else{
+			startdate = sf.format(date) + "0" + resvdto.getService_starttime()+"00";
+		}
+		//년월일에 서비스종료시간을 붙인다.
+		if(resvdto.getService_endtime()>=10){
+			enddate = sf.format(date) + resvdto.getService_endtime()+"00";
+		}else{
+    		enddate = sf.format(date) + "0" + resvdto.getService_endtime()+"00";    					
+		}
+		//현재 날짜와 시간을 가져와서 다 붙여있는 식으로 뽑아낸다.
+		Date nowdate = new Date();
+		SimpleDateFormat sf2 = new SimpleDateFormat("yyyyMMddHHmm");
+		//문자열로 바꾼다.
+		String sysdate = sf2.format(nowdate);
+		//두 날짜 스트링 변수를 정수로 바꾼다
+		long start = Long.valueOf(startdate);
+		long now = Long.valueOf(sysdate);
+		long end = Long.valueOf(enddate);
+
+		System.out.println(now);
+		
 		%> 
       </script>
 </head>
     <body>
+ 	    
+    	
         <!-- ========================= page-banner-section start ========================= -->
         <section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
             <div class="container">
@@ -160,11 +196,29 @@
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">취소여부:</h5> 
-                                                    	<%if(resvdto.getResv_status() == 0 || resvdto.getResv_status() == 1) {%>
-                                                    		<span style="font-size:20px">취소 안함</span>
-                                                    	<%}else{ %>
-                                                    		<span style="font-size:20px; color:red;">취소함</span>
-                                                    	<%} %>
+                                                    	<c:choose>
+	                                                    	<c:when test="${resvdto.resv_status == 0 }">
+	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb; ">매칭요청중</span>
+	                                                    	</c:when>
+	                                                    	<c:when test="${resvdto.resv_status == 1 }">
+	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭완료</span>
+	                                                    	</c:when>		
+                                                    		<c:otherwise>
+	                                                    		<span style="font-size:20px; color:red; font-weight: bold;">취소됨</span>
+	                                               </div>
+	                                               <div>     		
+	                                                    		<h5 style="line-height:200%;display: inline;">취소상세:</h5>
+	                                                    		<c:if test="${resvdto.resv_status == 2 }">
+	                                                    			<span style="font-size:20px; color:red; font-weight: bold;">매칭승인요청기간초과</span>
+	                                                    		</c:if>
+	                                                    		<c:if test="${resvdto.resv_status == 3 }">
+	                                                    			<span style="font-size:20px; color:red; font-weight: bold;">이용자가 취소함</span>
+	                                                    		</c:if>
+	                                                    		<c:if test="${resvdto.resv_status == 4 }">
+	                                                    			<span style="font-size:20px; color:red; font-weight: bold;">펫시터가 취소함</span>
+	                                                    		</c:if>
+                                                    		</c:otherwise>
+                                                    	</c:choose>
                                                 </div>
                                                 <div>
                                                 
@@ -182,7 +236,7 @@
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">서비스 장소:</h5> 
-                                                    <span style="font-size:20px">${resvdto.visit_place }</span>
+                                                   		<span style="font-size:20px">${resvdto.visit_place }</span>
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">서비스 이용 날짜:</h5> 
@@ -277,29 +331,45 @@
                                                 <span style="margin:10px"><h3>펫시터정보</h3></span>
                                             </div>
                                             <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
-                                            <div>
-                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
-                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
-                                                <c:if test="${resvdto.match_method == 'auto_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : 자동매칭 중입니다.</h5>
-                                                </c:if>
-                                                <c:if test="${resvdto.match_method == 'direct_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : ${resvdto.sitter_name }</h5>
-                                                </c:if>
-                                                <c:if test="${resvdto.match_method == 'past_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : ${resvdto.sitter_name }</h5>
-                                                </c:if>
-                                                
-                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
-	                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >강아지 & 고양이 펫시터</h5>
-	                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >강아지 펫시터</h5>
-	                                                <%}else{%>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >고양이 펫시터</h5>
-	                                                <%} %>	
-                                               <%} %> 
+                                            <div class="row">
+                                            	<div class="col-2">
+	                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
+	                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+                                                </div>
+                                               <div class="col-8">
+	                                                <c:if test="${resvdto.match_method == 'auto_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : 자동매칭 중입니다.</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'past_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                
+	                                                
+	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+		                                                <%}else{%>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+		                                                <%} %>	
+	                                               <%} %> 
+	                                               
+	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
+	                                               		
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
+                                               </div>
                                             </div>
+                                      
                                         </div>
                                         <!-- 예약정보 row-2끝 -->
                                     </div>
@@ -342,23 +412,31 @@
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
-                                                    <span style="font-size:20px"><%=resvdto.getTotal_price() %></span>
+                                                    <span style="font-size:20px"><%=resvdto.getTotal_price() %>원</span>
                                                 </div>
                                                
                                             </div>
                                             <!-- 결제상세정보끝 -->
 		                                     <!-- 결제상세정보끝 -->
-		                                     	<%if(resvdto.getResv_status()==0 || resvdto.getResv_status()==1){ %>
+		                                     	
 		                                            <div style="margin-bottom: -10%;">
 								                        <div class="button text-center pb-50" >
-								            	 			<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px">결제취소</button>
+								                        	<c:if test="${resvdto.resv_status == 0 }">
+								            	 				<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px;">결제취소</button>
+			                        						</c:if>
+			                        						<%if(resvdto.getResv_status() == 1 && (start<=(now+600))) {%>
+																<h5 style="line-height:200%;display: inline;  color: #4361eb;">매칭이 이미 완료된 경우 서비스시작시간으로부터 <br> 6시간 이전에는  결제취소가 불가능합니다.</h5> 			                  
+															<%} %>
+															<%if(resvdto.getResv_status() == 1 && (start>(now+600))) {%>
+																<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px">결제취소</button>
+															<%} %>	 	      						
 			                        					</div>
-		                    					  </div>     
-		                    					<%} %>  
+		                    					</div> 
                                         </div>
                                         <!-- 결제정보 row-2끝 -->
                                     </div>
                                     <!-- 결제정보 wrapper 끝 -->
+                                    
                                 </div>
                                  				
                                 <!-- 결제정보  row-1끝 -->

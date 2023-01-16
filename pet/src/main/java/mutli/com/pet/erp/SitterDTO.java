@@ -296,33 +296,7 @@ public class SitterDTO {
 	}
 
 	public void setSitter_age(int sitter_age) {
-		 Calendar cal = Calendar.getInstance();
-	        
-         int currentYear  = cal.get(Calendar.YEAR);
-         int currentMonth = cal.get(Calendar.MONTH) + 1;
-         int currentDay   = cal.get(Calendar.DAY_OF_MONTH);
-         
-         System.out.println(currentYear);
-         
-         cal.setTime(getSitter_birthdate());
-         
-         
-         
-         int birthYear  = cal.get(Calendar.YEAR);
-         int birthMonth  = cal.get(Calendar.MONTH);
-         int birthDay   = cal.get(Calendar.DAY_OF_MONTH);
-         System.out.println(birthYear);
-         // 만 나이 구하기 2022-1995=27 (현재년-태어난년)
-         int age = currentYear - birthYear;
-         // 만약 생일이 지나지 않았으면 -1
-         if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) { 
-        	 // 5월 26일 생은 526
-             // 현재날짜 5월 25일은 525
-             // 두 수를 비교 했을 때 생일이 더 클 경우 생일이 지나지 않은 것이다.
-             age--;
-         }    
-        
-		this.sitter_age = age;
+		this.sitter_age = sitter_age;
 	}
 
 	public String getSitter_shortAddr() {
@@ -356,6 +330,35 @@ public class SitterDTO {
 		this.sitter_shortAddr = shortAddr;
 	}
 
-	
+	//나이 구하는 메소드
+	public  int  calcAge() {
+		 Calendar cal = Calendar.getInstance();
+	        
+        int currentYear  = cal.get(Calendar.YEAR);
+        int currentMonth = cal.get(Calendar.MONTH) + 1;
+        int currentDay   = cal.get(Calendar.DAY_OF_MONTH);
+        
+        System.out.println(currentYear);
+        
+        cal.setTime(sitter_birthdate);
+        
+        
+        
+        int birthYear  = cal.get(Calendar.YEAR);
+        int birthMonth  = cal.get(Calendar.MONTH);
+        int birthDay   = cal.get(Calendar.DAY_OF_MONTH);
+        System.out.println(birthYear);
+        // 만 나이 구하기 2022-1995=27 (현재년-태어난년)
+        int age = currentYear - birthYear;
+        // 만약 생일이 지나지 않았으면 -1
+        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) { 
+       	 // 5월 26일 생은 526
+            // 현재날짜 5월 25일은 525
+            // 두 수를 비교 했을 때 생일이 더 클 경우 생일이 지나지 않은 것이다.
+            age--;
+        }    
+       
+		return age;
+	}
 	
 }

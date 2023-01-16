@@ -76,7 +76,7 @@ add constraint resv_history_fk foreign key(member_id) references job(member_id);
 
 create table member_info(
 
-	user_type varchar2(3)
+	user_type varchar2(3),
     member_id varchar2(15) primary key,
 
     member_pass varchar2(15),

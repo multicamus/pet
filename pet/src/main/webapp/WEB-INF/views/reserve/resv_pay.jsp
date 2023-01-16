@@ -274,28 +274,43 @@
                                                 <span style="margin:10px"><h3>펫시터정보</h3></span>
                                             </div>
                                             <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
-                                            <div>
-                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
-                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
-                                                <c:if test="${resvdto.match_method == 'auto_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : 자동매칭 중입니다.</h5>
-                                                </c:if>
-                                                <c:if test="${resvdto.match_method == 'direct_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : ${resvdto.sitter_name }</h5>
-                                                </c:if>
-                                                <c:if test="${resvdto.match_method == 'past_match' }">
-                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >펫시터 : ${resvdto.sitter_name }</h5>
-                                                </c:if>
-                                                
-                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
-	                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >강아지 & 고양이 펫시터</h5>
-	                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >강아지 펫시터</h5>
-	                                                <%}else{%>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 35px;" >고양이 펫시터</h5>
-	                                                <%} %>	
-                                               <%} %> 
+                                            <div class="row">
+                                            	<div class="col-2">
+	                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
+	                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+                                                </div>
+                                                <div class="col-8">
+	                                                <c:if test="${resvdto.match_method == 'auto_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : 자동매칭 중입니다.</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                <c:if test="${resvdto.match_method == 'past_match' }">
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                </c:if>
+	                                                
+	                                                
+	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+		                                                <%}else{%>
+		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+		                                                <%} %>	
+	                                               <%} %> 
+	                                               
+	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
+	                                               		
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
+                                               </div>
                                             </div>
                                         </div>
                                         <!-- 예약정보 row-2끝 -->

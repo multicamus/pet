@@ -202,7 +202,7 @@
 									</fieldset>
 								</div>
 								
-								<div class="col-md-6">
+								 <div class="col-md-6">
 									<h4>다니는 병원의 이름</h4>
 									<input type="text" name="animalhospital_name" id="hospital" placeholder="ex) 더힐동물의료센터" required>
 								</div>
@@ -210,7 +210,7 @@
 								<div class="col-md-6">
 									<h4>다니는 병원의 주소</h4>
 									<input type="text" name="animalhospital_addr" id="hospital" placeholder="ex) 서울특별시 용산구 한남동 29-6" required>
-								</div>
+								</div> 
 
 								<div class="row">
 									<div class="col-12">

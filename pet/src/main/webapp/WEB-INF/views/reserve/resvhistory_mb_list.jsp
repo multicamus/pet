@@ -159,9 +159,19 @@
             		//년월일 사이의 하이픈(-)을 빼준다
     				SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
             		//년월일에 서비스시작시간을 붙인다.
-    				String startdate = sf.format(date) + resvdto.getService_starttime()+"00";
+            		String startdate = "";
+            		String enddate = "";
+            		if(resvdto.getService_starttime()>=10){
+    					startdate = sf.format(date) + resvdto.getService_starttime()+"00";
+            		}else{
+    					startdate = sf.format(date) + "0" + resvdto.getService_starttime()+"00";
+            		}
     				//년월일에 서비스종료시간을 붙인다.
-            		String enddate = sf.format(date) + resvdto.getService_endtime()+"00";
+    				if(resvdto.getService_endtime()>=10){
+            			enddate = sf.format(date) + resvdto.getService_endtime()+"00";
+    				}else{
+                		enddate = sf.format(date) + "0" + resvdto.getService_endtime()+"00";    					
+    				}
     				//현재 날짜와 시간을 가져와서 다 붙여있는 식으로 뽑아낸다.
             		Date nowdate = new Date();
             		SimpleDateFormat sf2 = new SimpleDateFormat("yyyyMMddHHmm");
@@ -190,7 +200,7 @@
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 -->
                                 <div class="row">
                                     <div class="col-2">
-                                    	<% if(start<=now&&now<=end){
+                                    	<% if(start<now&&now<=end){
                                     			if(resvdto.getResv_status()==1){%>
                                         			<span style="margin-right:50px"><h4>돌봄 중</h4></span>
                                         	<%}else{ %>
@@ -202,7 +212,7 @@
 	                                       		 if(resvdto.getResv_status()==0){%>
 	                                      			<span style="margin-right:50px;"><h4 style="text-align:center;">매칭 승인 <br> 대기중</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==1){ %>
-	                                      			<span style="margin-right:50px"><h4>돌봄 예정</h4></span>
+	                                      			<span style="margin-right:50px"><h4  style="color: #4361eb;">돌봄 예정</h4></span>
 	                                      	<%}else{%>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
 	                                  		<%}%>	 
@@ -212,21 +222,23 @@
                                     <div class="col-10" >
                                         <span><h5>방문날짜: </h5></span>
                                         <span><h5><%= hangeuldate %></h5></span>
-                                        <div class="row" style="float: right;">
-	                                        <div>
-			                                       <span><h5>예약날짜: </h5></span>
-			                                        <span><h5><%= resvdto.getResv_date() %>
-			                                        <br>
-			                                </div>        
-		                                </div>
-		                                <%if(resvdto.getResv_status()!=0 && resvdto.getResv_status()!=1){ %>
-		                                <div class="row" style="float: right;">
-			                                <div>
-			                                		<span><h5 style="color: red;">예약취소날짜: </h5></span>
-			                                        <span><h5  style="color: red;"><%= resvdto.getResv_change_date() %></h5></span>
-	                                    	</div>
+                                        <div style="float: right;">
+                                        	<div class="row" >
+		                                        <div>
+				                                       <span><h5>예약날짜:</h5></span>
+				                                        <span><h5><%= resvdto.getResv_date() %> </h5></span>
+				                                        <br>
+				                                </div>        
+			                                </div>
+			                                <%if(resvdto.getResv_status()!=0 && resvdto.getResv_status()!=1){ %>
+			                                <div class="row" >
+				                                <div>
+				                                		<span><h5 style="color: red;">예약취소날짜: </h5></span>
+				                                        <span><h5  style="color: red;"><%= resvdto.getResv_change_date() %></h5></span>
+		                                    	</div>
+		                                    </div>
+		                                    <%} %>
 	                                    </div>	
-	                                    <%} %>
                                 </div>
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
 
@@ -255,9 +267,9 @@
 
                                             <div style="font-size: 20px; margin-top: 20px ;">
                                                 <span>돌봄 서비스 가격:</span>
-                                                <span><%=resvdto.getTotal_price() %></span>
+                                                <span><%=resvdto.getTotal_price() %>원</span>
                                                 <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span> <% if(resvdto.getService_starttime() < 12) { %>
+                                                	<% if(resvdto.getService_starttime() < 12) { %>
                                                    	 	<span style="font-size:20px">오전 <%= resvdto.getService_starttime()%>시</span>
                                                     <%}else if(resvdto.getService_starttime() == 12){%>
                                                     	<span style="font-size:20px">오후 <%= resvdto.getService_starttime()%>시</span>
@@ -296,6 +308,8 @@
                     <!-- 돌봄예정 서비스 칸 끝-->
                 </div>
                 <!-- 돌봄예정 서비스 row 끝-->
+                </div>
+                </div>
 				<%}else{ %>
                  <div class="row pastresv">
                     <!-- 돌봄예정 서비스 칸 -->
@@ -317,15 +331,26 @@
                                         	
                                           
                                     </div>
-                                    <div class="col-10">
+                                     <div class="col-10" >
                                         <span><h5>방문날짜: </h5></span>
                                         <span><h5><%= hangeuldate %></h5></span>
-                                      
-	                                    <div style="float: right;">
-		                                       <span><h5>예약날짜: </h5></span>
-		                                        <span><h5><%= resvdto.getResv_date() %></h5></span>
-		                                </div>    
-                                    	
+                                        <div style="float: right;">
+                                        	<div class="row" >
+		                                        <div>
+				                                       <span><h5>예약날짜:</h5></span>
+				                                        <span><h5><%= resvdto.getResv_date() %> </h5></span>
+				                                        <br>
+				                                </div>        
+			                                </div>
+			                                <%if(resvdto.getResv_status()!=0 && resvdto.getResv_status()!=1){ %>
+			                                <div class="row" >
+				                                <div>
+				                                		<span><h5 style="color: red;">예약취소날짜: </h5></span>
+				                                        <span><h5  style="color: red;"><%= resvdto.getResv_change_date() %></h5></span>
+		                                    	</div>
+		                                    </div>
+		                                    <%} %>
+	                                    </div>	
                                 </div>
                                 <!-- 돌봄 예정 ㅇㅇㅇㅇ년 ㅇㅇ월 ㅇㅇ일 끝-->
 
@@ -354,9 +379,9 @@
 
                                             <div style="font-size: 20px; margin-top: 20px ;">
                                                 <span>돌봄 서비스 가격:</span>
-                                                <span><%=resvdto.getTotal_price() %></span>
+                                                <span><%=resvdto.getTotal_price() %>원</span>
                                                 <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span> <% if(resvdto.getService_starttime() < 12) { %>
+                                                	 <% if(resvdto.getService_starttime() < 12) { %>
                                                    	 	<span style="font-size:20px">오전 <%= resvdto.getService_starttime()%>시</span>
                                                     <%}else if(resvdto.getService_starttime() == 12){%>
                                                     	<span style="font-size:20px">오후 <%= resvdto.getService_starttime()%>시</span>

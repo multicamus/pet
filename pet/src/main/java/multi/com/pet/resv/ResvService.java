@@ -20,5 +20,7 @@ public interface ResvService {
 	int changeStatus();
 	//예약취소
 	int cancelResv(String resv_no, LoginUserDTO user);
+	//예약신청 승인(시터가 이용자가 신청한 매칭을 승인해줌)
+	int approve(String resv_no);
 	
 }

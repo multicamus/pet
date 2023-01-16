@@ -522,6 +522,7 @@ thead {
 				
 			})
 
+			
 		})
       </script>    
       
@@ -591,7 +592,7 @@ thead {
             <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="single-pricing active mb-50">
                     <div class="row justify-content-center">
-                    	<form action="/pet/reserve/resv2_mb.do" method="post" >
+                    	<form action="/pet/reserve/resv2_mb.do" method="post" id="directmatch" >
                     		<div class=row>
 		                  		<div class="col-lg-4">
 		                  			<input type="hidden" id="match_method" name="match_method"  value="direct_match">
@@ -658,7 +659,7 @@ thead {
         	<!-- 자동매칭 시작 -->
             <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <div class="single-pricing active mb-50">
-               		 <form action="/pet/reserve/resv2_mb.do" method="post" >
+               		 <form action="/pet/reserve/resv2_mb.do" method="post" onsubmit="return doAction();">
                         <div class="row">
                             <div class="col-4 justify-content-center">
                             <input type="hidden" id="match_method" name="match_method"  value="auto_match">
@@ -816,5 +817,16 @@ thead {
 		 		</div>
 		  </div>
 		</div>
+		<script>
+			let dm = document.getElementById("directmatch");
+			dm.addEventListener("submit", function(e){
+				let sitteridselected = document.getElementById("sitter_id")
+				if(sitteridselected.value.length == 0){
+					alert("펫시터를 선택해주세요")
+					e.preventDefault();
+				}
+			})
+			
+		</script>
     </body>
 </html>

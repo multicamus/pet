@@ -172,7 +172,7 @@
 	<select id="stresvlist" parameterType="String" resultType="resv">
 			select * from resv_history
 			where sitter_id = #{sitter_id}
-			order by resv_no asc
+			order by resv_no desc
 	</select>
 	<!-- 예약번호로 예약내역 row가져오기 -->
 	<select id="resvread" parameterType="String" resultType="resv">
@@ -184,24 +184,35 @@
 	<update id="changestatus">
 			update resv_history
 			set resv_status = 2,
-			resv_change_date = TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')
-			where resv_status = 0
-            <![CDATA[						
-			and (TO_DATE(visit_date || ' ' || LPAD(service_starttime, 2, '0' || ':00:00'), 'YYYY-MM-DD HH24:MI:SS') 
-            - TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60 < 120
+			resv_change_date = to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_starttime-2, 2, '0') || ':00:00'
+            <![CDATA[	
+            where resv_status = 0					
+			and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_starttime, 2, '0') || ':00:00'
+            < to_char(sysdate + 1/12 , 'YYYY-MM-DD HH24:MI:SS')
 			]]>
 	
 	</update>
 	<!-- 이용자가 결제취소할경우  -->
 	<update id="mbcancelresv" parameterType="String">
 			update resv_history
-			set resv_status = 3
+			set resv_status = 3,
+			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
 			where resv_no=#{resv_no}
+			
 	</update>
 	<!-- 펫시터가 승인거절할경우  -->
 	<update id="stcancelresv" parameterType="String">
 			update resv_history
-			set resv_status = 4
+			set resv_status = 4,
+			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
+			where resv_no=#{resv_no}
+	</update>
+	
+	<!-- 펫시터가 승인을 수락할 경우 -->
+		<update id="approve" parameterType="String">
+			update resv_history
+			set resv_status = 1,
+			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
 			where resv_no=#{resv_no}
 	</update>
 </mapper>

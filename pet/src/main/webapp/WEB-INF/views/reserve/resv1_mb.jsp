@@ -269,7 +269,7 @@
             <!-- 전체 container -->
             <div class="container">
                 <!-- 전체 form -->
-                <form action="/pet/reserve/resv1_mb.do" method="post" class="contact-form">
+                <form action="/pet/reserve/resv1_mb.do" method="post" class="contact-form" onsubmit="return doAction();" id="form1">
                 	
                     <!-- 전체 row -->
                     <div class="row">
@@ -297,12 +297,12 @@
                                             <div class="row" >
                                             	<c:forEach var="pet" items="${mypetlist }" varStatus="status">
 	                                                <div class="col-md-4"  >
-
+													<fieldset>
 	                                                    <label for="petnamelist${status.count }"  style=" cursor: pointer; ">
-	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" class="selectpet${status.count }" name="pet_namelist" >${pet.pet_name }
+	                                                    	<input type="checkbox" id="petnamelist${status.count }" value="${pet.pet_name }" class="selectpet${status.count }" name="pet_namelist">${pet.pet_name }
 	                                                    	 <input type="checkbox" id="petcodelist${status.count }" value="${pet.pet_code }" class="selectpet${status.count }" name="pet_codelist" style="display:none;">
 	                                               			<input type="checkbox" id="petidlist${status.count }" value="${pet.pet_id }" class="selectpet${status.count }" name="pet_idlist" style="display:none;"> 
-
+													</fieldset>
 	                                               		</label>
 	                                                </div>
                                                 </c:forEach>
@@ -386,7 +386,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="date" >날짜를 선택해주세요<br/>
-                                                <input type="date" id="date" name="visit_date" >
+                                                <input type="date" id="date" name="visit_date" required>
                                             </label>
                                         </div>
                                     </div>
@@ -404,6 +404,7 @@
                                         <div class="col-12">
                                         방문시간을 선택해주세요<br/>
                                             <select id="service_starttime" name="service_starttime" style="cursor:pointer;" required>
+                                                <option value="">선택</option>                                                
                                                 <option value="8">오전 8:00</option>
                                                 <option value="9">오전 9:00</option>
                                                 <option value="10">오전 10:00</option>
@@ -469,9 +470,9 @@
                         <!-- 2번째 칸 -->
 
                     <!-- 다음버튼 -->
-                        <div class="col-12">
+                        <div class="col-12" style="margin-top: -20%;">
                             <div class="button text-center pb-50">
-                                <button id="nextbtn" type="submit" class="theme-btn"  style="margin-left: 1150px;">다음</button>
+                                <button id="nextbtn" type="submit" onclick="return CheckTest(); return CheckTime();"  class="theme-btn"  style="margin-left: 1150px;">다음</button>
                                 
                             </div>
                         </div>
@@ -498,6 +499,26 @@
                 
             today = yyyy + '-' + mm + '-' + dd;
             document.getElementById("date").setAttribute("min", today);
+            /* 반려동물 체크박스 필수로 만들기 */
+            function CheckTest() {
+            	var arrSelect = document.getElementsByName("pet_namelist");
+            	for(var i =0; i< arrSelect.length; i++){
+            		if(arrSelect[i].checked){
+            			return true;
+            		}
+            	}
+            	alert("반려동물을 선택해주세요");
+            	return false;
+            }
+            
+            function CheckTime(){
+            	var timeSelect = document.getElementById("service_starttime").value
+            	if(timeSelect == "선택"){
+            		alert("날짜를 선택해주세요")
+            		return false
+            	}
+            		return true;
+            }
         </script> 
     </body>
 </html>

@@ -50,7 +50,15 @@
         width: 350px;  
         margin-bottom: 35px;   
         }
-
+		
+		#directmeet{
+		border: 1px solid #F4EEFB;
+        border-radius: 25px;
+        padding: .8em .5em;     
+        width: 350px;  
+        margin-bottom: 35px;   
+		}
+		
         #parking{
         border: 1px solid #F4EEFB;
         border-radius: 25px;
@@ -214,7 +222,7 @@
                                     <!-- 1번째 칸 직접만남 입력칸(직접만남선택시 이 화면이 보여지도록) -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea name="direct_meet" id="message" placeholder="대면만남시 특이사항 기입(필수)" rows="5"></textarea>
+                                            <textarea name="direct_meet" id="directmeet" placeholder="대면만남시 특이사항 기입(필수)" rows="5"></textarea>
                                         </div>
                                     </div> 
                                     </div> 
@@ -244,7 +252,7 @@
                                     <!-- 2번째 칸 주차여부 입력 -->    
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="parking" id="parking" placeholder="펫시터가 방문할 시의 주차가능여부, 주차장소 등의 정보를 기입해주세요(필수)" rows="5"></textarea>
+                                            <textarea class="message" name="parking" id="parking"  required placeholder="펫시터가 방문할 시의 주차가능여부, 주차장소 등의 정보를 기입해주세요(필수)" rows="5"></textarea>
                                         </div>
                                     </div>
                                 <!-- <form action="assets/php/mail.php" class="contact-form"> -->
@@ -259,7 +267,7 @@
                                     <!-- 2번째 칸 용품위치 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="supplies_place" id="feed" placeholder="펫시터님이 반려동물을 위해 사용할 용품들의 위치를 알려주세요(필수)" rows="5"></textarea>
+                                            <textarea class="message" name="supplies_place" id="feed" required placeholder="펫시터님이 반려동물을 위해 사용할 용품들의 위치를 알려주세요(필수)" rows="5"></textarea>
                                         </div>
                                     </div>
                                 <!-- </form> -->
@@ -287,7 +295,7 @@
                                     <!-- 3번째 칸 배변쓰레기 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="cleaning_method" id="clean" placeholder="" rows="5"></textarea>
+                                            <textarea class="message" name="cleaning_method" id="clean" required placeholder="" rows="5"></textarea>
                                         </div>
                                     </div>
                                     
@@ -302,7 +310,7 @@
                                     <!-- 3번째 칸 비상연락처 입력 -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <textarea class="message" name="emergency_phone" id="emergency" placeholder="" rows="5"></textarea>
+                                            <textarea class="message" name="emergency_phone" id="emergency"  required placeholder="" rows="5"></textarea>
                                         </div>
                                     </div>
                                     
@@ -316,7 +324,7 @@
                     <div >
                         <div class="button text-center pb-50">
                             <button type="button" class="theme-btn" onclick="location.href='javascript:history.back()'" style="display:inline-block; margin-left:1000px">이전</button>
-            	 			<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px">확인</button>
+            	 			<button type="submit" class="theme-btn"  id="finalbtn" onclick="return checkPass();" style="display:inline-block; margin-left:0px" >확인</button>
                         </div>
                     </div>    
 					        <!-- input hidden -->
@@ -355,6 +363,37 @@
             </div>
             <!-- 전체 container끝 -->
         </section>
+        <script>
+        	function checkPass() {
+        		
+                	var visitmethod = document.getElementById("visit_method").value
+                	
+                	if(visitmethod === "pass_visit"){
+                		homepass1 = document.getElementById("homepass1").value
+                		homepass2 = document.getElementById("homepass2").value
+						
+                		
+                		if(homepass1=="" || (homepass2="")){
+                			alert("비밀번호를 입력해주세요!")
+                			return false;
+                		}else{
+                			return true;
+                		}
+                	}else{
+                		directmeet=document.getElementById("directmeet").value
+                		if(directmeet == ""){
+                			alert("직접만남란에 내용을 입력해주세요");
+                			return false;
+                		}else{
+                			return true;
+                		}
+                		
+                	}
+                		
+                
+        	}
+        </script>
+        
     </body>
 </html>
 

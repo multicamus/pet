@@ -72,6 +72,10 @@ public class ResvServiceImpl implements ResvService {
 			return dao.stcancelResv(resv_no);
 		}
 	}
+	@Override
+	public int approve(String resv_no) {
+		return dao.approve(resv_no);
+	}
 	
 	
 }
