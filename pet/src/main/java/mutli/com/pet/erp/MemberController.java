@@ -55,6 +55,7 @@ public class MemberController {
 		SitterDTO user = service.login(loginUserInfo);
 		
 		String size = Integer.toString(service.sitter_resvlist(loginUserInfo.getSitter_id()).size());
+		
 		hs.setAttribute("size", size);
 		String view = "";
 		
