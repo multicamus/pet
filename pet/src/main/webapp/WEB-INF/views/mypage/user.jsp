@@ -54,7 +54,7 @@
 					</c:forEach>
 					<!-- 동물 정보 끝 -->
 					<c:choose>
-						<c:when test="${fn:length(mypetlist) == 0}">
+						<c:when test="${fn:length(mypetlist) != 3}">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
 									<div class="contact-content">
@@ -67,7 +67,6 @@
 					</c:choose>
 					
 					<!-- 예약 정보 시작 -->
-<!-- 					<a href="/pet/reserve/list.do"> -->
 					<c:choose>
 						<c:when test="${fn:length(myresvlist) == 0}">
 							<div class="col-12 col-md-6 col-xl-12">
@@ -82,8 +81,20 @@
 								</div>
 							</div>
 						</c:when>
+						<c:otherwise>
+							<div class="col-12 col-md-6 col-xl-12">
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="lni lni-alarm-clock"></i>
+									</div>
+									<div class="contact-content">
+										<h4><a href="/pet/reserve/list.do">나의 예약 및 결제 내역</a></h4>
+										<h4><a href="/pet/reserve/list.do">+ 확인하기</a></h4>
+									</div>
+								</div>
+							</div>
+						</c:otherwise>
 					</c:choose>
-					
 					<!-- 예약 정보 끝 -->
 				</div>
 			</div>
