@@ -129,6 +129,14 @@ public class MemberController {
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
+	@RequestMapping(value = "/sitter/certi_update.do", method = RequestMethod.POST)
+	public String sitter_certi_update(SitterDTO sitter) {
+		System.out.println(sitter);
+		int result = service.certi_update(sitter);
+		System.out.println(result);
+		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
+	}
+	
 //	@RequestMapping(value = "user/register.do",produces ="application/text;charset=utf-8" )
 //	@ResponseBody
 //	public String kakao_login(@RequestBody String map) {
@@ -191,8 +199,43 @@ public class MemberController {
 		}
 		return msg;
 	}
-
 	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	

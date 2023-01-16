@@ -42,6 +42,11 @@
 		SET sitter_code=#{sitter_code}, sitter_email=#{sitter_email}, sitter_phone=#{sitter_phone}, sitter_addr1=#{sitter_addr1}, sitter_addr2=#{sitter_addr2}, sitter_birthdate=#{sitter_birthdate}, service_area=#{service_area}, sitter_info=#{sitter_info}
 		WHERE sitter_id = #{sitter_id}
 	</update>
+	<update id="sitter_certi_update" parameterType="sitter">
+		UPDATE sitter_info
+		SET sitter_certificate=#{sitter_certificate}
+		WHERE sitter_id = #{sitter_id}
+	</update>
 	<!-- update end-->
 	
 	<!-- insert start -->

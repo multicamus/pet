@@ -24,6 +24,7 @@ public interface MemberDAO {
 	
 	// 업데이트
 	int update(SitterDTO sitter);
+	int certi_update(SitterDTO sitter);
 	int update(MemberDTO member);
 
 	// 등록

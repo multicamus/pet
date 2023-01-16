@@ -7,13 +7,6 @@
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
-        <style>
-        	.wide{
-        	background-color: #8a8a8a;
-        	border: #8a8a8a;
-        	}
-        </style>
-        
     </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -85,10 +78,16 @@
                                         </div>
                                         <div class="contact-content">
                                             <h4>자격증</h4>
-                                            <p>${sitter.sitter_certificate}</p>
-                                            <p>자격증</p>
-                                            <p><a href="#">등록</a></p>
-                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
+                                            <%
+								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                   	   		if(sitter.getSitter_certificate() != null){
+                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
+                                   	   		int size = certificate.length;
+                                   	   		for(int i = 0; i < size; i++){%>
+                                   	   		<p><%=certificate[i] %></p>
+                                   	   		<%}}%>
+                                            
+                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">한국 애견 협회</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -108,6 +107,13 @@
                                 </div>
                             </div>
                                 <div class="contact-form">
+                                    <div class="row align-items-center">
+                                    	<div class="col-md-auto"><h4>이름</h4></div>
+                                       	<div class="col-md-4">
+                                       		<input type="text" name="photo" id="photo" placeholder="사진" value="${sitter.sitter_name}" disabled>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이름</h4></div>
                                        	<div class="col-md-4">
@@ -190,14 +196,15 @@
                                         <h4>서비스 가능 지역</h4>
                                         <div class="pt-20">
                                    	   		<%
-								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                   	   		if(sitter.getService_area() != null){
                                    	   		String[] area = sitter.getService_area().split(",");
                                    	   		int size = area.length;
                                    	   		for(int i = 0; i < size; i++){%>
                                    	   		<button class="btn btn-outline-primary" type="button"><%=area[i] %></button>
-                                   	   		<%}%>
+                                   	   		<%}}%>
 		                                </div>
 	                                </div>
+            
                                 <div class="row pt-100">
                                     <div class="col-12">
                                         <div class="button text-center">

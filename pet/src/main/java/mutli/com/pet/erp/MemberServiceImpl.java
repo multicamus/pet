@@ -61,6 +61,12 @@ public class MemberServiceImpl implements MemberService {
 	public int update(SitterDTO sitter) {
 		return dao.update(sitter);
 	}
+	
+
+	@Override
+	public int certi_update(SitterDTO sitter) {
+		return dao.certi_update(sitter);
+	}
 
 	@Override
 	public int update(MemberDTO member) {

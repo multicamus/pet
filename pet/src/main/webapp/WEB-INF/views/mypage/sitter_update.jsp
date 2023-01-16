@@ -1,3 +1,4 @@
+<%@page import="mutli.com.pet.erp.SitterDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -44,10 +45,26 @@
                                         </div>
                                         <div class="contact-content">
                                             <h4>자격증</h4>
-                                            <p>${sitter.sitter_certificate}</p>
-                                            <p>자격증</p>
-                                            <p><a href="#">등록</a></p>
-                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
+	                                            <%
+										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+		                                   	   		if(sitter.getSitter_certificate() != null){
+		                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
+		                                   	   		int size = certificate.length;
+		                                   	   		for(int i = 0; i < size; i++){%>
+		                                   	   		<p><%=certificate[i] %></p>
+	                                   	   		<%}}%>
+	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post">
+	                                            <div class="pb-30" id="sitter_certificate">
+		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" >
+		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
+	                                            </div>
+	                                            <div>
+		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button>
+		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button>
+		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
+	                                            </div>
+	                                            
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -209,6 +226,16 @@
     </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	const add = () => {
+	    const box = document.getElementById("sitter_certificate");
+	    const newP = document.createElement('p');
+	    newP.innerHTML = "<input type='text' name='sitter_certificate' placeholder='자격증 등록'> <input type='button' class='btn-close' style='width:10px;' onclick='remove(this)'>";
+	    box.appendChild(newP);
+	}
+	const remove = (obj) => {
+	    document.getElementById("sitter_certificate").removeChild(obj.parentNode);
+	}
+
 	document.getElementById("addr1").addEventListener("click", function() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -232,8 +259,8 @@
 		
 		$(".narrow").on("click", function(){
 			val = $(this).attr("value")
-			alert(val)
-		})
+			alert(val);
+		})	
 		
 		$("input[type='checkbox']").on("click", function(){
 			let count = $("input:checked[type='checkbox']").length;
