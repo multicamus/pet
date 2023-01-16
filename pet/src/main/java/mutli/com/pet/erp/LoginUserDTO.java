@@ -26,7 +26,8 @@ public class LoginUserDTO {
 	private	String sitter_rate;
 	//추가 by 최여경 (01/15)
 	private String sitter_age;
-	
+	//추가 (01/17)
+		
 	private String member_id;
 	private String member_no; 
 	// 필요 없는 테이블인 같음

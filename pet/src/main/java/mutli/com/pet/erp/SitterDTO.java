@@ -36,13 +36,6 @@ public class SitterDTO {
 	private int sitter_age;
 	private String sitter_shortAddr; //00시 00구 혹은 경기도 00시 00구로 축약시킨 주소 String
 	
-
-	
-	
-	
-
-	
-	
 	public SitterDTO() {
 		
 	}

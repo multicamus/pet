@@ -71,7 +71,14 @@
                             <!-- 시터 인사 끝 -->
                             
                             <!-- 시터 정보 시작 -->
-                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
+	                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
+                               	 	<div class="row align-middle">
+                                    	<div class="col-md-auto"><h4>이름</h4></div>
+                                    	<div class="col-md-auto">
+                                        	<input type="text" name="sitter_name" id="name" placeholder="이름" value="${sitter.sitter_name}" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    
                                	 	<div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이름</h4></div>
                                     	<div class="col-md-auto">

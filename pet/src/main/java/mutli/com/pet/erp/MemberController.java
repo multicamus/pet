@@ -33,7 +33,6 @@ public class MemberController {
 	@RequestMapping(value = "user/login.do", method = RequestMethod.POST)
 	public String login(MemberDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		MemberDTO user = service.login(loginUserInfo);
-
 		List<PetDTO> petList = service.petList(loginUserInfo);
 		String view = "";
 		
@@ -51,8 +50,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "sitter/login.do", method = RequestMethod.POST)
-	public String login(SitterDTO loginUserInfo, Model model) {
+	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
+		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
+		
+		String size = Integer.toString(service.sitter_resvlist(loginUserInfo.getSitter_id()).size());
+		hs.setAttribute("size", size);
 		String view = "";
 		
 		if(user!=null) {
