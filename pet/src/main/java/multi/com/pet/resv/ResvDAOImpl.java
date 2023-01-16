@@ -77,11 +77,13 @@ public  class ResvDAOImpl implements ResvDAO {
 	public int changeStatus() {
 		return sqlsession.update("mutli.com.pet.resv.changestatus");
 	}
+	
 	//이용자가 결제취소해서 예약취소(resv_status -> 3으로 바뀜)
 	@Override
 	public int mbcancelResv(String resv_no) {
 		return sqlsession.update("mutli.com.pet.resv.mbcancelresv", resv_no);
 	}
+	
 	//펫시터가 승인거절해서 예약취소(resv_status -> 4으로 바뀜)
 	@Override
 	public int stcancelResv(String resv_no) {

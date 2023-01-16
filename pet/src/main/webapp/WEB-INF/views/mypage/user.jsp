@@ -54,7 +54,7 @@
 					</c:forEach>
 					<!-- 동물 정보 끝 -->
 					<c:choose>
-						<c:when test="${fn:length(mypetlist) == 0}">
+						<c:when test="${fn:length(mypetlist) != 3}">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
 									<div class="contact-content">
@@ -65,19 +65,38 @@
 							</div>
 						</c:when>
 					</c:choose>
+					
 					<!-- 예약 정보 시작 -->
-					<div class="col-12 col-md-6 col-xl-12">
-						<div class="contact-item">
-							<div class="contact-icon">
-								<i class="lni lni-alarm-clock"></i>
+					<c:choose>
+						<c:when test="${fn:length(resvlist) == 0}">
+							<div class="col-12 col-md-6 col-xl-12">
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="lni lni-alarm-clock"></i>
+									</div>
+									<div class="contact-content">
+										<h4><a href="/pet/menu/reserve/resv1_mb.do">예약 시작하기!</a></h4>
+										<p><a href="/pet/menu/reserve/resv1_mb.do">+ 추가 등록</a></p>
+									</div>
+								</div>
 							</div>
-							<div class="contact-content">
-								<h4><a href="/pet/reserve/list.do">나의 예약 및 결제</a></h4>
-								<p>예정 중인 예약</p>
-								<p>예정 중인 예약</p>
+						</c:when>
+						<c:otherwise>
+							<div class="col-12 col-md-6 col-xl-12">
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="lni lni-alarm-clock"></i>
+									</div>
+									<div class="contact-content">
+										<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
+										<c:forEach var="resv" items="${resvlist}" varStatus="status">
+											<p><a href="/pet/reserve/list.do">${resv.sitter_id}</a></p>
+										</c:forEach>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
+						</c:otherwise>
+					</c:choose>
 					<!-- 예약 정보 끝 -->
 				</div>
 			</div>
@@ -132,12 +151,21 @@
 	                        <div class="col-lg-8">
 	                        	연락처 : <input type="tel" name="phone" id="phone" placeholder="연락처" value="${member.member_phone}" disabled>
 	                        </div>
+                            <div class="col-lg-8">
+                              	생일: <input type="date" name="member_birthdate" id="birthdate" placeholder="생일" value="${member.member_birthdate}" disabled> 
+                            </div>
 	                        <div class="col-lg-8">
 	                        	주소: <input type="text" name="addr1" id="addr1" placeholder="주소" value="${member.member_addr1}" disabled> 
 	                        </div>
 	                        <div class="col-lg-8">
 	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" disabled> 
 	                        </div>
+	                        	
+							<div class="col-lg-8">
+								<h4>주로 다니는 병원의 이름과 주소</h4>
+								<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" disabled>
+								<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr }" disabled>
+							</div>
 	                        
 	                        <div class="col-12">
 	                            <div class="button text-center">

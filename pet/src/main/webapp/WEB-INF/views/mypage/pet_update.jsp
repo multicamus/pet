@@ -223,12 +223,6 @@
 											</c:choose>
 										</fieldset>
 									</div>
-									
-									<div class="col-md-12">
-										<h4>주로 다니는 병원의 이름과 주소</h4>
-										<input type="text" name="animalhospital_name" id="hospital_name" placeholder="동물병원 이름" value="${pet.animalhospital_name}" required>
-										<input type="text" name="animalhospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${pet.animalhospital_addr }" required>
-									</div>
 
 									<div class="row">
 										<div class="col-12">

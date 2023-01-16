@@ -2,16 +2,21 @@ package mutli.com.pet.erp;
 
 import java.util.List;
 
+import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
 public interface MemberService {
 	// 로그인
 	MemberDTO login(MemberDTO loginUser);
+	SitterDTO login(SitterDTO loginUser);
 	List<PetDTO> petList(MemberDTO loginUser);
 	List<PetDTO> petList(String member_id);
-	
-	// 로그인
-	SitterDTO login(SitterDTO loginUser);
+	List<ResvDTO> resvlist(String member_id);
+	List<ResvDTO> sitter_resvlist(String sitter_id);
+
+	// id check
+	MemberDTO idcheck(String id);
+	SitterDTO sitteridcheck(String id);
 	
 	// 읽기
 	MemberDTO member_read(String member_id);

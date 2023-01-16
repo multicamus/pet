@@ -21,7 +21,6 @@ public class MemberDTO {
 	private Date end_date;
 	private String member_code;
 	private String member_status;
-
 	
 	//필요해서 추가함 by 최여경
 	private String member_shortAddr; //00특별시 00구와 같은 주소 문자열 변수

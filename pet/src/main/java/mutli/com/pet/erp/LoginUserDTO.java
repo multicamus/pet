@@ -5,9 +5,6 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class LoginUserDTO {
-//	SitterDTO sitter;
-//	MemberDTO member;
-	
 	private String user_type;
 	private String name;
 	
@@ -52,10 +49,10 @@ public class LoginUserDTO {
 	private String hospital_addr;
 	
 	
-	// 멤버용
+	// 멤버용 (동물병원 수정)
 	public LoginUserDTO(String user_type, String name, String member_id, String member_no, String member_gender, String member_email,
 			String member_phone, String member_addr1, String member_addr2, MultipartFile member_photo, Date start_date,
-			Date end_date, String member_code, String member_status) {
+			Date end_date, String member_code, String member_status, String hospital_name, String hospital_addr) {
 		super();
 		this.user_type = user_type;
 		this.name = name;
@@ -71,6 +68,8 @@ public class LoginUserDTO {
 		this.end_date = end_date;
 		this.member_code = member_code;
 		this.member_status = member_status;
+		this.hospital_addr = hospital_addr;
+		this.hospital_name = hospital_name;
 	}
 	
 	// 시터용

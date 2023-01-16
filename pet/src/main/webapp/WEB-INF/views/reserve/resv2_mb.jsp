@@ -325,6 +325,7 @@ thead {
 	background: #3e62eb;
 }
 
+<<<<<<< HEAD
 td, th {
 	padding: 1em .5em;
 	vertical-align: middle;
@@ -385,6 +386,112 @@ td {
 						$("#nextbtn").on("click", function() {
 							value = $("#sitter_id").attr("value")
 
+=======
+            
+      
+          </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
+    <script>
+		$(document).ready(function() {
+			$("#nextbtn").on("click", function(){
+				value =  $("#sitter_id").attr("value")
+			})
+			//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
+			$("#direct_button").on("click", function(){
+				var gender = $("#prefer_gender option:selected").val();
+				var size = $("#prefer_size option:selected").val();
+				var code = $("#pet_codearray").val()
+				
+				$.ajax({
+					url : "/pet/sitter/ajax/list.do",
+					type: "get",
+					data : {
+						"gender" : gender,
+						"size" : size,
+						"code" : code
+					},
+					success:function(data){
+						
+						mydata = "";
+						for(i=0;i<data.length;i++){
+							mydata = mydata + 
+							"<div class='col-lg-4 cardbox'>"
+							+"<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
+								  +"<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
+								  +"<div class='card-body'>"
+									    	+"<p class='card-text'>"
+									    	+"<span id='sittername'>"
+									    	+data[i].sitter_name
+									    	+"</span>"
+									    	+"</p><br/>"
+									    +"<div class=row>"
+									    	
+									    	+"<div class=col-6>"
+											    +"<div  class='detailread' id=" +  data[i].sitter_id+">" 
+											    	+"<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
+											    	+"</div>"  
+									    	+"</div>"
+									    	
+									    	+"<div class=col-6>"
+										    	+"<div id='" +  data[i].sitter_id +"select'>" 
+										    		+"<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										    	+"</div>" 
+								    		+"</div>"
+								    		
+							    		 +"</div>"
+								  +"</div>"
+							+"</div>"
+						+"</div>"
+						}
+						$("#directsitterlist").empty();
+						$("#directsitterlist").append(mydata);
+						
+						$(".detailread").on("click", function(event){
+							sitter_id = $(this).attr("id");
+							  $.ajax({
+								url:"/pet/sitter/ajax/read.do",
+								type: "get",
+								data: {
+									"sitter_id": sitter_id
+								},
+								success:function(sitter){
+									
+									sitter_code = sitter.sitter_code;
+									if(sitter_code =="D"){
+										sitter_code  = "강아지"
+									}else if(sitter_code =="C"){
+										sitter_code  = "고양이"
+									}else{
+										sitter_code  = "강아지 고양이"
+									}
+									
+									sitter_gender = sitter.sitter_gender;
+									if(sitter_gender == "M"){
+										sitter_gender = "남자"
+									}else{
+										sitter_gender = "여자"
+									}
+									
+								   mydata = "";
+								   mydata = mydata + "<h3 style='margin-bottom: 10%; color:#3e62eb;'>펫시터 상세정보</h3>";
+							       mydata = mydata + "<table><thead><tr>"  
+							       mydata = mydata +"<th>이름</th><td style='color:black;'>"+sitter.sitter_name+"</td></tr></thread>";
+							       mydata = mydata +"<tr><th>만 나이</th><td style='color:black;'>"+sitter.sitter_age+"</td></tr>";
+							       mydata = mydata +"<tr><th>성별</th><td style='color:black;'>"+sitter_gender+"</td></tr>";
+							        mydata = mydata +"<tr><th>사는 지역</th><td style='color:black;'>"+sitter.sitter_shortAddr+"</td></tr>";
+							        mydata = mydata +"<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"+sitter_code+"</td></tr>";
+							        mydata = mydata +"<tr><th>자기소개</th><td style='color:black;'>"+sitter.sitter_info+"</td></tr></table>";  
+							        
+							        $("#detailcontent").empty();
+							        $("#detailcontent").append(mydata);
+							        
+								},
+								error:function(data){
+									
+								}
+							})
+							$(".modal").fadeIn();
+>>>>>>> refs/remotes/origin/se
 						})
 						//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
 						$("#direct_button")

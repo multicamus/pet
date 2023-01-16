@@ -7,10 +7,10 @@ public class ResvDTO {
 	private String member_id;
 	private String resv_date;
 	private String resv_change_date;
-	private int resv_status=0;
+	private int resv_status = 0;
 	private String pay_method;
 	private Date visit_date;
-	private String  visit_place;
+	private String visit_place;
 	private int service_starttime;
 	private int service_endtime;
 	private int service_time;
@@ -18,46 +18,40 @@ public class ResvDTO {
 	private char bath_service='N';
 	private char walk_service='N';
 	private char beauty_service='N';
-	private String  sitter_id;
+	private String sitter_id;
 	private String sitter_name;
-	private String  service_note;
-	private int total_price=25000;
+	private String service_note;
+	private int total_price = 25000;
 	private String match_method;
 	private String prefer_gender;
-	private String  prefer_size;
-	private String  visit_method;
-	private String  common_pass;
+	private String prefer_size;
+	private String visit_method;
+	private String common_pass;
 	private String home_pass;
 	private String direct_meet;
 	private String parking;
 	private String supplies_place;
-	private String  cleaning_method;
+	private String cleaning_method;
 	private String emergency_phone;
 	private String pet_idlist;
 	private String pet_codelist;
 	private String pet_namelist;
 	
 	public ResvDTO() {
-		// TODO Auto-generated constructor stub
 	}
+	
 	//resv1페이지(예약페이지 1번째)에서 입력할때
-	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, 
-			String service_note) 
-	{
+	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_time, String service_note) {
 		super();
-
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
 		this.service_starttime = service_starttime;
 		this.service_time = service_time;
 		this.service_note = service_note;
-		
 	}
-
 	
 	//resv2페이지(예약페이지2번째)의 hidden타입
-	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time,
-			char default_service, char bath_service, char walk_service, char beauty_service, String service_note) {
+	public ResvDTO(Date visit_date, String visit_place, int service_starttime, int service_endtime, int service_time, char default_service, char bath_service, char walk_service, char beauty_service, String service_note) {
 		super();
 		this.visit_date = visit_date;
 		this.visit_place = visit_place;
@@ -69,18 +63,9 @@ public class ResvDTO {
 		this.walk_service = walk_service;
 		this.beauty_service = beauty_service;
 		this.service_note = service_note;
-	
 	}
-	
-	
-	
-	
-	
-	public ResvDTO(Date visit_date, int service_starttime, int service_endtime, int service_time, char default_service,
-			char bath_service, char walk_service, char beauty_service, String service_note, String match_method,
-			String prefer_gender, String prefer_size, String visit_method, String common_pass, String home_pass,
-			String direct_meet, String parking, String supplies_place, String cleaning_method, String emergency_phone
-			) {
+
+	public ResvDTO(Date visit_date, int service_starttime, int service_endtime, int service_time, char default_service,char bath_service, char walk_service, char beauty_service, String service_note, String match_method,String prefer_gender, String prefer_size, String visit_method, String common_pass, String home_pass,	String direct_meet, String parking, String supplies_place, String cleaning_method, String emergency_phone) {
 		super();
 		this.visit_date = visit_date; 
 		this.service_starttime = service_starttime; 
@@ -339,12 +324,6 @@ public class ResvDTO {
 	public void setEmergency_phone(String emergency_phone) {
 		this.emergency_phone = emergency_phone;
 	}
-
-
-
-	
-
-	
 	
 	public String getPet_idlist() {
 		return pet_idlist;
@@ -359,7 +338,6 @@ public class ResvDTO {
 		this.pet_codelist = pet_codelist;
 	}
 	
-	
 	public String getPet_namelist() {
 		return pet_namelist;
 	}
@@ -367,18 +345,12 @@ public class ResvDTO {
 		this.pet_namelist = pet_namelist;
 	}
 	
-	
 	public String getSitter_name() {
 		return sitter_name;
 	}
 	public void setSitter_name(String sitter_name) {
 		this.sitter_name = sitter_name;
 	}
-	
-	
-
-	
-	
 
 	public ResvDTO(String resv_no, String member_id, String resv_date, String resv_change_date, int resv_status,
 			String pay_method, Date visit_date, String visit_place, int service_starttime, int service_endtime,
@@ -419,11 +391,11 @@ public class ResvDTO {
 		this.supplies_place = supplies_place;
 		this.cleaning_method = cleaning_method;
 		this.emergency_phone = emergency_phone;
-
 		this.pet_idlist = pet_idlist;
 		this.pet_codelist = pet_codelist;
 		this.pet_namelist = pet_namelist;
 	}
+	
 	@Override
 	public String toString() {
 		return "ResvDTO [resv_no=" + resv_no + ", member_id=" + member_id + ", resv_date=" + resv_date
@@ -439,14 +411,11 @@ public class ResvDTO {
 				+ cleaning_method + ", emergency_phone=" + emergency_phone +", pet_idlist=" + pet_idlist
 				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + "]";
 	}
-
-	
 	
 	public static Date getTodayDate() {
 		long miliseconds = System.currentTimeMillis();
 		Date date = new Date(miliseconds);
 		return date;
 	}
-
 	
 }
