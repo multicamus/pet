@@ -2,6 +2,8 @@ package mutli.com.pet.mypet;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PetDTO {
     private String pet_id;
     private String member_id;
@@ -13,19 +15,20 @@ public class PetDTO {
     private String pet_weight;
     private String pet_size;
 	private String neuter;
-	private String animalhospital_name;
-	private String animalhospital_addr;
+//	0118 오승영 변경
 	private String pet_photo;
 	private String pet_note;
 	private String pet_number;
+//	0118 오승영 추가
+	private MultipartFile pet_img;
 	
 	public PetDTO() {
 		super();
 	}
-
+	
 	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
-			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String animalhospital_name,
-			String animalhospital_addr, String pet_photo, String pet_note, String pet_number) {
+			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String pet_photo, String pet_note,
+			String pet_number) {
 		super();
 		this.pet_id = pet_id;
 		this.member_id = member_id;
@@ -37,21 +40,41 @@ public class PetDTO {
 		this.pet_weight = pet_weight;
 		this.pet_size = pet_size;
 		this.neuter = neuter;
-		this.animalhospital_name = animalhospital_name;
-		this.animalhospital_addr = animalhospital_addr;
 		this.pet_photo = pet_photo;
 		this.pet_note = pet_note;
 		this.pet_number = pet_number;
+	}
+
+	// 전체
+	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
+			Date pet_birthdate, String pet_weight, String pet_size, String neuter, MultipartFile pet_img, String pet_note,
+			String pet_number, String pet_photo) {
+		super();
+		this.pet_id = pet_id;
+		this.member_id = member_id;
+		this.pet_name = pet_name;
+		this.pet_gender = pet_gender;
+		this.pet_code = pet_code;
+		this.pet_kind = pet_kind;
+		this.pet_birthdate = pet_birthdate;
+		this.pet_weight = pet_weight;
+		this.pet_size = pet_size;
+		this.neuter = neuter;
+		this.pet_img = pet_img;
+		this.pet_note = pet_note;
+		this.pet_number = pet_number;
+		this.pet_photo = pet_photo;
 	}
 
 	@Override
 	public String toString() {
 		return "PetDTO [pet_id=" + pet_id + ", member_id=" + member_id + ", pet_name=" + pet_name + ", pet_gender="
 				+ pet_gender + ", pet_code=" + pet_code + ", pet_kind=" + pet_kind + ", pet_birthdate=" + pet_birthdate
-				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter
-				+ ", animalhospital_name=" + animalhospital_name + ", animalhospital_addr=" + animalhospital_addr
-				+ ", pet_photo=" + pet_photo + ", pet_note=" + pet_note + ", pet_number=" + pet_number + "]";
+				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter + ", pet_img="
+				+ pet_img + ", pet_note=" + pet_note + ", pet_number=" + pet_number + ", pet_photo=" + pet_photo + "]";
 	}
+
+
 
 	public String getPet_id() {
 		return pet_id;
@@ -133,30 +156,6 @@ public class PetDTO {
 		this.neuter = neuter;
 	}
 
-	public String getAnimalhospital_name() {
-		return animalhospital_name;
-	}
-
-	public void setAnimalhospital_name(String animalhospital_name) {
-		this.animalhospital_name = animalhospital_name;
-	}
-
-	public String getAnimalhospital_addr() {
-		return animalhospital_addr;
-	}
-
-	public void setAnimalhospital_addr(String animalhospital_addr) {
-		this.animalhospital_addr = animalhospital_addr;
-	}
-
-	public String getPet_photo() {
-		return pet_photo;
-	}
-
-	public void setPet_photo(String pet_photo) {
-		this.pet_photo = pet_photo;
-	}
-
 	public String getPet_note() {
 		return pet_note;
 	}
@@ -171,6 +170,22 @@ public class PetDTO {
 
 	public void setPet_number(String pet_number) {
 		this.pet_number = pet_number;
+	}
+
+	public String getPet_photo() {
+		return pet_photo;
+	}
+
+	public void setPet_photo(String pet_photo) {
+		this.pet_photo = pet_photo;
+	}
+
+	public MultipartFile getPet_img() {
+		return pet_img;
+	}
+
+	public void setPet_img(MultipartFile pet_img) {
+		this.pet_img = pet_img;
 	}
 	
 	

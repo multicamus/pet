@@ -34,27 +34,7 @@
             <div class="container">
                 <div class="row">
                 	<!-- 사이드 메뉴 -->
-                    <div class="col-xl-4">
-                        <div class="contact-item-wrapper">
-                            <div class="row">
-                                <!-- 동물 정보 시작 -->
-								<c:forEach var="pet" items="${mypetlist}" varStatus="status">
-									<div class="col-12 col-md-6 col-xl-12">
-										<div class="contact-item">
-											<div class="contact-icon">
-												<img src="">
-											</div>
-											<div class="contact-content">
-												<h4><a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
-												<p>${pet.pet_code}</p>
-												<p>${pet.pet_kind}</p>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-								<!-- 동물 정보 끝 -->
-                            </div>
-                        </div>
+                    <div class="col-xl-2">
                     </div>
                     <!-- 사이드 메뉴 끝 -->
                     <!-- 유저 정보 -->
@@ -116,12 +96,6 @@
                                     <div class="col-lg-8 mx-auto">
                                     	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" required> 
                                     </div>
-                                    	
-									<div class="col-lg-8 mx-auto">
-										<h4>주로 다니는 병원의 이름과 주소</h4>
-										<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" required>
-										<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" required>
-									</div>
 									
 									<!-- hidden start -->
                                     <input type="hidden" name="member_id" value="${member.member_id}">

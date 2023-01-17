@@ -95,14 +95,10 @@
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
 									</c:when>
 									<c:otherwise>
-										<c:choose>
-											<c:when test="${size > 0}">
-												<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인
-												<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">${size}+
-		    									<span class="visually-hidden"></span></span></a>
-		  										</li>
-	  										</c:when>
-  										</c:choose>
+										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인
+										<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">${size}+
+    									<span class="visually-hidden"></span></span></a>
+  										</li>
 									</c:otherwise>
 								</c:choose>
 								

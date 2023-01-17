@@ -60,12 +60,9 @@ public class MemberController {
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
-		
 		String size = Integer.toString(service.sitter_resvlist(loginUserInfo.getSitter_id()).size());
-		
 		hs.setAttribute("size", size);
 		String view = "";
-		
 		if(user!=null) {
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));
 			view = "home";
@@ -105,7 +102,6 @@ public class MemberController {
 	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
-		SitterImgDTO sitter_img = service.sitter_img_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
 		HttpSession hs = hsr.getSession();
 		String view = "";
@@ -120,7 +116,6 @@ public class MemberController {
 		}
 		model.addAttribute("sitter", sitter);
 		hs.setAttribute("sitter", sitter);
-		hs.setAttribute("sitter_img", sitter_img);
 		return view;
 	}
 	
@@ -133,25 +128,16 @@ public class MemberController {
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
 	public String sitter_update(SitterDTO sitter, HttpSession session) throws IOException {
-		System.out.println(sitter);
-		MultipartFile img = sitter.getSitter_photo();
-		System.out.println(img);
-		
-//		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
+		MultipartFile img = sitter.getSitter_img();
 		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
-		System.out.println(path);
-		
-		SitterImgDTO imgFile = fileUploadService.uploadFile(sitter.getSitter_id(), img, path);
-		System.out.println(imgFile.getSitter_id());
-		service.update(sitter, imgFile);
+		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
+		service.update(sitter_img);
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
 	@RequestMapping(value = "/sitter/certi_update.do", method = RequestMethod.POST)
 	public String sitter_certi_update(SitterDTO sitter) {
-		System.out.println(sitter);
-		int result = service.certi_update(sitter);
-		System.out.println(result);
+		service.certi_update(sitter);
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
@@ -178,7 +164,6 @@ public class MemberController {
 	@RequestMapping(value = "user/insert.do")
 	public String insert(MemberDTO member, Model model) {
 		int result = service.insert(member);
-		
 		if(result == 1) {
 			MemberDTO user = service.login(member);
 			LoginUserDTO loginUser = new LoginUserDTO(user.getUser_type(), user.getMember_name(), user.getMember_id(), user.getMember_no(), user.getMember_gender(), user.getMember_email(), user.getMember_phone(), user.getMember_addr1(), user.getMember_addr2(), user.getMember_photo(), user.getStart_date(), user.getEnd_date(), user.getMember_code(), user.getMember_status(), user.getHospital_addr(), user.getHospital_name());
@@ -187,19 +172,13 @@ public class MemberController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "sitter/insert.do")
+	@RequestMapping(value = "sitter/insert.do", method = RequestMethod.POST)
 	public String insert(SitterDTO sitter, Model model, HttpSession session) throws IOException {
-		MultipartFile img = sitter.getSitter_photo();
-		System.out.println(img);
-		
-		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
-		System.out.println(path);
-		
-		SitterImgDTO imgFile = fileUploadService.uploadFile(sitter.getSitter_id(), img, path);
-		System.out.println(imgFile.getSitter_id());
-		
-		int result = service.insert(sitter, imgFile);
-		
+		MultipartFile img = sitter.getSitter_img();
+		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
+		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
+		System.out.println(sitter_img);
+		int result = service.insert(sitter_img);
 		if(result == 1) {
 			SitterDTO user = service.login(sitter);
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));

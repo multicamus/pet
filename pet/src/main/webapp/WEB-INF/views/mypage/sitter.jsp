@@ -112,7 +112,7 @@
                                     	<div class="col-md-auto"><h4>프로필 사진</h4></div>
                                        	<div class="col-md-12 pb-50">
                                        		<div>
-                                       			<img src="/pet/resources/sitter/${sitter_img.storeImgName}" width="220" height="160"></img>
+                                       			<img src="/pet/resources/sitter/${sitter.sitter_photo}" width="220" height="160"></img>
                                        		</div>
                                         </div>
                                     </div>

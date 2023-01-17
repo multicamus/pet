@@ -50,11 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.sitter_read(sitter_id);
 	}
 	
-	@Override
-	public SitterImgDTO sitter_img_read(String sitter_id) {
-		return dao.sitter_img_read(sitter_id);
-	}
-	
 	// read - member
 	@Override
 	public MemberDTO member_read(String member_id) {
@@ -63,11 +58,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// update
 	@Override
-	public int update(SitterDTO sitter, SitterImgDTO sitter_img) {
-		int result = dao.update(sitter_img);
-		if(result == 0) {
-			dao.insert(sitter_img);
-		}
+	public int update(SitterDTO sitter) {
 		return dao.update(sitter);
 	}
 
@@ -83,8 +74,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// insert
 	@Override
-	public int insert(SitterDTO sitter, SitterImgDTO sitter_img) {
-		dao.insert(sitter_img);
+	public int insert(SitterDTO sitter) {
 		return dao.insert(sitter);
 	}
 

@@ -93,9 +93,9 @@
                                     	 <div class="col-md-auto"><h4>프로필 사진</h4></div>
 				                      	 <div class="col-md-12">
 											 <div class="thumbnail">
-												 <img src="/pet/resources/sitter/${sitter_img.storeImgName}" id="userImage" width="220" height="150">
+												 <img src="/pet/resources/sitter/${sitter.sitter_photo}" id="userImage" width="220" height="150">
 												 <div class="col-4 pt-30">
-												 	<input type="file" name="sitter_photo" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+												 	<input type="file" name="sitter_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
 												 </div>
 											 </div>
 									  	 </div>

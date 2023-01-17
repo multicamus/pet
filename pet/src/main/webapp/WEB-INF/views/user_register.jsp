@@ -302,7 +302,7 @@
 					                      <div class="row align-items-center pb-50">
 					                      	  <div class="col-md-auto"><h4>프로필 사진</h4></div>
 					                      	  <div class="col-md-auto">
-					                      	  	<input type="file" name="sitter_photo" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+					                      	  	<input type="file" name="sitter_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
 					                      	  </div>
 				                              <div class="col-md-auto">
 												  <div class="thumbnail">
