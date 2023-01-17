@@ -91,6 +91,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<SitterDTO> sitterList() {
+		
+		
 		return dao.sitterList();
 	}
 

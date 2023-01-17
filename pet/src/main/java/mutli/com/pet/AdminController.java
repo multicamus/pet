@@ -29,10 +29,13 @@ public class AdminController {
 		String msg = "";
 		if(valid_data.equals("1")) {
 			msg = "0";
+			System.out.println("미승인");
 		}else {
 			msg = "1";
+			System.out.println("승인");
 		}
 		 
 		return msg;
 	}
+
 }
