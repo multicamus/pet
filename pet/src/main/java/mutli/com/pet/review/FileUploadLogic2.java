@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 @Service
-public class FileUploadLogic {
+public class FileUploadLogic2 {
 	//파일을 업로드한 후 이 정보를 BoardFileDTO로 변환해서 리턴
 	public List<ReviewFileDTO> uploadFiles(List<MultipartFile> multipartFiles, String path) throws IllegalStateException, IOException{
 		List<ReviewFileDTO> filedtolist = new ArrayList<ReviewFileDTO>();

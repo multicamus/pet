@@ -58,9 +58,15 @@
 	</insert>
 	<insert id="sitter_insert" parameterType="sitter">
 		INSERT INTO sitter_info (
-			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, sitter_photo, valid)
+			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, valid)
 		VALUES (
-			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, #{sitter_photo}, '0')
+			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, '0')
+	</insert>
+	<insert id="sitter_img_insert" parameterType="sitter_img">
+		INSERT INTO sitter_img (
+			sitter_id, originalImgName, storeImgName)
+		VALUES (
+			#{sitter_id}, #{originalImgName}, #{storeImgName})
 	</insert>
 	<!-- insert end -->
 	

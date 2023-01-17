@@ -75,7 +75,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	// insert
 	@Override
-	public int insert(SitterDTO sitter) {
+	public int insert(SitterDTO sitter, SitterImgDTO sitter_img) {
+		dao.insert(sitter_img);
 		return dao.insert(sitter);
 	}
 

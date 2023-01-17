@@ -176,7 +176,7 @@
 					                <div class="container row col-12">
 					                <div class="container row col-3"></div>
 					                <div class="container row col-8">
-					                <form action="/pet/erp/sitter/insert.do" class="contact-form" method="post">
+					                <form action="/pet/erp/sitter/insert.do" class="contact-form" method="post" enctype="multipart/form-data">
 					                	  <!-- id start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>아이디</h4></div>
@@ -192,27 +192,27 @@
 					                              <input type="password" name="sitter_pass" id="sitter_pass" placeholder="비밀번호" required="required" value="">
 					                          </div>
 					                      </div>
-					                	  <!-- member_no start -->
+					                	  <!-- sitter_gender start -->
 					                       <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>성함</h4></div>
 					                          <div class="col-md-4">
 					                              <input type="text" name="sitter_name" id="sitter_name" placeholder="ex) 오승영" required value="">
 					                          </div>
 					                      </div>
-					                	  <!-- member_email start -->
+					                	  <!-- sitter_email start -->
 					                       <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>이메일</h4></div>
 					                          <div class="col-md-auto">
 					                              <input type="email" name="sitter_email" id="sitter_email" placeholder="ex) ohsy94@gmail.com" required value="">
 					                          </div>
 					                      </div>
-					                	  <!-- member_birthday start -->
-<!-- 					                      <div class="row align-items-center"> -->
-<!-- 					                      	  <div class="col-md-auto"><h4>생일</h4></div> -->
-<!-- 					                          <div class="col-md-4"> -->
-<%-- 					                              <input type="date" name="member_id" id="member_id" placeholder="ex) 2020-10-25" required value="${member.member_birthdate }"> --%>
-<!-- 					                          </div> -->
-<!-- 					                      </div> -->
+					                	  <!-- sitter_birthday start -->
+					                      <div class="row align-items-center">
+					                      	  <div class="col-md-auto"><h4>생일</h4></div>
+					                          <div class="col-md-4">
+					                              <input type="date" name="sitter_birthdate" id="sitter_birthdate" required value="">
+					                          </div>
+					                      </div>
 					                	  <!-- sitter_gender start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>성별</h4></div>
@@ -227,6 +227,7 @@
 												</div>
 					                          </div>
 					                      </div>
+					                      <!-- sitter_code start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>종류</h4></div>
 					                          <div class="col-md-auto">
@@ -242,12 +243,6 @@
 													<input class="form-check-input" type="radio" name="sitter_code" id="sitter_codeA" value="A" style="{width:50px; position: static;margin-top: 0;margin-right: $form-check-inline-input-margin-x;margin-left: 0;}">
 													<label class="form-check-label" for="sitter_codeA" style="width: 50px">모두</label>
 												</div>
-					                          </div>
-					                      </div>
-					                      <div class="row align-items-center">
-					                      	  <div class="col-md-auto"><h4>생일</h4></div>
-					                          <div class="col-md-4">
-					                              <input type="text" name="sitter_birthdate" id="sitter_birthdate" placeholder="ex) 2000-01-01" required value="2000-01-01">
 					                          </div>
 					                      </div>
 					                	  <!-- sitter_phone start -->
@@ -304,12 +299,18 @@
 					                          </div>
 					                      </div>
 					                      <!-- sitter_photo start -->
-					                      <div class="row align-items-center">
+					                      <div class="row align-items-center pb-50">
 					                      	  <div class="col-md-auto"><h4>프로필 사진</h4></div>
-					                          <div class="col-md-auto">
-					                              <input type="text" name="sitter_photo" id="sitter_photo" placeholder="test">
-					                          </div>
+					                      	  <div class="col-md-auto">
+					                      	  	<input type="file" name="sitter_photo" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+					                      	  </div>
+				                              <div class="col-md-auto">
+												  <div class="thumbnail">
+													  <img src="/erp/images/myphoto.jpg" id="userImage" width="220" height="150">
+												  </div>
+											  </div>
 					                      </div>
+					                      
 					                      <!-- sitter_certificate start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>자격증 등록</h4></div>
@@ -411,6 +412,11 @@
 	}
 	
 	$(document).ready(function() {
+		$("#upload").click(function() {
+			var myfile = $("#myfile")[0];
+			
+		})
+		
 		$(".area").hide();
 		
 		$("#seoul").on("click", function(){

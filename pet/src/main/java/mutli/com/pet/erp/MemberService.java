@@ -28,8 +28,9 @@ public interface MemberService {
 	int update(MemberDTO member);
 	
 	// 등록
-	int insert(SitterDTO sitter);
+	int insert(SitterDTO sitter, SitterImgDTO sitter_img);
 	int insert(MemberDTO member);
+	
 	
 	// 삭제
 	int delete(SitterDTO sitter);

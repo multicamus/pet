@@ -29,6 +29,7 @@ public interface MemberDAO {
 
 	// 등록
 	int insert(SitterDTO sitter);
+	int insert(SitterImgDTO sitter_img);
 	int insert(MemberDTO member);
 	
 	// 삭제
