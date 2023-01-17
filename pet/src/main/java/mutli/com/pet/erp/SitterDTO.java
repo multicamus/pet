@@ -3,6 +3,8 @@ package mutli.com.pet.erp;
 import java.sql.Date;
 import java.util.Calendar;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SitterDTO {
 	private String user_type;
 	private String sitter_id;
@@ -29,19 +31,12 @@ public class SitterDTO {
 	private String medium_career;
 	private String large_career;
 	private String cat_career;
-	private String sitter_photo;
+	private MultipartFile sitter_photo;
 	
 	
 	//추가함 by 최여경
 	private int sitter_age;
 	private String sitter_shortAddr; //00시 00구 혹은 경기도 00시 00구로 축약시킨 주소 String
-	
-
-	
-	
-	
-
-	
 	
 	public SitterDTO() {
 		
@@ -66,7 +61,7 @@ public class SitterDTO {
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
 			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
 			String sitter_rate, String small_career, String medium_career, String large_career, String cat_career,
-			String sitter_photo, int sitter_age, String sitter_shortAddr) {
+			MultipartFile sitter_photo, int sitter_age, String sitter_shortAddr) {
 		super();
 		this.user_type = user_type;
 		this.sitter_id = sitter_id;
@@ -283,11 +278,11 @@ public class SitterDTO {
 		this.cat_career = cat_career;
 	}
 
-	public String getSitter_photo() {
+	public MultipartFile getSitter_photo() {
 		return sitter_photo;
 	}
 
-	public void setSitter_photo(String sitter_photo) {
+	public void setSitter_photo(MultipartFile sitter_photo) {
 		this.sitter_photo = sitter_photo;
 	}
 	

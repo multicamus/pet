@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="mutli.com.pet.erp.SitterDTO"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="ko">
     <head>
@@ -59,10 +60,26 @@
                                         </div>
                                         <div class="contact-content">
                                             <h4>자격증</h4>
-                                            <p>${sitter.sitter_certificate}</p>
-                                            <p>자격증</p>
-                                            <p><a href="#">등록</a></p>
-                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
+	                                            <%
+										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+		                                   	   		if(sitter.getSitter_certificate() != null){
+		                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
+		                                   	   		int size = certificate.length;
+		                                   	   		for(int i = 0; i < size; i++){%>
+		                                   	   		<p><%=certificate[i] %></p>
+	                                   	   		<%}}%>
+	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post">
+	                                            <div class="pb-30" id="sitter_certificate">
+		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" >
+		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
+	                                            </div>
+	                                            <div>
+		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button>
+		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button>
+		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
+	                                            </div>
+	                                            
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +103,19 @@
                             <!-- 시터 인사 끝 -->
                             
                             <!-- 시터 정보 시작 -->
-                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
+	                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post" enctype="multipart/form-data">
+                               	 	<div class="row align-middle">
+                                    	 <div class="col-md-auto"><h4>프로필 사진</h4></div>
+				                      	 <div class="col-md-12">
+											 <div class="thumbnail">
+												 <img src="/pet/resources/sitter/${sitter_img.storeImgName}" id="userImage" width="220" height="150">
+												 <div class="col-4 pt-30">
+												 	<input type="file" name="sitter_photo" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+												 </div>
+											 </div>
+									  	 </div>
+                                    </div>
+                                    
                                	 	<div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이름</h4></div>
                                     	<div class="col-md-auto">
@@ -169,10 +198,11 @@
                                         <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
                                         <div class="col-12">
 	                                        <div class="col-md-auto pt-20">
-		                                        <button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
-					                            <button class=" btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
-					                            <button class=" btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
+		                                        <button class="btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
+					                            <button class="btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
+					                            <button class="btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
 			                                </div>
+
 			                                
 			                                    <div class="area seoul" style="margin-top: 30px;">
 			                                    	<div class="narrow">
@@ -271,6 +301,7 @@
 				                           				<input type="checkbox" id="default27" value="서울 중랑구" name="service_area">
 				                           				<label for="default27">  중랑구</label>
 				                           			</div>		
+
 			                                    </div>
 		                                    
 		                                        <div class="area suwon">
@@ -313,6 +344,16 @@
     </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	const add = () => {
+	    const box = document.getElementById("sitter_certificate");
+	    const newP = document.createElement('p');
+	    newP.innerHTML = "<input type='text' name='sitter_certificate' placeholder='자격증 등록'> <input type='button' class='btn-close' style='width:10px;' onclick='remove(this)'>";
+	    box.appendChild(newP);
+	}
+	const remove = (obj) => {
+	    document.getElementById("sitter_certificate").removeChild(obj.parentNode);
+	}
+
 	document.getElementById("addr1").addEventListener("click", function() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -321,6 +362,12 @@
 	        }
 	    }).open();
 	});
+	
+	$(document).ready(function() {
+		var service_area = "${sitter.service_area}"
+		console.log(service_area);
+		$("#default1").attr("checked", "checked");
+		});
 	
 	$(document).ready(function() {
 		$(".area").hide();
@@ -333,7 +380,7 @@
 			$(".area").hide()
 			$(".suwon").show()
 		})
-		
+
 		$("input[type='checkbox']").on("click", function(){
 			let count = $("input:checked[type='checkbox']").length;
 			if(count>3){

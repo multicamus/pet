@@ -27,6 +27,11 @@
 		FROM sitter_info
 		WHERE sitter_id = #{sitter_id}
 	</select>	
+	<select id="sitter_img_read" parameterType="String" resultType="sitter_img">
+		SELECT * 
+		FROM sitter_img
+		WHERE sitter_id = #{sitter_id}
+	</select>	
 	<!-- read_sitter end -->
 		
 	<!-- update start -->	
@@ -42,6 +47,16 @@
 		SET sitter_code=#{sitter_code}, sitter_email=#{sitter_email}, sitter_phone=#{sitter_phone}, sitter_addr1=#{sitter_addr1}, sitter_addr2=#{sitter_addr2}, sitter_birthdate=#{sitter_birthdate}, service_area=#{service_area}, sitter_info=#{sitter_info}
 		WHERE sitter_id = #{sitter_id}
 	</update>
+	<update id="sitter_img_update" parameterType="sitter_img">
+		UPDATE sitter_img
+		SET sitter_id = #{sitter_id}, originalImgName = #{originalImgName}, storeImgName = #{storeImgName}
+		WHERE sitter_id = #{sitter_id}
+	</update>
+	<update id="sitter_certi_update" parameterType="sitter">
+		UPDATE sitter_info
+		SET sitter_certificate = #{sitter_certificate}
+		WHERE sitter_id = #{sitter_id}
+	</update>
 	<!-- update end-->
 	
 	<!-- insert start -->
@@ -50,12 +65,19 @@
 			member_id, member_pass, member_gender, member_name, member_email, member_phone, member_addr1, member_addr2, member_status, member_startdate, user_type, hospital_name, hospital_addr, member_birthdate)
 		VALUES (
 			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type}, #{hospital_name}, #{hospital_addr}, #{member_birthdate}) 
+
 	</insert>
 	<insert id="sitter_insert" parameterType="sitter">
 		INSERT INTO sitter_info (
-			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, sitter_photo, valid)
+			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, valid)
 		VALUES (
-			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, #{sitter_photo}, '0')
+			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, '0')
+	</insert>
+	<insert id="sitter_img_insert" parameterType="sitter_img">
+		INSERT INTO sitter_img (
+			sitter_id, originalImgName, storeImgName)
+		VALUES (
+			#{sitter_id}, #{originalImgName}, #{storeImgName})
 	</insert>
 	<!-- insert end -->
 	
@@ -99,4 +121,3 @@
 	</select>
 	
 </mapper>
-
