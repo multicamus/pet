@@ -25,8 +25,11 @@
 		.info#info__birth select::-webkit-scrollbar-track {
 		  background-color: #ebe9e9;
 		  border-radius: 6px;
-		}	
+		}
 	</style>
+	<script>
+		
+	</script>
 </head>
 <body>
 <!-- ========================= page-banner-section start ========================= -->
@@ -109,13 +112,51 @@
 								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo }" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
 							</div>
 							<div>
-								<legend>반려동물 종류</legend>
-								<select id="prod1">
-									<option value="dog" selected>강아지</option>
-									<option value="mdog">강아지(중)</option>
-									<option value="bdog">강아지(대)</option>
-									<option value="cat">고양이</option>
-								</select>
+								<fieldset>
+										<legend>반려동물종 </legend>
+										<c:choose>
+											<c:when test="${pet.pet_code eq 'DOG'}">
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required>
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="DOG" style="display: inline-block">강아지</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="CAT" style="display: inline-block">고양이</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="DOG" name="pet_code" value="DOG" required> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required checked="checked">
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="DOG" style="display: inline-block">강아지</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="CAT" style="display: inline-block">고양이</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
+									</fieldset>
 							</div>
 							
 							<div class="row">
@@ -180,8 +221,21 @@
 											<input type="text" name="kind" id="kind" placeholder="품종" value="${pet.pet_kind }" disabled>
 										<legend>몸무게(kg)</legend>
 											<input type="text" name="weight" id="weight" placeholder="몸무게" value="${pet.pet_weight }" disabled>
-										<legend>크기(cm)</legend>
-											<input type="text" name="height" id="height" placeholder="크기" value="${pet.pet_size }" disabled>
+										
+										<c:if test="${pet.pet_size eq 'S' }">
+											<legend>크기</legend>
+											<input type="text"  value="소형견">
+										</c:if>	
+										<c:if test="${pet.pet_size eq 'M' }">
+											<legend>크기</legend>
+											<input type="text" value="중형견">
+										</c:if>
+										<c:if test="${pet.pet_size eq 'L' }">
+											<legend>크기</legend>
+											<input type="text" value="대형견">
+										</c:if>
+											<input type="hidden" name="pet_size" id="size" value="${pet.pet_size }" >
+				
 									</div>
 
 									<div>

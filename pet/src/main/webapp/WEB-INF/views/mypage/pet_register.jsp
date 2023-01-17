@@ -27,6 +27,23 @@
 		  border-radius: 6px;
 		}	
 	</style>
+	<script>
+		$(document).ready(function() {
+			$("#submit").on("click", function(){
+				weight = $("input[name=pet_weight]").val()
+				petcode = $("input[name=pet_code]").val()
+				if(pet == 'DOG'){
+					if(weight <= 7){
+						$("#pet_size").prop("value", "S")
+					}else if(7<weight && weight <= 15){
+						$("#pet_size").prop("value", "M")
+					}else{
+						$("#pet_size").prop("value", "L")
+					}
+				}	
+			})
+		})
+	</script>
 </head>
 <body>
 <!-- ========================= page-banner-section start ========================= -->
@@ -66,7 +83,7 @@
 										<img src="">
 									</div>
 									<div class="contact-content">
-										<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
+										<h4><a type="button"  href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
 										<p>${pet.pet_code}</p>
 										<p>${pet.pet_kind}</p>
 									</div>
@@ -174,8 +191,9 @@
 										<input type="text" name="pet_kind" id="kind" placeholder="ex) 토이푸들" required>
 									<legend>몸무게 (kg)</legend>
 										<input type="text" name="pet_weight" id="weight" placeholder="ex) 1.5 (단위는 생략해주세요)" required>
-									<legend>크기 (cm)</legend>
-										<input type="text" name="pet_size" id="height" placeholder="ex) 30 (단위는 생략해주세요)" required>
+
+										<input type="hidden" name="pet_size" id="pet_size" value="">
+									
 								</div>
 
 								<div>
@@ -220,7 +238,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="button text-center">
-										<button type="submit" class="theme-btn">등록</button>
+										<button type="submit" id="submit" class="theme-btn">등록</button>
 									</div>
 								</div>
 							</div>

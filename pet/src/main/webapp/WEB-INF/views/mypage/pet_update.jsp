@@ -27,6 +27,23 @@
 		  border-radius: 6px;
 		}	
 	</style>
+	<script>
+		$(document).ready(function() {
+			$("#edit").on("click", function(){
+				weight = $("input[name=pet_weight]").val()
+				petcode = $("input[name=pet_code]").val()
+				if(pet == 'DOG'){
+					if(weight <= 7){
+						$("#pet_size").prop("value", "S")
+					}else if(7<weight && weight <= 15){
+						$("#pet_size").prop("value", "M")
+					}else{
+						$("#pet_size").prop("value", "L")
+					}
+				}	
+			})
+		})
+	</script>
 </head>
 
 <body>
@@ -114,11 +131,56 @@
 								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo }" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
 							</div>
 							<div>
-								<label for="prod1">반려동물 종류</label>
+								<!-- <label for="prod1">반려동물 종류</label>
 								<select name=pet_code id="prod1">
-									<option value="dog" selected>강아지</option>
-									<option value="cat">고양이</option>
-								</select>
+									<option value="DOG" selected>강아지</option>
+									<option value="CAT">고양이</option>
+								</select> -->
+								<fieldset>
+										<legend>반려동물종 </legend>
+										<c:choose>
+											<c:when test="${pet.pet_code eq 'DOG'}">
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required>
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="DOG" style="display: inline-block">강아지</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="CAT" style="display: inline-block">고양이</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="row">
+													<div class="col-1">
+														<div>
+															<input type="radio" id="DOG" name="pet_code" value="DOG" required> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required checked="checked">
+														</div>
+													</div>
+													<div class="col-11" style="margin-left: -20px;">
+														<div>
+															<label for="DOG" style="display: inline-block">강아지</label>
+														</div>
+														<div class="col-11" style="margin-left: -2px;">
+															<div style="padding-top: 17px;">
+																<label for="CAT" style="display: inline-block">고양이</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
+									</fieldset>
 							</div>
 							
 							<div class="row">
@@ -185,7 +247,19 @@
 										<legend>몸무게(kg)</legend>
 										<input type="text" name="pet_weight" id="weight" placeholder="몸무게" value="${pet.pet_weight}" required>
 										<legend>크기(cm)</legend>
-										<input type="text" name="pet_size" id="height" placeholder="크기" value="${pet.pet_size}" required>
+										<c:if test="${pet.pet_size eq 'S' }">
+											<input type="text" value="소형견">
+										</c:if>	
+										<c:if test="${pet.pet_size eq 'M' }">
+											<input type="text" value="중형견">
+										</c:if>
+										<c:if test="${pet.pet_size eq 'L' }">
+											<input type="text" value="대형견">
+										</c:if>
+										
+											<input type="hidden" name="pet_size" id="pet_size" value="${pet.pet_size }" >
+										
+										
 									</div>
 
 									<div>
@@ -241,7 +315,7 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="button text-center">
-											<button type="submit" class="theme-btn">확인</button>
+											<button id="edit" type="submit" class="theme-btn">확인</button>
 											<a type="button" class="theme-btn" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">취소</a>
 										</div>
 									</div>

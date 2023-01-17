@@ -10,7 +10,7 @@ public class PetDTO {
     private String pet_code;
     private String pet_kind;
     private Date pet_birthdate;
-    private String pet_weight;
+    private double pet_weight;
     private String pet_size;
 	private String neuter;
 	private String animalhospital_name;
@@ -24,7 +24,7 @@ public class PetDTO {
 	}
 
 	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
-			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String animalhospital_name,
+			Date pet_birthdate, double pet_weight, String pet_size, String neuter, String animalhospital_name,
 			String animalhospital_addr, String pet_photo, String pet_note, String pet_number) {
 		super();
 		this.pet_id = pet_id;
@@ -109,11 +109,11 @@ public class PetDTO {
 		this.pet_birthdate = pet_birthdate;
 	}
 
-	public String getPet_weight() {
+	public double getPet_weight() {
 		return pet_weight;
 	}
 
-	public void setPet_weight(String pet_weight) {
+	public void setPet_weight(double pet_weight) {
 		this.pet_weight = pet_weight;
 	}
 
