@@ -415,18 +415,19 @@ public class LoginUserDTO {
 	public String createShortAddr() {
 		String newAddr = member_addr1;
 		String shortAddr; //최종적으로 들어갈 간략주소 변수
-		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
+		if(!newAddr.contains("경기")) {//기존 주소가 경기도가 아니라 광역시나 특별시라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
 			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
+		}else {//기존 주소가 경기도라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else {
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[1]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
+			if(splitAddr[2].charAt(splitAddr[2].length()-1) == '구' ) { // 경기도 ㅇㅇ시 ㅇㅇ구 
+				shortAddr = splitAddr[0] + " "+ splitAddr[1] + " " + splitAddr[2]; 
+			}else {//경기도 ㅇㅇ시 ㅇㅇ로
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 도와 시만 뽑아서 새 주소를 만든다.
+			}
 		}
 		return shortAddr;
 	}
-	
+		
 	
 }

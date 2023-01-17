@@ -133,7 +133,7 @@
                                     	<div class="col-md-auto"><h4>성별</h4></div>
                                     	<div class="col-md-auto">
                                     	<c:choose>
-				                        	<c:when test="${sitter.sitter_gender == 'W'}">
+				                        	<c:when test="${sitter.sitter_gender == 'F'}">
 				                        		<div class="form-check form-check-inline">
 			                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" disabled="disabled">
 			                                        <label class="form-check-label" for="genderM">남자</label>

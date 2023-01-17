@@ -467,14 +467,14 @@ System.out.println(member);%>
 												</div>
 											</div>
 
-											<div id="map"
+											<div id="map1"
 												style="width: 500px; height: 500px; margin: auto;"></div>
 
 											<script type="text/javascript"
 												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1bce72c0011761820b131bdbec94b47&libraries=services"></script>
 											<script>
 												var mapContainer = document
-														.getElementById('map'), // 지도를 표시할 div 
+														.getElementById('map1'), // 지도를 표시할 div 
 												mapOption = {
 													center : new kakao.maps.LatLng(
 															33.450701,
@@ -489,14 +489,14 @@ System.out.println(member);%>
 
 												// 주소-좌표 변환 객체를 생성합니다
 												var geocoder = new kakao.maps.services.Geocoder();
-
+												
 												var addr = document
 														.getElementById("addr1").value;
-
+												alert(addr)
 												// 주소로 좌표를 검색합니다
 												geocoder
 														.addressSearch(
-																"서울특별시 강남구 언주로146길 18",
+																addr,
 																function(
 																		result,
 																		status) {
@@ -518,7 +518,7 @@ System.out.println(member);%>
 																		// 인포윈도우로 장소에 대한 설명을 표시합니다
 																		var infowindow = new kakao.maps.InfoWindow(
 																				{
-																					content : '<div style="width:150px;text-align:center;padding:6px 0;">돌봄장소</div>'
+																					content : '<div style="width:150px;text-align:center;padding:6px 0;">동물병원주소</div>'
 																				});
 																		infowindow
 																				.open(
@@ -551,8 +551,7 @@ System.out.println(member);%>
 											<div id="map2"
 												style="width: 500px; height: 500px; margin: auto;"></div>
 
-											<script type="text/javascript"
-												src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1bce72c0011761820b131bdbec94b47&libraries=services"></script>
+											
 											<script>
 												var mapContainer = document
 														.getElementById('map2'), // 지도를 표시할 div 

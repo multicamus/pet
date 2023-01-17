@@ -122,13 +122,13 @@
 	                        <div class="col-lg-8">
 	                        	성별 : 
 	                        	<c:choose>
-		                        	<c:when test="${member.member_gender == 'W'}">
+		                        	<c:when test="${member.member_gender == 'F'}">
 		                        		<div class="form-check form-check-inline">
 										  <input class="form-check-input" type="radio" name="gender" id="genderm" value="M" disabled="disabled">
 										  <label class="form-check-label" for="inlineRadio1">남자</label>
 										</div>
 										<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" checked="checked" disabled="disabled">
+										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="F" checked="checked" disabled="disabled">
 										  <label class="form-check-label" for="inlineRadio2">여자</label>
 										</div>
 		                        	</c:when>
@@ -138,7 +138,7 @@
 										  <label class="form-check-label" for="inlineRadio1">남자</label>
 										</div>
 										<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="W" disabled="disabled">
+										  <input class="form-check-input" type="radio" name="gender" id="genderw" value="F" disabled="disabled">
 										  <label class="form-check-label" for="inlineRadio2">여자</label>
 										</div>
 		                        	</c:otherwise>

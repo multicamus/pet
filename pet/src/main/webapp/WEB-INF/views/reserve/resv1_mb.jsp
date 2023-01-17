@@ -150,7 +150,6 @@ input[type="radio"]:checked+label {
 	background: #3763ec;
 }
 
-<<<<<<< HEAD
 #date {
 	border: 1px solid #F4EEFB;
 	border-radius: 25px;
@@ -253,85 +252,7 @@ input[type="radio"]:checked+label {
 
 					})
 </script>
-=======
-      
-          </style>
-          
-          <script>
-          		$(document).ready(function() {
-          			//한 반려동물의 이름, 종, id를 같은 클래스로 묶음
-          			//한 반려동물의 이름 체크박스의 체크여부에 변화가 일어나면
-          			$("input:checkbox[name='pet_namelist']").on("change", function(){
-          				//해당 이름체크박스의 체크 여부를 가져온다.
-          				val = $(this).is(":checked")
-          				//해당 이름체크박스의 클래스 이름을 가져온다
-          				classname = $(this).attr("class")
-          				//해당 클래스의 이름, 종, id 체크박스의 체크 여부를 위의 체크여부(val)로 바꾼다
-          				$("."+classname).prop("checked", val);
-          				
-						
-          			})
-						
-          			$("#date").on("change", function(){
-          				//선택한 날짜를 가져온다.
-          				date = $("#date").prop("value");
-          				//오늘 날짜를 가녀온다
-          				var now = new Date();
-	
-				        var year= now.getFullYear();
-				        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-				        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-				        var todaydate = year + '-' + mon + '-' + day;
-				        
-				        
-				        
-				        var hours = ('0' + now.getHours()).slice(-2); 
-				        var minutes = ('0' + now.getMinutes()).slice(-2);
-				        var todaydatetime = hours + '' + minutes;
-				       
-				        todaytime = Number(todaydatetime)
-				        
-				       
-				        sel = $("select[name='service_starttime'] option")
-				       
-				      	
-				        //전에 disabled되어있던 시간option에 disalbed를 다 해제시킨다
-				         $("select[name='service_starttime'] option").prop("disabled", false)
-          					//만약에 오늘날짜와 예약날짜가 같다면
-				         	if(date===todaydate){
-          						
-          						 //모든 시간선택 option들에 대해서 반복문을 돌린다.
-          						 for(i=0;i<sel.length;i++){
-          							 //i번째 시간 option의 값을 불러온다.
-	          						 starttime = $("select[name='service_starttime'] option:eq("+i+")").attr("value")
-		          					 //현재시간에 2시간을 더한 시간보다 i번째 시간 option이 작으면 disabled처리 시킨다.
-	          						 if((todaytime+300) > starttime * 100){
-		          						val = $("select[name='service_starttime'] option:eq("+i+")")
-		          						val.prop("disabled", true)
-		          						
-		          					}
-          						
-          						}  
-				        } 
-          				 
-          			})
-          			
-          			$("#service_starttime").on("change", function(){
-          				
-          				val = $("#service_starttime option:selected").val();
-          				
-          				 if(val==20){
-          					$("#threehours").hide();
-          				} 
-          			})
-          			
-          			
-						})
-						
-				
-				
-          </script>
->>>>>>> refs/remotes/origin/se
+
 </head>
 <body>
 	<!-- ========================= page-banner-section start ========================= -->

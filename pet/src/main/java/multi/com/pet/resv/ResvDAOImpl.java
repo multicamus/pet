@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mutli.com.pet.erp.SitterDTO;
+import mutli.com.pet.review.Review2DTO;
 
 @Repository
 public  class ResvDAOImpl implements ResvDAO {
@@ -95,6 +96,20 @@ public  class ResvDAOImpl implements ResvDAO {
 	public int approve(String resv_no) {
 		return sqlsession.update("mutli.com.pet.resv.approve", resv_no);
 	}
+	
+	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
+	@Override
+	public List<String> checkReview(List<ResvDTO> resvdto) {
+		return sqlsession.selectList("mutli.com.pet.resv.checkreview", resvdto);
+	}
+	
+	//예약번호로 리뷰상세페이지 불렁기
+	@Override
+	public Review2DTO readReview(String resv_no) {
+		return sqlsession.selectOne("mutli.com.pet.resv.readreview", resv_no);
+	}
+	
+	
 
 
 
