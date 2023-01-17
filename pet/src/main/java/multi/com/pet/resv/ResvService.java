@@ -10,7 +10,10 @@ import mutli.com.pet.mypet.PetDTO;
 import mutli.com.pet.review.Review2DTO;
 
 public interface ResvService {
+	//선호하는 펫시터 불러오기기
 	List<SitterDTO> directlist(String gender, String size, String code, String shortAddr);
+	//과거에 이용했던 펫시터들 불러오기
+	List<SitterDTO> pastlist(String code, String member_id);
 	SitterDTO readSitter(String sitter_id);
 	int insert(ResvDTO resvdto);
 	List<ResvDTO> resvlist(LoginUserDTO user);
@@ -26,6 +29,6 @@ public interface ResvService {
 	public List<String> checkReview(List<ResvDTO> resvdto);
 	//예약번호로 리뷰상세페이지 열기
 	public Review2DTO readReview(String resv_no);
-
+	
 	
 }

@@ -43,7 +43,17 @@ public  class ResvDAOImpl implements ResvDAO {
 		
 		return sqlsession.selectList("mutli.com.pet.resv.directlistBygender", map);
 	}
-
+	
+	//과거에 이용했던 펫시터 불러오기
+	@Override
+	public List<SitterDTO> pastlist(String code, String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("code", code);
+		map.put("member_id", member_id);
+		return sqlsession.selectList("mutli.com.pet.resv.pastlist", map);
+	}
+	
+	
 	@Override
 	public SitterDTO readSitter(String sitter_id) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readsitter", sitter_id);
@@ -108,7 +118,8 @@ public  class ResvDAOImpl implements ResvDAO {
 	public Review2DTO readReview(String resv_no) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readreview", resv_no);
 	}
-	
+
+
 	
 
 

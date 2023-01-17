@@ -267,6 +267,7 @@ input[type="radio"]:checked+label {
 .modal_content {
 	width: 60%;
 	height: 80%;
+	overflow-y: auto;
 	background: #fff;
 	border-radius: 10px;
 	position: fixed;
@@ -287,15 +288,15 @@ input[type="radio"]:checked+label {
 }
 
 .sitterdetail {
-	position: fixed;
-	left: 70%;
-	bottom: 6%;
-	width: 20%;
+	position: absolute;
+	left: 90%;
+	bottom: 85%;
+	width: 5%;
 	display: inline-block;
 	text-align: center;
 	margin-left: 0%;
 	margin-top: 0px;
-	padding-left: 5%;
+	padding-left: 3%;
 	padding-top: 0%;
 	padding-bottom: 0%;
 	background: #303030;
@@ -345,7 +346,7 @@ td {
 		text-align: right;
 	}
 	table {
-		position: relative;
+		position: absolute;
 		padding-bottom: 0;
 		border: none;
 		box-shadow: 0 0 10px rgba(0, 0, 0, .2);
@@ -370,6 +371,8 @@ td {
 	td {
 		border-bottom: 1px solid #e5e5e5;
 	}
+	
+
 }
 </style>
 <script
@@ -379,32 +382,175 @@ td {
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+						$("#pills-3-tab").on("click", function() {
+							var code = $("#pet_codearray").val()
+							$.ajax({
+								url : "/pet/sitter/ajax/pastlist.do",
+								type : "get",
+								data : {
+									"code" : code
+								},
+								success : function(data) {
+									alert("success")
+									for(i=0;i<data.length;i++){
+									mydata = ""
+									mydata = mydata + "<div class='col-lg-4 cardbox'>"
+									+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
+									+ "<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
+									+ "<div class='card-body'>"
+									+ "<p class='card-text'>"
+									+ "<span id='sittername'>"
+									+ data[i].sitter_name
+									+ "</span>"
+									+ "</p><br/>"
+									+ "<div class=row>"
 
-						$("#nextbtn").on("click", function() {
-							value = $("#sitter_id").attr("value")
+									+ "<div class=col-6>"
+									+ "<div  class='detailread' id=" +  data[i].sitter_id+">"
+									+ "<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
+									+ "</div>"
+									+ "</div>"
 
+									+ "<div class=col-6>"
+									+ "<div   id='" +  data[i].sitter_id +"select'>"
+									+ "<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+									+ "</div>"
+									+ "</div>"
 
+									+ "</div>"
+									+ "</div>"
+									+ "</div>"
+									+ "</div>"
+									}
+									
+									$("#pastlist").empty();
+									$("#pastlist").append(mydata);
+									
+									$(".detailread").on("click", function(event) {
+										sitter_id = $(this).attr("id");
+										$.ajax({
+													url : "/pet/sitter/ajax/read.do",
+													type : "get",
+													data : {
+														"sitter_id" : sitter_id
+													},
+													success : function(sitter) {
+														sitter_code = sitter.sitter_code;
+														if (sitter_code == "D") {
+															sitter_code = "강아지"
+														} else if (sitter_code == "C") {
+															sitter_code = "고양이"
+														} else {
+															sitter_code = "강아지 고양이"
+														}
+
+														sitter_gender = sitter.sitter_gender;
+														if (sitter_gender == "M") {
+															sitter_gender = "남자"
+														} else {
+															sitter_gender = "여자"
+														}
+
+														mydata = "";
+														mydata = mydata
+																+ "<h3 style='margin-bottom: 10%; color:#3e62eb;'>펫시터 상세정보</h3>";
+														mydata = mydata
+																+ "<table id='table'><thead><tr>"
+														mydata = mydata
+																+ "<th>이름</th><td style='color:black;'>"
+																+ sitter.sitter_name
+																+ "</td></tr></thread>";
+														mydata = mydata
+																+ "<tr><th>만 나이</th><td style='color:black;'>"
+																+ sitter.sitter_age
+																+ "</td></tr>";
+														mydata = mydata
+																+ "<tr><th>성별</th><td style='color:black;'>"
+																+ sitter_gender
+																+ "</td></tr>";
+														mydata = mydata
+																+ "<tr><th>사는 지역</th><td style='color:black;'>"
+																+ sitter.sitter_shortAddr
+																+ "</td></tr>";
+														mydata = mydata
+																+ "<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"
+																+ sitter_code
+																+ "</td></tr>";
+														mydata = mydata
+																+ "<tr><th>자기소개</th><td style='color:black;'>"
+																+ sitter.sitter_info
+																+ "</td></tr></table>";
+
+														$("#detailcontent").empty();
+														$("#detailcontent").append(mydata);
+														
+														
+														
+													},
+													error : function(data) {
+
+													}
+												})
+												
+										$(".modal").fadeIn();
+									})
+									
+																			$(".selectsitter").on("click", function() {
+																				
+																				//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
+																				preCardId = "#"+ $(".card[selected=selected]").attr("id");
+																				$(".card").css("border-color", '');
+
+																				//현재 선택한 시터의 id와 name
+																				id = $(this).attr("value")
+																				name = $(this).attr("name")
+																				//cardid는 (sitter의 id+card)
+																				cardId = "#" + id + "card";
+
+																				//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
+																				if (cardId == preCardId) {
+																					//selected속성과 테두리속성을 해제시킨다
+																					$(".card").css("border-color", '');
+																					$(".card").removeAttr("selected");
+																					//input태그의 sitter_id의 value값을 초기화시킨다
+																					$("#sitter_id3").attr("value", "");
+																					$("#sitter_name3").attr("value", '');
+																					
+																				} else {//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
+																					//기존의 selected속성과 테두리속성을 모두 해제시킨다.
+																					$(".card").css("border-color", '');
+																					$(".card").removeAttr("selected");
+																					//현재 누른 카드에 selected속성과 테두리css를 적용시킨다.
+																					$(cardId).attr("selected", "selected");
+																					$(cardId).css("border-color", "#3763eb");
+																					$(cardId).css("border-width", "5pt");
+																					//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
+																					$("#sitter_id3").attr("value", id);
+																					$("#sitter_name3").attr("value", name);
+																					
+																				
+																				}
+																			})
+
+															//펫시터 상세정보창의 닫기버튼을 누르면 상세정보창이 닫힌다.
+															$("#closebtn").on("click", function() {
+																				$(".modal").fadeOut();
+																			})
+									
+								},
+								error : function(data) {
+									alert("fail")
+								}
+							})
 						})
 						//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
-						$("#direct_button")
-								.on(
-										"click",
-										function() {
-											var gender = $(
-													"#prefer_gender option:selected")
-													.val();
-											var size = $(
-													"#prefer_size option:selected")
-													.val();
+						$("#direct_button").on("click", function() {
+											var gender = $("#prefer_gender option:selected").val();
+											var size = $("#prefer_size option:selected").val();
+											var code = $("#pet_codearray").val()
 
-											var code = $("#pet_codearray")
-													.val()
-
-											$
-													.ajax({
+											$.ajax({
 														url : "/pet/sitter/ajax/list.do",
 														type : "get",
 														data : {
@@ -445,33 +591,18 @@ td {
 																		+ "</div>"
 																		+ "</div>"
 															}
-															$(
-																	"#directsitterlist")
-																	.empty();
-															$(
-																	"#directsitterlist")
-																	.append(
-																			mydata);
+															$("#directsitterlist").empty();
+															$("#directsitterlist").append(mydata);
 
-															$(".detailread")
-																	.on(
-																			"click",
-																			function(
-																					event) {
-																				sitter_id = $(
-																						this)
-																						.attr(
-																								"id");
-																				$
-																						.ajax({
+															$(".detailread").on("click", function(event) {
+																				sitter_id = $(this).attr("id");
+																				$.ajax({
 																							url : "/pet/sitter/ajax/read.do",
 																							type : "get",
 																							data : {
 																								"sitter_id" : sitter_id
 																							},
-																							success : function(
-																									sitter) {
-
+																							success : function(sitter) {
 																								sitter_code = sitter.sitter_code;
 																								if (sitter_code == "D") {
 																									sitter_code = "강아지"
@@ -518,131 +649,56 @@ td {
 																										+ sitter.sitter_info
 																										+ "</td></tr></table>";
 
-																								$(
-																										"#detailcontent")
-																										.empty();
-																								$(
-																										"#detailcontent")
-																										.append(
-																												mydata);
+																								$("#detailcontent").empty();
+																								$("#detailcontent").append(mydata);
 
 																							},
-																							error : function(
-																									data) {
+																							error : function(data) {
 
 																							}
 																						})
-																				$(
-																						".modal")
-																						.fadeIn();
+																						
+																				$(".modal").fadeIn();
 																			})
 
 															$(".selectsitter")
-																	.on(
-																			"click",
-																			function() {
+																	.on("click", function() {
 																				//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
-																				preCardId = "#"
-																						+ $(
-																								".card[selected=selected]")
-																								.attr(
-																										"id");
-
-																				$(
-																						".card")
-																						.css(
-																								"border-color",
-																								'');
+																				preCardId = "#"+ $(".card[selected=selected]").attr("id");
+																				$(".card").css("border-color", '');
 
 																				//현재 선택한 시터의 id와 name
-																				id = $(
-																						this)
-																						.attr(
-																								"value")
-																				name = $(
-																						this)
-																						.attr(
-																								"name")
+																				id = $(this).attr("value")
+																				name = $(this).attr("name")
 																				//cardid는 (sitter의 id+card)
-																				cardId = "#"
-																						+ id
-																						+ "card";
+																				cardId = "#" + id + "card";
 
 																				//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
 																				if (cardId == preCardId) {
 																					//selected속성과 테두리속성을 해제시킨다
-																					$(
-																							".card")
-																							.css(
-																									"border-color",
-																									'');
-																					$(
-																							".card")
-																							.removeAttr(
-																									"selected");
+																					$(".card").css("border-color", '');
+																					$(".card").removeAttr("selected");
 																					//input태그의 sitter_id의 value값을 초기화시킨다
-																					$(
-																							"#sitter_id")
-																							.attr(
-																									"value",
-																									"");
-																					$(
-																							"#sitter_name")
-																							.attr(
-																									"value",
-																									'');
+																					$("#sitter_id").attr("value", "");
+																					$("#sitter_name").attr("value", '');
 																				} else {//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
 																					//기존의 selected속성과 테두리속성을 모두 해제시킨다.
-																					$(
-																							".card")
-																							.css(
-																									"border-color",
-																									'');
-																					$(
-																							".card")
-																							.removeAttr(
-																									"selected");
+																					$(".card").css("border-color", '');
+																					$(".card").removeAttr("selected");
 																					//현재 누른 카드에 selected속성과 테두리css를 적용시킨다.
-																					$(
-																							cardId)
-																							.attr(
-																									"selected",
-																									"selected");
-																					$(
-																							cardId)
-																							.css(
-																									"border-color",
-																									"#3763eb");
-																					$(
-																							cardId)
-																							.css(
-																									"border-width",
-																									"5pt");
+																					$(cardId).attr("selected", "selected");
+																					$(cardId).css("border-color", "#3763eb");
+																					$(cardId).css("border-width", "5pt");
 																					//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
-																					$(
-																							"#sitter_id")
-																							.attr(
-																									"value",
-																									id);
-																					$(
-																							"#sitter_name")
-																							.attr(
-																									"value",
-																									name);
-
+																					$("#sitter_id").attr("value", id);
+																					$("#sitter_name").attr("value", name);
 																				}
 																			})
 
 															//펫시터 상세정보창의 닫기버튼을 누르면 상세정보창이 닫힌다.
-															$("#closebtn")
-																	.on(
-																			"click",
-																			function() {
-																				$(
-																						".modal")
-																						.fadeOut();
+															$("#closebtn").on("click", function() {
+																				$(".modal").fadeOut();
 																			})
-
 														},
 														error : function(data) {
 
@@ -886,47 +942,16 @@ td {
 					aria-labelledby="pills-3-tab">
 					<div class="single-pricing active mb-50">
 						<div class="col-lg-12 row align-self-center">
-							<form action="/pet/reserve/resv2_mb.do" method="post">
-								<div class="col-lg-4">
+							<form action="/pet/reserve/resv2_mb.do" method="post" id="pastmatch">
+								
 									<input type="hidden" id="match_method" name="match_method"
 										value="past_match"> <input type="hidden"
 										id="prefer_gender" name="prefer_gender" value=""> <input
 										type="hidden" id="prefer_size" name="prefer_size" value="">
-
-									<h4>12월 31일</h4>
-									<div class="card">
-										<img src="/pet/resources/assets/images/1.jpg"
-											class="card-img-top" alt="...">
-										<div class="card-body">
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-										</div>
-									</div>
+										
+								<div class="col-12" id="pastlist">
 								</div>
 
-								<div class="col-lg-4">
-									<h4>1월 4일</h4>
-									<div class="card">
-										<img src="/pet/resources/assets/images/3.gif"
-											class="card-img-top" alt="...">
-										<div class="card-body">
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-4">
-									<h4>1월 7일</h4>
-									<div class="card">
-										<img src="/pet/resources/assets/images/4.png"
-											class="card-img-top" alt="...">
-										<div class="card-body">
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-										</div>
-									</div>
-								</div>
 
 
 								<div class="button text-center pb-50">
@@ -951,14 +976,13 @@ td {
 									type="hidden" name="beauty_service"
 									value="${resvdto.beauty_service }"> <input
 									type="hidden" name="service_note"
-									value="${resvdto.service_note }"> <input type="hidden"
+									value="${resvdto.service_note }"><input type="hidden"
+									name="sitter_id" id="sitter_id3" value=""> <input
+									type="hidden" name="sitter_name" id="sitter_name3" value=""> <input type="hidden"
 									name="pet_idlist" value="${resvdto.pet_idlist }"> <input
 									type="hidden" name="pet_codelist"
 									value="${resvdto.pet_codelist }"> <input type="hidden"
-									name="pet_namelist" value="${resvdto.pet_namelist }"> <input
-									type="hidden" name="sitter_id" id="sitter_id" value="">
-								<input type="hidden" name="sitter_name" id="sitter_name"
-									value=""> <input type="hidden" name="total_price"
+									name="pet_namelist" value="${resvdto.pet_namelist }">  <input type="hidden" name="total_price"
 									value="${resvdto.total_price }">
 
 
@@ -984,7 +1008,7 @@ td {
 			<div id="detailcontent"></div>
 			<div>
 				<button type="button" class="theme-btn direct sitterdetail"
-					id="closebtn" style="display: inline-block;">닫기</button>
+					id="closebtn" style="display: inline-block; position: absolute; text-align: center;">x</button>
 			</div>
 		</div>
 	</div>
@@ -992,6 +1016,15 @@ td {
 		let dm = document.getElementById("directmatch");
 		dm.addEventListener("submit", function(e) {
 			let sitteridselected = document.getElementById("sitter_id")
+			if (sitteridselected.value.length == 0) {
+				alert("펫시터를 선택해주세요")
+				e.preventDefault();
+			}
+		})
+		
+		let pt = document.getElementById("pastmatch");
+		pt.addEventListener("submit", function(e) {
+			let sitteridselected = document.getElementById("sitter_id3")
 			if (sitteridselected.value.length == 0) {
 				alert("펫시터를 선택해주세요")
 				e.preventDefault();

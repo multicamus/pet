@@ -313,6 +313,16 @@ public class ResvController {
 		return sitterlist;
 	}
 	
+	@RequestMapping(value="/sitter/ajax/pastlist.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public List<SitterDTO> pastlist(String code, HttpSession session){
+		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
+		String member_id = user.getMember_id();
+		List<SitterDTO> sitterlist = service.pastlist(code, member_id);
+		System.out.println("과거이용:"+sitterlist);
+		return sitterlist;
+	}
+	
 	@RequestMapping(value="/sitter/ajax/read.do", produces="application/json;charset=utf-8")
 	@ResponseBody
 	SitterDTO readSitter(String sitter_id) {

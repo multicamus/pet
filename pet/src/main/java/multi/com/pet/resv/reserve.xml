@@ -143,6 +143,41 @@
 		</where>
 	</select>
 	
+	<!-- 과거에 이용했던 펫시터 리스트 불러오기 -->
+	<select id="pastlist" parameterType="Map" resultType="sitter">
+		select s.* from sitter_info s, resv_history h
+		<where>
+			<if test='code=="D"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and (s.sitter_code = 'A' or s.sitter_code = 'D')
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 1
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+					
+			</if> 
+			<if test='code=="C"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and (s.sitter_code = 'A' or s.sitter_code = 'C')
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 1
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+			</if>
+			<if test='code=="A"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and s.sitter_code = 'A'
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 1
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+			</if>  
+		</where>	
+	</select>
+	
 	<!-- 시터 id로 시터 정보 row 가져오기 -->
 	<select id="readsitter" parameterType="String" resultType="sitter">
 			select * from sitter_info

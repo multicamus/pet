@@ -158,6 +158,8 @@ input[type="radio"]:checked+label {
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
+
+input[type=label]
 </style>
 
 <script>
@@ -319,10 +321,9 @@ input[type="radio"]:checked+label {
 											<c:forEach var="pet" items="${mypetlist }" varStatus="status">
 												<div class="col-md-4">
 													<fieldset>
-														<label for="petnamelist${status.count }"
-															style="cursor: pointer;"> <input type="checkbox"
+														<label for="petnamelist${status.count }"  style="cursor: pointer;"> <input type="checkbox" style="cursor: pointer;"
 															id="petnamelist${status.count }" value="${pet.pet_name }"
-															class="selectpet${status.count }" name="pet_namelist"></label>${pet.pet_name }
+															class="selectpet${status.count }" name="pet_namelist">${pet.pet_name }</label>
 															<input type="checkbox" id="petcodelist${status.count }"
 															value="${pet.pet_code }"
 															class="selectpet${status.count }" name="pet_codelist"
@@ -331,7 +332,7 @@ input[type="radio"]:checked+label {
 															class="selectpet${status.count }" name="pet_idlist"
 															style="display: none;">
 													</fieldset>
-													</label>
+													
 												</div>
 											</c:forEach>
 										</div>
@@ -352,7 +353,7 @@ input[type="radio"]:checked+label {
 									<div class="mb-3">
 										<div
 											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn radio_male">
+											<div class="form_check_btn radio_male" style="cursor: pointer;">
 												<input id="check-1" value="default_service" type="checkbox"
 													name="servicecode" checked onClick="return false;">
 												<label for="check-1" style="cursor: pointer;">[기본]돌봄(25,000원)</label>

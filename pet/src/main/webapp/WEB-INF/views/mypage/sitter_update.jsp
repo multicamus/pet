@@ -11,6 +11,7 @@
         		margin-left: -50%;
         		margin-right: 10px;
         		cursor: pointer;
+        		width: 12px;
         	}
         	label {
         		margin-left: -50%; 
@@ -204,102 +205,102 @@
 			                                </div>
 
 			                                
-			                                    <div class="area seoul" style="margin-top: 30px;">
+			                                    <div class="area seoul" style="margin-top: 30px; margin-left: 20px;">
 			                                    	<div class="narrow">
-											    		<input type="checkbox" id="default1" value="서울 강남구" name="service_area">
-				                           				<label for="default1">  강남구</label>
+											    		<input type="checkbox" id="default1" value="서울 강남구" name="service_area" style="width: 12px;">
+				                           				<label for="default1" style="margin-left: 0.1px;">강남구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default2" value="서울 강북구" name="service_area">
-				                           				<label for="default2">  강북구</label>
+				                           				<input type="checkbox" id="default2" value="서울 강북구" name="service_area" style="width: 12px">
+				                           				<label for="default2" style="margin-left: 0.1px;">강북구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default3" value="서울 강서구" name="service_area">
-				                           				<label for="default3">  강서구</label>	
+				                           				<input type="checkbox" id="default3" value="서울 강서구" name="service_area" style="width: 12px">
+				                           				<label for="default3" style="margin-left: 0.1px;">강서구</label>	
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default4" value="서울 강동구" name="service_area">
-				                           				<label for="default4">  강동구</label>
+				                           				<input type="checkbox" id="default4" value="서울 강동구" name="service_area" style="width: 12px">
+				                           				<label for="default4" style="margin-left: 0.1px;">강동구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default5" value="서울 관악구" name="service_area">
-				                           				<label for="default5">  관악구</label>
+				                           				<input type="checkbox" id="default5" value="서울 관악구" name="service_area" style="width: 12px">
+				                           				<label for="default5" style="margin-left: 0.1px;">관악구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default6" value="서울 광진구" name="service_area">
-				                           				<label for="default6">  광진구</label>
+				                           				<input type="checkbox" id="default6" value="서울 광진구" name="service_area" style="width: 12px">
+				                           				<label for="default6" style="margin-left: 0.1px;">광진구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default7" value="서울 구로구" name="service_area">
-				                           				<label for="default7">  구로구</label>
+				                           				<input type="checkbox" id="default7" value="서울 구로구" name="service_area" style="width: 12px">
+				                           				<label for="default7" style="margin-left: 0.1px;">구로구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default8" value="서울 금천구" name="service_area">
-				                           				<label for="default8">  금천구</label>
+				                           				<input type="checkbox" id="default8" value="서울 금천구" name="service_area" style="width: 12px">
+				                           				<label for="default8" style="margin-left: 0.1px;">금천구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default9" value="서울 노원구" name="service_area">
-				                           				<label for="default9">  노원구</label>
+				                           				<input type="checkbox" id="default9" value="서울 노원구" name="service_area" style="width: 12px">
+				                           				<label for="default9" style="margin-left: 0.1px;">노원구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default10" value="서울 도봉구" name="service_area">
-				                           				<label for="default10">  도봉구</label>
+				                           				<input type="checkbox" id="default10" value="서울 도봉구" name="service_area" style="width: 12px">
+				                           				<label for="default10" style="margin-left: 0.1px;">도봉구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default11" value="서울 강동구" name="service_area">
-				                           				<label for="default11">강동구</label>
+				                           				<input type="checkbox" id="default11" value="서울 강동구" name="service_area" style="width: 12px">
+				                           				<label for="default11" style="margin-left: 0.1px;">강동구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default14" value="서울 마포구" name="service_area">
-				                           				<label for="default14">  마포구</label>
+				                           				<input type="checkbox" id="default14" value="서울 마포구" name="service_area" style="width: 12px">
+				                           				<label for="default14" style="margin-left: 0.1px;">마포구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default16" value="서울 서대문구" name="service_area">
-				                           				<label for="default16">  서대문구</label>
+				                           				<input type="checkbox" id="default16" value="서울 서대문구" name="service_area" style="width: 12px">
+				                           				<label for="default16" style="margin-left: 0.1px;">서대문구</label>
 				                           			</div>
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default17" value="서울 서초구" name="service_area">
-				                           				<label for="default17">  서초구</label>
+				                           				<input type="checkbox" id="default17" value="서울 서초구" name="service_area" style="width: 12px">
+				                           				<label for="default17" style="margin-left: 0.1px;">서초구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default18" value="서울 성동구" name="service_area">
-				                           				<label for="default18">  성동구</label>
+				                           				<input type="checkbox" id="default18" value="서울 성동구" name="service_area" style="width: 12px">
+				                           				<label for="default18" style="margin-left: 0.1px;">성동구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default19" value="서울 성북구" name="service_area">
-				                           				<label for="default19">  성북구</label>
+				                           				<input type="checkbox" id="default19" value="서울 성북구" name="service_area" style="width: 12px">
+				                           				<label for="default19" style="margin-left: 0.1px;">성북구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default20" value="서울 송파구" name="service_area">
-				                           				<label for="default20">  송파구</label>
+				                           				<input type="checkbox" id="default20" value="서울 송파구" name="service_area" style="width: 12px">
+				                           				<label for="default20" style="margin-left: 0.1px;">송파구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default21" value="서울 양천구" name="service_area">
-				                           				<label for="default21">  양천구</label>
+				                           				<input type="checkbox" id="default21" value="서울 양천구" name="service_area" style="width: 12px">
+				                           				<label for="default21" style="margin-left: 0.1px;">양천구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default22" value="서울 영등포구" name="service_area">
-				                           				<label for="default22">  영등포구</label>
+				                           				<input type="checkbox" id="default22" value="서울 영등포구" name="service_area" style="width: 12px">
+				                           				<label for="default22" style="margin-left: 0.1px;">영등포구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default23" value="서울 용산구" name="service_area">
-				                           				<label for="default23">  용산구</label>
+				                           				<input type="checkbox" id="default23" value="서울 용산구" name="service_area" style="width: 12px">
+				                           				<label for="default23" style="margin-left: 0.1px;">용산구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default24" value="서울 은평구" name="service_area">
-				                           				<label for="default24">  은평구</label>
+				                           				<input type="checkbox" id="default24" value="서울 은평구" name="service_area" style="width: 12px">
+				                           				<label for="default24" style="margin-left: 0.1px;">은평구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default25" value="서울 종로구" name="service_area">
-				                           				<label for="default25">  종로구</label>
+				                           				<input type="checkbox" id="default25" value="서울 종로구" name="service_area" style="width: 12px">
+				                           				<label for="default25" style="margin-left: 0.1px;">종로구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default26" value="서울 중구" name="service_area">
-				                           				<label for="default26">  중구</label>
+				                           				<input type="checkbox" id="default26" value="서울 중구" name="service_area" style="width: 12px">
+				                           				<label for="default26" style="margin-left: 0.1px;">중구</label>
 				                           			</div>	
 				                           			<div class="narrow">
-				                           				<input type="checkbox" id="default27" value="서울 중랑구" name="service_area">
-				                           				<label for="default27">  중랑구</label>
+				                           				<input type="checkbox" id="default27" value="서울 중랑구" name="service_area" style="width: 12px">
+				                           				<label for="default27" style="margin-left: 0.1px;">중랑구</label>
 				                           			</div>		
 
 			                                    </div>

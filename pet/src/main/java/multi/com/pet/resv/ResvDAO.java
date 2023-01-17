@@ -8,6 +8,9 @@ import mutli.com.pet.review.Review2DTO;
 public interface ResvDAO {
 	List<SitterDTO> directlistAllgender(String size, String code, String shortAddr);
 	List<SitterDTO> directlistBygender(String gender, String size, String code, String shortAddr);
+	//과거 이용했던 펫시터 불러오기
+	List<SitterDTO> pastlist(String code, String member_id);
+	
 	SitterDTO readSitter(String sitter_id);
 	int insert(ResvDTO resvdto);
 	List<ResvDTO> memberresvlist(String member_id);

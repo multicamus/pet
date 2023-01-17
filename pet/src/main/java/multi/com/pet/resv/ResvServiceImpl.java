@@ -27,8 +27,13 @@ public class ResvServiceImpl implements ResvService {
 			System.out.println("서비스단code"+code);
 			return dao.directlistBygender(gender, size, code, shortAddr);
 		}
-		
 	}
+	//과거에 이용했던 펫시터 불러오기
+	@Override
+	public List<SitterDTO> pastlist(String code, String member_id) {
+		return dao.pastlist(code, member_id);
+	}
+	
 	@Override
 	public SitterDTO readSitter(String sitter_id) {
 		return dao.readSitter(sitter_id);
@@ -94,6 +99,8 @@ public class ResvServiceImpl implements ResvService {
 	public Review2DTO readReview(String resv_no) {	
 		return dao.readReview(resv_no);
 	}
+
+
 	
 
 }
