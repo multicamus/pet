@@ -101,9 +101,11 @@ public class MemberController {
 		case "READ":
 			view = "mypage/sitter";
 			model.addAttribute("resvlist", resvlist);
+			
 			break;
 		default:
 			view = "mypage/sitter_update";
+			
 			break;
 		}
 		model.addAttribute("sitter", sitter);
@@ -169,6 +171,27 @@ public class MemberController {
 	@RequestMapping(value = "admin.do")
 	public String admin(Model model) {
 		List<SitterDTO> sitterlist = service.sitterList();
+		// for문으로 sitterlist를 탐색해서 valid 값이 1면 승인 ,1가 아니면 미승인
+		//변수 세 개를 정의 후 전체 갯수, 1상태의 갯수, 1가 아닌 갯수를 저장하고 sysout출력해보기
+		int total = sitterlist.size();
+		int atotal = 0;//valid가 1인 경우
+		int untotal = 0;
+		for(int i=0; i<sitterlist.size();i++) {
+			SitterDTO sDto =  sitterlist.get(i);
+			System.out.println(sDto);
+			if(sDto.getValid().equals("1")) {
+				System.out.println("활동승인");
+				atotal++;
+			}else  {
+				System.out.println("미승인");
+				untotal++;
+			}
+			
+		}
+		System.out.println(sitterlist);
+		model.addAttribute("total",total);
+		model.addAttribute("atotal",atotal);
+		model.addAttribute("untotal",untotal);
 		model.addAttribute("sitterlist", sitterlist);
 		return "mypage/admin";
 	}
