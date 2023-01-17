@@ -269,11 +269,33 @@
 					                      </div>
 				                          <!-- service area start -->
 					                      <div class="row align-items-center">
-					                      	  <div class="col-md-auto"><h4>서비스 제공 구역</h4></div>
-					                          <div class="col-md-12">
-					                              <input type="text" name="service_area" id="service_area" placeholder="서울특별시 서대문구, 서울특별시 은평구, 3개 까지 등록 가능" required value="">
-					                          </div>
-					                      </div>
+                                          <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
+                                          <div class="col-auto pb-50">
+	                                        <div class="col-md-auto">
+		                                        <button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
+					                            <button class=" btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
+					                            <button class=" btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
+			                                </div>
+			                                <div class="col-md-auto">
+			                                    <div class="area seoul">
+											    	<input type="checkbox" id="default1" value="서울특별시 강남구" name="service_area">
+				                           			<label for="default1">강남구</label>
+				                           			<input type="checkbox" id="default2" value="서울특별시 강동구" name="service_area">
+				                           			<label for="default2">강동구</label>
+				                           			<input type="checkbox" id="default3" value="서울특별시 강북구" name="service_area">
+				                           			<label for="default3">강북구</label>
+			                                    </div>
+		                                     </div>
+		                                        <div class="area suwon">
+										    	<input type="checkbox" id="default4"  value="경기도 수원시 영통구" name="service_area">
+		                               			<label for="default4">영통구</label>
+		                               			<input type="checkbox" id="default5"  value="경기도 수원시 권선구" name="service_area">
+		                               			<label for="default5">권선구</label>
+		                               			<input type="checkbox" id="default6"  value="경기도 수원시 장안구" name="service_area">
+		                               			<label for="default6">장안구</label>
+		                                    </div>
+	                                      </div>
+	                                      </div>
 					                      <!-- sitter_intro start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>자기 소개</h4></div>
@@ -291,8 +313,9 @@
 					                      <!-- sitter_certificate start -->
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>자격증 등록</h4></div>
-					                          <div class="col-md-auto">
-					                              <input type="text" name="sitter_certificate" id="sitter_certificate" placeholder="test">
+					                      	  <div class="col-md-auto"><button class="btn btn-outline-success wide" type="button" onclick="javascript:add()">추가</button></div>
+					                          <div id="sitter_certificate" class="col-md-12">
+					                              <input type="text" name="sitter_certificate" id="certificate" placeholder="ex) 반려동물행동상담사 2급 자격증 보유">
 					                          </div>
 					                      </div>
 					                    
@@ -386,7 +409,42 @@
 	function error_run(obj, msg, statusMsg) {
 		alert("오류발생 → " + obj + ", " + msg + ", " + statusMsg)
 	}
+	
+	$(document).ready(function() {
+		$(".area").hide();
 		
+		$("#seoul").on("click", function(){
+			$(".area").hide()
+			$(".seoul").show()
+		})
+		$("#suwon").on("click", function(){
+			$(".area").hide()
+			$(".suwon").show()
+		})
+		
+		$(".narrow").on("click", function(){
+			val = $(this).attr("value")
+			alert(val);
+		})	
+		
+		$("input[type='checkbox']").on("click", function(){
+			let count = $("input:checked[type='checkbox']").length;
+			if(count>3){
+				$(this).prop("checked", false);
+				alert("3개까지만 선택 할 수 있습니다.")
+			}
+		});
+	});
+	
+	const add = () => {
+	    const box = document.getElementById("sitter_certificate");
+	    const newP = document.createElement('p');
+	    newP.innerHTML = "<input type='text' name='sitter_certificate' placeholder='ex) 훈련사 자격증 3급 보유'> <input type='button' class='btn-close' style='width:10px;' onclick='remove(this)'>";
+	    box.appendChild(newP);
+	}
+	const remove = (obj) => {
+	    document.getElementById("sitter_certificate").removeChild(obj.parentNode);
+	}
   
 </script>
 </html>

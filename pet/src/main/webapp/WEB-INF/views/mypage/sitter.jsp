@@ -80,6 +80,7 @@
                                             <h4>자격증</h4>
                                             <%
 								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                            
                                    	   		if(sitter.getSitter_certificate() != null){
                                    	   		String[] certificate = sitter.getSitter_certificate().split(",");
                                    	   		int size = certificate.length;

@@ -178,9 +178,9 @@
                                         <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
                                         <div class="col-12">
 	                                        <div class="col-md-auto pt-20">
-		                                        <button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
-					                            <button class=" btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
-					                            <button class=" btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
+		                                        <button class="btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
+					                            <button class="btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
+					                            <button class="btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
 			                                </div>
 			                                <div class="col-md-auto pt-20">
 			                                    <div class="area seoul">
