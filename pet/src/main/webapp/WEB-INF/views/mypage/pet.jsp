@@ -250,15 +250,15 @@
 										
 										<c:if test="${pet.pet_size eq 'S' }">
 											<legend>크기</legend>
-											<input type="text"  value="소형견">
+											<input type="text"  value="소형견" disabled>
 										</c:if>	
 										<c:if test="${pet.pet_size eq 'M' }">
 											<legend>크기</legend>
-											<input type="text" value="중형견">
+											<input type="text" value="중형견" disabled>
 										</c:if>
 										<c:if test="${pet.pet_size eq 'L' }">
 											<legend>크기</legend>
-											<input type="text" value="대형견">
+											<input type="text" value="대형견" disabled>
 										</c:if>
 											<input type="hidden" name="pet_size" id="size" value="${pet.pet_size }" >
 				

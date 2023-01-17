@@ -19,7 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
-import multi.com.pet.etc.FileUploadLogic;
+import multi.com.pet.etc.FileUploadLogic3;
 import multi.com.pet.resv.ResvDTO;
 import mutli.com.pet.mypet.PetDTO;
 
@@ -28,10 +28,10 @@ import mutli.com.pet.mypet.PetDTO;
 @SessionAttributes("user")
 public class MemberController {
 	MemberService service;
-	FileUploadLogic fileUploadService;
+	FileUploadLogic3 fileUploadService;
 	
 	@Autowired
-	public MemberController(MemberService service, FileUploadLogic fileUploadService) {
+	public MemberController(MemberService service, FileUploadLogic3 fileUploadService) {
 		super();
 		this.service = service;
 		this.fileUploadService = fileUploadService;

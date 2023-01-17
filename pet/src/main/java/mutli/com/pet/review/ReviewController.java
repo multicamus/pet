@@ -23,12 +23,12 @@ import org.springframework.web.util.WebUtils;
 
 @Controller
 public class ReviewController {
-	FileUploadLogic2 fileuploadService;
+	FileUploadLogic fileuploadService;
 	ReviewService service;
 	
 	
 	@Autowired
-	public ReviewController(FileUploadLogic2 fileuploadService,ReviewService service) {
+	public ReviewController(FileUploadLogic fileuploadService,ReviewService service) {
 		super();
 		this.fileuploadService = fileuploadService;
 		this.service = service;

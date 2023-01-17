@@ -32,7 +32,7 @@
 			$("#submit").on("click", function(){
 				weight = $("input[name=pet_weight]").val()
 				petcode = $("input[name=pet_code]").val()
-				if(pet == 'DOG'){
+				if(petcode == 'DOG'){
 					if(weight <= 7){
 						$("#pet_size").prop("value", "S")
 					}else if(7<weight && weight <= 15){

@@ -23,7 +23,7 @@ public class SitterDTO {
 	private Date sitter_birthdate;
 	private String service_area;
 	private String sitter_info;
-	private String valid;
+	private String valid= "0";
 	private String sitter_certificate;
 	private String sitter_rate;
 

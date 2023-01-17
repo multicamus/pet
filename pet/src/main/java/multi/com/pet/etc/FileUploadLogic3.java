@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import mutli.com.pet.erp.SitterImgDTO;
 
 @Service
-public class FileUploadLogic {
+public class FileUploadLogic3 {
 	public SitterImgDTO uploadFile(String sitter, MultipartFile file, String path) throws IllegalStateException, IOException{
 		String originalFileName = file.getOriginalFilename();
 		System.out.println(originalFileName);
