@@ -278,11 +278,11 @@
 			                                </div>
 			                                <div class="col-md-auto">
 			                                    <div class="area seoul">
-											    	<input type="checkbox" id="default1" value="서울특별시 강남구" name="service_area">
+											    	<input type="checkbox" id="default1" value="서울시 강남구" name="service_area">
 				                           			<label for="default1">강남구</label>
-				                           			<input type="checkbox" id="default2" value="서울특별시 강동구" name="service_area">
+				                           			<input type="checkbox" id="default2" value="서울시 강동구" name="service_area">
 				                           			<label for="default2">강동구</label>
-				                           			<input type="checkbox" id="default3" value="서울특별시 강북구" name="service_area">
+				                           			<input type="checkbox" id="default3" value="서울시 강북구" name="service_area">
 				                           			<label for="default3">강북구</label>
 			                                    </div>
 		                                     </div>
