@@ -13,6 +13,6 @@ public interface PetDAO {
 	// delete
 	public int delete(String pet_id);
 
-	public int insertFile(PetFileDTO petfiledtolist);
+	public int insertFile(PetFileDTO pet); 
 	
 }

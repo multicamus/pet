@@ -12,13 +12,15 @@ public class FileUploadLogic2 {
 	public PetFileDTO uploadFile(MultipartFile multipartFile, String path) throws IllegalStateException, IOException{
 		PetFileDTO filed = new PetFileDTO();
 			if(!multipartFile.isEmpty()) {
-				//클라이언트가 업로드한 파일명
-				String originalFilename = multipartFile.getOriginalFilename();
+				//클라이언트가 업로드한 파일명 
+				String originalFilename = multipartFile.getOriginalFilename(); 
 				//서버에서 식별할 수 있도록 파일명을 변경
-				String storeFilename = createStoreFilename(originalFilename); 
-				System.out.println(originalFilename);
+				String storeFilename = createStoreFilename(originalFilename); //uuid 
+				
 				//File객체를 실제 경로에 저장
 				multipartFile.transferTo(new File(path+File.separator+storeFilename));
+				filed.setOriginalFilename(originalFilename);
+				filed.setStoreFilename(storeFilename);
 			}
 		return filed;
 	}

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PetDAOImpl implements PetDAO {
 	SqlSession sqlsession;
-	
+
 	@Autowired
 	public PetDAOImpl(SqlSession sqlsession) {
 		super();
@@ -33,10 +33,9 @@ public class PetDAOImpl implements PetDAO {
 	public int delete(String pet_id) {
 		return sqlsession.delete("mutli.com.pet.mypet.delete", pet_id);
 	}
-
-	@Override
-	public int insertFile(PetFileDTO petfiledtolist) {
-		return sqlsession.insert("mutli.com.pet.review.fileinsert", petfiledtolist);		
+	
+	@Override public int insertFile(PetFileDTO pet) {
+		System.out.println("PetDAOImpl PetFileDTO : " +pet);
+		return sqlsession.insert("mutli.com.pet.review.fileinsert", pet); 
 	}
-
 }

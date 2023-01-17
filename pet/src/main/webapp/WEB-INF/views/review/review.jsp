@@ -65,7 +65,7 @@
 							<div class="feature-box box-style" style="float: left;">
 								<div style="display: flex; position: relative;">
 									<img
-										src="/pet/resources/assets/images/${review.member_photo}.jpg"
+										src="/pet/resources/pet_profile/"
 										style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 
 								</div>

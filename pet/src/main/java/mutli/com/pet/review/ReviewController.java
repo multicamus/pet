@@ -152,11 +152,5 @@ public class ReviewController {
 //		}else {
 //			writePage(review);
 //		}
-		
-		
-		
-	
-		
-		
 	}
 }

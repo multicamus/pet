@@ -59,6 +59,7 @@
 				<div class="contact-item-wrapper">
 					<div class="row">
 						<!-- 동물 정보 시작 -->
+						
 						<c:forEach var="pet" items="${mypetlist}" varStatus="status">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
@@ -81,10 +82,6 @@
 										<div class="contact-icon">
 											<img src="">
 										</div>
-										<div class="contact-content">
-											<h4>반려동물은 3마리 까지<br/> 등록 할 수 있어요!</h4>
-											<p><a type="button" href="/pet/menu/mypage/pet_register.do" class="theme-btn">+ 추가 등록</a></p>
-										</div>
 									</div>
 								</div>
 							</c:when>
@@ -103,13 +100,13 @@
 							</div>
 						</div>
 					</div>
-					<form method="post" class="contact-form" action="/pet/mypet/insert.do" enctype="multipart/form-data">
+					<form method="post" class="contact-form" action="/pet/mypet/fileinsert.do" enctype="multipart/form-data">
 						<div class="container pb-50">
 							<div>
 								<legend>반려동물 사진</legend>
 							</div>
 							<div>
-								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
+								<input type="file" id="pet_photo_file" name="pet_photo_file"   style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
 							</div>
 						<div>
 							<fieldset>
@@ -224,7 +221,7 @@
 							<input type="hidden" name="pet_id" value="${user.member_id}_pet_${fn:length(mypetlist)+1}">							
 							<input type="hidden" name="member_id" value="${user.member_id}">
 							<input type="hidden" name="pet_number" value="${fn:length(mypetlist)+1}">
-							<input type="hidden" name="pet_photo" value="test">
+							<input type="hidden" name="pet_photo" value="${pet.pet_photo}">
 						<!-- hidden end -->
 
 							<div class="row">

@@ -140,7 +140,7 @@ create table pet_info(
 	neuter char(1),
 	animalhospital_name varchar2(32),
 	animalhospital_addr varchar2(32),
-	pet_photo varchar2(30),
+	pet_photo varchar2(50),
 	pet_note varchar2(200),
 	pet_number char(1)
 );

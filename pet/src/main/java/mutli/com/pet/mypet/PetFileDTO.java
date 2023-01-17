@@ -1,7 +1,7 @@
 package mutli.com.pet.mypet;
 
 public class PetFileDTO {
-	private String pet_photo;
+	private String petphoto;
 	private String originalFilename;
 	private String storeFilename;
 
@@ -16,16 +16,12 @@ public class PetFileDTO {
 	}
 	
 	//boardfile의 상세정보 - insert
-	public PetFileDTO(String originalFilename, String storeFilename, String reviewFileno) {
-		super();
-		this.originalFilename = originalFilename;
-		this.storeFilename = storeFilename;
-	}
+
 	
 	//select
-	public PetFileDTO(String pet_photo, String originalFilename, String storeFilename, String reviewFileno) {
+	public PetFileDTO(String petphoto, String originalFilename, String storeFilename) {
 		super();
-		this.pet_photo = pet_photo;
+		this.petphoto = petphoto;
 		this.originalFilename = originalFilename;
 		this.storeFilename = storeFilename;
 	}
@@ -33,20 +29,17 @@ public class PetFileDTO {
 
 	@Override
 	public String toString() {
-		return "ReviewFileDTO [review_no=" + pet_photo + ", originalFilename=" + originalFilename + ", storeFilename="
-				+ storeFilename + ", reviewFileno=" +  "]";
-	}
-	
-
-	public String getReview_no() {
-		return pet_photo;
-		
+		return "PetFileDTO [petphoto=" + petphoto + ", originalFilename=" + originalFilename + ", storeFilename="
+				+ storeFilename + "]";
 	}
 
-	public void setReview_no(String pet_photo) {
-		this.pet_photo = pet_photo;
+	public String getPetphoto() {
+		return petphoto;
 	}
 
+	public void setPetphoto(String petphoto) {
+		this.petphoto = petphoto;
+	}
 
 	public String getOriginalFilename() {
 		return originalFilename;

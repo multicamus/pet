@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PetServiceImpl implements PetService {
 	PetDAO dao;
-	
+
 	@Autowired
 	public PetServiceImpl(PetDAO dao) {
 		super();
@@ -34,8 +34,8 @@ public class PetServiceImpl implements PetService {
 	}
 
 	@Override
-	public int insertfile(PetFileDTO petfiledtolist) {
-		dao.insertFile(petfiledtolist);
-		return 0;
+	public int insertfile(PetFileDTO pet) {
+		System.out.println("PetServiceImpl PetFileDTO : " +pet);
+		return dao.insertFile(pet);
 	}
 }
