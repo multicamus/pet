@@ -27,6 +27,11 @@
 		FROM sitter_info
 		WHERE sitter_id = #{sitter_id}
 	</select>	
+	<select id="sitter_img_read" parameterType="String" resultType="sitter_img">
+		SELECT * 
+		FROM sitter_img
+		WHERE sitter_id = #{sitter_id}
+	</select>	
 	<!-- read_sitter end -->
 		
 	<!-- update start -->	
@@ -42,9 +47,14 @@
 		SET sitter_code=#{sitter_code}, sitter_email=#{sitter_email}, sitter_phone=#{sitter_phone}, sitter_addr1=#{sitter_addr1}, sitter_addr2=#{sitter_addr2}, sitter_birthdate=#{sitter_birthdate}, service_area=#{service_area}, sitter_info=#{sitter_info}
 		WHERE sitter_id = #{sitter_id}
 	</update>
+	<update id="sitter_img_update" parameterType="sitter_img">
+		UPDATE sitter_img
+		SET sitter_id = #{sitter_id}, originalImgName = #{originalImgName}, storeImgName = #{storeImgName}
+		WHERE sitter_id = #{sitter_id}
+	</update>
 	<update id="sitter_certi_update" parameterType="sitter">
 		UPDATE sitter_info
-		SET sitter_certificate=#{sitter_certificate}
+		SET sitter_certificate = #{sitter_certificate}
 		WHERE sitter_id = #{sitter_id}
 	</update>
 	<!-- update end-->

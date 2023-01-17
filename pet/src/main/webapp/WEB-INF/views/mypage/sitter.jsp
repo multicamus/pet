@@ -109,9 +109,11 @@
                             </div>
                                 <div class="contact-form">
                                     <div class="row align-items-center">
-                                    	<div class="col-md-auto"><h4>이름</h4></div>
-                                       	<div class="col-md-4">
-                                       		<input type="text" name="photo" id="photo" placeholder="사진" value="${sitter.sitter_name}" disabled>
+                                    	<div class="col-md-auto"><h4>프로필 사진</h4></div>
+                                       	<div class="col-md-12 pb-50">
+                                       		<div>
+                                       			<img src="/pet/resources/sitter/${sitter_img.storeImgName}" width="220" height="160"></img>
+                                       		</div>
                                         </div>
                                     </div>
                                     

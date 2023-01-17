@@ -54,10 +54,19 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("mutli.com.pet.erp.sitter_read", sitter_id);
 	}
 
+	@Override
+	public SitterImgDTO sitter_img_read(String sitter_id) {
+		return sqlSession.selectOne("mutli.com.pet.erp.sitter_img_read", sitter_id);
+	}
+
 	// update
 	@Override
 	public int update(SitterDTO sitter) {
 		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
+	}
+	@Override
+	public int update(SitterImgDTO sitter_img) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_img_update", sitter_img);
 	}
 	@Override
 	public int certi_update(SitterDTO sitter) {

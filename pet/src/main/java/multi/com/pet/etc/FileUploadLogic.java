@@ -20,6 +20,7 @@ public class FileUploadLogic {
 		
 		file.transferTo(new File(path + File.separator + storeFileName));
 		System.out.println(file);
+		
 		SitterImgDTO Img  = new SitterImgDTO(sitter, originalFileName, storeFileName);
 		
 		return Img;

@@ -88,12 +88,17 @@
                             <!-- 시터 인사 끝 -->
                             
                             <!-- 시터 정보 시작 -->
-	                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post">
+	                            <form action="/pet/erp/sitter/update.do" class="contact-form" method="post" enctype="multipart/form-data">
                                	 	<div class="row align-middle">
-                                    	<div class="col-md-auto"><h4>이름</h4></div>
-                                    	<div class="col-md-auto">
-                                        	<input type="text" name="sitter_name" id="name" placeholder="이름" value="${sitter.sitter_name}" disabled="disabled">
-                                        </div>
+                                    	 <div class="col-md-auto"><h4>프로필 사진</h4></div>
+				                      	 <div class="col-md-12">
+											 <div class="thumbnail">
+												 <img src="/pet/resources/sitter/${sitter_img.storeImgName}" id="userImage" width="220" height="150">
+												 <div class="col-4 pt-30">
+												 	<input type="file" name="sitter_photo" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+												 </div>
+											 </div>
+									  	 </div>
                                     </div>
                                     
                                	 	<div class="row align-items-center">

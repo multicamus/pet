@@ -105,6 +105,7 @@ public class MemberController {
 	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
+		SitterImgDTO sitter_img = service.sitter_img_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
 		HttpSession hs = hsr.getSession();
 		String view = "";
@@ -119,6 +120,7 @@ public class MemberController {
 		}
 		model.addAttribute("sitter", sitter);
 		hs.setAttribute("sitter", sitter);
+		hs.setAttribute("sitter_img", sitter_img);
 		return view;
 	}
 	
@@ -130,9 +132,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
-	public String sitter_update(SitterDTO sitter) {
+	public String sitter_update(SitterDTO sitter, HttpSession session) throws IOException {
 		System.out.println(sitter);
-		service.update(sitter);
+		MultipartFile img = sitter.getSitter_photo();
+		System.out.println(img);
+		
+//		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
+		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
+		System.out.println(path);
+		
+		SitterImgDTO imgFile = fileUploadService.uploadFile(sitter.getSitter_id(), img, path);
+		System.out.println(imgFile.getSitter_id());
+		service.update(sitter, imgFile);
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
@@ -181,7 +192,7 @@ public class MemberController {
 		MultipartFile img = sitter.getSitter_photo();
 		System.out.println(img);
 		
-		String path = WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/sitter");
+		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
 		System.out.println(path);
 		
 		SitterImgDTO imgFile = fileUploadService.uploadFile(sitter.getSitter_id(), img, path);
