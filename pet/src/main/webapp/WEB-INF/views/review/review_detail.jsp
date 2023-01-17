@@ -9,12 +9,11 @@
 <title>Review Detail</title>
 <script type="text/javascript">
 	$(document).ready(function() { /*실행할준비가 완료되면 */
-		
+
 		$("#review_no_prev").on("click", function() {
 			no = "${review.review_no}"
 			alert("test~~~~" + no)
-			
-			
+
 			var querydata = {
 				"review_no" : no
 			}
@@ -33,8 +32,6 @@
 			})
 		})
 	})
-	
-	
 
 	function error_run() {
 		alert("error")
@@ -74,6 +71,28 @@
 
 				<div class="col-lg-8 col-md-6">
 					<div class="feature-box box-style">
+
+
+						<!-- 첨부파일 -->
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+							${reviewfiledtolist}
+							
+								<label for="title" class="control-label">첨부파일</label> 
+							</div>
+
+										<!-- <img src="/pet/uploadfiles/profile_image1.jpg"> -->
+							<div class="col-md-8">
+								<!-- 디비에 저장된 파일명을 출력(클라이언트가 선택한 파일명) : JSTL -->
+								<c:forEach var="file" items="${reviewfiledtolist}">
+									<h5>
+									</h5>
+								</c:forEach>
+							</div>
+						</div>
+
+
+
 						<div style="display: flex; position: relative;">
 
 
@@ -96,9 +115,9 @@
 							</div>
 
 
-							<%-- <c:choose>
+							<%--  <c:choose>
 							${review.review_no}
-								<c:when test="${user == null} "> --%>
+								<c:when test="${user == null} ">  --%>
 
 							<!-- 삭제 버튼 경로넣어야함 -->
 							<div class="col-lg-1">
@@ -118,7 +137,9 @@
 							</div>
 							<%-- 	</c:when>
 							</c:choose> --%>
-							
+
+
+
 						</div>
 						<br />
 						<div class="display: flex; flex-direction: column;">
@@ -145,7 +166,8 @@
 						style="margin: auto; width: 304px; height: 59px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">
 						<span
 						style="font-size: 26px; margin-bottom: 2px; color: #6A92FE; margin-right: 6px">+</span>
-						<p style="font-weight: 600; color: #6A92FE; font-size: 18px; line-height: 40px">전체
+						<p
+							style="font-weight: 600; color: #6A92FE; font-size: 18px; line-height: 40px">전체
 							후기 보기</p>
 					</a>
 

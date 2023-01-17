@@ -23,24 +23,34 @@
 		WHERE pet_id = #{pet_id}
 	</select>
 	
-	<!-- , pet_photo = #{pet_photo} -->
+	<!-- , pet_photo =  -->
 	<update id="update" parameterType="pet">
 		UPDATE pet_info 
 		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, pet_note = #{pet_note}       
 		WHERE pet_id = #{pet_id}
 	</update>
 	
+
 	<insert id="insert" parameterType="pet">
 		INSERT INTO pet_info (
 		pet_id,	member_id, pet_name, pet_gender, pet_code, pet_kind, pet_birthdate, pet_weight, pet_size, neuter, pet_photo, pet_note)
 		VALUES(#{pet_id}, #{member_id}, #{pet_name}, #{pet_gender}, #{pet_code}, #{pet_kind}, #{pet_birthdate}, #{pet_weight}, #{pet_size}, #{neuter}, #{pet_photo}, #{pet_note})
+
 	</insert>
 	
 	<delete id="delete" parameterType="String">
 		DELETE pet_info
 		WHERE pet_id = #{pet_id}
 	</delete>
-	
-	
+
+	<!-- 펫사진 업로드  --> 
+	 <insert id="fileinsert" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="file" separator=" ">
+			into pet_file
+			values(review_seq.currval,#{file.originalFilename},#{file.storeFilename})
+		</foreach>
+		select * from dual
+	</insert>
 </mapper>
 

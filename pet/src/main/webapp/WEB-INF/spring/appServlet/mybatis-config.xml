@@ -2,10 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//UTF-8" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<!-- JdbcType 이 null 이면 Null 로 처리  -->
-    <settings>
+<!--     <settings>
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
-
+ -->
 	<typeAliases>
 		<typeAlias type="mutli.com.pet.mypet.PetDTO" alias="pet" />
 		<typeAlias type="mutli.com.pet.erp.MemberDTO" alias="member" />

@@ -2,6 +2,8 @@ package mutli.com.pet.mypet;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PetDTO {
     private String pet_id;
     private String member_id;
@@ -15,15 +17,15 @@ public class PetDTO {
 	private String neuter;
 	private String animalhospital_name;
 	private String animalhospital_addr;
-	private String pet_photo;
+	private MultipartFile pet_photo_file;//업로드되는 객
 	private String pet_note;
 	private String pet_number;
-	
+	private String pet_photo;//서버에 업로드되는 파일명 (디비에 저장되는 파일명)
 	public PetDTO() {
 		super();
 	}
 
-	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
+	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind, 
 			Date pet_birthdate, double pet_weight, String pet_size, String neuter, String animalhospital_name,
 			String animalhospital_addr, String pet_photo, String pet_note, String pet_number) {
 		super();
@@ -39,10 +41,12 @@ public class PetDTO {
 		this.neuter = neuter;
 		this.animalhospital_name = animalhospital_name;
 		this.animalhospital_addr = animalhospital_addr;
-		this.pet_photo = pet_photo;
 		this.pet_note = pet_note;
 		this.pet_number = pet_number;
 	}
+
+
+	
 
 	@Override
 	public String toString() {
@@ -50,7 +54,8 @@ public class PetDTO {
 				+ pet_gender + ", pet_code=" + pet_code + ", pet_kind=" + pet_kind + ", pet_birthdate=" + pet_birthdate
 				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter
 				+ ", animalhospital_name=" + animalhospital_name + ", animalhospital_addr=" + animalhospital_addr
-				+ ", pet_photo=" + pet_photo + ", pet_note=" + pet_note + ", pet_number=" + pet_number + "]";
+				+ ", pet_photo_file=" + pet_photo_file + ", pet_note=" + pet_note + ", pet_number=" + pet_number
+				+ ", pet_photo=" + pet_photo + "]";
 	}
 
 	public String getPet_id() {
@@ -149,12 +154,12 @@ public class PetDTO {
 		this.animalhospital_addr = animalhospital_addr;
 	}
 
-	public String getPet_photo() {
-		return pet_photo;
+	public MultipartFile getPet_photo_file() {
+		return pet_photo_file;
 	}
 
-	public void setPet_photo(String pet_photo) {
-		this.pet_photo = pet_photo;
+	public void setPet_photo_file(MultipartFile pet_photo_file) {
+		this.pet_photo_file = pet_photo_file;
 	}
 
 	public String getPet_note() {
@@ -172,6 +177,15 @@ public class PetDTO {
 	public void setPet_number(String pet_number) {
 		this.pet_number = pet_number;
 	}
+
+	public String getPet_photo() {
+		return pet_photo;
+	}
+
+	public void setPet_photo(String pet_photo) {
+		this.pet_photo = pet_photo;
+	}
+
 	
 	
 }
