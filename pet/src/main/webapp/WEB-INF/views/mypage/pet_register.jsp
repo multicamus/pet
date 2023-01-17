@@ -117,8 +117,8 @@
 								<div class="row">
 									<div class="col-1">
 										<div>
-											<input type="radio" id="code_d" name="pet_code" value="dog" checked> 
-											<input type="radio" id="code_c" name="pet_code" value="cat" >
+											<input type="radio" id="code_d" name="pet_code" value="DOG" checked> 
+											<input type="radio" id="code_c" name="pet_code" value="CAT" >
 										</div>
 									</div>
 									<div class="col-11" style="margin-left: -20px;">
