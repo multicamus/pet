@@ -94,7 +94,6 @@ public class MemberController {
 			view = "mypage/user_update";
 			break;
 		}
-		System.out.println(member);
 		model.addAttribute("member", member);
 		return view;
 	}

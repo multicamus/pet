@@ -73,10 +73,11 @@
 			<mapping path = "/**" />
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/menu/login.do" />
+			<exclude-mapping path="/erp/user/login.do" />
+			<exclude-mapping path="/erp/sitter/login.do" />
 			<exclude-mapping path="/erp/user/register.do" />
-			<exclude-mapping path="/menu/service/care.do" />
-			<exclude-mapping path="/menu/service/walk.do" />
-			<exclude-mapping path="/menu/service/beauty.do" />
+			<exclude-mapping path="/erp/member/idCheck.do" />
+			<exclude-mapping path="/menu/service/**" />
 			<exclude-mapping path="/menu/review.do" />
 			<beans:bean class = "multi.com.pet.etc.LoginInterceptor"/>
 		</interceptor>

@@ -40,6 +40,5 @@ public class FileUploadLogic {
 		String uuId = UUID.randomUUID().toString();
 		return uuId + "." + ext;
 	}
-	
 
 }
