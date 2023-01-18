@@ -60,11 +60,12 @@
 					<div class="row">
 						<!-- 동물 정보 시작 -->
 						
+						
 						<c:forEach var="pet" items="${mypetlist}" varStatus="status">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
 									<div class="contact-icon">
-										<img src="">
+										<img src="/pet/upload/${pet.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 									</div>
 									<div class="contact-content">
 										<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
@@ -106,7 +107,7 @@
 								<legend>반려동물 사진</legend>
 							</div>
 							<div>
-								<input type="file" id="pet_photo_file" name="pet_photo_file"   style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
+								<input type="file" id="pet_photo_file" name="pet_photo_file" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
 							</div>
 						<div>
 							<fieldset>

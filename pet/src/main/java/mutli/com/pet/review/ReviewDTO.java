@@ -14,12 +14,12 @@ public class ReviewDTO {
 	private String resv_no;
 	private List<MultipartFile> review_file;
 	private String review_rate;
-
+	
 	
 	public ReviewDTO() {
 		super();
 	}
-
+	
 	public ReviewDTO(String review_no, String member_id, Date write_date_rv, Date modify_date_rv, String review,
 		String resv_no, List<MultipartFile> review_file, String review_rate) {
 		super();

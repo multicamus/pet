@@ -59,29 +59,13 @@
 				<div class="col-xl-4">
 					<div class="contact-item-wrapper">
 						<div class="row">
-							<!-- 동물 정보 시작 -->
-							<c:choose>
-								<c:when test="${fn:length(mypetlist)}=0 ">
-									<div class="col-12 col-md-6 col-xl-12">
-									<div class="contact-item">
-										<div class="contact-icon">
-											<img src="">
-										</div>
-										<div class="contact-content">
-											<h4>
-												<a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}
-												${user.name} 님의 귀여운 아이를 등록 해주세요!</a>
-											</h4>
-										</div>
-									</div>
-								</div>
-								</c:when>
-								<c:otherwise>
+						
+							 
 									<c:forEach var="pet" items="${mypetlist}" varStatus="status">
 										<div class="col-12 col-md-6 col-xl-12">
 											<div class="contact-item">
 												<div class="contact-icon">
-													<img src="">
+													<img src="/pet/upload/${pet.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 												</div>
 												<div class="contact-content">
 													<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
@@ -92,8 +76,7 @@
 											</div>
 										</div>
 									</c:forEach>
-								</c:otherwise>
-							</c:choose>
+							 
 							<!-- 동물 정보 끝 -->
 						</div>
 					</div>

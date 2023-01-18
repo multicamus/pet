@@ -77,7 +77,7 @@
 								<div class="col-12 col-md-6 col-xl-12">
 									<div class="contact-item">
 										<div class="contact-icon">
-											<img src="">
+											<img src="/pet/upload/${pet.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 										</div>
 										<div class="contact-content">
 											<h4>
@@ -95,9 +95,6 @@
 								<c:when test="${fn:length(mypetlist) != 3}">
 									<div class="col-12 col-md-6 col-xl-12">
 										<div class="contact-item">
-											<div class="contact-icon">
-												<img src="">
-											</div>
 											<div class="contact-content">
 												<h4>
 													반려동물은 3마리 까지<br /> 등록 할 수 있어요!

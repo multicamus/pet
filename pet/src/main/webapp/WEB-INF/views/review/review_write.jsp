@@ -49,7 +49,7 @@
 							<div class="col-lg-3">
 								<h4>이용자 성함</h4>
 								<input type="text" class="form-control" name="member_id"
-									id="member_id" value="${user.member_id}" required>
+									id="member_id" value="${user.member_id}" required disabled>
 
 							</div>
 							<div class="col-lg-3">

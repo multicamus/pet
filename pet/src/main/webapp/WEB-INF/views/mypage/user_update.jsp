@@ -43,7 +43,7 @@
 									<div class="col-12 col-md-6 col-xl-12">
 										<div class="contact-item">
 											<div class="contact-icon">
-												<img src="/upload/${pet.pet_photo}">
+												<img src="/pet/upload/${pet.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 											</div>
 											<div class="contact-content">
 												<h4><a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>

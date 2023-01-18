@@ -39,20 +39,28 @@
 		resultType="review2">
 		select *
 		from review
-		where review_no = (select
-		data.review_no_prev
-		from ( select to_number(r.review_no) no
-		,
-		lag(r.review_no) over(order by to_number(r.review_no)) as
-		review_no_prev
-		,lead(r.review_no) over(order by to_number(r.review_no))
-		as review_no_next
-		from review r
-		where r.review_no in (select review_no
-		from review)
-		order by to_number(r.review_no) asc) data
-		where data.no
-		=#{review.review_no})
+		where review_no = (select data.review_no_prev
+						   from ( select to_number(r.review_no) no
+								          ,	lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev
+				                          ,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next
+		                          from review r
+						          where r.review_no in (select review_no from review)
+		                          order by to_number(r.review_no) asc) data
+		                   where data.no=#{review.review_no})
+	</select>
+
+	<select id="read_detail_ajax_next" parameterType="review2"
+		resultType="review2">
+		select *
+		from review
+		where review_no = (select data.review_no_next
+						   from ( select to_number(r.review_no) no
+								          ,	lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev
+				                          ,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next
+		                          from review r
+						          where r.review_no in (select review_no from review)
+		                          order by to_number(r.review_no) asc) data
+		                   where data.no=#{review.review_no})
 	</select>
 
 	<!-- <select id="read_detail_ajax" resultType="review2"> select * from review 

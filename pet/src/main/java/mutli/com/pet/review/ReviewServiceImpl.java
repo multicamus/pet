@@ -15,14 +15,14 @@ public class ReviewServiceImpl implements ReviewService {
 		this.dao = dao;
 	}
 	
-
+	
 	@Override
 	public int insert(ReviewDTO review) {
 		System.out.println(review);
 		return dao.insert(review);
 	}
 	
-
+	
 	
 	@Override
 	public int insert(ReviewDTO review, List<ReviewFileDTO> reviewfiledtolist) {
@@ -66,5 +66,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review2DTO read_detail_ajax(String review_no) {
 		System.out.println("Service read_detail_ajax");
 		return dao.read_detail_ajax(review_no);
+	}
+
+	@Override
+	public Review2DTO read_detail_ajax_next(String review_no) {
+		System.out.println("Service read_detail_ajax");
+		return dao.read_detail_ajax_next(review_no);
 	}
 }

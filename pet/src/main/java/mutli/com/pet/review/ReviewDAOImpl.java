@@ -65,6 +65,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return data;
 	}
 
+	@Override
+	public Review2DTO read_detail_ajax_next(String review_no) {
+		Review2DTO data = sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax_next",review_no);
+		System.out.println("data=> " + data);
+		return data;
+	}
+
 	
 
 }

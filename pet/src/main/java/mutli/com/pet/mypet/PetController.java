@@ -100,26 +100,6 @@ public class PetController {
 		return "mypage/user";
 	}
 
-//		파일 insert 
-//		@RequestMapping(value = "/fileinsert.do", method = RequestMethod.POST)
-//		public String fileinsert2(PetDTO pet,HttpSession session,Model model, String pet_id, String member_id, HttpServletRequest hsr) throws IllegalStateException, IOException{
-//			int result = ps.insert(pet);
-//			if(result == 1) {
-//				HttpSession hs = hsr.getSession();
-//				hs.removeAttribute("mypetlist");
-//				
-//				List<PetDTO> petList = ms.petList(member_id);
-//				System.out.println(petList);
-//				hs.setAttribute("mypetlist", petList);
-//			}
-//			
-//			MultipartFile file = pet.getPet_photo();
-//			String path =
-//					WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/upload");
-//			PetFileDTO petfiled =  fileuploadService.uploadFile(file, path);
-//			ps.insertfile(pet,petfiled);
-//			return "redirect:/mypet/read.do";
-//		}
 
 	// 1. 메소드 구성해서 매개변수로 전달되는 PetDTO sysout으로 출력하기
 	// 2. 파일업로드 처리 후 리턴되는 값을 출력해보고 파일업로드가 되는지 체크하기
@@ -131,14 +111,14 @@ public class PetController {
 	public String fileinsert2(PetDTO pet, HttpSession session) throws IllegalStateException, IOException {
 
 		MultipartFile file = pet.getPet_photo_file();
-//		String path = WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/upload");
-		String path = "C:/Users/stark/git/pet/pet/src/main/webapp/resources/pet_profile";
+        String path = WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/upload");
+//		String path = "C:/Users/stark/git/pet/pet/src/main/webapp/resources/pet_profile";
 		System.out.println("path : " + path);
 		System.out.println("PetController PetDTO : " + pet);
 		
 		PetFileDTO petfiled = fileuploadService.uploadFile(file, path);
 		
-		// 1. PetFileDTO의 getOriginalFilename()을 호출해서 PetDTO의 pet_photo에 셋팅
+		// 1. PetFileDTO의 getStoreFilename()을 호출해서 PetDTO의 pet_photo에 셋팅
 		String storedName = petfiled.getStoreFilename();
 		pet.setPet_photo(storedName);
 		System.out.println("PetController PetFileDTO : " + pet);

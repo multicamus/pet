@@ -66,19 +66,21 @@ public class ReviewController {
 	//2. 조회할 데이터
 	//   => 전체 목록을 게시글번호로 정렬해서 받아오거나 
 	 
-	@RequestMapping(value ="/menu/review/ajax_detail.do" ,produces = "application/json;charset=utf-8")
+	@RequestMapping(value ="/menu/review/ajax_detail_prev" ,produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String ajax(String review_no) {
+	public Review2DTO ajax_prev(String review_no) {
 		System.out.println("*******"+review_no);
-		service.read_detail_ajax(review_no);
-	
-//		List<Review2DTO> ajax = null;
-//		System.out.println("service 테스트" + ajax);
-//		System.out.println("ajax 테스트" + ajax);
-		return "ajax";
-	} 
-	
-	
+		Review2DTO review2DTO = service.read_detail_ajax(review_no);
+		return review2DTO;
+	}
+
+	@RequestMapping(value ="/menu/review/ajax_detail_next" ,produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public Review2DTO ajax_next(String review_no) {
+		System.out.println("*******"+review_no);
+		Review2DTO review2DTO = service.read_detail_ajax_next(review_no);
+		return review2DTO;
+	}
 	
 	
 	//게시판 상세보기
