@@ -68,6 +68,7 @@
         	<%
         		//가져온 model에서 revlist 리스트 객체를 꺼낸다.
         		List<ResvDTO> resvlist = (List<ResvDTO>) request.getAttribute("resvlist");
+        		List<String> reviewlist = (List<String>) request.getAttribute("reviewlist");
 
 				%>
 					
@@ -293,9 +294,7 @@
                                         <div class="button text-center detailread" style="margin-left: -30%;" >
                                             <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
 
-                                        <div class="button text-center" >
-                                            <a type="button" href="/pet/menu/review/write.do" class="theme-btn">후기 남기기</a>
-                                        </div>
+                                        
                                     </div>
                                     <!-- 더보기 끝 -->
                                 </div>    
@@ -323,7 +322,7 @@
                                     <div class="col-2">
                                     	
                                     		<%if(resvdto.getResv_status()==1){%>
-                                        			<span style="margin-right:50px"><h4>돌봄 완료</h4></span>
+                                        			<span style="margin-right:50px;"><h4 style="color: #4361eb;">돌봄 완료</h4></span>
                                         	<%}else{ %>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
                                         	<%} %>
@@ -402,9 +401,20 @@
                                     <!-- 더보기 -->
                                     <div class="col-2">        
                                         <div class="button text-center detailread" >
-                                            <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
+                                            <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
-                                    </div>
+                                        <%if(resvdto.getResv_status() == 1) {%>
+                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
+                                        	<div class="button text-center" style="margin-top: 15px; ">
+	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" style="display: flex; ">후기 보기</a>
+	                                        </div>
+	                                        <%}else{ %>
+	                                        <div class="button text-center" style="margin-top: 15px; ">
+	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" style="display: flex; padding-left: 20%;">후기 남기기</a>
+	                                        </div>
+	                                        <%} %>
+	                                    <%} %>    
+                                    	</div>
                                     <!-- 더보기 끝 -->
                                 </div>    
                                 <!-- 반려동물 사진 / 서비스정보 끝-->       

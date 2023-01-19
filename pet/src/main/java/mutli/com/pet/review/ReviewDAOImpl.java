@@ -23,44 +23,44 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.insert("mutli.com.pet.review.insert", review);
 	}
 
-
 	@Override
-	public int insertFile(List<ReviewFileDTO> reviewfiledtolist) {
-		return sqlSession.insert("mutli.com.pet.review.fileinsert", reviewfiledtolist);
-	}
-
-
-	@Override
-	public List<Review2DTO> read() {
-		List<Review2DTO> list = sqlSession.selectList("mutli.com.pet.review.read");
+	public List<ReviewDTO> read() {
+		List<ReviewDTO> list = sqlSession.selectList("mutli.com.pet.review.read");
 		System.out.println("daoImpl " + list);
 		return list;
 	}
 
 	@Override
-	public int update(Review2DTO review) {
+	public int update(ReviewDTO review) {
 		System.out.println(review);
 		return sqlSession.update("mutli.com.pet.review.update", review);
 	}
 
 	@Override
 	public int delete(String review_no) {
-		return sqlSession.delete("mutli.com.pet.review.delete",review_no);
+		return sqlSession.delete("mutli.com.pet.review.delete", review_no);
 	}
 
 	@Override
-	public Review2DTO read_update(String review_no) {
-		return sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no);
+	public ReviewDTO read_update(String review_no) {
+		return sqlSession.selectOne("mutli.com.pet.review.read_detail", review_no);
 	}
 
 	@Override
-	public Review2DTO read_detail(String review_no) {
-		return sqlSession.selectOne("mutli.com.pet.review.read_detail",review_no);
+	public ReviewDTO read_detail(String review_no) {
+		return sqlSession.selectOne("mutli.com.pet.review.read_detail", review_no);
 	}
 
 	@Override
-	public Review2DTO read_detail_ajax(String review_no) {
-		Review2DTO data = sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax",review_no);
+	public ReviewDTO read_detail_ajax(String review_no) {
+		ReviewDTO data = sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax", review_no);
+		System.out.println("data=> " + data);
+		return data;
+	}
+
+	@Override
+	public ReviewDTO read_detail_ajax_next(String review_no) {
+		ReviewDTO data = sqlSession.selectOne("mutli.com.pet.review.read_detail_ajax_next", review_no);
 		System.out.println("data=> " + data);
 		return data;
 	}

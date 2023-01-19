@@ -66,6 +66,8 @@
         	<%
         		//가져온 model에서 revlist 리스트 객체를 꺼낸다.
         		List<ResvDTO> resvlist = (List<ResvDTO>) request.getAttribute("resvlist");
+        		//리뷰내역에 존재하는 예약번호리스트를 가져온다
+        		List<String> reviewlist = (List<String>) request.getAttribute("reviewlist");
 			%>
 			
 			$(document).ready(function(){
@@ -375,7 +377,7 @@
                                                 <span>돌봄 서비스 가격:</span>
                                                 <span>ㅇㅇㅇ</span>
                                                 <span style="margin-left:25px">시작시간 ~ 종료시간:</span>
-                                                <span> <% if(resvdto.getService_starttime() < 12) { %>
+                                                	<% if(resvdto.getService_starttime() < 12) { %>
                                                    	 	<span style="font-size:20px">오전 <%= resvdto.getService_starttime()%>시</span>
                                                     <%}else if(resvdto.getService_starttime() == 12){%>
                                                     	<span style="font-size:20px">오후 <%= resvdto.getService_starttime()%>시</span>
@@ -398,6 +400,13 @@
                                         <div class="button text-center" >
                                             <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
+                                        <%if(resvdto.getResv_status() == 1) {%>
+                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
+                                        	<div class="button text-center" style="margin-top: 15px; ">
+	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn" style="display: flex; ">후기 보기</a>
+	                                        </div>
+	                                        <%}%>
+	                                     <%}%>   
                                     </div>
                                     <!-- 더보기 끝 -->
                                 </div>    

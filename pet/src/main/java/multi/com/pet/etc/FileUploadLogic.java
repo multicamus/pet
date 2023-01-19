@@ -2,6 +2,7 @@ package multi.com.pet.etc;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import mutli.com.pet.erp.SitterDTO;
 import mutli.com.pet.mypet.PetDTO;
+import mutli.com.pet.review.ReviewDTO;
 
 @Service
 public class FileUploadLogic {
@@ -34,6 +36,15 @@ public class FileUploadLogic {
 		return pet_img;
 	}
 
+//	Review Img 삽입
+	public ReviewDTO ReviewUploadImg(ReviewDTO review, MultipartFile file, String path) throws IllegalStateException, IOException{
+		String originalFileName = file.getOriginalFilename();
+		String storeFileName = createStoreFileName(originalFileName);
+		file.transferTo(new File(path + File.separator + storeFileName));
+		ReviewDTO review_img = new ReviewDTO(review.getReview_no(), review.getMember_id(), review.getReview(), review.getResv_no(), storeFileName, review.getReview_rate(), review.getMember_addr1(), review.getMember_photo(), review.getSitter_id());
+		return review_img; 
+	}
+	
 	private String createStoreFileName(String originalFileName) {
 		int pos = originalFileName.lastIndexOf(".");
 		String ext = originalFileName.substring(pos + 1);

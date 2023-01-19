@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="banner-content">
-                            <h2 class="text-white">Client's Page </h2>
+                            <h2 class="text-white">Client's Page asdfasdfasdf </h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -28,13 +28,36 @@
             </div>
         </section>
         <!-- ========================= page-banner-section end ========================= -->
-
+       
         <!-- ========================= contact-section start ========================= -->
         <section class="contact-section pt-130">
             <div class="container">
                 <div class="row">
                 	<!-- 사이드 메뉴 -->
                     <div class="col-xl-2">
+                    <div class="col-xl-4">
+                        <div class="contact-item-wrapper">
+                            <div class="row">
+                                <!-- 동물 정보 시작 -->
+
+                                
+								<c:forEach var="pet" items="${mypetlist}" varStatus="status">
+									<div class="col-12 col-md-6 col-xl-12">
+										<div class="contact-item">
+											<div class="contact-icon">
+												<img src="/upload/${pet.pet_photo}">
+											</div>
+											<div class="contact-content">
+												<h4><a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
+												<p>${pet.pet_code}</p>
+												<p>${pet.pet_kind}</p>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+								<!-- 동물 정보 끝 -->
+                            </div>
+                        </div>
                     </div>
                     <!-- 사이드 메뉴 끝 -->
                     <!-- 유저 정보 -->
@@ -56,13 +79,13 @@
                                     <div class="col-lg-8 mx-auto">
 			                        	성별 : 
 			                        	<c:choose>
-				                        	<c:when test="${member.member_gender == 'W'}">
+				                        	<c:when test="${member.member_gender == 'F'}">
 				                        		<div class="form-check form-check-inline">
 												  <input class="form-check-input" type="radio" name="member_gender" id="genderm" value="M" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" checked="checked" disabled="disabled">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="F" checked="checked" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:when>
@@ -72,7 +95,7 @@
 												  <label class="form-check-label" for="inlineRadio1">남자</label>
 												</div>
 												<div class="form-check form-check-inline">
-												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="W" disabled="disabled">
+												  <input class="form-check-input" type="radio" name="member_gender" id="genderw" value="F" disabled="disabled">
 												  <label class="form-check-label" for="inlineRadio2">여자</label>
 												</div>
 				                        	</c:otherwise>

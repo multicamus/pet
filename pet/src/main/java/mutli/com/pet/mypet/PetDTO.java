@@ -12,7 +12,7 @@ public class PetDTO {
     private String pet_code;
     private String pet_kind;
     private Date pet_birthdate;
-    private String pet_weight;
+    private double pet_weight;
     private String pet_size;
 	private String neuter;
 //	0118 오승영 변경
@@ -26,9 +26,8 @@ public class PetDTO {
 		super();
 	}
 	
-	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
-			Date pet_birthdate, String pet_weight, String pet_size, String neuter, String pet_photo, String pet_note,
-			String pet_number) {
+	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind, 
+			Date pet_birthdate, double pet_weight, String pet_size, String neuter, String pet_photo, String pet_note, String pet_number) {
 		super();
 		this.pet_id = pet_id;
 		this.member_id = member_id;
@@ -47,7 +46,7 @@ public class PetDTO {
 
 	// 전체
 	public PetDTO(String pet_id, String member_id, String pet_name, String pet_gender, String pet_code, String pet_kind,
-			Date pet_birthdate, String pet_weight, String pet_size, String neuter, MultipartFile pet_img, String pet_note,
+			Date pet_birthdate, double pet_weight, String pet_size, String neuter, MultipartFile pet_img, String pet_note,
 			String pet_number, String pet_photo) {
 		super();
 		this.pet_id = pet_id;
@@ -66,15 +65,14 @@ public class PetDTO {
 		this.pet_photo = pet_photo;
 	}
 
+
 	@Override
 	public String toString() {
 		return "PetDTO [pet_id=" + pet_id + ", member_id=" + member_id + ", pet_name=" + pet_name + ", pet_gender="
 				+ pet_gender + ", pet_code=" + pet_code + ", pet_kind=" + pet_kind + ", pet_birthdate=" + pet_birthdate
-				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter + ", pet_img="
-				+ pet_img + ", pet_note=" + pet_note + ", pet_number=" + pet_number + ", pet_photo=" + pet_photo + "]";
+				+ ", pet_weight=" + pet_weight + ", pet_size=" + pet_size + ", neuter=" + neuter + ", pet_photo="
+				+ pet_photo + ", pet_note=" + pet_note + ", pet_number=" + pet_number + ", pet_img=" + pet_img + "]";
 	}
-
-
 
 	public String getPet_id() {
 		return pet_id;
@@ -132,11 +130,11 @@ public class PetDTO {
 		this.pet_birthdate = pet_birthdate;
 	}
 
-	public String getPet_weight() {
+	public double getPet_weight() {
 		return pet_weight;
 	}
 
-	public void setPet_weight(String pet_weight) {
+	public void setPet_weight(double pet_weight) {
 		this.pet_weight = pet_weight;
 	}
 

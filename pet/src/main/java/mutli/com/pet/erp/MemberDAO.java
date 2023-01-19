@@ -39,5 +39,8 @@ public interface MemberDAO {
 	// sitter list
 	List<SitterDTO> sitterList();
 	
+	// sitter rate
+	int sitter_rate_update(SitterDTO sitter);
+	
 
 }

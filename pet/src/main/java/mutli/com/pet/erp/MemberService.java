@@ -39,4 +39,7 @@ public interface MemberService {
 	// sitter list
 	List<SitterDTO> sitterList();
 	
+	// sitter rate
+	int sitter_rate_update(String sitter_id, String review_rate);
+	
 }

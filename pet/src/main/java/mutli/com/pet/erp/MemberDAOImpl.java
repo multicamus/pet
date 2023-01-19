@@ -97,7 +97,9 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<SitterDTO> sitterList() {
-		return sqlSession.selectList("mutli.com.pet.erp.sitterList");
+		List<SitterDTO> sitterlist = sqlSession.selectList("mutli.com.pet.erp.sitterList");
+		System.out.println(sitterlist);
+		return sitterlist;
 	}
 
 	@Override
@@ -118,6 +120,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<ResvDTO> sitter_resvlist(String sitter_id) {
 		return sqlSession.selectList("mutli.com.pet.erp.sitter_resvlist", sitter_id);
+	}
+
+	// sitter rate update
+	@Override
+	public int sitter_rate_update(SitterDTO sitter) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_rate_update", sitter);
 	}
 	
 	

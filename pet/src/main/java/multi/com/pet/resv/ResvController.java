@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
 import mutli.com.pet.erp.SitterDTO;
+import mutli.com.pet.review.ReviewDTO;
 
 @Controller
 public class ResvController {
@@ -52,7 +55,6 @@ public class ResvController {
 				resvdto.setBeauty_service('Y');
 				resvdto.setTotal_price(resvdto.getTotal_price()+5000);
 			}
-			
 		}
 
 		//시작시간+서비스시간 = 종료시간 설정
@@ -170,11 +172,14 @@ public class ResvController {
 		System.out.println("userid:"+user.getSitter_id());
 		System.out.println("userid:"+user.getUser_type());
 
-		// 예약리스트를 불러올때 예약상태(resv_status)
+		// 예약리스트를 불러올때 예약상태(resv_status) 갱신
 		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절 
 		int count = service.changeStatus();
 		System.out.println("count:"+count);
 		List<ResvDTO> resvlist = service.resvlist(user);
+		//갖고 온 예약리스트의 이용후기작성 여부를 확인한다. 리뷰테이블에 존재하는 예약번호가 String리스트에 담아져서 반환된다.
+		List<String> reviewlist = service.checkReview(resvlist);
+		System.out.println("reviewlist:"+reviewlist);
 		
 		String view = "";
 		if(user.getUser_type().equals("M")) {
@@ -185,9 +190,8 @@ public class ResvController {
 
 		}
 		
-		
-		
 		model.addAttribute("resvlist", resvlist);
+		model.addAttribute("reviewlist", reviewlist);
 		System.out.println(resvlist);
 		return view;
 	}
@@ -255,6 +259,25 @@ public class ResvController {
 		return "redirect:/reserve/list.do";
 	}
 	
+	//예약번호로 해당 리뷰 상세보기
+	@RequestMapping(value= "/reserve/review/read.do", method = RequestMethod.GET)
+	public ModelAndView read_detail(String resv_no) { 
+		ModelAndView mav = new ModelAndView("review/read");
+		ReviewDTO readlist = service.readReview(resv_no);
+		mav.addObject("review",readlist);
+		System.out.println(readlist);
+		return mav;
+	}
+	
+	//예약번호로 해당 리뷰 쓰기
+	@RequestMapping(value= "/reserve/review/write.do", method = RequestMethod.GET)
+	public ModelAndView write_detail(String resv_no) { 
+		ModelAndView mav = new ModelAndView("review/read");
+		ReviewDTO readlist = service.readReview(resv_no);
+		mav.addObject("review",readlist);
+		System.out.println(readlist);
+		return mav;
+	}	
 	@RequestMapping("/reserve/cancel.do")
 	public String cancel(String resv_no, Model model, HttpSession session) {
 		System.out.println("결제취소");
@@ -273,7 +296,7 @@ public class ResvController {
 		System.out.println(size);
 		System.out.println(code);
 		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
-		String shortAddr = user.getMember_shortAddr();
+		String shortAddr = user.createShortAddr();
 		System.out.println(shortAddr);
 		List<SitterDTO> sitterlist =  service.directlist(gender, size, code, shortAddr);
 		//불러온 시터중에서 관리자가 포함되어 있다면 빼기

@@ -23,7 +23,7 @@ public class SitterDTO {
 	private Date sitter_birthdate;
 	private String service_area;
 	private String sitter_info;
-	private String valid;
+	private String valid = "0";
 	private String sitter_certificate;
 	private String sitter_rate;
 
@@ -41,6 +41,13 @@ public class SitterDTO {
 	
 	public SitterDTO() {
 		
+	}
+	
+	//추가함 by 오승영
+	public SitterDTO(String sitter_id, String sitter_rate) {
+		super();
+		this.sitter_id = sitter_id;
+		this.sitter_rate = sitter_rate;
 	}
 
 	@Override
@@ -333,31 +340,22 @@ public class SitterDTO {
 	}
 
 	public void setSitter_shortAddr(String sitter_shortAddr) {
-		String newAddr=getSitter_addr1();
-		String shortAddr; //최종 간략주소를 넣을 변수
-		System.out.println(newAddr);
-		
-		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
-			newAddr =newAddr.replace("광역시", "시");
-			System.out.println(newAddr);
+		String newAddr = sitter_addr1;
+		String shortAddr; //최종적으로 들어갈 간략주소 변수
+		if(!newAddr.contains("경기")) {//기존 주소가 경기도가 아니라 광역시나 특별시라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
 			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
-			newAddr = newAddr.replace("특별시", "시");
-			System.out.println(newAddr);
+		}else {//기존 주소가 경기도라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else {
-			System.out.println(newAddr);
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-				if(splitAddr[2].charAt(splitAddr[2].length()-1) != '구') { //경기도 00시 00구가 아니면 
-					shortAddr = splitAddr[0] + " "+ splitAddr[1]; //경기도 00시
-				}else {// 경기도 00시 00구면 경기도 00시 00구
-				shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[2]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
-				}
+			if(splitAddr[2].charAt(splitAddr[2].length()-1) == '구' ) { // 경기도 ㅇㅇ시 ㅇㅇ구 
+				shortAddr = splitAddr[0] + " "+ splitAddr[1] + " " + splitAddr[2]; 
+			}else {//경기도 ㅇㅇ시 ㅇㅇ로
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 도와 시만 뽑아서 새 주소를 만든다.
 			}
+		}
 		this.sitter_shortAddr = shortAddr;
 	}
+	
 
 	//나이 구하는 메소드
 	public  int  calcAge() {

@@ -12,16 +12,40 @@ public class ReviewDTO {
 	private Date modify_date_rv;
 	private String review;
 	private String resv_no;
-	private List<MultipartFile> review_file;
+	private String review_img;
 	private String review_rate;
-
+	
+	private String member_addr1;
+	private String member_photo;
+	
+	private MultipartFile review_file;
+	// 추가함 by 오승영
+	private String pet_name;
+	private String pet_photo;
+	private String sitter_id;
 	
 	public ReviewDTO() {
 		super();
 	}
+	
+	// insert용, update용
+	public ReviewDTO(String review_no, String member_id, String review, String resv_no, String review_img,
+			String review_rate, String member_addr1, String member_photo, String sitter_id) {
+		super();
+		this.review_no = review_no;
+		this.member_id = member_id;
+		this.review = review;
+		this.resv_no = resv_no;
+		this.review_img = review_img;
+		this.review_rate = review_rate;
+		this.member_addr1 = member_addr1;
+		this.member_photo = member_photo;
+		this.sitter_id = sitter_id;
+	}
 
 	public ReviewDTO(String review_no, String member_id, Date write_date_rv, Date modify_date_rv, String review,
-		String resv_no, List<MultipartFile> review_file, String review_rate) {
+			String resv_no, String review_img, String review_rate, String member_addr1, String member_photo,
+			MultipartFile review_file, String pet_name, String pet_photo, String sitter_id) {
 		super();
 		this.review_no = review_no;
 		this.member_id = member_id;
@@ -29,29 +53,31 @@ public class ReviewDTO {
 		this.modify_date_rv = modify_date_rv;
 		this.review = review;
 		this.resv_no = resv_no;
-		this.review_file = review_file;
+		this.review_img = review_img;
 		this.review_rate = review_rate;
-
+		this.member_addr1 = member_addr1;
+		this.member_photo = member_photo;
+		this.review_file = review_file;
+		this.pet_name = pet_name;
+		this.pet_photo = pet_photo;
+		this.sitter_id = sitter_id;
 	}
 
 	@Override
 	public String toString() {
 		return "ReviewDTO [review_no=" + review_no + ", member_id=" + member_id + ", write_date_rv=" + write_date_rv
-				+ ", modify_date_rv=" + modify_date_rv + ", review=" + review + ", resv_no=" + resv_no
-				+ ", review_file=" + review_file + ", review_rate=" + review_rate + "]";
+				+ ", modify_date_rv=" + modify_date_rv + ", review=" + review + ", resv_no=" + resv_no + ", review_img="
+				+ review_img + ", review_rate=" + review_rate + ", member_addr1=" + member_addr1 + ", member_photo="
+				+ member_photo + ", review_file=" + review_file + ", pet_name=" + pet_name + ", pet_photo=" + pet_photo
+				+ ", sitter_id=" + sitter_id + "]";
+	}
+	
+	public String getSitter_id() {
+		return sitter_id;
 	}
 
-
-
-	
-	
-	public List<MultipartFile> getReview_file() {
-		return review_file;
-	}
-
-	public void setReview_file(List<MultipartFile> review_file) {
-		this.review_file = review_file;
-
+	public void setSitter_id(String sitter_id) {
+		this.sitter_id = sitter_id;
 	}
 
 	public String getReview_no() {
@@ -102,6 +128,13 @@ public class ReviewDTO {
 		this.resv_no = resv_no;
 	}
 
+	public String getReview_img() {
+		return review_img;
+	}
+
+	public void setReview_img(String review_img) {
+		this.review_img = review_img;
+	}
 
 	public String getReview_rate() {
 		return review_rate;
@@ -109,6 +142,46 @@ public class ReviewDTO {
 
 	public void setReview_rate(String review_rate) {
 		this.review_rate = review_rate;
+	}
+
+	public String getMember_addr1() {
+		return member_addr1;
+	}
+
+	public void setMember_addr1(String member_addr1) {
+		this.member_addr1 = member_addr1;
+	}
+
+	public String getMember_photo() {
+		return member_photo;
+	}
+
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
+	}
+
+	public MultipartFile getReview_file() {
+		return review_file;
+	}
+
+	public void setReview_file(MultipartFile review_file) {
+		this.review_file = review_file;
+	}
+
+	public String getPet_name() {
+		return pet_name;
+	}
+
+	public void setPet_name(String pet_name) {
+		this.pet_name = pet_name;
+	}
+
+	public String getPet_photo() {
+		return pet_photo;
+	}
+
+	public void setPet_photo(String pet_photo) {
+		this.pet_photo = pet_photo;
 	}
 	
 	

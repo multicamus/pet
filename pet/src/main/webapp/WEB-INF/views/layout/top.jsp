@@ -72,20 +72,7 @@
 									</c:otherwise>
 								</c:choose>
 								
-
-								<li class="nav-item"><a
-									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-									data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">이용 후기</a>
-									
-									<ul class="sub-menu collapse" id="submenu-1-2">
-										<li class="nav-item"><a href="/pet/menu/review.do">이용 후기 게시판</a></li>
-										<li class="nav-item"><a href="/pet/menu/review/write.do">이용 후기 작성</a></li>
-										<!-- <li class="nav-item"><a href="/pet/menu/review/detail.do">이용 후기 상세</a></li> -->
-									</ul>
-								</li>
-
+								<li class="nav-item"><a class="page-scroll" href="/pet/menu/review.do">이용 후기</a></li>
 								
 								<c:choose>
 									<c:when test="${user == null}">

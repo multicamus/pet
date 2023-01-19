@@ -27,6 +27,23 @@
 		  border-radius: 6px;
 		}	
 	</style>
+	<script>
+		$(document).ready(function() {
+			$("#submit").on("click", function(){
+				weight = $("input[name=pet_weight]").val()
+				petcode = $("input[name=pet_code]").val()
+				if(petcode == 'DOG'){
+					if(weight <= 7){
+						$("#pet_size").prop("value", "S")
+					}else if(7<weight && weight <= 15){
+						$("#pet_size").prop("value", "M")
+					}else{
+						$("#pet_size").prop("value", "L")
+					}
+				}	
+			})
+		})
+	</script>
 </head>
 <body>
 <!-- ========================= page-banner-section start ========================= -->
@@ -59,6 +76,7 @@
 				<div class="contact-item-wrapper">
 					<div class="row">
 						<!-- 동물 정보 시작 -->
+						
 						<c:forEach var="pet" items="${mypetlist}" varStatus="status">
 							<div class="col-12 col-md-6 col-xl-12">
 								<div class="contact-item">
@@ -66,7 +84,7 @@
 										<img src="">
 									</div>
 									<div class="contact-content">
-										<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
+										<h4><a type="button"  href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
 										<p>${pet.pet_code}</p>
 										<p>${pet.pet_kind}</p>
 									</div>
@@ -80,10 +98,6 @@
 									<div class="contact-item">
 										<div class="contact-icon">
 											<img src="">
-										</div>
-										<div class="contact-content">
-											<h4>반려동물은 3마리 까지<br/> 등록 할 수 있어요!</h4>
-											<p><a type="button" href="/pet/menu/mypage/pet_register.do" class="theme-btn">+ 추가 등록</a></p>
 										</div>
 									</div>
 								</div>
@@ -115,14 +129,21 @@
 									 </div>
 								 </div>
 						  	</div>
+
+							<div>
+								<legend>반려동물 사진</legend>
+							</div>
+							<div>
+								<input type="file" id="pet_photo_file" name="pet_photo_file"   style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
+							</div>
 						<div>
 							<fieldset>
 								<legend>반려동물 종류</legend>
 								<div class="row">
 									<div class="col-1">
 										<div>
-											<input type="radio" id="code_d" name="pet_code" value="dog" checked> 
-											<input type="radio" id="code_c" name="pet_code" value="cat" >
+											<input type="radio" id="code_d" name="pet_code" value="DOG" checked> 
+											<input type="radio" id="code_c" name="pet_code" value="CAT" >
 										</div>
 									</div>
 									<div class="col-11" style="margin-left: -20px;">
@@ -178,8 +199,9 @@
 										<input type="text" name="pet_kind" id="kind" placeholder="ex) 토이푸들" required>
 									<legend>몸무게 (kg)</legend>
 										<input type="text" name="pet_weight" id="weight" placeholder="ex) 1.5 (단위는 생략해주세요)" required>
-									<legend>크기 (cm)</legend>
-										<input type="text" name="pet_size" id="height" placeholder="ex) 30 (단위는 생략해주세요)" required>
+
+										<input type="hidden" name="pet_size" id="pet_size" value="">
+									
 								</div>
 
 								<div>
@@ -218,13 +240,13 @@
 							<input type="hidden" name="pet_id" value="${user.member_id}_pet_${fn:length(mypetlist)+1}">							
 							<input type="hidden" name="member_id" value="${user.member_id}">
 							<input type="hidden" name="pet_number" value="${fn:length(mypetlist)+1}">
-							<input type="hidden" name="pet_photo" value="test">
+							<input type="hidden" name="pet_photo" value="${pet.pet_photo}">
 						<!-- hidden end -->
 
 							<div class="row">
 								<div class="col-12">
 									<div class="button text-center">
-										<button type="submit" class="theme-btn">등록</button>
+										<button type="submit" id="submit" class="theme-btn">등록</button>
 									</div>
 								</div>
 							</div>
