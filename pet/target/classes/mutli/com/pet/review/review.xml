@@ -33,26 +33,27 @@
 		</foreach>
 		select * from dual
 	</insert>
-
-
-	<select id="read_detail_ajax" parameterType="review2"
-		resultType="review2">
-		select *
-		from review
-		where review_no = (select data.review_no_prev
+	
+	
+	<select id="read_detail_ajax" parameterType="review2" resultType="review2">
+		select r.*, p.pet_photo, m.member_addr1
+		from review r, pet_info p, member_info m
+		where m.member_id = r.member_id
+         	and m.member_id = p.member_id
+         	and r.review_no = (select data.review_no_prev
 						   from ( select to_number(r.review_no) no
 								          ,	lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev
 				                          ,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next
 		                          from review r
 						          where r.review_no in (select review_no from review)
 		                          order by to_number(r.review_no) asc) data
-		                   where data.no=#{review.review_no})
+		                   where data.no=#{review.review_no}) and rownum=1 
 	</select>
 
 	<select id="read_detail_ajax_next" parameterType="review2"
 		resultType="review2">
-		select *
-		from review
+		select r.*, p.pet_photo, m.member_addr1
+		from review r, pet_info p, member_info m
 		where review_no = (select data.review_no_next
 						   from ( select to_number(r.review_no) no
 								          ,	lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev
@@ -60,33 +61,26 @@
 		                          from review r
 						          where r.review_no in (select review_no from review)
 		                          order by to_number(r.review_no) asc) data
-		                   where data.no=#{review.review_no})
+		                   where data.no=#{review.review_no}) and rownum=1 
 	</select>
-
-	<!-- <select id="read_detail_ajax" resultType="review2"> select * from review 
-		where review_no = (select data.review_no_prev from ( select to_number(r.review_no) 
-		no , lag(r.review_no) over(order by to_number(r.review_no)) as review_no_prev 
-		,lead(r.review_no) over(order by to_number(r.review_no)) as review_no_next 
-		from review r where r.review_no in (select review_no from review) order by 
-		to_number(r.review_no) asc) data where data.no =15) </select> -->
 
 	<select id="read" resultType="review2">
 		select
 		r.*,m.member_photo,m.member_addr1
 		from member_info m, review r
 		where
-		m.member_id = r.member_id
+		m.member_id = r.member_id 
 	</select>
 
 	<!-- 상세보기,수정페이지 같이사용 -->
 	<select id="read_detail" resultType="review2"
 		parameterType="String">
-		select r.*,m.member_photo,m.member_addr1
-		from member_info m,review r
-		where m.member_id = r.member_id
-		and review_no = #{review_no}
+		select r.*, p.pet_photo, m.member_addr1
+ 		from review r, member_info m , pet_info p
+ 		where m.member_id = r.member_id
+         	and m.member_id = p.member_id
+         	and r.review_no = #{review_no} and rownum=1
 	</select>
-
 
 	<delete id="delete" parameterType="review2">
 		delete from review where
@@ -100,7 +94,5 @@
 		where
 		review_no=#{review_no}
 	</update>
-
-
 
 </mapper>

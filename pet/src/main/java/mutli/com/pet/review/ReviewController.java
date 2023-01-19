@@ -53,7 +53,6 @@ public class ReviewController {
 		return mav;
 	}
 	
-	
 	//앞으로 뒤로 버튼을 누를 때 마다 db연동해서 번호리스트를 배열로 갖고 있기
 	//앞으로 버튼을 누르면 하나씩 앞에 있는 것을 보여주다가 맨 앞인 경우에는 1을 셋팅하거나 alert띄우기
 	//뒤로 버튼을 누르면 하나씩 뒤에 있는 것을 보여주다가 맨 뒤의 게시글인 경우에는 마지막 게시글번호를 셋팅한 후 alert띄우기
@@ -82,7 +81,6 @@ public class ReviewController {
 		return review2DTO;
 	}
 	
-	
 	//게시판 상세보기
 	@RequestMapping(value= "/menu/review/detail.do", method = RequestMethod.GET)
 	public ModelAndView read_detail(String review_no) {
@@ -109,7 +107,6 @@ public class ReviewController {
 		int result = service.update(review);
 		return "redirect:/menu/review/detail.do?review_no="+review.getReview_no();
 	}
-	
 	
 	
 	//게시판 수정 뷰
@@ -148,11 +145,5 @@ public class ReviewController {
 		}
 		service.insert(review,reviewfiledtolist);
 		return "redirect:/menu/review.do";
-//		if reviewfilelist == null{
-//			service.insert(review,reviewfiledtolist);
-//			return "redirect:/";
-//		}else {
-//			writePage(review);
-//		}
 	}
 }

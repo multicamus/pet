@@ -52,7 +52,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="row">
@@ -73,11 +72,11 @@
 
 								<div style="display: flex; flex-direction: column;">
 									<!--후기 지역 -->
-									<h4>${review.member_addr1 }</h4>
+									<h4>${review.member_addr1}</h4>
 									<div class="row">
 										<div class="col-2">
 											<p
-												style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
+												style="font-size: 10px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
 										</div>
 										<div class="col-3">
 											<p
