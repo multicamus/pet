@@ -63,6 +63,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int certi_update(SitterDTO sitter) {
+		return dao.certi_update(sitter);
+	}
+
+	@Override
 	public int update(MemberDTO member) {
 		return dao.update(member);
 	}
@@ -91,6 +96,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<SitterDTO> sitterList() {
+		
+		
 		return dao.sitterList();
 	}
 
@@ -112,6 +119,40 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<ResvDTO> sitter_resvlist(String sitter_id) {
 		return dao.sitter_resvlist(sitter_id);
+	}
+
+	@Override
+	public int sitter_rate_update(String sitter_id, String review_rate) {
+		// 분모
+		int denominator = dao.sitter_resvlist(sitter_id).size();
+		
+		// 분자
+		int tmp1;
+		String tmp3 = null;
+		try {
+			tmp3 = dao.sitter_read(sitter_id).getSitter_rate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		if(tmp3 == null) {
+			tmp1 = 0;
+		}else {
+			tmp1 = Integer.parseInt(tmp3);
+		}
+		int tmp2 = Integer.parseInt(review_rate);
+		int numerator = (tmp1 * denominator + tmp2);
+		System.out.println(tmp1);
+		System.out.println(tmp2);
+		System.out.println(tmp3);
+		System.out.println(denominator);
+		
+		// sitter_rate
+		String rate = String.valueOf(numerator / denominator);
+		System.out.println(rate);
+		SitterDTO sitter_rate = new SitterDTO(sitter_id, rate);
+		System.out.println(sitter_rate);
+		return dao.sitter_rate_update(sitter_rate);
 	}
 	
 	

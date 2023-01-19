@@ -5,9 +5,17 @@
 <html class="no-js" lang="ko">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>user</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style type="text/css">
+	.count{padding: 4px 14px; width: 200px; }
+	
+
+	</style>
 </head>
 <body>
+
 <!-- ========================= page-banner-section start ========================= -->
 <section class="page-banner-section pt-75 pb-75 img-bg" style="background-image: url('/pet/resources/assets/img/bg/common-bg.svg')">
     <div class="container">
@@ -33,7 +41,12 @@
 <!-- ========================= contact-section start ========================= -->
 <section class="contact-section pt-130">
 	<div class="container">	
-		<h2>관리자 페이지</h2>
+		<h2>관리자 페이지</h2></br>
+		<div class="count" style="">
+		<h7><b style="color: #0D6EFD">전체 시터: ${total }</b></h7></br>
+		<h7><b style="color: #0D6EFD">승인완료 시터: ${atotal }</b></h7></br>
+		<h7><b style="color: #0D6EFD">미승인 시터: ${untotal }</b></h7>
+		</div>
 			<div class="container">	
 				<div class="container row align-items-center pb-30">
 					<div class="col-lg-6"></div>
@@ -43,6 +56,7 @@
 							<option value="id">아이디</option>
 							<option value="name">이름</option>
 							<option value="email">이메일 주소</option>
+							<option value="phone">전화번호</option>
 							<option value="valid">미승인</option>
 						</select>
 					</div>
@@ -69,24 +83,29 @@
 									<th scope="col">이메일</th>
 									<th scope="col">연락처</th>
 									<th scope="col">주소</th>
-									<th scope="col">나이</th>
+									<th scope="col">생년월일</th>
 									<th scope="col">가입 날짜</th>
+									<!-- <th scope="col">상태</th> -->
 									<th scope="col">승인 여부</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
 									<tr>
-										<th>${sitter.sitter_id}</th>
+										<th><a href="/pet/erp/sitter/read.do?sitter_id=${sitter.sitter_id}&state=UPDATE">${sitter.sitter_id}</a></th>
 										<td>${sitter.sitter_name}</td>
 										<td>${sitter.sitter_gender}</td>
 										<td>${sitter.sitter_code}</td>
 										<td>${sitter.sitter_email}</td>
 										<td>${sitter.sitter_phone}</td>
 										<td>${sitter.sitter_shortAddr}${sitter.sitter_addr1}</td>
-										<td>${sitter.sitter_age}</td>
+										<td>${sitter.sitter_birthdate}</td>
 										<td>${sitter.sitter_startdate}</td>
-										<td><a href="javascript:valid_update()">${sitter.valid}</a></td>
+										<%-- <td>${sitter.valid}</td> --%>
+										<Div id="Pop" style="position:absolute; left:100px; top:100px; width:100px; height:100px; z-index:1;display:none;">
+										<td><a href="javascript:valid_update()">${sitter.valid}</a></td> 
+				
+										</Div>
 									</tr>
 								</c:forEach>
 							</tbody>	
@@ -104,7 +123,7 @@
 <script type="text/javascript">
 	function showPopUp() {
 		//창 크기 지정
-		var width = 500;
+		var width = 600;
 		var height = 220;
 		//pc화면기준 가운데 정렬
 		var left = (window.screen.width / 2) - (width/2);
@@ -124,7 +143,28 @@
 		$(this).next().val(sitter_id);
 		alert(sitter_id);
 	}
-		
 
+	     
+	      function ViewLayer(){
+
+	          //만일 Pop라는 녀석이 닫혀있다면??
+
+	          if(document.getElementById("Pop").style.display=="none"){
+
+	             //열어주어라
+
+	             document.getElementById("Pop").style.display='inline'
+
+	          //그렇지 않은 모든 경우라면??
+
+	          }else{
+
+	             //닫아주어라
+
+	             document.getElementById("Pop").style.display='none'
+
+	          }
+
+	       }
 
 </script>

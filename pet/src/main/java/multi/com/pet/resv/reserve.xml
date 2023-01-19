@@ -209,11 +209,31 @@
 	</update>
 	
 	<!-- 펫시터가 승인을 수락할 경우 -->
-		<update id="approve" parameterType="String">
+	<update id="approve" parameterType="String">
 			update resv_history
 			set resv_status = 1,
 			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
 			where resv_no=#{resv_no}
 	</update>
+	<!-- 예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인 -->
+	<select id="checkreview" parameterType="java.util.List" resultType="String">
+		select h.resv_no
+		from resv_history h, review r
+		where r.resv_no = h.resv_no and  r.resv_no	in
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">	
+			#{item.resv_no}	
+		</foreach>
+	</select>
+	
+	<!-- 예약번호로 리뷰 읽기 -->
+	<select id="readreview" parameterType="String" resultType="review" >
+		select * from review
+		where resv_no = #{resv_no}	
+	</select>
+	<!-- 예약번호로 예약 정보 읽기 -->
+	<select id="read" parameterType="String" resultType="resv" >
+		select * from resv_history
+		where resv_no = #{resv_no}	
+	</select>
 </mapper>
 

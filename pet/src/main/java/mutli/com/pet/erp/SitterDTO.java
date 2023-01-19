@@ -3,6 +3,8 @@ package mutli.com.pet.erp;
 import java.sql.Date;
 import java.util.Calendar;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SitterDTO {
 	private String user_type;
 	private String sitter_id;
@@ -21,7 +23,7 @@ public class SitterDTO {
 	private Date sitter_birthdate;
 	private String service_area;
 	private String sitter_info;
-	private String valid;
+	private String valid = "0";
 	private String sitter_certificate;
 	private String sitter_rate;
 
@@ -29,22 +31,23 @@ public class SitterDTO {
 	private String medium_career;
 	private String large_career;
 	private String cat_career;
+	// 변경함 by 오승영
 	private String sitter_photo;
-	
+	private MultipartFile sitter_img;
 	
 	//추가함 by 최여경
 	private int sitter_age;
 	private String sitter_shortAddr; //00시 00구 혹은 경기도 00시 00구로 축약시킨 주소 String
 	
-
-	
-	
-	
-
-	
-	
 	public SitterDTO() {
 		
+	}
+	
+	//추가함 by 오승영
+	public SitterDTO(String sitter_id, String sitter_rate) {
+		super();
+		this.sitter_id = sitter_id;
+		this.sitter_rate = sitter_rate;
 	}
 
 	@Override
@@ -61,12 +64,36 @@ public class SitterDTO {
 				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr +"]";
 	}
 
+	// insert
+	public SitterDTO(String sitter_id, String sitter_name, String sitter_code, String sitter_pass, String sitter_gender,
+			String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_birthdate,
+			String service_area, String sitter_info, String valid, String sitter_certificate,
+			String sitter_photo) {
+		super();
+		this.sitter_id = sitter_id;
+		this.sitter_pass = sitter_pass;
+		this.sitter_name = sitter_name;
+		this.sitter_code = sitter_code;
+		this.sitter_gender = sitter_gender;
+		this.sitter_email = sitter_email;
+		this.sitter_phone = sitter_phone;
+		this.sitter_addr1 = sitter_addr1;
+		this.sitter_addr2 = sitter_addr2;
+		this.sitter_birthdate = sitter_birthdate;
+		this.service_area = service_area;
+		this.sitter_info = sitter_info;
+		this.valid = valid;
+		this.sitter_certificate = sitter_certificate;
+		this.sitter_photo = sitter_photo;
+	}
+
+	// All
 	public SitterDTO(String user_type, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
 			String sitter_gender, String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2,
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
 			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
 			String sitter_rate, String small_career, String medium_career, String large_career, String cat_career,
-			String sitter_photo, int sitter_age, String sitter_shortAddr) {
+			String sitter_photo, int sitter_age, String sitter_shortAddr, MultipartFile sitter_img) {
 		super();
 		this.user_type = user_type;
 		this.sitter_id = sitter_id;
@@ -94,6 +121,7 @@ public class SitterDTO {
 		this.sitter_photo = sitter_photo;
 		this.sitter_age = sitter_age;
 		this.sitter_shortAddr = sitter_shortAddr;
+		this.sitter_img = sitter_img;
 	}
 
 
@@ -290,7 +318,15 @@ public class SitterDTO {
 	public void setSitter_photo(String sitter_photo) {
 		this.sitter_photo = sitter_photo;
 	}
-	
+
+	public MultipartFile getSitter_img() {
+		return sitter_img;
+	}
+
+	public void setSitter_img(MultipartFile sitter_img) {
+		this.sitter_img = sitter_img;
+	}
+
 	public int getSitter_age() {
 		return sitter_age;
 	}
@@ -304,31 +340,22 @@ public class SitterDTO {
 	}
 
 	public void setSitter_shortAddr(String sitter_shortAddr) {
-		String newAddr=getSitter_addr1();
-		String shortAddr; //최종 간략주소를 넣을 변수
-		System.out.println(newAddr);
-		
-		if(newAddr.contains("광역시")) {//기존 주소가 광역시를 포함하고 있으면
-			newAddr =newAddr.replace("광역시", "시");
-			System.out.println(newAddr);
+		String newAddr = sitter_addr1;
+		String shortAddr; //최종적으로 들어갈 간략주소 변수
+		if(!newAddr.contains("경기")) {//기존 주소가 경기도가 아니라 광역시나 특별시라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
 			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else if(newAddr.contains("특별시")){//기존 주소가 특별시를 포함하고 있으면
-			newAddr = newAddr.replace("특별시", "시");
-			System.out.println(newAddr);
+		}else {//기존 주소가 경기도라면
 			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 시와 구만 뽑아서 새 주소를 만든다.
-		}else {
-			System.out.println(newAddr);
-			String[] splitAddr = newAddr.split(" "); //띄어쓰기 기준으로 split
-				if(splitAddr[2].charAt(splitAddr[2].length()-1) != '구') { //경기도 00시 00구가 아니면 
-					shortAddr = splitAddr[0] + " "+ splitAddr[1]; //경기도 00시
-				}else {// 경기도 00시 00구면 경기도 00시 00구
-				shortAddr = splitAddr[0] + " "+ splitAddr[1]+" "+ splitAddr[2]; //처음의 도와 시와 구만 뽑아서 새 주소를 만든다.
-				}
+			if(splitAddr[2].charAt(splitAddr[2].length()-1) == '구' ) { // 경기도 ㅇㅇ시 ㅇㅇ구 
+				shortAddr = splitAddr[0] + " "+ splitAddr[1] + " " + splitAddr[2]; 
+			}else {//경기도 ㅇㅇ시 ㅇㅇ로
+			shortAddr = splitAddr[0] + " "+ splitAddr[1]; //처음의 도와 시만 뽑아서 새 주소를 만든다.
 			}
+		}
 		this.sitter_shortAddr = shortAddr;
 	}
+	
 
 	//나이 구하는 메소드
 	public  int  calcAge() {

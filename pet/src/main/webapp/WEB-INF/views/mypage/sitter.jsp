@@ -78,10 +78,17 @@
                                         </div>
                                         <div class="contact-content">
                                             <h4>자격증</h4>
-                                            <p>${sitter.sitter_certificate}</p>
-                                            <p>자격증</p>
-                                            <p><a href="#">등록</a></p>
-                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">자격증 따기</a></p>
+                                            <%
+								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                            
+                                   	   		if(sitter.getSitter_certificate() != null){
+                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
+                                   	   		int size = certificate.length;
+                                   	   		for(int i = 0; i < size; i++){%>
+                                   	   		<p><%=certificate[i] %></p>
+                                   	   		<%}}%>
+                                            
+                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">한국 애견 협회</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,6 +108,15 @@
                                 </div>
                             </div>
                                 <div class="contact-form">
+                                    <div class="row align-items-center">
+                                    	<div class="col-md-auto"><h4>프로필 사진</h4></div>
+                                       	<div class="col-md-12 pb-50">
+                                       		<div>
+                                       			<img src="/pet/resources/sitter/${sitter.sitter_photo}" width="220" height="160"></img>
+                                       		</div>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이름</h4></div>
                                        	<div class="col-md-4">
@@ -126,7 +142,7 @@
                                     	<div class="col-md-auto"><h4>성별</h4></div>
                                     	<div class="col-md-auto">
                                     	<c:choose>
-				                        	<c:when test="${sitter.sitter_gender == 'W'}">
+				                        	<c:when test="${sitter.sitter_gender == 'F'}">
 				                        		<div class="form-check form-check-inline">
 			                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" disabled="disabled">
 			                                        <label class="form-check-label" for="genderM">남자</label>
@@ -183,12 +199,12 @@
                                         <h4>서비스 가능 지역</h4>
                                         <div class="pt-20">
                                    	   		<%
-								    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
+                                   	   		if(sitter.getService_area() != null){
                                    	   		String[] area = sitter.getService_area().split(",");
                                    	   		int size = area.length;
                                    	   		for(int i = 0; i < size; i++){%>
                                    	   		<button class="btn btn-outline-primary" type="button"><%=area[i] %></button>
-                                   	   		<%}%>
+                                   	   		<%}}%>
 		                                </div>
 	                                </div>
             

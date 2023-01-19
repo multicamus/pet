@@ -35,11 +35,14 @@
 		SET member_gender = #{member_gender}, member_email = #{member_email}, member_phone = ${member_phone}, member_addr1 = #{member_addr1}, member_addr2 = #{member_addr2}, hospital_name = #{hospital_name}, hospital_addr = #{hospital_addr}, member_birthdate = #{member_birthdate}
 		WHERE member_id = #{member_id}
 	</update>
-	
-	<!-- member_photo = #{member_photo} -->
 	<update id="sitter_update" parameterType="sitter">
 		UPDATE sitter_info
-		SET sitter_code=#{sitter_code}, sitter_email=#{sitter_email}, sitter_phone=#{sitter_phone}, sitter_addr1=#{sitter_addr1}, sitter_addr2=#{sitter_addr2}, sitter_birthdate=#{sitter_birthdate}, service_area=#{service_area}, sitter_info=#{sitter_info}
+		SET sitter_code=#{sitter_code}, sitter_email=#{sitter_email}, sitter_phone=#{sitter_phone}, sitter_addr1=#{sitter_addr1}, sitter_addr2=#{sitter_addr2}, sitter_birthdate=#{sitter_birthdate}, service_area=#{service_area}, sitter_info=#{sitter_info}, sitter_photo=#{sitter_photo}
+		WHERE sitter_id = #{sitter_id}
+	</update>
+	<update id="sitter_certi_update" parameterType="sitter">
+		UPDATE sitter_info
+		SET sitter_certificate = #{sitter_certificate}
 		WHERE sitter_id = #{sitter_id}
 	</update>
 	<!-- update end-->
@@ -49,13 +52,14 @@
 		INSERT INTO member_info (
 			member_id, member_pass, member_gender, member_name, member_email, member_phone, member_addr1, member_addr2, member_status, member_startdate, user_type, hospital_name, hospital_addr, member_birthdate)
 		VALUES (
-			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type}, #{hospital_name}, #{hospital_addr}, #{member_birthdate) 
+			#{member_id}, #{member_pass}, #{member_gender}, #{member_name}, #{member_email}, #{member_phone}, #{member_addr1}, #{member_addr2}, #{member_status}, sysdate, #{user_type}, #{hospital_name}, #{hospital_addr}, #{member_birthdate}) 
+
 	</insert>
 	<insert id="sitter_insert" parameterType="sitter">
 		INSERT INTO sitter_info (
-			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, sitter_photo, valid)
+			user_type, sitter_id, sitter_name, sitter_pass, sitter_code, sitter_gender, sitter_email, sitter_phone, sitter_addr1, sitter_addr2, sitter_startdate, sitter_status, sitter_birthdate, service_area, sitter_info, sitter_certificate, valid, sitter_photo)
 		VALUES (
-			#{user_type}, #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, #{sitter_photo}, '0')
+			'S', #{sitter_id}, #{sitter_name}, #{sitter_pass}, #{sitter_code}, #{sitter_gender}, #{sitter_email}, #{sitter_phone}, #{sitter_addr1}, #{sitter_addr2}, sysdate, #{sitter_status}, #{sitter_birthdate}, #{service_area}, #{sitter_info}, #{sitter_certificate}, '0', #{sitter_photo})
 	</insert>
 	<!-- insert end -->
 	
@@ -98,5 +102,11 @@
 		WHERE sitter_id = #{sitter_id}		 
 	</select>
 	
+	<!-- sitter rate update -->
+	<update id="sitter_rate_update" parameterType="sitter">
+		UPDATE sitter_info
+		SET sitter_rate = #{sitter_rate}
+		WHERE sitter_id = #{sitter_id}
+	</update>
+	
 </mapper>
-

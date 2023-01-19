@@ -28,7 +28,7 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/**/*-tiles.xml</beans:value>
-			</beans:list>
+			</beans:list>	
 		</beans:property>
 	</beans:bean>
 	<beans:bean id = "tilesViewResolver" class = "org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -73,11 +73,14 @@
 <!-- 			<mapping path = "/**" /> -->
 <!-- 			<exclude-mapping path="/" /> -->
 <!-- 			<exclude-mapping path="/menu/login.do" /> -->
-<!-- 			<exclude-mapping path="/emp/spirng/login.do" /> -->
-<!-- 			<exclude-mapping path="/index.do" /> -->
-<!-- 			<exclude-mapping path="/board/list.do" /> -->
-<!-- 			<exclude-mapping path="/images/**" /> -->
-<!-- 			<exclude-mapping path="/board/ajax/**" /> -->
+<!-- 			<exclude-mapping path="/erp/user/login.do" /> -->
+<!-- 			<exclude-mapping path="/erp/sitter/login.do" /> -->
+<!-- 			<exclude-mapping path="/erp/user/register.do" /> -->
+<!-- 			<exclude-mapping path="/erp/member/idCheck.do" /> -->
+<!-- 			<exclude-mapping path="/menu/service/**" /> -->
+<!-- 			<exclude-mapping path="/menu/review.do" /> -->
+<!-- 			<exclude-mapping path="/menu/review/detail.do" /> -->
+<!-- 			<exclude-mapping path="/resources/**" /> -->
 <!-- 			<beans:bean class = "multi.com.pet.etc.LoginInterceptor"/> -->
 <!-- 		</interceptor> -->
 <!-- 	</interceptors> -->

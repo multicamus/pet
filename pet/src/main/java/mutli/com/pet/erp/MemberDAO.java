@@ -24,6 +24,8 @@ public interface MemberDAO {
 	
 	// 업데이트
 	int update(SitterDTO sitter);
+	int update(SitterImgDTO sitter_img);
+	int certi_update(SitterDTO sitter);
 	int update(MemberDTO member);
 
 	// 등록
@@ -36,6 +38,9 @@ public interface MemberDAO {
 	
 	// sitter list
 	List<SitterDTO> sitterList();
+	
+	// sitter rate
+	int sitter_rate_update(SitterDTO sitter);
 	
 
 }

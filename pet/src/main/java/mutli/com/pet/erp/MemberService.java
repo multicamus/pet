@@ -24,11 +24,13 @@ public interface MemberService {
 	
 	// 업데이트
 	int update(SitterDTO sitter);
+	int certi_update(SitterDTO sitter);
 	int update(MemberDTO member);
 	
 	// 등록
 	int insert(SitterDTO sitter);
 	int insert(MemberDTO member);
+	
 	
 	// 삭제
 	int delete(SitterDTO sitter);
@@ -36,5 +38,8 @@ public interface MemberService {
 	
 	// sitter list
 	List<SitterDTO> sitterList();
+	
+	// sitter rate
+	int sitter_rate_update(String sitter_id, String review_rate);
 	
 }

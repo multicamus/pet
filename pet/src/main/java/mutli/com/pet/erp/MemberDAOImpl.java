@@ -59,17 +59,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public int update(SitterDTO sitter) {
 		return sqlSession.update("mutli.com.pet.erp.sitter_update", sitter);
 	}
-
+	@Override
+	public int update(SitterImgDTO sitter_img) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_img_update", sitter_img);
+	}
+	@Override
+	public int certi_update(SitterDTO sitter) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_certi_update", sitter);
+	}
 
 	public int update(MemberDTO member) {
 		return sqlSession.update("mutli.com.pet.erp.member_update", member);
-
 	}
 	
 	// insert
 	@Override
 	public int insert(SitterDTO sitter) {
-		return sqlSession.update("mutli.com.pet.erp.sitter_insert", sitter);
+		System.out.println("#####"+sitter);
+		return sqlSession.insert("mutli.com.pet.erp.sitter_insert", sitter);
 	}
 
 	@Override
@@ -90,7 +97,9 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<SitterDTO> sitterList() {
-		return sqlSession.selectList("mutli.com.pet.erp.sitterList");
+		List<SitterDTO> sitterlist = sqlSession.selectList("mutli.com.pet.erp.sitterList");
+		System.out.println(sitterlist);
+		return sitterlist;
 	}
 
 	@Override
@@ -111,6 +120,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<ResvDTO> sitter_resvlist(String sitter_id) {
 		return sqlSession.selectList("mutli.com.pet.erp.sitter_resvlist", sitter_id);
+	}
+
+	// sitter rate update
+	@Override
+	public int sitter_rate_update(SitterDTO sitter) {
+		return sqlSession.update("mutli.com.pet.erp.sitter_rate_update", sitter);
 	}
 	
 	
