@@ -1,3 +1,4 @@
+<%@page import="mutli.com.pet.mypet.PetDTO"%>
 <%@page import="mutli.com.pet.erp.MemberDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -63,6 +64,8 @@
 <%ArrayList<String> namelist = (ArrayList<String>) request.getAttribute("namelist");
 ArrayList<String> codelist = (ArrayList<String>) request.getAttribute("codelist");
 ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
+ArrayList<PetDTO> petlist = (ArrayList<PetDTO>)request.getAttribute("petlist");
+
 
 //예약내역의 방문날짜를 Date객체에 담는다
 Date date = resvdto.getVisit_date();
@@ -178,18 +181,17 @@ System.out.println(member);%>
 										</div>
 										<!-- 반려동물사진 & 반려동물이름 & 고양이/강아지-->
 										<div>
-											<img
-												src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
-												alt="해당 서비스 이용 반려동물"
-												style="width: 100px; height: 100px; border-radius: 100px; pointer-events: none; float: left;">
-
-											<h5 style="float: left; margin-left: 50px; margin-top: 35px;"></h5>
+											<%for(int i=0; i<petlist.size(); i++){ %>
+                                                	<img src="/pet/resources/pet/<%=petlist.get(i).getPet_photo() %>"
+                                                    alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+                                                <h5 style="float:left; margin-left: 50px; margin-top: 35px;" ></h5>
+                                                <%} %>
 										</div>
 
 										<!-- 예약상세정보 -->
 										<div style="margin-top: 20px;">
 											<div>
-												<h5 style="line-height: 200%; display: inline;">동물이름:</h5>
+												<h5 style="line-height: 200%; display: inline;">반려동물이름:</h5>
 												<%
 												for (int i = 0; i < namelist.size(); i++) {
 													if (codelist.get(i).equals("DOG")) {
@@ -207,6 +209,12 @@ System.out.println(member);%>
 												<%
 												}
 												%>
+											</div>
+											<div>
+												<h5 style="line-height: 200%; display: inline;">반려동물특이사항:</h5>
+												<%for(int i=0; i<petlist.size(); i++){ %>
+                                                	<span style="font-size: 20px"><%=petlist.get(i).getPet_name()%>: <%=petlist.get(i).getPet_note() %></span>                                                	
+                                                <%} %>
 											</div>
 											<div>
 												<h5 style="line-height: 200%; display: inline;">예약날짜:</h5>
@@ -426,13 +434,7 @@ System.out.println(member);%>
 										</div>
 										<!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
 										<div class="row">
-											<div class="col-2">
-												<img
-													src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
-													alt="해당 서비스 펫시터"
-													style="width: 100px; height: 100px; border-radius: 100px; pointer-events: none; float: left;">
-											</div>
-											<div class="col-8">
+											<div class="row">
 												<h5 style="float: left; margin-left: 50px; margin-top: 5%">이용자
 													: ${member.member_name }</h5>
 												<c:if test="${member.member_gender eq 'M' }">
@@ -681,7 +683,7 @@ System.out.println(member);%>
 							</div>
 							<!-- 결제정보  row-1끝 -->
 						</div>
-						<!-- 결제정보 컬럼 끝  -->
+						<!-- 두번째 컬럼 끝  -->
 					</div>
 					<!-- 전체 row끝 -->
 				</div>
@@ -696,9 +698,7 @@ System.out.println(member);%>
 				<!-- 예약/결제 내역 칸 -->
 			</div>
 			<!-- 예약/결제 내역 row 끝 -->
-
-
-
+		
 		</div>
 		<!-- 컨테이너 끝 -->
 	</section>

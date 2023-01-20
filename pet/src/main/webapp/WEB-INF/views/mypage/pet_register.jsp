@@ -132,12 +132,12 @@
 								 </div>
 						  	</div>
 
-							<div>
+							<!-- <div>
 								<legend>반려동물 사진</legend>
 							</div>
 							<div>
 								<input type="file" id="pet_photo_file" name="pet_photo_file"   style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
-							</div>
+							</div> -->
 						<div>
 							<fieldset>
 								<legend>반려동물 종류</legend>

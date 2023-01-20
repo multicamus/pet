@@ -17,6 +17,8 @@ import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
 import mutli.com.pet.erp.SitterDTO;
+import mutli.com.pet.mypet.PetDTO;
+import mutli.com.pet.mypet.PetService;
 import mutli.com.pet.review.ReviewDTO;
 import mutli.com.pet.review.ReviewService;
 
@@ -25,13 +27,15 @@ public class ResvController {
 	ResvService service;
 	ReviewService reviewservice;
 	MemberService mbservice;
+	PetService petservice;
 	
 	@Autowired
-	public ResvController(ResvService service, ReviewService reviewservice, MemberService mbservice) {
+	public ResvController(ResvService service, ReviewService reviewservice, MemberService mbservice, PetService petservice) {
 		super();
 		this.service = service;
 		this.reviewservice = reviewservice;
 		this.mbservice = mbservice;
+		this.petservice = petservice;
 	}
 	
 
@@ -171,6 +175,13 @@ public class ResvController {
 			resvdto.setTotal_price(resvdto.getTotal_price()+20000);
 		}
 		
+		//예약된 반려동물들의 id로 해당 pet객체를 가져오기
+		List<PetDTO> petlist = new ArrayList<PetDTO>();
+		for(int i=0; i<idArray.length; i++) {
+			petlist.add(petservice.read(idArray[i]));
+		}
+	
+		
 		for(int i=0; i<nameArray.length;i++) {
 			System.out.println("nameArray:"+nameArray[i]);
 		}
@@ -193,7 +204,7 @@ public class ResvController {
 		model.addAttribute("idlist", idlist);
 		model.addAttribute("codelist", codelist);		
 		model.addAttribute("namelist", namelist);
-		
+		model.addAttribute("petlist", petlist);
 		model.addAttribute("resvdto", resvdto);
 		return "resv/resv_pay";
 	}
@@ -277,6 +288,13 @@ public class ResvController {
 			namelist.add(namearray[i]);
 		}
 		
+		//예약된 반려동물들의 id로 해당 pet객체를 가져오기
+		String[] idarray = resvdto.getPet_idlist().split(",");
+		List<PetDTO> petlist = new ArrayList<PetDTO>();
+		for(int i=0; i<idarray.length; i++) {
+			petlist.add(petservice.read(idarray[i]));
+		}
+		
 		String view = "";
 		if(!resvdto.getMatch_method().equals("auto_match")) {
 			SitterDTO sitter = service.readSitter(resvdto.getSitter_id());
@@ -308,7 +326,7 @@ public class ResvController {
 		}
 		
 		
-		
+		model.addAttribute("petlist", petlist);
 		model.addAttribute("codelist", codelist);
 		model.addAttribute("namelist", namelist);
 		model.addAttribute("resvdto", resvdto);
