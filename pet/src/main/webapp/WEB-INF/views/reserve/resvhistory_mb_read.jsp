@@ -203,6 +203,9 @@
 	                                                    	<c:when test="${resvdto.resv_status == 1 }">
 	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭완료</span>
 	                                                    	</c:when>
+	                                                    	<c:when test="${resvdto.resv_status == 6 }">
+	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">자동매칭요청중</span>
+	                                                    	</c:when>
 	                                                    	<c:when test="${resvdto.resv_status == 5 }">
 	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">돌봄완료</span>
 	                                                    	</c:when>			
@@ -345,30 +348,40 @@
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'past_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                
 	                                                
 	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
 		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+		                                                	
 		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
 		                                                <%}else{%>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
 		                                                <%} %>	
+			                                                
 	                                               <%} %> 
 	                                               
-	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
 	                                               		
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
 	                                               		
                                                </div>
                                             </div>
@@ -424,7 +437,7 @@
 		                                     	
 		                                            <div style="margin-bottom: -10%;">
 								                        <div class="button text-center pb-50" >
-								                        	<c:if test="${resvdto.resv_status == 0 }">
+								                        	<c:if test="${resvdto.resv_status == 0 or resvdto.resv_status == 6}">
 								            	 				<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px;">결제취소</button>
 			                        						</c:if>
 			                        						<%if(resvdto.getResv_status() == 1 && (start<=(now+600))) {%>

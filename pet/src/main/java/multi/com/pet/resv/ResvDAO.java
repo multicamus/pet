@@ -6,13 +6,21 @@ import mutli.com.pet.erp.SitterDTO;
 import mutli.com.pet.review.ReviewDTO;
 
 public interface ResvDAO {
+	//직접선택
 	List<SitterDTO> directlistAllgender(String size, String code, String shortAddr);
 	List<SitterDTO> directlistBygender(String gender, String size, String code, String shortAddr);
+	//자동매칭
+	List<SitterDTO> autolistAllgender(String size, String code, String shortAddr);
+	List<SitterDTO> autolistBygender(String gender, String size, String code, String shortAddr);
 	//과거 이용했던 펫시터 불러오기
 	List<SitterDTO> pastlist(String code, String member_id, String shortAddr);
 	
 	SitterDTO readSitter(String sitter_id);
+	//자동매칭외의 insert
 	int insert(ResvDTO resvdto);
+	//자동매칭 insert
+	int autoinsert(ResvDTO resvdto);
+	
 	List<ResvDTO> memberresvlist(String member_id);
 	// 예약번호로 예약 데이터 가져오기
 	ResvDTO resvread(String resv_no);
@@ -23,7 +31,9 @@ public interface ResvDAO {
 	int mbcancelResv(String resv_no);
 	int stcancelResv(String resv_no);	
 	//예약매칭승인(by 시터)
-	int approve(String resv_no);
+	int approve(String resv_no, String sitter_id);
+	//자동매칭을 승인한 경우 나머지 자동매칭내약예약들을 없앰
+//	int autochange(ResvDTO resvdto);
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	public List<String> checkReview(List<ResvDTO> resvdto);
 	//예약번호로 리뷰상세페이지불러오기

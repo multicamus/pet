@@ -808,7 +808,7 @@ td {
 												<option value="A">상관 없음</option>
 											</select>
 										</c:if>
-										<input type="hidden" id="pet_codearray"
+										<input type="hidden" id="pet_codearray" name="codearray"
 											value="${pet_codearray }" /> <a href="javascript:void(0)"
 											class="theme-btn" id="direct_button"
 											style="margin-left: 0px;">확인</a>
@@ -878,7 +878,7 @@ td {
 										<option value="allgender" style="cursor: pointer;">상관
 											없음</option>
 									</select>
-
+									<c:if test="${pet_codearray=='A' || pet_codearray=='D'}">
 									<h4>돌봄 경험 횟수</h4>
 									<select name="prefer_size" style="cursor: pointer;">
 										<option value="small" style="cursor: pointer;">소형견 돌봄
@@ -890,18 +890,20 @@ td {
 										<option value="allsize" style="cursor: pointer;">상관
 											없음</option>
 									</select> <a href="javascript:void(0)" class="theme-btn">확인</a>
+									</c:if>
+									<input type="hidden" id="pet_codearray" name="codearray"
+											value="${pet_codearray }" />
 									<p>펫시터분들을 확인해보세요!</p>
 								</div>
 
 								<div class="col-8 justify-content-center">
-									<h3>이용자</h3>
-									<h4>$25.99</h4>
+									<h3>자동매칭이란?</h3>
+									<h4>직접 선택과 과거에 이용했던 펫시터를 선택하는 것에 비해 <br> 더 빠르게 매칭수락을 받을 수 있습니다!</h4>
 									<ul>
-										<li>30 Users</li>
-										<li>Minimal Report</li>
-										<li>1GB Data Storage</li>
-										<li>7/24 Support</li>
-										<li>Multiple Agents</li>
+										<li style="margin-bottom: 10px;"><h6>선호 기준에 의해 나온 펫시터들 중에서</h6></li>
+										<li style="margin-bottom: 10px;"><h6>평점이 높은 상위 펫시터들에게 매칭 요청이 갑니다!</h6></li>
+										<li style="margin-bottom: 10px;"><h6>그 중 먼저 수락을 한 펫시터분에게서 서비스를 받으실 수 있습니다!</h6></li>
+										<li style="margin-bottom: 10px;"><h6>급하게 예약하시는 분들에게 추천!</h6></li>
 									</ul>
 								</div>
 							</div>

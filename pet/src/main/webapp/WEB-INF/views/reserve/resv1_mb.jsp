@@ -538,7 +538,7 @@ input[type=label]
 	</section>
 	<script type="text/javascript">
 		var today = new Date();
-		console.log(document.getElementById("date"));
+		//console.log(document.getElementById("date"));
 		var dd = today.getDate();
 		var mm = today.getMonth() + 1; //January is 0!
 		var yyyy = today.getFullYear();

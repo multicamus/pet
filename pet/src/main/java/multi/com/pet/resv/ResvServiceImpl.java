@@ -12,7 +12,6 @@ import mutli.com.pet.review.ReviewDTO;
 @Service
 public class ResvServiceImpl implements ResvService {
 	ResvDAO dao;
-	
 	@Autowired
 	public ResvServiceImpl(ResvDAO dao) {
 		super();
@@ -39,12 +38,17 @@ public class ResvServiceImpl implements ResvService {
 		return dao.readSitter(sitter_id);
 		
 	}
+	//자동매칭 외의 매칭방법 insert
 	@Override
 	public int insert(ResvDTO resvdto) {
 		System.out.println("insert서비스");
 		return dao.insert(resvdto);
 	}
-	
+	//자동매칭 insert
+	@Override
+	public int autoinsert(ResvDTO resvdto) {
+		return dao.autoinsert(resvdto);
+	}
 	@Override
 	public List<ResvDTO> resvlist(LoginUserDTO user) {
 		if(user!=null) {
@@ -86,9 +90,16 @@ public class ResvServiceImpl implements ResvService {
 	}
 	//예약승인 by 시터
 	@Override
-	public int approve(String resv_no) {
-		return dao.approve(resv_no);
+	public int approve(String resv_no, String sitter_id) {
+		return dao.approve(resv_no, sitter_id);
 	}
+
+	/*
+	 * //자동매칭을 승인한 경우 나머지 자동매칭내약예약들을 없앰
+	 * 
+	 * @Override public int autochange(ResvDTO resvdto) { return
+	 * dao.autochange(resvdto); }
+	 */
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	@Override
 	public List<String> checkReview(List<ResvDTO> resvdto) {
@@ -104,6 +115,21 @@ public class ResvServiceImpl implements ResvService {
 	public int updateFinish() {
 		return dao.updateFinish();
 	}
+
+	@Override
+	public List<SitterDTO> autolist(String gender, String size, String code, String shortAddr) {
+		if(gender.equals("A")) {
+			return dao.autolistAllgender(size, code, shortAddr);
+		}else {
+			System.out.println("서비스단code"+code);
+			return dao.autolistBygender(gender, size, code, shortAddr);
+		}
+	}
+
+
+
+
+
 
 
 	

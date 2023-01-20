@@ -116,9 +116,7 @@
                                     <div class="col-lg-8 mx-auto">
                                     	상세 주소: <input type="text" name="member_addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" required> 
                                     </div>
-                                    <div class="col-lg-8 mx-auto">
-                                     	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" required> 
-                                   	</div>
+                                    
 									
 									<div class="col-lg-8 mx-auto">
 										<h4>주로 다니는 병원의 이름과 주소</h4>

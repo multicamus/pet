@@ -332,9 +332,23 @@
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'past_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                               		<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		 <c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                
 	                                                
@@ -348,14 +362,8 @@
 		                                                <%} %>	
 	                                               <%} %> 
 	                                               
-	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
 	                                               		
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
 	                                               		
                                                </div>
                                             </div>
