@@ -203,7 +203,7 @@
                                     <div class="col-2">
                                     	<% if(start<now&&now<=end){
                                     			if(resvdto.getResv_status()==1){%>
-                                        			<span style="margin-right:50px"><h4>돌봄 중</h4></span>
+                                        			<span style="margin-right:50px; "><h4>돌봄 중</h4></span>
                                         	<%}else{ %>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
                                         	<%} %>
@@ -211,11 +211,11 @@
                                         	
                                         <%}else{ 
 	                                       		 if(resvdto.getResv_status()==0){%>
-	                                      			<span style="margin-right:50px;"><h4 style="text-align:center;">매칭 승인 <br> 대기중</h4></span>
+	                                      			<span style="margin-right:50px;"><h4>매칭 승인 <br> 대기중</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==1){ %>
 	                                      			<span style="margin-right:50px"><h4  style="color: #4361eb;">돌봄 예정</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==6){%>
-                                  					<span style="margin-right:50px;"><h4 style="text-align:center;">자동 매칭<br>승인 대기</h4></span>
+                                  					<span style="margin-right:50px; padding : center;"><h4>자동 매칭<br>승인 대기</h4></span>
                                   			<%}else{%>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
 	                                  		<%}%>	 
@@ -251,6 +251,7 @@
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
                                     </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -358,6 +359,7 @@
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
                                     </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">

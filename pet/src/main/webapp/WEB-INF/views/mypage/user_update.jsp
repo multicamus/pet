@@ -102,7 +102,7 @@
                                     	이메일 : <input class="col-lg-2" type="email" name="member_email" id="email" placeholder="Email" value="${member.member_email}" required>
                                     </div>
                                     <div class="col-lg-8 mx-auto">
-                                    	연락처 : <input type="text" name="member_phone" id="phone" placeholder="연락처" value="${member.member_phone}" required>
+                                    	연락처 : <input type="text" name="member_phone"  id="phone" placeholder="연락처" value="${member.member_phone}" required oninput="hypenTel(this)" maxlength="13">
                                     </div>
                                     <div class="col-lg-8 mx-auto">
                                     	생일: <input type="date" name="member_birthdate" id="birthdate" placeholder="생일" value="${member.member_birthdate}" required> 
@@ -157,5 +157,12 @@
 		        }
 		    }).open();
 		});
+		
+		  const hypenTel = (target) => {
+		 target.value = target.value
+		   .replace(/[^0-9]/g, '')
+		   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		}
+
 	</script>
 	

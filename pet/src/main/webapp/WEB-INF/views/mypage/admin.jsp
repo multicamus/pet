@@ -49,29 +49,31 @@
 		<h7><b style="color: #0D6EFD">승인완료 시터: ${atotal }</b></h7></br>
 		<h7><b style="color: #0D6EFD">미승인 시터: ${untotal }</b></h7>
 		</div>
-			<div class="container">	
-				<form action="/pet/admin/search.do" method="post" class="search-form">
-					<div class="container row align-items-center pb-30">
-					<div class="col-lg-6"></div>
-						<div class="col-lg-3">
-						<select name="category" id="category" class="form-select" aria-label="Default select example">
-							<option selected>전체</option>
-							<option value="id">아이디</option>
-							<option value="name">이름</option>
-							<option value="email">이메일 주소</option>
-							<option value="phone">전화번호</option>
-							<option value="valid">미승인</option>
-						</select>
-						</div>
-						<div class="col-lg-3">
-						
-							<input name="search_val" id="search_val" type="text" placeholder="Search">
-<!-- 							<button type="submit"><i class="lni lni-search-alt"></i></button>
- -->							<input type="submit"><i class="lni lni-search-alt"></i> 
- 						</div>
-					</div>
+			<form action="/pet/admin/search.do" class="search-form">
+				<div class="container">	
+					<div class="container row align-items-center pb-30" style="width: 200%;">
+						<div class="col-lg-12">
+						<div class="row">
+ 							<div class="col-lg-4">
+								<select name="category" id="category" class="form-select" aria-label="Default select example" >
+									<option selected>전체</option>
+									<option value="id">아이디</option>
+									<option value="name">이름</option>
+									<option value="email">이메일 주소</option>
+									<option value="phone">전화번호</option>
+									<option value="valid">미승인</option>
+								</select>
+							</div>
+							
+							<div class="col-lg-8">
+									<input name="search_val" id="search_val" type="text" placeholder="Search" >	
+	 								<button type="submit" style="margin-right: -90%; margin-top: -5%;"><i class="lni lni-search-alt"></i></button>
+ 	 						</div>
+	 					</div>		
+	 					</div>	
+  					</div>
+					</div>			
 				</form>
-						
 			<!-- sitter list start -->
 			<div class="col-lg-12 pb-100">
 				<div class="contact-form-wrapper">

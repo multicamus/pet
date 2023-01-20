@@ -297,36 +297,37 @@ public class ResvController {
 		}
 		
 		String view = "";
-		if(!resvdto.getMatch_method().equals("auto_match")) {
+		//자동매칭 이외의 방법이면(sitter가 이미 정해져있는 상태라면)
+		if(!resvdto.getMatch_method().equals("auto_match")||resvdto.getResv_status()==1 || resvdto.getResv_status() == 5) {
+			//예약정보의 시터 아이디로 시터 객체를 불러옴	
 			SitterDTO sitter = service.readSitter(resvdto.getSitter_id());
+			//시터 이름을 불러와서 예약정보의 시터 이름에 저장함
 			String sitter_name =  sitter.getSitter_name();
+			resvdto.setSitter_name(sitter_name);
+			//생년월일로 나이를 계산하는 메소드를 호출하여 해당 나이를 시터 객체의 나이 변수에 저장함
 			sitter.setSitter_age(sitter.calcAge());
 			
-			resvdto.setSitter_name(sitter_name);
+			
 			LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
-			if(user.getUser_type().equals("M")) {
+			if(user.getUser_type().equals("M")) { //현재 로그인한 유저가 멤버라면
 				view = "resv/resvmb_read";
-				
 				model.addAttribute("sitter", sitter);
 				model.addAttribute("member", member);
-				
-			}else {
-				view = "resv/resvst_read";
-				model.addAttribute("member", member);
-			}
-		}else {
-			LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
-			if(user.getUser_type().equals("M")) {
-				view = "resv/resvmb_read";
-				model.addAttribute("member", member);
-			}else {
+			}else {//시터라면
 				view = "resv/resvst_read";
 				model.addAttribute("member", member);
 			}
 			
+		}else{//자동매칭방법이라면
+			LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
+			if(user.getUser_type().equals("M")) {
+				view = "resv/resvmb_read";
+				model.addAttribute("member", member);
+			}else {
+				view = "resv/resvst_read";
+				model.addAttribute("member", member);
+			}
 		}
-		
-		
 		model.addAttribute("petlist", petlist);
 		model.addAttribute("codelist", codelist);
 		model.addAttribute("namelist", namelist);
@@ -343,14 +344,11 @@ public class ResvController {
 		System.out.println("매칭승인");
 		LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
 		String sitterid = user.getSitter_id();
-		//자동매칭인 경우 나머지 예비자동매칭예약내역들도 다 취소시킴
 		ResvDTO resvdto = service.resvread(resv_no);
 		resvdto.setSitter_id(sitterid);
 		sitterid = resvdto.getSitter_id();
-
-			service.approve(resv_no, sitterid);
-
-			service.approve(resv_no, sitterid);
+		//예약번호와 시터아이디를 가지고 승인하기
+		service.approve(resv_no, sitterid);
 
 		System.out.println(user);
 		session.setAttribute("user", user);
