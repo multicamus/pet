@@ -56,6 +56,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewDTO read_detail_ajax_next(String review_no) {
 		return dao.read_detail_ajax_next(review_no);
 	}
+
+	@Override
+	public String review_no_sitter(String sitter_id) {
+		return dao.review_no_sitter(sitter_id);
+	}
 	
 	
 }

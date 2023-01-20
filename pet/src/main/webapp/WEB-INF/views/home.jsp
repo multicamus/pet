@@ -29,7 +29,7 @@
 	</div>
 	
 	<div>
-		<tiles:insertAttribute name="content" />
+		<tiles:insertAttribute name="contdent" />
  	</div>
  	
  	<div>

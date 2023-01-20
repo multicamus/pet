@@ -16,15 +16,12 @@
 				data : querydata,
 				dataType : "json",
 				success : function(data) {
-					alert(data)
-					alert(no)
 					$("#reviewtext").text(data.review)
 					$("#reviewrate").text(data.review_rate)
 					$("#reviewdate").text(data.write_date_rv)
 					$("#reviewaddr").text(data.member_addr1)
 					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "'>")
 					$("#reviewpetimg").html("<img src='/pet/resources/pet/" + data.pet_photo + "' style='width:50px;height:50px;border-radius:50%;object-fit:cover;'>")
-					
 					no = data.review_no
 				},
 				error : error_run
@@ -39,14 +36,12 @@
 				data : querydata,
 				dataType : "json",
 				success : function(data) {
-					alert(data.review+","+data.member_addr1)
-					console.log(data)
 					$("#reviewtext").text(data.review)
 					$("#reviewrate").text(data.review_rate)
 					$("#reviewdate").text(data.write_date_rv)
 					$("#reviewaddr").html(data.member_addr1)
 					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "'>")
-					$("#reviewpetimg").html("<img src='/pet/resources/pet/" + data.pet_photo + "'>")
+					$("#reviewpetimg").html("<img src='/pet/resources/pet/" + data.pet_photo + "' style='width:50px;height:50px;border-radius:50%;object-fit:cover;'>")
 					no = data.review_no
 				},
 				error : error_run

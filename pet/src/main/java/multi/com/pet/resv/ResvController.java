@@ -185,6 +185,7 @@ public class ResvController {
 		System.out.println("count:"+count);
 		List<ResvDTO> resvlist = service.resvlist(user);
 		//갖고 온 예약리스트의 이용후기작성 여부를 확인한다. 리뷰테이블에 존재하는 예약번호가 String리스트에 담아져서 반환된다.
+		System.out.println("#############################"+resvlist);
 		List<String> reviewlist = service.checkReview(resvlist);
 		System.out.println("reviewlist:"+reviewlist);
 		

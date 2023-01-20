@@ -7,6 +7,34 @@
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
+        <style type="text/css">
+			.star-ratings {
+			  color: #aaa9a9; 
+			  position: relative;
+			  unicode-bidi: bidi-override;
+			  width: max-content;
+			  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+			  -webkit-text-stroke-width: 1.3px;
+			  -webkit-text-stroke-color: #2b2a29;
+			}
+			 
+			.star-ratings-fill {
+			  color: #fff58c;
+			  padding: 0;
+			  position: absolute;
+			  z-index: 1;
+			  display: flex;
+			  top: 0;
+			  left: 0;
+			  overflow: hidden;
+			  -webkit-text-fill-color: gold;
+			}
+			 
+			.star-ratings-base {
+			  z-index: 0;
+			  padding: 0;
+			}
+		</style>
     </head>
     <body>
         <!-- ========================= page-banner-section start ========================= -->
@@ -63,10 +91,27 @@
                                             <i class="lni lni-map-marker"></i>
                                         </div>
                                         <div class="contact-content">
-                                            <h4><a href="/pet/menu/reserve/resvhistory_st_list.do">나의 점수</a></h4>
-                                            <p>별점으로 표시</p>
-                                            <p>${sitter.sitter_rate}</p>
-                                            <p>가장 최근 후기</p>
+                                            <h4><a href="/pet/menu/reserve/resvhistory_st_list.do">나의 돌봄</a></h4>
+                                            <c:choose>
+	                                            <c:when test="${fn:length(resvlist) == 0}">
+	                                            	<p>돌봄경험이 없어요!</p>
+	                                            </c:when>
+	                                            <c:when test="${fn:length(review_no) == 0}">
+	                                            	<p>아직 등록된 후기가 없어요!</p>
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                        		<div class="star-ratings">
+														<div class="star-ratings-fill space-x-2 text-lg" style="width:${sitter.sitter_rate}*20%;">
+															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+														</div>
+														<div class="star-ratings-base space-x-2 text-lg">
+															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+														</div>
+													</div>
+                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no.review_no}">가장 최근 후기</a></p>    
+	                                            </c:otherwise>
+                                            </c:choose>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +132,8 @@
                                    	   		for(int i = 0; i < size; i++){%>
                                    	   		<p><%=certificate[i] %></p>
                                    	   		<%}}%>
-                                            
-                                            <p><a href="http://www.kkc.or.kr/service/service_05.html" target="_black">한국 애견 협회</a></p>
+                                            <div class="pt-30"></div>
+                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
                                         </div>
                                     </div>
                                 </div>

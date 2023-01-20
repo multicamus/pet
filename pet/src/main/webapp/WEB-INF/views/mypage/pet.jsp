@@ -45,10 +45,8 @@
 						<div class="page-breadcrumb">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item" aria-current="page"><a
-										href="/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><a
-										href="/pet/">${pet.pet_name }'s Page</a></li>
+									<li class="breadcrumb-item" aria-current="page"><a href="/">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page"><a href="/pet/">${pet.pet_name }'s Page</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -75,8 +73,7 @@
 										</div>
 										<div class="contact-content">
 											<h4>
-												<a type="button"
-													href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a>
+												<a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a>
 											</h4>
 											<p>${pet.pet_code}</p>
 											<p>${pet.pet_kind}</p>

@@ -67,7 +67,7 @@
 		                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
 		                                   	   		int size = certificate.length;
 		                                   	   		for(int i = 0; i < size; i++){%>
-		                                   	   		<p><%=certificate[i] %></p>
+		                                   	   		<input name = "sitter_certificate" value="<%=certificate[i] %>">
 	                                   	   		<%}}%>
 	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post">
 	                                            <div class="pb-30" id="sitter_certificate">

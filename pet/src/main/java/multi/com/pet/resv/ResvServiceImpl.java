@@ -105,6 +105,12 @@ public class ResvServiceImpl implements ResvService {
 		return dao.updateFinish();
 	}
 
+	//탑에 추가 할 new 의 근거
+	@Override
+	public List<ReviewDTO> readStatus(String sitter_id) {
+		return dao.readStatus(sitter_id);
+	}
+
 
 	
 

@@ -7,6 +7,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Review</title>
+<style type="text/css">
+	.star-ratings {
+	  color: #aaa9a9; 
+	  position: relative;
+	  unicode-bidi: bidi-override;
+	  width: max-content;
+	  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+	  -webkit-text-stroke-width: 1.3px;
+	  -webkit-text-stroke-color: #2b2a29;
+	}
+	 
+	.star-ratings-fill {
+	  color: #fff58c;
+	  padding: 0;
+	  position: absolute;
+	  z-index: 1;
+	  display: flex;
+	  top: 0;
+	  left: 0;
+	  overflow: hidden;
+	  -webkit-text-fill-color: gold;
+	}
+	 
+	.star-ratings-base {
+	  z-index: 0;
+	  padding: 0;
+	}
+</style>
 </head>
 <body>
 <!-- ========================= page-banner-section start ========================= -->
@@ -56,8 +84,16 @@
 									<div class="col-2">
 										<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
 									</div>
+									
 									<div class="col-3">
-										<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점 ${review.review_rate }</p>
+										<div class="star-ratings">
+											<div class="star-ratings-fill space-x-2 text-lg" style="width:${review.review_rate}*20%;">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											</div>
+											<div class="star-ratings-base space-x-2 text-lg">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
