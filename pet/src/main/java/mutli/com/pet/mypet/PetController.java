@@ -54,11 +54,11 @@ public class PetController {
 	@RequestMapping(value="/insert.do") 
 	public String insert(PetDTO pet, Model model, String pet_id, String member_id, HttpServletRequest hsr) throws IOException {
 		MultipartFile img = pet.getPet_img();
-		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/pet";
+		HttpSession hs = hsr.getSession();
+		String path = WebUtils.getRealPath(hs.getServletContext(), "/resources/pet");
 		PetDTO pet_img = ful.petUploadImg(pet, img, path);
 		int result = ps.insert(pet_img);
 		if(result == 1) {
-			HttpSession hs = hsr.getSession();
 			hs.removeAttribute("mypetlist");
 			List<PetDTO> petList = ms.petList(member_id);
 			hs.setAttribute("mypetlist", petList);

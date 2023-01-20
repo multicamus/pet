@@ -3,6 +3,34 @@
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
+<style type="text/css">
+	.star-ratings {
+	  color: #aaa9a9; 
+	  position: relative;
+	  unicode-bidi: bidi-override;
+	  width: max-content;
+	  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+	  -webkit-text-stroke-width: 1.3px;
+	  -webkit-text-stroke-color: #2b2a29;
+	}
+	 
+	.star-ratings-fill {
+	  color: #fff58c;
+	  padding: 0;
+	  position: absolute;
+	  z-index: 1;
+	  display: flex;
+	  top: 0;
+	  left: 0;
+	  overflow: hidden;
+	  -webkit-text-fill-color: gold;
+	}
+	 
+	.star-ratings-base {
+	  z-index: 0;
+	  padding: 0;
+	}
+</style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <title>Review Detail</title>
 	<script type="text/javascript">
@@ -86,8 +114,8 @@
 								<div id="reviewpetimg" class="col-lg-1">
 									<img alt="pet" src="/pet/resources/pet/${review.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 								</div>
-
 								<div class="col-lg-9" style="padding-top: 10px; padding-left: 30px;">
+									<h4><span id="reviewaddr">${review.member_addr1}</span></h4>
 								</div>
 							</div>
 
@@ -113,13 +141,19 @@
 
 						</div>
 						<div class="display: flex; flex-direction: column;">
-							<h4><span id="reviewaddr">${review.member_addr1}</span></h4>
 							<div class="row">
 								<div class="col-2">
 									<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
 								</div>
-								<div class="col-2">
-									<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;"><span id="reviewrate">${review.review_rate}</span></p>
+								<div class="col-3">
+									<div class="star-ratings">
+										<div class="star-ratings-fill space-x-2 text-lg" style="width:${review.review_rate}*20%;">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+										<div class="star-ratings-base space-x-2 text-lg">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div alt= "review" id="reviewphoto" class="pb-30">
