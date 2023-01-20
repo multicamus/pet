@@ -187,6 +187,12 @@ public  class ResvDAOImpl implements ResvDAO {
 		return a+b+c+d+e;
 	}
 
+	//탑에 추가 할 new 의 근거
+	@Override
+	public List<ReviewDTO> readStatus(String sitter_id) {
+		return sqlsession.selectList(sitter_id);
+	}
+
 
 }
 

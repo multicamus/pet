@@ -33,28 +33,29 @@
 					<div class="col-lg-8 col-md-6">
 						<div class="feature-box box-style">
 							<!-- review start -->
-							<div class="col-lg-12 row pb-30">
+							<div class="col-lg-12 row pb-10">
 								<div class="col-lg-11 row">
 									<div class="col-lg-1">
 										<img src="/pet/resources/pet/${review.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 									</div>
-									<div class="col-lg-8" style="padding-top: 10px; padding-left: 10px;"></div>
+									<div class="col-lg-8" style="padding-top: 10px; padding-left: 10px;">
+										<h3>${review.member_addr1}</h3>
+									</div>
 								</div>
 							</div>
 
 							<div class="col-lg-12">
-								<h4>${review.member_addr1}</h4>
 								<div class="row">
 									<div class="col-2">
 										<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">${review.write_date_rv}</p>
 									</div>
 									<div class="col-2">
-										<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">평점:${review.review_rate}</p>
+										<p style="font-size: 12px; font-weight: 400; color: rgb(158, 164, 179); line-height: 20px;">현재 평점:${review.review_rate}</p>
 									</div>
 								</div>
 							</div>
 
-							<div class="row align-items-center pt-10 pl-50">
+							<div class="row align-items-center pt-10 pl-50" style="padding-left: 10px;">
 
 								<div class="form-check col-1">
 									<input id="review_rate" name="review_rate" type="radio"

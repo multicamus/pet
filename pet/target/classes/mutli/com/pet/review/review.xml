@@ -68,5 +68,14 @@
 		SET	review = #{review}, review_rate=#{review_rate}, modify_date_rv=sysdate, review_img=#{review_img}
 		WHERE review_no = #{review_no}
 	</update>
+	
+	<!-- 추가함 BY 오승영 -->
+	<select id="review_no_sitter" parameterType="String" resultType="String">
+		SELECT r.review_no
+		FROM review r, resv_history h
+		WHERE r.resv_no = h.resv_no
+		  AND h.sitter_id = #{sitter_id}
+		  AND ROWNUM = 1
+	</select>
 
 </mapper>

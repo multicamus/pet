@@ -141,7 +141,7 @@ public class MemberServiceImpl implements MemberService {
 			tmp1 = Integer.parseInt(tmp3);
 		}
 		int tmp2 = Integer.parseInt(review_rate);
-		int numerator = (tmp1 * denominator + tmp2);
+		int numerator = (tmp1 * (denominator - 1) + tmp2);
 		System.out.println(tmp1);
 		System.out.println(tmp2);
 		System.out.println(tmp3);

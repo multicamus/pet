@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="banner-content">
-                            <h2 class="text-white">Client's Page asdfasdfasdf </h2>
+                            <h2 class="text-white">Client's Page</h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -34,18 +34,15 @@
             <div class="container">
                 <div class="row">
                 	<!-- 사이드 메뉴 -->
-                    <!-- <div class="col-xl-2">  -->
-                     <div class="col-xl-3"> 
+                    <div class="col-xl-3">
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <!-- 동물 정보 시작 -->
-
-                                
 								<c:forEach var="pet" items="${mypetlist}" varStatus="status">
 									<div class="col-12 col-md-6 col-xl-12">
 										<div class="contact-item">
 											<div class="contact-icon">
-												 <img src="/upload/${pet.pet_photo}">
+												<img src="/pet/resources/pet/${pet.pet_photo }" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 											</div>
 											<div class="contact-content">
 												<h4><a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>

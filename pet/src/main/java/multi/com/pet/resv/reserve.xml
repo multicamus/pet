@@ -463,10 +463,10 @@
 	<select id="checkreview" parameterType="java.util.List" resultType="String">
 		select h.resv_no
 		from resv_history h, review r
-		where r.resv_no = h.resv_no and  r.resv_no	in
-		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">	
-			#{item.resv_no}	
-		</foreach>
+		where r.resv_no = h.resv_no 
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item.resv_no}
+        </foreach>
 	</select>
 	
 	<!-- 예약번호로 리뷰 읽기 -->
@@ -478,6 +478,14 @@
 	<select id="read" parameterType="String" resultType="resv" >
 		select * from resv_history
 		where resv_no = #{resv_no}	
+	</select>
+	
+	<!-- status가 0인 예약 읽기-->
+	<select id="readstatus" parameterType="String" resultType="resv" >
+		SELECT h.resv_no
+		FROM resv_history h
+		WHERE sitter_id = #{sitter_id}
+		  AND resv_status = '0'
 	</select>
 </mapper>
 

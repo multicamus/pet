@@ -88,7 +88,7 @@
 									<div class="col-12 col-md-6 col-xl-12">
 									<div class="contact-item">
 										<div class="contact-icon">
-											<img src="">
+											<img src="/pet/resources/pet/${pet.pet_photo }" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 										</div>
 										<div class="contact-content">
 											<h4>

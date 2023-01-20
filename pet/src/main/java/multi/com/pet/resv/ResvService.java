@@ -39,8 +39,8 @@ public interface ResvService {
 	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
 	public int updateFinish(); 
 	public ReviewDTO readReview(String resv_no);
-
-
+	//top에 추가할 new 의 근거
+	public List<ReviewDTO> readStatus(String sitter_id);
 
 	
 }
