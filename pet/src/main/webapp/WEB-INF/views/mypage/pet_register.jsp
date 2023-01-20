@@ -31,7 +31,7 @@
 		$(document).ready(function() {
 			$("#submit").on("click", function(){
 				weight = $("input[name=pet_weight]").val()
-				petcode = $("input[name=pet_code]").val()
+				petcode = $('input:radio[name=pet_code]:checked').val();
 				if(petcode == 'DOG'){
 					if(weight <= 7){
 						$("#pet_size").prop("value", "S")
@@ -40,6 +40,8 @@
 					}else{
 						$("#pet_size").prop("value", "L")
 					}
+				}else{
+					$("#pet_size").prop("value", "C")
 				}	
 			})
 		})

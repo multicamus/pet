@@ -368,6 +368,7 @@ select {
 						type="hidden" name="pet_codelist" value="${resvdto.pet_codelist }">
 					<input type="hidden" name="pet_namelist"
 						value="${resvdto.pet_namelist }"> <input type="hidden"
+									name="pet_sizelist" value="${resvdto.pet_sizelist }"> <input type="hidden"
 						name="total_price" value="${resvdto.total_price }"> <input
 						type="hidden" name="emergency_phone"
 						value="${resvdto.emergency_phone }">
@@ -391,8 +392,8 @@ select {
 			if (visitmethod === "pass_visit") {
 				homepass1 = document.getElementById("homepass1").value
 				homepass2 = document.getElementById("homepass2").value
-
-				if (homepass1 == "" || (homepass2 = "")) {
+				
+				if ((homepass1 == "") || (homepass2 == "")) {
 					alert("비밀번호를 입력해주세요!")
 					return false;
 				} else {

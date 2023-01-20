@@ -27,10 +27,10 @@ public class SitterDTO {
 	private String sitter_certificate;
 	private String sitter_rate;
 
-	private String small_career;
-	private String medium_career;
-	private String large_career;
-	private String cat_career;
+	private int small_career;
+	private int medium_career;
+	private int large_career;
+	private int cat_career;
 	private MultipartFile sitter_photo;
 	
 	
@@ -60,7 +60,7 @@ public class SitterDTO {
 			String sitter_gender, String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2,
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
 			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
-			String sitter_rate, String small_career, String medium_career, String large_career, String cat_career,
+			String sitter_rate, int small_career, int medium_career, int large_career, int cat_career,
 			MultipartFile sitter_photo, int sitter_age, String sitter_shortAddr) {
 		super();
 		this.user_type = user_type;
@@ -246,35 +246,35 @@ public class SitterDTO {
 		this.sitter_rate = sitter_rate;
 	}
 
-	public String getSmall_career() {
+	public int getSmall_career() {
 		return small_career;
 	}
 
-	public void setSmall_career(String small_career) {
+	public void setSmall_career(int small_career) {
 		this.small_career = small_career;
 	}
 
-	public String getMedium_career() {
+	public int getMedium_career() {
 		return medium_career;
 	}
 
-	public void setMedium_career(String medium_career) {
+	public void setMedium_career(int medium_career) {
 		this.medium_career = medium_career;
 	}
 
-	public String getLarge_career() {
+	public int getLarge_career() {
 		return large_career;
 	}
 
-	public void setLarge_career(String large_career) {
+	public void setLarge_career(int large_career) {
 		this.large_career = large_career;
 	}
 
-	public String getCat_career() {
+	public int getCat_career() {
 		return cat_career;
 	}
 
-	public void setCat_career(String cat_career) {
+	public void setCat_career(int cat_career) {
 		this.cat_career = cat_career;
 	}
 

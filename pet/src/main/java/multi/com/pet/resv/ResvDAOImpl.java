@@ -46,10 +46,11 @@ public  class ResvDAOImpl implements ResvDAO {
 	
 	//과거에 이용했던 펫시터 불러오기
 	@Override
-	public List<SitterDTO> pastlist(String code, String member_id) {
+	public List<SitterDTO> pastlist(String code, String member_id, String shortAddr) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("code", code);
 		map.put("member_id", member_id);
+		map.put("shortAddr", shortAddr);
 		return sqlsession.selectList("mutli.com.pet.resv.pastlist", map);
 	}
 	
@@ -117,6 +118,18 @@ public  class ResvDAOImpl implements ResvDAO {
 	@Override
 	public Review2DTO readReview(String resv_no) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readreview", resv_no);
+	}
+	
+	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
+	@Override
+	public int updateFinish() {
+		int a = sqlsession.update("mutli.com.pet.resv.updateSmallCareer");
+		int b = sqlsession.update("mutli.com.pet.resv.updateMediumCareer");
+		int c = sqlsession.update("mutli.com.pet.resv.updateLargeCareer");
+		int d = sqlsession.update("mutli.com.pet.resv.updateCatCareer");
+		int e = sqlsession.update("mutli.com.pet.resv.updateStatus");
+
+		return a+b+c+d+e;
 	}
 
 

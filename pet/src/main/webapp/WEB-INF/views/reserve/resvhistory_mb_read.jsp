@@ -202,7 +202,10 @@
 	                                                    	</c:when>
 	                                                    	<c:when test="${resvdto.resv_status == 1 }">
 	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭완료</span>
-	                                                    	</c:when>		
+	                                                    	</c:when>
+	                                                    	<c:when test="${resvdto.resv_status == 5 }">
+	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">돌봄완료</span>
+	                                                    	</c:when>			
                                                     		<c:otherwise>
 	                                                    		<span style="font-size:20px; color:red; font-weight: bold;">취소됨</span>
 	                                               </div>

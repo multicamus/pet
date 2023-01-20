@@ -173,9 +173,11 @@ public class ResvController {
 		System.out.println("userid:"+user.getSitter_id());
 		System.out.println("userid:"+user.getUser_type());
 
+		// 돌봄완료시 해당 커리어를 1씩 증가시킴
 		// 예약리스트를 불러올때 예약상태(resv_status) 갱신
-		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절 
+		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절, 5: 돌봄완료
 		int count = service.changeStatus();
+		service.updateFinish();
 		System.out.println("count:"+count);
 		List<ResvDTO> resvlist = service.resvlist(user);
 		//갖고 온 예약리스트의 이용후기작성 여부를 확인한다. 리뷰테이블에 존재하는 예약번호가 String리스트에 담아져서 반환된다.
@@ -318,7 +320,8 @@ public class ResvController {
 	public List<SitterDTO> pastlist(String code, HttpSession session){
 		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
 		String member_id = user.getMember_id();
-		List<SitterDTO> sitterlist = service.pastlist(code, member_id);
+		String shortAddr = user.createShortAddr();
+		List<SitterDTO> sitterlist = service.pastlist(code, member_id, shortAddr);
 		System.out.println("과거이용:"+sitterlist);
 		return sitterlist;
 	}

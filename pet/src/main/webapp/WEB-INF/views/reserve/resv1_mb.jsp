@@ -330,6 +330,9 @@ input[type=label]
 															style="display: none;"> <input type="checkbox"
 															id="petidlist${status.count }" value="${pet.pet_id }"
 															class="selectpet${status.count }" name="pet_idlist"
+															style="display: none;"><input type="checkbox"
+															id="petidlist${status.count }" value="${pet.pet_size }"
+															class="selectpet${status.count }" name="pet_sizelist"
 															style="display: none;">
 													</fieldset>
 													

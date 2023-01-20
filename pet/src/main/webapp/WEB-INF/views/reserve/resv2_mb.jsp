@@ -392,11 +392,11 @@ td {
 									"code" : code
 								},
 								success : function(data) {
-									alert("success")
+									
 									for(i=0;i<data.length;i++){
 									mydata = ""
 									mydata = mydata + "<div class='col-lg-4 cardbox'>"
-									+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
+									+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card2'>"
 									+ "<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
 									+ "<div class='card-body'>"
 									+ "<p class='card-text'>"
@@ -413,8 +413,8 @@ td {
 									+ "</div>"
 
 									+ "<div class=col-6>"
-									+ "<div   id='" +  data[i].sitter_id +"select'>"
-									+ "<button type='button' class='theme-btn direct selectsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+									+ "<div   id='" +  data[i].sitter_id +"select2'>"
+									+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
 									+ "</div>"
 									+ "</div>"
 
@@ -429,6 +429,7 @@ td {
 									
 									$(".detailread").on("click", function(event) {
 										sitter_id = $(this).attr("id");
+										
 										$.ajax({
 													url : "/pet/sitter/ajax/read.do",
 													type : "get",
@@ -496,18 +497,19 @@ td {
 										$(".modal").fadeIn();
 									})
 									
-																			$(".selectsitter").on("click", function() {
+																			$("#pastsitter").on("click", function() {
 																				
 																				//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
 																				preCardId = "#"+ $(".card[selected=selected]").attr("id");
+																				
 																				$(".card").css("border-color", '');
 
 																				//현재 선택한 시터의 id와 name
 																				id = $(this).attr("value")
 																				name = $(this).attr("name")
 																				//cardid는 (sitter의 id+card)
-																				cardId = "#" + id + "card";
-
+																				cardId = "#" + id + "card2";
+																				
 																				//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
 																				if (cardId == preCardId) {
 																					//selected속성과 테두리속성을 해제시킨다
@@ -665,6 +667,7 @@ td {
 																	.on("click", function() {
 																				//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
 																				preCardId = "#"+ $(".card[selected=selected]").attr("id");
+																				
 																				$(".card").css("border-color", '');
 
 																				//현재 선택한 시터의 id와 name
@@ -847,7 +850,8 @@ td {
 									value="${resvdto.pet_idlist }"> <input type="hidden"
 									name="pet_codelist" value="${resvdto.pet_codelist }"> <input
 									type="hidden" name="pet_namelist"
-									value="${resvdto.pet_namelist }"> <input type="hidden"
+									value="${resvdto.pet_namelist }"><input type="hidden"
+									name="pet_sizelist" value="${resvdto.pet_sizelist }">  <input type="hidden"
 									name="total_price" value="${resvdto.total_price }">
 
 							</form>
@@ -928,7 +932,8 @@ td {
 								type="hidden" name="pet_idlist" value="${resvdto.pet_idlist }">
 							<input type="hidden" name="pet_codelist"
 								value="${resvdto.pet_codelist }"> <input type="hidden"
-								name="pet_namelist" value="${resvdto.pet_namelist }"> <input
+								name="pet_namelist" value="${resvdto.pet_namelist }"> <input type="hidden"
+									name="pet_sizelist" value="${resvdto.pet_sizelist }"> <input
 								type="hidden" name="total_price" value="${resvdto.total_price }">
 
 
@@ -982,7 +987,8 @@ td {
 									name="pet_idlist" value="${resvdto.pet_idlist }"> <input
 									type="hidden" name="pet_codelist"
 									value="${resvdto.pet_codelist }"> <input type="hidden"
-									name="pet_namelist" value="${resvdto.pet_namelist }">  <input type="hidden" name="total_price"
+									name="pet_namelist" value="${resvdto.pet_namelist }">  <input type="hidden"
+									name="pet_sizelist" value="${resvdto.pet_sizelist }"> <input type="hidden" name="total_price"
 									value="${resvdto.total_price }">
 
 

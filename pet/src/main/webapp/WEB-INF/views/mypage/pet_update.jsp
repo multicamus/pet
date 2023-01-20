@@ -29,9 +29,10 @@
 	</style>
 	<script>
 		$(document).ready(function() {
+
 			$("#edit").on("click", function(){
 				weight = $("input[name=pet_weight]").val()
-				petcode = $("input[name=pet_code]").val()
+				petcode = $('input:radio[name=pet_code]:checked').val();
 
 				if(petcode == 'DOG'){
 					if(weight <= 7){
@@ -42,7 +43,9 @@
 						$("#pet_size").prop("value", "L")
 					}
 
-				}	
+				}else{
+					$("#pet_size").prop("value", "C")
+				}		
 				
 			})
 		})
@@ -249,7 +252,7 @@
 										<input type="text" name="pet_kind" id="kind" placeholder="품종" value="${pet.pet_kind}" required>
 										<legend>몸무게(kg)</legend>
 										<input type="text" name="pet_weight" id="weight" placeholder="몸무게" value="${pet.pet_weight}" required>
-										<legend>크기()</legend>
+										<legend>크기</legend>
 										<c:if test="${pet.pet_size eq 'S' }">
 											<input type="text" value="소형견">
 										</c:if>	

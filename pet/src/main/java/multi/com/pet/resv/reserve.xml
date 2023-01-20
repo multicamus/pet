@@ -152,28 +152,30 @@
          				#{member_id} = h.member_id
 						and (s.sitter_code = 'A' or s.sitter_code = 'D')
 						and s.sitter_id = h.sitter_id
-						and h.resv_status = 1
+						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
-					
+						and service_area LIKE '%' || #{shortAddr} || '%'	
 			</if> 
 			<if test='code=="C"'>
 					<![CDATA[	
          				#{member_id} = h.member_id
 						and (s.sitter_code = 'A' or s.sitter_code = 'C')
 						and s.sitter_id = h.sitter_id
-						and h.resv_status = 1
+						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'	
 			</if>
 			<if test='code=="A"'>
 					<![CDATA[	
          				#{member_id} = h.member_id
 						and s.sitter_code = 'A'
 						and s.sitter_id = h.sitter_id
-						and h.resv_status = 1
+						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'	
 			</if>  
 		</where>	
 	</select>
@@ -193,7 +195,7 @@
 						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, #{total_price},
 						#{match_method}, #{prefer_gender}, #{prefer_size}, #{visit_method}, #{common_pass},
 						#{home_pass}, #{direct_meet}, #{parking}, #{supplies_place}, #{cleaning_method},
-						#{emergency_phone}, #{pet_codelist}) 
+						#{emergency_phone}, #{pet_codelist}, #{pet_sizelist}) 
 	</insert> 
 	
 	<!-- 이용자id로 예약내역rows 가져오기 -->
@@ -225,8 +227,45 @@
 			and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_starttime, 2, '0') || ':00:00'
             < to_char(sysdate + 1/12 , 'YYYY-MM-DD HH24:MI:SS')
 			]]>
-	
 	</update>
+	<!-- 돌봄완료된 예약내역의 resv_status를 5로 바꾸고 해당 커리어를 1씩 증가시킴 -->
+	<update id="updateSmallCareer">
+		 <![CDATA[
+		update sitter_info 
+		set small_career = small_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%S%')
+		]]>
+	</update>
+	<update id="updateMediumCareer">
+	 	<![CDATA[
+		update sitter_info 
+		set medium_career = medium_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%M%')
+		]]>
+	</update>
+	<update id="updateLargeCareer">
+		<![CDATA[
+		update sitter_info 
+		set large_career = large_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%L%')
+		]]>
+	</update>
+	<update id="updateCatCareer">
+		<![CDATA[
+		update sitter_info 
+		set cat_career = cat_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and  pet_sizelist like '%C%')
+		]]>
+	</update>
+	<update id="updateStatus">
+		<![CDATA[
+		update resv_history 
+		set resv_status = 5
+		where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00'
+		]]>
+	</update>
+	
+	
 	<!-- 이용자가 결제취소할경우  -->
 	<update id="mbcancelresv" parameterType="String">
 			update resv_history
@@ -246,8 +285,7 @@
 	<!-- 펫시터가 승인을 수락할 경우 -->
 	<update id="approve" parameterType="String">
 			update resv_history
-			set resv_status = 1,
-			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
+			set resv_status = 1
 			where resv_no=#{resv_no}
 	</update>
 	<!-- 예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인 -->

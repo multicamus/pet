@@ -30,8 +30,8 @@ public class ResvServiceImpl implements ResvService {
 	}
 	//과거에 이용했던 펫시터 불러오기
 	@Override
-	public List<SitterDTO> pastlist(String code, String member_id) {
-		return dao.pastlist(code, member_id);
+	public List<SitterDTO> pastlist(String code, String member_id, String shortAddr) {
+		return dao.pastlist(code, member_id, shortAddr);
 	}
 	
 	@Override
@@ -98,6 +98,11 @@ public class ResvServiceImpl implements ResvService {
 	@Override
 	public Review2DTO readReview(String resv_no) {	
 		return dao.readReview(resv_no);
+	}
+	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
+	@Override
+	public int updateFinish() {
+		return dao.updateFinish();
 	}
 
 
