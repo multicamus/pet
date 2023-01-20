@@ -139,8 +139,7 @@ public class MemberController {
 		MultipartFile img = sitter.getSitter_photo();
 		System.out.println(img);
 		
-//		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
-		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
+		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
 		System.out.println(path);
 		
 		SitterImgDTO imgFile = fileUploadService.uploadFile(sitter.getSitter_id(), img, path);

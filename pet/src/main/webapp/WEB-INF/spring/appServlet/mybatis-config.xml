@@ -13,10 +13,9 @@
 		<typeAlias type="mutli.com.pet.erp.MemberDTO" alias="member" />
 		<typeAlias type="mutli.com.pet.erp.SitterDTO" alias="sitter" />
 		<typeAlias type="mutli.com.pet.erp.SitterImgDTO" alias="sitter_img" />
-
 		<typeAlias type="mutli.com.pet.review.ReviewDTO" alias="review" />
 		<typeAlias type="mutli.com.pet.review.Review2DTO" alias="review2" />
-		
+		<typeAlias type="mutli.com.pet.review.Review2DTO" alias="review2" />		
 		<typeAlias type="multi.com.pet.resv.ResvDTO" alias="resv" />
 	</typeAliases>
 
@@ -27,5 +26,6 @@
 		<mapper resource="mutli/com/pet/erp/member.xml" />
 		<mapper resource="mutli/com/pet/review/review.xml" />
 		<mapper resource="multi/com/pet/resv/reserve.xml" />
+		<mapper resource="mutli/com/pet/admin.xml" />
 	</mappers>
 </configuration>
