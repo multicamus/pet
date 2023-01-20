@@ -21,5 +21,6 @@
 		<mapper resource="mutli/com/pet/erp/member.xml" />
 		<mapper resource="mutli/com/pet/review/review.xml" />
 		<mapper resource="multi/com/pet/resv/reserve.xml" />
+		<mapper resource="mutli/com/pet/admin.xml" />
 	</mappers>
 </configuration>

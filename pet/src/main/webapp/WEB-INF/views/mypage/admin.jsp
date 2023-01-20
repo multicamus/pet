@@ -13,6 +13,8 @@
 	
 
 	</style>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -48,9 +50,10 @@
 		<h7><b style="color: #0D6EFD">미승인 시터: ${untotal }</b></h7>
 		</div>
 			<div class="container">	
-				<div class="container row align-items-center pb-30">
+				<form action="/pet/admin/search.do" method="post" class="search-form">
+					<div class="container row align-items-center pb-30">
 					<div class="col-lg-6"></div>
-					<div class="col-lg-3">
+						<div class="col-lg-3">
 						<select name="category" id="category" class="form-select" aria-label="Default select example">
 							<option selected>전체</option>
 							<option value="id">아이디</option>
@@ -59,14 +62,15 @@
 							<option value="phone">전화번호</option>
 							<option value="valid">미승인</option>
 						</select>
-					</div>
-					<div class="col-lg-3">
-						<form action="#" class="search-form">
+						</div>
+						<div class="col-lg-3">
+						
 							<input name="search_val" id="search_val" type="text" placeholder="Search">
-							<button type="submit"><i class="lni lni-search-alt"></i></button>
-						</form>
+<!-- 							<button type="submit"><i class="lni lni-search-alt"></i></button>
+ -->							<input type="submit"><i class="lni lni-search-alt"></i> 
+ 						</div>
 					</div>
-				</div>
+				</form>
 						
 			<!-- sitter list start -->
 			<div class="col-lg-12 pb-100">
@@ -90,9 +94,11 @@
 								</tr>
 							</thead>
 							<tbody>
+								
 								<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
-									<tr>
-										<th><a href="/pet/erp/sitter/read.do?sitter_id=${sitter.sitter_id}&state=UPDATE">${sitter.sitter_id}</a></th>
+									<tr >
+										
+										<th><a href="/pet/erp/sitter/read.do?sitter_id=${sitter.sitter_id}&state=UPDATE"><span id="${sitter.sitter_id}">${sitter.sitter_id}</span></a></th>
 										<td>${sitter.sitter_name}</td>
 										<td>${sitter.sitter_gender}</td>
 										<td>${sitter.sitter_code}</td>
@@ -103,13 +109,15 @@
 										<td>${sitter.sitter_startdate}</td>
 										<%-- <td>${sitter.valid}</td> --%>
 										<Div id="Pop" style="position:absolute; left:100px; top:100px; width:100px; height:100px; z-index:1;display:none;">
-										<td><a href="javascript:valid_update()">${sitter.valid}</a></td> 
+										<td><a href="javascript:showPopUp('${sitter.sitter_id}')">${sitter.valid}</a></td> 
 				
 										</Div>
 									</tr>
 								</c:forEach>
+							
 							</tbody>	
 						</table>
+						<span id="selectid" style="display:none;">tttttttttttttttttttttttttttttt</span>
 					</div>
 				</div>
 			</div>
@@ -121,7 +129,15 @@
 <!-- ========================= contact-section end ========================= -->
 </body>
 <script type="text/javascript">
-	function showPopUp() {
+	/* function test(){
+		myobj = $(this).closest("tr")
+		data = myobj.attr("class")
+		alert(myobj+data);
+	} */
+	function showPopUp(sitterid) {
+		//현재 클릭된 객체와 가장 가까운 곳의 tr태그를 찾
+		//alert(sitterid);
+		$("#selectid").text(sitterid);
 		//창 크기 지정
 		var width = 600;
 		var height = 220;
@@ -134,15 +150,21 @@
 	    	const url = "/pet/menu/admin/popup.do";
 		//등록된 url 및 window 속성 기준으로 팝업창을 연다.
 		window.open(url, "hello popup", windowStatus);
+		
 	}
 </script>
 <script type="text/javascript">
-	function valid_update() {
-		console.log(this);
-		var sitter_id = "hi";
-		$(this).next().val(sitter_id);
-		alert(sitter_id);
-	}
+/* category = "${category}"//컨트롤러 요청하고 response될때 값을 받아서 세팅
+	//alert(category);
+	$(document).ready(function() {
+		$("#category").val(category).attr("selected","selected");
+		$("#category").change(function() {
+			//alert("test");
+			//컨트롤러가 실행되도록
+			//select를 선택하면 컨트롤러가 실행되고 파라미터로 category가 파라미터의 값으로 현재 선택한 select의 value속성값이 지정
+			location.href="/pet/erp/admin.do?category="+encodeURI($(this).val())
+		});
+	}); */
 
 	     
 	      function ViewLayer(){
