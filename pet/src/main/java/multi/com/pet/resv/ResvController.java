@@ -17,19 +17,23 @@ import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
 import mutli.com.pet.erp.SitterDTO;
-import mutli.com.pet.review.Review2DTO;
+import mutli.com.pet.review.ReviewDTO;
+import mutli.com.pet.review.ReviewService;
 
 @Controller
 public class ResvController {
 	ResvService service;
+	ReviewService reviewservice;
 	MemberService mbservice;
 	
 	@Autowired
-	public ResvController(ResvService service, MemberService mbservice) {
+	public ResvController(ResvService service, ReviewService reviewservice, MemberService mbservice) {
 		super();
 		this.service = service;
+		this.reviewservice = reviewservice;
 		this.mbservice = mbservice;
 	}
+	
 
 	@RequestMapping("/reserve/resv1_mb.do")
 	public String resv1(ResvDTO resvdto, String servicecode, String pet_idlist, String pet_codelist,  HttpSession session, Model model) {
@@ -55,7 +59,6 @@ public class ResvController {
 				resvdto.setBeauty_service('Y');
 				resvdto.setTotal_price(resvdto.getTotal_price()+5000);
 			}
-			
 		}
 
 		//시작시간+서비스시간 = 종료시간 설정
@@ -79,7 +82,8 @@ public class ResvController {
 		return "resv/resv_2";
 	}
 
-	
+
+
 	@RequestMapping("/reserve/resv2_mb.do")
 	public String resv2(ResvDTO resvdto,  Model model) {
 		System.out.println("컨트롤러");
@@ -266,7 +270,7 @@ public class ResvController {
 	@RequestMapping(value= "/reserve/review/read.do", method = RequestMethod.GET)
 	public ModelAndView read_detail(String resv_no) { 
 		ModelAndView mav = new ModelAndView("review/read");
-		Review2DTO readlist = service.readReview(resv_no);
+		ReviewDTO readlist = reviewservice.read_detail(resv_no);
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;
@@ -276,7 +280,7 @@ public class ResvController {
 	@RequestMapping(value= "/reserve/review/write.do", method = RequestMethod.GET)
 	public ModelAndView write_detail(String resv_no) { 
 		ModelAndView mav = new ModelAndView("review/read");
-		Review2DTO readlist = service.readReview(resv_no);
+		ReviewDTO readlist = reviewservice.read_detail(resv_no);
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;

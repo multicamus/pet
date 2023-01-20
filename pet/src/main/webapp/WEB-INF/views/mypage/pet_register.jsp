@@ -119,8 +119,19 @@
 							</div>
 						</div>
 					</div>
-					<form method="post" class="contact-form" action="/pet/mypet/fileinsert.do" enctype="multipart/form-data">
+					<form method="post" class="contact-form" action="/pet/mypet/insert.do" enctype="multipart/form-data">
 						<div class="container pb-50">
+							<div class="col-md-12">
+								 <div class="thumbnail">
+								 	 <div style="display: flex; position: relative;">
+										<img src="/pet/resources/pet/${pet.pet_photo}" id="userImage" width="220" height="150" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+									 </div>
+									 <div class="col-4 pt-30">
+									 	<input type="file" name="pet_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+									 </div>
+								 </div>
+						  	</div>
+
 							<div>
 								<legend>반려동물 사진</legend>
 							</div>

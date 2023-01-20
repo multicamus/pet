@@ -39,7 +39,6 @@ public class ReviewFileDTO {
 		return "ReviewFileDTO [review_no=" + review_no + ", originalFilename=" + originalFilename + ", storeFilename="
 				+ storeFilename + ", reviewFileno=" + reviewFileno + "]";
 	}
-	
 
 	public String getReview_no() {
 		return review_no;

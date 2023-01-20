@@ -299,8 +299,13 @@
 	</select>
 	
 	<!-- 예약번호로 리뷰 읽기 -->
-	<select id="readreview" parameterType="String" resultType="review2" >
+	<select id="readreview" parameterType="String" resultType="review" >
 		select * from review
+		where resv_no = #{resv_no}	
+	</select>
+	<!-- 예약번호로 예약 정보 읽기 -->
+	<select id="read" parameterType="String" resultType="resv" >
+		select * from resv_history
 		where resv_no = #{resv_no}	
 	</select>
 </mapper>

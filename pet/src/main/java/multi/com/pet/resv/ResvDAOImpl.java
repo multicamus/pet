@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mutli.com.pet.erp.SitterDTO;
-import mutli.com.pet.review.Review2DTO;
+import mutli.com.pet.review.ReviewDTO;
 
 @Repository
 public  class ResvDAOImpl implements ResvDAO {
@@ -116,9 +116,11 @@ public  class ResvDAOImpl implements ResvDAO {
 	
 	//예약번호로 리뷰상세페이지 불렁기
 	@Override
-	public Review2DTO readReview(String resv_no) {
+	public ReviewDTO readReview(String resv_no) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readreview", resv_no);
 	}
+
+
 	
 	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
 	@Override

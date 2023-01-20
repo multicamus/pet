@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.SitterDTO;
-import mutli.com.pet.review.Review2DTO;
+import mutli.com.pet.review.ReviewDTO;
 
 @Service
 public class ResvServiceImpl implements ResvService {
@@ -96,7 +96,7 @@ public class ResvServiceImpl implements ResvService {
 	}
 	//예약번호로 리뷰상세페이지 불러오기
 	@Override
-	public Review2DTO readReview(String resv_no) {	
+	public ReviewDTO readReview(String resv_no) {	
 		return dao.readReview(resv_no);
 	}
 	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
@@ -106,6 +106,10 @@ public class ResvServiceImpl implements ResvService {
 	}
 
 
+	
+
+
+	
 	
 
 }

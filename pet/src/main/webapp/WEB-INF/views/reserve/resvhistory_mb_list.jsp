@@ -406,11 +406,15 @@
                                         <%if(resvdto.getResv_status() == 5) {%>
                                         	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
                                         	<div class="button text-center" style="margin-top: 15px; ">
-	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn" style="display: flex; ">후기 보기</a>
+	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" style="display: flex; ">후기 보기</a>
 	                                        </div>
 	                                        <%}else{ %>
 	                                        <div class="button text-center" style="margin-top: 15px; ">
+<<<<<<< HEAD
 	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn" style="display: flex; padding-left: 20%;">후기 남기기</a>
+=======
+	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" style="display: flex; padding-left: 20%;">후기 남기기</a>
+>>>>>>> refs/remotes/origin/se
 	                                        </div>
 	                                        <%} %>
 	                                    <%} %>    

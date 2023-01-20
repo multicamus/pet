@@ -34,6 +34,7 @@
             <div class="container">
                 <div class="row">
                 	<!-- 사이드 메뉴 -->
+                    <div class="col-xl-2">
                     <div class="col-xl-4">
                         <div class="contact-item-wrapper">
                             <div class="row">
@@ -118,12 +119,6 @@
                                     <div class="col-lg-8 mx-auto">
                                     	프로필 사진: <input type="text" name="photo" id="photo" placeholder="프로필 사진" value="${member.member_photo}" required> 
                                     </div>
-                                    	
-									<div class="col-lg-8 mx-auto">
-										<h4>주로 다니는 병원의 이름과 주소</h4>
-										<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" required>
-										<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" required>
-									</div>
 									
 									<!-- hidden start -->
                                     <input type="hidden" name="member_id" value="${member.member_id}">

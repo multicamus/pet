@@ -23,16 +23,20 @@ public class SitterDTO {
 	private Date sitter_birthdate;
 	private String service_area;
 	private String sitter_info;
-	private String valid= "0";
+	private String valid = "0";
 	private String sitter_certificate;
 	private String sitter_rate;
+
 
 	private int small_career;
 	private int medium_career;
 	private int large_career;
 	private int cat_career;
-	private MultipartFile sitter_photo;
-	
+
+	// 변경함 by 오승영
+	private String sitter_photo;
+	private MultipartFile sitter_img;
+
 	
 	//추가함 by 최여경
 	private int sitter_age;
@@ -40,6 +44,13 @@ public class SitterDTO {
 	
 	public SitterDTO() {
 		
+	}
+	
+	//추가함 by 오승영
+	public SitterDTO(String sitter_id, String sitter_rate) {
+		super();
+		this.sitter_id = sitter_id;
+		this.sitter_rate = sitter_rate;
 	}
 
 	@Override
@@ -56,12 +67,37 @@ public class SitterDTO {
 				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr +"]";
 	}
 
+	// insert
+	public SitterDTO(String sitter_id, String sitter_name, String sitter_code, String sitter_pass, String sitter_gender,
+			String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2, Date sitter_birthdate,
+			String service_area, String sitter_info, String valid, String sitter_certificate,
+			String sitter_photo) {
+		super();
+		this.sitter_id = sitter_id;
+		this.sitter_pass = sitter_pass;
+		this.sitter_name = sitter_name;
+		this.sitter_code = sitter_code;
+		this.sitter_gender = sitter_gender;
+		this.sitter_email = sitter_email;
+		this.sitter_phone = sitter_phone;
+		this.sitter_addr1 = sitter_addr1;
+		this.sitter_addr2 = sitter_addr2;
+		this.sitter_birthdate = sitter_birthdate;
+		this.service_area = service_area;
+		this.sitter_info = sitter_info;
+		this.valid = valid;
+		this.sitter_certificate = sitter_certificate;
+		this.sitter_photo = sitter_photo;
+	}
+
+	// All
 	public SitterDTO(String user_type, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
 			String sitter_gender, String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2,
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
 			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
 			String sitter_rate, int small_career, int medium_career, int large_career, int cat_career,
-			MultipartFile sitter_photo, int sitter_age, String sitter_shortAddr) {
+			String sitter_photo, int sitter_age, String sitter_shortAddr, MultipartFile sitter_img) {
+ 
 		super();
 		this.user_type = user_type;
 		this.sitter_id = sitter_id;
@@ -89,9 +125,8 @@ public class SitterDTO {
 		this.sitter_photo = sitter_photo;
 		this.sitter_age = sitter_age;
 		this.sitter_shortAddr = sitter_shortAddr;
+		this.sitter_img = sitter_img;
 	}
-
-
 
 	public String getUser_type() {
 		return user_type;
@@ -229,7 +264,6 @@ public class SitterDTO {
 		this.valid = valid;
 	}
 
-
 	public String getSitter_certificate() {
 		return sitter_certificate;
 	}
@@ -278,14 +312,22 @@ public class SitterDTO {
 		this.cat_career = cat_career;
 	}
 
-	public MultipartFile getSitter_photo() {
+	public String getSitter_photo() {
 		return sitter_photo;
 	}
 
-	public void setSitter_photo(MultipartFile sitter_photo) {
+	public void setSitter_photo(String sitter_photo) {
 		this.sitter_photo = sitter_photo;
 	}
-	
+
+	public MultipartFile getSitter_img() {
+		return sitter_img;
+	}
+
+	public void setSitter_img(MultipartFile sitter_img) {
+		this.sitter_img = sitter_img;
+	}
+
 	public int getSitter_age() {
 		return sitter_age;
 	}
