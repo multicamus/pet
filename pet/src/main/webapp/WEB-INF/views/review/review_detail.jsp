@@ -54,7 +54,7 @@
 				dataType : "json",
 				success : function(data) {
 					//alert(data.review + "," + data.member_addr1)
-					//console.log(data)
+					console.log(data)
 					$("#reviewtext").text(data.review)
 					$("#reviewrate").text(data.review_rate)
 					$("#reviewdate").text(data.write_date_rv)
@@ -101,8 +101,6 @@
 
 			<div class="row" style="display: flex; align-items: center">
 
-
-
 				<div class="col-lg-2 col-md-6" id="review_no_prev">
 					<a name="review_no" style="float: right;"> <img
 						src="/pet/resources/assets/images/direction_left.png"
@@ -111,10 +109,8 @@
 					</a>
 				</div>
 
-
 				<div class="col-lg-8 col-md-6">
 					<div class="feature-box box-style">
-
 
 						<!-- 첨부파일 -->
 						<div class="form-group">
@@ -195,13 +191,11 @@
 								</div>
 							</div>
 							<br />
-
 							<p>
 								<span id="reviewtext">${review.review}</span>
 							</p>
 						</div>
 					</div>
-
 					<a href="http://localhost:8088/pet/menu/review.do"
 						style="margin: auto; width: 304px; height: 59px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">
 						<span
@@ -210,9 +204,7 @@
 							style="font-weight: 600; color: #6A92FE; font-size: 18px; line-height: 40px">전체
 							후기 보기</p>
 					</a>
-
 				</div>
-
 				<div class="col-lg-2 col-md-6" id="review_no_next">
 					<a name="review_no" style="float: left;"> <img
 						src="/pet/resources/assets/images/direction_left.png"
