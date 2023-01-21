@@ -49,15 +49,15 @@ public class AdminController {
 	 * @RequestMapping(value = "/admin/popup", method = RequestMethod.GET) public
 	 * String adminpop() { return null; }
 	 */
-	@RequestMapping("/mypage/search.do")
+	@RequestMapping("/search.do")
 	public ModelAndView search(String category,String search_val) {
 		System.out.println("search컨트롤러");
 		ModelAndView mav = new ModelAndView("mypage/admin");
 		List<SitterDTO> sitterlist = admin_service.search(category,search_val);
 		System.out.println(sitterlist);
 		mav.addObject("sitterlist", sitterlist);
-		System.out.println("tag-----"+category);
-		System.out.println("data===="+search_val);
+		System.out.println("category-----"+category);
+		System.out.println("search===="+search_val);
 		return mav;
 	}
 	@RequestMapping(value = "/admin/ajax/list.do", produces = "application/json;charset=utf-8")

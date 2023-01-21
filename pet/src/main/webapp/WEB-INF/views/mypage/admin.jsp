@@ -52,8 +52,8 @@
 		<h7><b style="color: #0D6EFD">미승인 시터: ${untotal }</b></h7>
 		</div>
 			<div class="container">	
-				<form action="/pet/admin/search.do" method="post" class="search-form">
-					<div class="container row align-items-center pb-30">
+				<form action="/pet/admin/search.do" method="post" class="search-form"></br>
+					<div class="container row align-items-center pb-30" >
 					<div class="col-lg-6"></div>
 						<div class="col-lg-3">
 						<select name="category" id="category" class="form-select" aria-label="Default select example">
