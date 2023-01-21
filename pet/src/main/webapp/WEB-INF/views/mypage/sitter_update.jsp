@@ -169,7 +169,7 @@
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>연락처</h4></div>
                                         <div class="col-md-auto">
-                                        	연락처 : <input type="tel" name="sitter_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" value="${sitter.sitter_phone}" autofocus>
+                                        	<input type="tel" name="sitter_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" value="${sitter.sitter_phone}" autofocus>
                                         </div>
                                     </div>
                                     
