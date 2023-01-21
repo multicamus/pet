@@ -1,3 +1,5 @@
+<%@page import="mutli.com.pet.erp.SitterDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -84,18 +86,14 @@
 	            <div class="client-logo-carousel d-flex align-items-center justify-content-between" id="ajax" >
 	            	<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
 		                <div class="client-logo">
-		                    <img src="/pet/resources/assets/images/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px;">
+		                    <img src="/pet/resources/sitter/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px;">
 		                    <div class="box-content-style feature-content">
 		                        <h4>${sitter.sitter_name} 훈련사</h4>
-		                        <p>후기 00개, 평점 ${sitter.sitter_rate}점</p><br/>
+		                        <p>후기 ${sitter.sitter_resvNum}개 | 평점 ${sitter.sitter_rate}점</p><br/>
 		                        <ul>
-		                        	<li>${sitter.sitter_certificate}</li>
-		                        	<li>펫시터 전문가 교육 수료</li>
-		                        	<li>훈련사 자격증 3급 보유</li>
-		                        	<li>반려동물행동상담사 2급 자격증 보유</li>
-		                        	<li>반려동물목욕관리사 2급 자격증 보유</li>
-		                        	<li>강아지 반려 경험(6년) 인증 완료</li>
-		                        	<li>고양이 반려 경험(1년) 인증 완료</li>
+		                        	<c:forTokens items="${sitter.sitter_certificate}" delims="," var="certificate">
+		                        		<li>${certificate}</li>
+		                        	</c:forTokens>
 		                        </ul>	                        
 		                    </div>
 		                </div>

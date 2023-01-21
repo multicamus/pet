@@ -36,6 +36,7 @@ public class SitterDTO {
 	// 변경함 by 오승영
 	private String sitter_photo;
 	private MultipartFile sitter_img;
+	private String sitter_resvNum;
 
 	
 	//추가함 by 최여경
@@ -53,6 +54,8 @@ public class SitterDTO {
 		this.sitter_rate = sitter_rate;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "SitterDTO [user_type=" + user_type + ", sitter_id=" + sitter_id + ", sitter_name=" + sitter_name
@@ -61,10 +64,10 @@ public class SitterDTO {
 				+ ", sitter_addr2=" + sitter_addr2 + ", sitter_startdate=" + sitter_startdate + ", sitter_enddate="
 				+ sitter_enddate + ", sitter_status=" + sitter_status + ", sitter_birthdate=" + sitter_birthdate
 				+ ", service_area=" + service_area + ", sitter_info=" + sitter_info + ", valid=" + valid
-				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate="
-				+ sitter_rate + ", small_career=" + small_career + ", medium_career=" + medium_career
-				+ ", large_career=" + large_career + ", cat_career=" + cat_career + ", sitter_photo=" + sitter_photo
-				+ ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr +"]";
+				+ ", sitter_certificate=" + sitter_certificate + ", sitter_rate=" + sitter_rate + ", small_career="
+				+ small_career + ", medium_career=" + medium_career + ", large_career=" + large_career + ", cat_career="
+				+ cat_career + ", sitter_photo=" + sitter_photo + ", sitter_img=" + sitter_img + ", sitter_resvNum="
+				+ sitter_resvNum + ", sitter_age=" + sitter_age + ", sitter_shortAddr=" + sitter_shortAddr + "]";
 	}
 
 	// insert
@@ -94,10 +97,9 @@ public class SitterDTO {
 	public SitterDTO(String user_type, String sitter_id, String sitter_name, String sitter_pass, String sitter_code,
 			String sitter_gender, String sitter_email, String sitter_phone, String sitter_addr1, String sitter_addr2,
 			Date sitter_startdate, Date sitter_enddate, String sitter_status, Date sitter_birthdate,
-			String service_area, String sitter_info, String valid, String sitter_career, String sitter_certificate,
-			String sitter_rate, int small_career, int medium_career, int large_career, int cat_career,
-			String sitter_photo, int sitter_age, String sitter_shortAddr, MultipartFile sitter_img) {
- 
+			String service_area, String sitter_info, String valid, String sitter_certificate, String sitter_rate,
+			int small_career, int medium_career, int large_career, int cat_career, String sitter_photo,
+			MultipartFile sitter_img, String sitter_resvNum, int sitter_age, String sitter_shortAddr) {
 		super();
 		this.user_type = user_type;
 		this.sitter_id = sitter_id;
@@ -123,14 +125,24 @@ public class SitterDTO {
 		this.large_career = large_career;
 		this.cat_career = cat_career;
 		this.sitter_photo = sitter_photo;
+		this.sitter_img = sitter_img;
+		this.sitter_resvNum = sitter_resvNum;
 		this.sitter_age = sitter_age;
 		this.sitter_shortAddr = sitter_shortAddr;
-		this.sitter_img = sitter_img;
+	}
+
+	public String getSitter_resvNum() {
+		return sitter_resvNum;
+	}
+
+	public void setSitter_resvNum(String sitter_resvNum) {
+		this.sitter_resvNum = sitter_resvNum;
 	}
 
 	public String getUser_type() {
 		return user_type;
 	}
+
 
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;

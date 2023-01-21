@@ -79,7 +79,8 @@
 	
 	<!-- sitter list start -->
 	<select id="sitterList" resultType="sitter">
-		SELECT * from sitter_info
+		SELECT sitter_name, sitter_certificate, sitter_rate, sitter_photo, (SELECT count(*) FROM resv_history h WHERE h.sitter_id = s.sitter_id) as sitter_resvNum
+		FROM sitter_info s
 	</select>
 	<!-- sitter list end -->
 
