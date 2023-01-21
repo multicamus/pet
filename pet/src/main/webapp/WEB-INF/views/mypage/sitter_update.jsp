@@ -169,16 +169,16 @@
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>연락처</h4></div>
                                         <div class="col-md-auto">
-                                        	<input type="text" name="sitter_phone" id="phone" placeholder="전화번호" value="${sitter.sitter_phone}" required>
+                                        	연락처 : <input type="tel" name="sitter_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" value="${sitter.sitter_phone}" autofocus>
                                         </div>
                                     </div>
                                     
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>주소</h4></div>
-                                    	<div class="col-md-auto">
+                                    	<div class="col-md-6">
                                         	<input type="text" name="sitter_addr1" id="addr1" placeholder="주소" value="${sitter.sitter_addr1}" required>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                         	<input type="text" name="sitter_addr2" id="addr2" placeholder="상세 주소" value="${sitter.sitter_addr2}" required>
                                         </div>
                                     </div>
@@ -390,5 +390,11 @@
 			}
 		});
 	});
+	
+	const autoHyphen = (target) => {
+		target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
 </script>
 </html>

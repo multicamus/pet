@@ -102,8 +102,9 @@
                                     	이메일 : <input class="col-lg-2" type="email" name="member_email" id="email" placeholder="Email" value="${member.member_email}" required>
                                     </div>
                                     <div class="col-lg-8 mx-auto">
-                                    	연락처 : <input type="text" name="member_phone"  id="phone" placeholder="연락처" value="${member.member_phone}" required oninput="hypenTel(this)" maxlength="13">
+                                    	연락처 : <input type="tel" name="member_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" value="${member.member_phone}" autofocus>
                                     </div>
+                                    
                                     <div class="col-lg-8 mx-auto">
                                     	생일: <input type="date" name="member_birthdate" id="birthdate" placeholder="생일" value="${member.member_birthdate}" required> 
                                     </div>
@@ -113,17 +114,21 @@
                                     <div class="col-lg-8 mx-auto">
                                     	상세 주소: <input type="text" name="member_addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" required> 
                                     </div>
-                                    
-									
-									<div class="col-lg-8 mx-auto">
+
+                                   	<div class="col-lg-8 mx-auto row">
 										<h4>주로 다니는 병원의 이름과 주소</h4>
-										<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" required>
-										<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" required>
+										<div class="col-lg-4">
+											<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" required="required">
+										</div>
+										<div class="col-lg-8">
+											<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" required="required">
+										</div>
 									</div>
+
 									<!-- hidden start -->
                                     <input type="hidden" name="member_id" value="${member.member_id}">
-                                    
                                 </div>
+                                
                                 <div class="row">
                                     <div class="button text-center">
                                         <button type="submit" class="theme-btn">확인</button>
@@ -158,12 +163,11 @@
 		    }).open();
 		});
 		
-		  const hypenTel = (target) => {
-		 target.value = target.value
+
+		const autoHyphen = (target) => {
+			target.value = target.value
 		   .replace(/[^0-9]/g, '')
 		   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
 		}
-		  
-
 	</script>
 	
