@@ -66,11 +66,9 @@ public class MemberController {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
 		String size = null;
-		ReviewDTO review_no  = null;
 		String view = "";
 		try {
 			size = String.valueOf(resvService.readStatus(loginUserInfo.getSitter_id()).size());
-			review_no = reviewService.review_no_sitter(loginUserInfo.getSitter_id());
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -78,7 +76,6 @@ public class MemberController {
 		if(user != null) {
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));
 			hs.setAttribute("size", size);
-			hs.setAttribute("review_no ", review_no );
 			view = "home";
 		}else {
 			view = "login";
@@ -124,6 +121,7 @@ public class MemberController {
 		case "READ":
 			view = "mypage/sitter";
 			model.addAttribute("resvlist", resvlist);
+			model.addAttribute("review_no", review_no);
 			break;
 		default:
 			view = "mypage/sitter_update";

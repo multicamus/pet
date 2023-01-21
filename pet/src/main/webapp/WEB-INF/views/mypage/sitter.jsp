@@ -76,7 +76,6 @@
 												</div>
 												<div class="contact-content">
 													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-
 													<c:forEach var="resv" items="${resvlist}" varStatus="status">
 														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
 													</c:forEach>
@@ -97,7 +96,7 @@
 	                                            <c:when test="${fn:length(resvlist) == 0}">
 	                                            	<p>돌봄경험이 없어요!</p>
 	                                            </c:when>
-	                                            <c:when test="${fn:length(review_no) == 0}">
+	                                            <c:when test="${review_no == null}">
 	                                            	<p>아직 등록된 후기가 없어요!</p>
 	                                            </c:when>
 	                                            <c:otherwise>
@@ -109,7 +108,7 @@
 															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 														</div>
 													</div>
-                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no}">가장 최근 후기</a></p>    
+                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no.review_no}">가장 최근 후기</a></p>    
 	                                            </c:otherwise>
                                             </c:choose>
                                             

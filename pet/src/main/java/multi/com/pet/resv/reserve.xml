@@ -452,13 +452,7 @@
 			sitter_id = #{sitter_id}
 			where resv_no=#{resv_no}
 	</update>
-	<!-- 펫시터가 자동승인을 한 후에 나머지 자동예약내역들을 다 취소시킨다  -->
-<!-- 	<update id="autochange">
-			delete resv_history
-			where resv_status = 6
-			and resv_date = #{resv_date}
-			and member_id = #{member_id}
-	</update> -->
+
 	<!-- 예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인 -->
 	<select id="checkreview" parameterType="java.util.List" resultType="String">
 		select h.resv_no
