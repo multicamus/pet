@@ -247,10 +247,10 @@
 
                                 <!-- 반려동물 사진 / 서비스정보 -->
                                 <div class="row" style="display: flex; align-items: center;  flex: 110%;">
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
-                                    </div>
+                                    </div> -->
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -291,13 +291,10 @@
                                    
                     				
                                     <!-- 더보기 -->
-                                    <div class="col-2">        
-
-                                        <div class="button text-center detailread" style="margin-left: -30%;" >
-                                            <button type="submit" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
-
-                                        
-                                    </div>
+                                    <div class="col-2"  >        
+                                        <div class="button text-center detailread" style="margin-left: 100%;">
+                                            <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
+                                        </div>
                                     <!-- 더보기 끝 -->
                                 </div>    
                                 <!-- 반려동물 사진 / 서비스정보 끝-->       
@@ -357,10 +354,10 @@
 
                                 <!-- 반려동물 사진 / 서비스정보 -->
                                 <div class="row" style="display: flex; align-items: center;  flex: 110%;">
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
-                                    </div>
+                                    </div> -->
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -402,17 +399,17 @@
                     				
                                     <!-- 더보기 -->
                                     <div class="col-2">        
-                                        <div class="button text-center detailread" >
+                                        <div class="button text-center detailread" style="margin-left: 100%;">
                                             <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                         <%if(resvdto.getResv_status() == 5) {%>
                                         	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
-                                        	<div class="button text-center" style="margin-top: 15px; ">
-	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" style="display: flex; ">후기 보기</a>
+                                        	<div class="button text-center" style="margin-top: 15px; margin-left: 95%;">
+	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 보기</a>
 	                                        </div>
 	                                        <%}else{ %>
-	                                        <div class="button text-center" style="margin-top: 15px; ">
-	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn" style="display: flex; padding-left: 20%;">후기 남기기</a>
+	                                        <div class="button text-center" style="margin-top: 15px; margin-left: 90%;">
+	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn"  >후기 남기기</a>
 	                                        </div>
 	                                        <%} %>
 	                                    <%} %>    

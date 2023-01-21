@@ -397,7 +397,7 @@ td {
 									mydata = ""
 									mydata = mydata + "<div class='col-lg-4 cardbox'>"
 									+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card2'>"
-									+ "<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
+									+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' class='card-img-top' alt='...' >"
 									+ "<div class='card-body'>"
 									+ "<p class='card-text'>"
 									+ "<span id='sittername'>"
@@ -567,7 +567,7 @@ td {
 																mydata = mydata
 																		+ "<div class='col-lg-4 cardbox'>"
 																		+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
-																		+ "<img src='/pet/resources/assets/images/1.jpg' class='card-img-top' alt='...' >"
+																		+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' class='card-img-top' alt='...' >"
 																		+ "<div class='card-body'>"
 																		+ "<p class='card-text'>"
 																		+ "<span id='sittername'>"

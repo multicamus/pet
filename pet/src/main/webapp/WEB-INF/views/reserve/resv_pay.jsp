@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="mutli.com.pet.mypet.PetDTO"%>
 <%@page import="multi.com.pet.resv.ResvDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -60,6 +62,7 @@
       		 <%ArrayList<String> namelist = (ArrayList<String>) request.getAttribute("namelist");
       			ArrayList<String> codelist = (ArrayList<String>) request.getAttribute("codelist");
       			ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
+      			ArrayList<PetDTO> petlist = (ArrayList<PetDTO>) request.getAttribute("petlist");
       		%> 
       </script>
    
@@ -184,10 +187,11 @@
                                             </div>
                                             <!-- 반려동물사진 & 반려동물이름 & 고양이/강아지-->
                                             <div>
-                                                <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
+                                            <%for(int i=0; i<petlist.size(); i++) {%>
+                                                <img src="/pet/resources/pet/<%=petlist.get(i).getPet_photo() %>"
                                                     alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
-                                                
                                                 <h5 style="float:left; margin-left: 50px; margin-top: 35px;" ></h5>
+                                            <%} %>
                                             </div>
                                             
                                             <!-- 예약상세정보 -->
@@ -323,8 +327,7 @@
                                             <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
                                             <div class="row">
                                             	<div class="col-2">
-	                                                <img src="https://e7.pngegg.com/pngimages/798/436/png-clipart-computer-icons-user-profile-avatar-profile-heroes-black.png"
-	                                                    alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+													<img src="/pet/resources/sitter/${sitter.sitter_photo }" alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
                                                 </div>
                                                 <div class="col-8">
 	                                                <c:if test="${resvdto.match_method == 'auto_match' }">

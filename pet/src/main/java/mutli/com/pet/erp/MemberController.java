@@ -19,19 +19,26 @@ import org.springframework.web.util.WebUtils;
 
 import multi.com.pet.etc.FileUploadLogic;
 import multi.com.pet.resv.ResvDTO;
+import multi.com.pet.resv.ResvService;
+import multi.com.pet.resv.ResvServiceImpl;
 import mutli.com.pet.mypet.PetDTO;
+import mutli.com.pet.review.ReviewService;
 
 @Controller
 @RequestMapping("/erp")
 @SessionAttributes("user")
 public class MemberController {
 	MemberService service;
+	ResvService resvService;
+	ReviewService reviewService;
 	FileUploadLogic fileUploadService;
 	
 	@Autowired
-	public MemberController(MemberService service, FileUploadLogic fileUploadService) {
+	public MemberController(MemberService service, ResvService resvService, ReviewService reviewService, FileUploadLogic fileUploadService) {
 		super();
 		this.service = service;
+		this.resvService = resvService;
+		this.reviewService = reviewService;
 		this.fileUploadService = fileUploadService;
 	}
 
@@ -53,16 +60,25 @@ public class MemberController {
 		}
 		return view;		
 	}
-	
+
 	@RequestMapping(value = "sitter/login.do", method = RequestMethod.POST)
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
-		String size = Integer.toString(service.sitter_resvlist(loginUserInfo.getSitter_id()).size());
-		hs.setAttribute("size", size);
+		String size = null;
+		String review_no  = null;
 		String view = "";
-		if(user!=null) {
+		try {
+			size = String.valueOf(resvService.readStatus(loginUserInfo.getSitter_id()).size());
+			review_no = reviewService.review_no_sitter(loginUserInfo.getSitter_id());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		if(user != null) {
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));
+			hs.setAttribute("size", size);
+			hs.setAttribute("review_no ", review_no );
 			view = "home";
 		}else {
 			view = "login";
@@ -131,6 +147,7 @@ public class MemberController {
 		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
 		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
 		service.update(sitter_img);
+
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
@@ -139,20 +156,6 @@ public class MemberController {
 		service.certi_update(sitter);
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
-	
-//	@RequestMapping(value = "user/register.do",produces ="application/text;charset=utf-8" )
-//	@ResponseBody
-//	public String kakao_login(@RequestBody String map) {
-//		System.out.println(map.toString());
-//		return "register";
-//		
-//	}
-	
-//	@RequestMapping(value = "user/register.do")
-//	public String register(@RequestBody String data) {
-//		System.out.println(data+"***************************");
-//		return "register";
-//	}
 	
 	@RequestMapping(value = "user/register.do")
 	public String register(MemberDTO member, Model model) {
