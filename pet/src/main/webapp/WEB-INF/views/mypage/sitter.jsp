@@ -96,7 +96,7 @@
 	                                            <c:when test="${fn:length(resvlist) == 0}">
 	                                            	<p>돌봄경험이 없어요!</p>
 	                                            </c:when>
-	                                            <c:when test="${fn:length(review_no) == 0}">
+	                                            <c:when test="${review_no == null}">
 	                                            	<p>아직 등록된 후기가 없어요!</p>
 	                                            </c:when>
 	                                            <c:otherwise>

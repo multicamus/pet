@@ -1,8 +1,8 @@
 <%@page import="mutli.com.pet.erp.SitterDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
@@ -19,6 +19,7 @@
                     <h2 class="mb-25 wow fadeInDown" data-wow-delay=".2s">Coming</h2>
                     <h1 class="mb-25 wow fadeInDown" data-wow-delay=".2s">펫시터가<br/>집으로 와요</h1>
                     <p class="mb-35 wow fadeInLeft" data-wow-delay=".4s">펫시터 방문 돌봄 및 산책 서비스</p>
+                    
                     <c:choose>
 	                    <c:when test="${user==null }">
 	                    	<a href="/pet/menu/login.do" class="theme-btn">예약하기</a>
@@ -27,6 +28,7 @@
 		                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약하기</a>
 	                    </c:otherwise>
                     </c:choose>
+                    
                 </div>
             </div>
             
@@ -50,21 +52,20 @@
     <div class="container">
         <div class="row">
        		<div class="col-lg-6 text-center">
-                   <h5 class="wow fadeInUp" data-wow-delay=".6s">지금까지 
-                   	<span id="secondo" class="countup count color-1" cup-end="186" cup-append=",">10</span>
-                   	<span id="secondo" class="countup count color-1" cup-end="429" cup-append="마리">10</span>
-                   <br/>의 아이들이 펫시터와<br/>함께 시간을 보냈어요!</h5>
-               </div>
+                <h5 class="wow fadeInUp" data-wow-delay=".6s">지금까지 
+                <span id="secondo" class="countup count color-1" cup-end="186" cup-append=",">10</span>
+                <span id="secondo" class="countup count color-1" cup-end="429" cup-append="마리">10</span>
+                <br/>의 아이들이 펫시터와<br/>함께 시간을 보냈어요!</h5>
+            </div>
                
        		<div class="col-lg-6 text-center">
-                   <h5 class="wow fadeInUp" data-wow-delay=".6s">펫시터와 함께한 누적 시간</h5>
-                   <h2 class="wow fadeInUp" data-wow-delay=".4s">
-                   	<span id="secondo" class="countup count color-1" cup-end="7" cup-append=",">10</span>
-                   	<span id="secondo" class="countup count color-1" cup-end="248" cup-append=",">10</span>
-                   	<span id="secondo" class="countup count color-1" cup-end="902" cup-append="분">10</span>
-                  	</h2>
-                   	                    
-               </div>
+                <h5 class="wow fadeInUp" data-wow-delay=".6s">펫시터와 함께한 누적 시간</h5>
+                <h2 class="wow fadeInUp" data-wow-delay=".4s">
+                <span id="secondo" class="countup count color-1" cup-end="7" cup-append=",">10</span>
+                <span id="secondo" class="countup count color-1" cup-end="248" cup-append=",">10</span>
+                <span id="secondo" class="countup count color-1" cup-end="902" cup-append="분">10</span>
+                </h2>
+            </div>
         	
             <div class="col-lg-12 mx-auto">
                 <div class="section-title text-center mb-20">
@@ -80,90 +81,29 @@
 </section>
 <!-- ========================= feature-section end ========================= -->
 <!-- ========================= petsitter-section start ========================= -->
-	<section class="client-logo-section pt-100">
-	    <div class="container">
-	        <div class="client-logo-wrapper">
-	            <div class="client-logo-carousel d-flex align-items-center justify-content-between" id="ajax" >
-	            	<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
-		                <div class="client-logo">
-		                    <img src="/pet/resources/sitter/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px;">
-		                    <div class="box-content-style feature-content">
-		                        <h4>${sitter.sitter_name} 훈련사</h4>
-		                        <p>후기 ${sitter.sitter_resvNum}개 | 평점 ${sitter.sitter_rate}점</p><br/>
-		                        <ul>
-		                        	<c:forTokens items="${sitter.sitter_certificate}" delims="," var="certificate">
-		                        		<li>${certificate}</li>
-		                        	</c:forTokens>
-		                        </ul>	                        
-		                    </div>
-		                </div>
-	                </c:forEach>
-	               
+<section class="client-logo-section pt-100">
+    <div class="container">
+        <div class="client-logo-wrapper">
+            <div class="client-logo-carousel d-flex align-items-center justify-content-between" id="ajax" >
+            	<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
 	                <div class="client-logo">
-                      	<img src="/pet/resources/assets/images/4.png" alt="" style="padding-bottom: 20px;">
+	                    <img src="/pet/resources/sitter/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px;">
 	                    <div class="box-content-style feature-content">
-	                        <h4>손*민 훈련사</h4>
-	                        <p>후기 00개, 단골 00명</p><br/>
+	                        <h4>${sitter.sitter_name} 훈련사</h4>
+	                        <p>후기 ${sitter.sitter_resvNum}개 | 평점 ${sitter.sitter_rate}점</p><br/>
 	                        <ul>
-	                        	<li>펫시터 전문가 교육 수료</li>
-	                        	<li>훈련사 자격증 3급 보유</li>
-	                        	<li>반려동물행동상담사 2급 자격증 보유</li>
-	                        	<li>반려동물목욕관리사 2급 자격증 보유</li>
-	                        	<li>강아지 반려 경험(6년) 인증 완료</li>
-	                        	<li>고양이 반려 경험(1년) 인증 완료</li>
+	                        	<c:forTokens items="${sitter.sitter_certificate}" delims="," var="certificate">
+	                        		<li>${certificate}</li>
+	                        	</c:forTokens>
 	                        </ul>	                        
 	                    </div>
 	                </div>
-	                <div class="client-logo">
-                     	<img src="/pet/resources/assets/images/3.gif" alt="" style="padding-bottom: 20px;">
-	                    <div class="box-content-style feature-content">
-	                        <h4>손*민 훈련사</h4>
-	                        <p>후기 00개, 단골 00명</p><br/>
-	                        <ul>
-	                        	<li>펫시터 전문가 교육 수료</li>
-	                        	<li>훈련사 자격증 3급 보유</li>
-	                        	<li>반려동물행동상담사 2급 자격증 보유</li>
-	                        	<li>반려동물목욕관리사 2급 자격증 보유</li>
-	                        	<li>강아지 반려 경험(6년) 인증 완료</li>
-	                        	<li>고양이 반려 경험(1년) 인증 완료</li>
-	                        </ul>	                        
-	                    </div>
-	                </div>
-	                <div class="client-logo">
-                      	<img src="/pet/resources/assets/images/2.jpg" alt="" style="padding-bottom: 20px;">
-	                    <div class="box-content-style feature-content">
-	                        <h4>손*민 훈련사</h4>
-	                        <p>후기 00개, 단골 00명</p><br/>
-	                        <ul>
-	                        	<li>펫시터 전문가 교육 수료</li>
-	                        	<li>훈련사 자격증 3급 보유</li>
-	                        	<li>반려동물행동상담사 2급 자격증 보유</li>
-	                        	<li>반려동물목욕관리사 2급 자격증 보유</li>
-	                        	<li>강아지 반려 경험(6년) 인증 완료</li>
-	                        	<li>고양이 반려 경험(1년) 인증 완료</li>
-	                        </ul>	                        
-	                    </div>
-	                </div>
-	                <div class="client-logo">
-                      	<img src="/pet/resources/assets/images/1.jpg" alt="" style="padding-bottom: 20px;">
-	                    <div class="box-content-style feature-content">
-	                        <h4>손*민 훈련사</h4>
-	                        <p>후기 00개, 단골 00명</p><br/>
-	                        <ul>
-	                        	<li>펫시터 전문가 교육 수료</li>
-	                        	<li>훈련사 자격증 3급 보유</li>
-	                        	<li>반려동물행동상담사 2급 자격증 보유</li>
-	                        	<li>반려동물목욕관리사 2급 자격증 보유</li>
-	                        	<li>강아지 반려 경험(6년) 인증 완료</li>
-	                        	<li>고양이 반려 경험(1년) 인증 완료</li>
-	                        </ul>	                        
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</section>
-	<!-- ========================= petsitter-logo-section end ========================= -->
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ========================= petsitter-logo-section end ========================= -->
 
 <!--========================= about-section start========================= -->
 <section id="about" class="pt-100">
@@ -181,6 +121,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-content-wrapper">
                         <div class="section-title">
@@ -192,11 +133,11 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="tab-content" id="pills-tabContent">
                    <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                        <div class="row">
-                           <div class="col-xl-7 col-lg-7 col-md-6">
-                           </div>
+                           <div class="col-xl-7 col-lg-7 col-md-6"></div>
                            <div class="col-xl-3 col-lg-3 col-md-6 text-center">
                                <div class="single-pricing mb-50">
                                    <h5>방문 산책</h5><br/>
@@ -210,6 +151,7 @@
                                    <a href="/pet/menu/service/care.do" class="theme-btn">자세히 보기</a>
                                </div>
                            </div>
+                           
                            <div class="col-xl-22 col-lg-2 col-md-6 text-center">
                                <div class="single-pricing mb-50">
                                    <h5>방문 돌봄</h5><br/>
