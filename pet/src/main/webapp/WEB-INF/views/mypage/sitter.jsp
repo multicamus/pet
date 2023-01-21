@@ -68,7 +68,7 @@
                             <div class="row">
                             
                             	<c:choose>
-	                            	<c:when test="${fn:length(resvlist) != 0}">
+	                            	<c:when test="${fn:length(resvlist_status) != 0}">
 										<div class="col-12 col-md-6 col-xl-12">
 											<div class="contact-item">
 												<div class="contact-icon">
@@ -76,8 +76,8 @@
 												</div>
 												<div class="contact-content">
 													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-													<c:forEach var="resv" items="${resvlist}" varStatus="status">
-														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
+													<c:forEach var="resv" items="${resvlist_status}" varStatus="status">
+														<p><a href="/pet/reserve/list.do">${resv.resv_no}</a></p>
 													</c:forEach>
 												</div>
 											</div>
@@ -108,7 +108,7 @@
 															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 														</div>
 													</div>
-                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no}">가장 최근 후기</a></p>    
+                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no.review_no}">가장 최근 후기</a></p>    
 	                                            </c:otherwise>
                                             </c:choose>
                                             

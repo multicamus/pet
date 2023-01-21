@@ -486,7 +486,7 @@
 		SELECT h.resv_no
 		FROM resv_history h
 		WHERE sitter_id = #{sitter_id}
-		  AND resv_status = '0'
+		  AND resv_status = 0
 	</select>
 </mapper>
 

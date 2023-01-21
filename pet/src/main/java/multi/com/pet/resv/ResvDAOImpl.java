@@ -189,8 +189,8 @@ public  class ResvDAOImpl implements ResvDAO {
 
 	//탑에 추가 할 new 의 근거
 	@Override
-	public List<ReviewDTO> readStatus(String sitter_id) {
-		return sqlsession.selectList(sitter_id);
+	public List<ResvDTO> readStatus(String sitter_id) {
+		return sqlsession.selectList("mutli.com.pet.resv.readstatus", sitter_id);
 	}
 
 
