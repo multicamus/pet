@@ -48,7 +48,7 @@
 					$("#reviewrate").text(data.review_rate)
 					$("#reviewdate").text(data.write_date_rv)
 					$("#reviewaddr").text(data.member_addr1)
-					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "'>")
+					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "' style='width: 500px; height: 300px;'>")
 					$("#reviewpetimg").html("<img src='/pet/resources/pet/" + data.pet_photo + "' style='width:50px;height:50px;border-radius:50%;object-fit:cover;'>")
 					no = data.review_no
 				},
@@ -68,7 +68,7 @@
 					$("#reviewrate").text(data.review_rate)
 					$("#reviewdate").text(data.write_date_rv)
 					$("#reviewaddr").html(data.member_addr1)
-					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "'>")
+					$("#reviewphoto").html("<img src='/pet/resources/review/" + data.review_img + "' style='width: 500px; height: 300px;'>")
 					$("#reviewpetimg").html("<img src='/pet/resources/pet/" + data.pet_photo + "' style='width:50px;height:50px;border-radius:50%;object-fit:cover;'>")
 					no = data.review_no
 				},
@@ -120,10 +120,8 @@
 							</div>
 
 
-							  <c:choose>
-							<%-- ${review.review_no} --%>
-								<c:when test="${user.member_id == review.member_id}">
-							<!-- 삭제 버튼 경로넣어야함 -->
+					  <c:choose>
+						<c:when test="${user.member_id == review.member_id}">
 							<div class="col-lg-1">
 								<p style="font-weight: 600; color: #6A92FE; font-size: 12px; line-height: 40px">
 									<a href="/pet/review/delete.do?review_no=${review.review_no}" style="margin: auto; width: 80px; height: 40px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">삭제</a>
@@ -133,8 +131,8 @@
 							<div class="col-lg-2" style="font-weight: 600; color: #6A92FE; font-size: 12px; line-height: 40px">
 								<a href="/pet/review/update_read.do?review_no=${review.review_no}&state=UPDATE" style="margin: auto; width: 80px; height: 40px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">수정</a>
 							</div>
-							 	</c:when>
-							</c:choose> 
+					 	</c:when>
+					</c:choose> 
 
 
 

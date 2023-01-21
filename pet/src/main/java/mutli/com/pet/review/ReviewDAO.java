@@ -18,6 +18,6 @@ public interface ReviewDAO {
 	ReviewDTO read_detail_ajax_next(String review_no);
 	
 	// 가장 최근 후기
-	String review_no_sitter(String sitter_id);
+	ReviewDTO review_no_sitter(String sitter_id);
 
 }
