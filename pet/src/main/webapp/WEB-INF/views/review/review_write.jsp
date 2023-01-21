@@ -56,7 +56,7 @@
 							
 							<div class="col-lg-3">
 								<h4>펫시터 성함</h4>
-								<input type="text" class="form-control" name="sitter_name" id="sitter_name" value="${resv.sitter_id}${resv.sitter_name}" readonly>
+								<input type="text" class="form-control" name="sitter_id" id="sitter_name" value="${resv.sitter_id}${resv.sitter_name}" readonly>
 							</div>
 
 							<div class="col-lg-8 pt-30">

@@ -125,7 +125,7 @@ public class MemberServiceImpl implements MemberService {
 	public int sitter_rate_update(String sitter_id, String review_rate) {
 		// 분모
 		int denominator = dao.sitter_resvlist(sitter_id).size();
-		
+		System.out.println("denominator:"+denominator);
 		// 분자
 		int tmp1;
 		String tmp3 = null;

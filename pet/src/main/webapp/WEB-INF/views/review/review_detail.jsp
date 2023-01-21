@@ -120,10 +120,9 @@
 							</div>
 
 
-							<%--  <c:choose>
-							${review.review_no}
-								<c:when test="${user == null} ">  --%>
-
+							  <c:choose>
+							<%-- ${review.review_no} --%>
+								<c:when test="${user.member_id == review.member_id}">
 							<!-- 삭제 버튼 경로넣어야함 -->
 							<div class="col-lg-1">
 								<p style="font-weight: 600; color: #6A92FE; font-size: 12px; line-height: 40px">
@@ -134,8 +133,8 @@
 							<div class="col-lg-2" style="font-weight: 600; color: #6A92FE; font-size: 12px; line-height: 40px">
 								<a href="/pet/review/update_read.do?review_no=${review.review_no}&state=UPDATE" style="margin: auto; width: 80px; height: 40px; border: 1px solid #6A92FE; border-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center">수정</a>
 							</div>
-							<%-- 	</c:when>
-							</c:choose> --%>
+							 	</c:when>
+							</c:choose> 
 
 
 

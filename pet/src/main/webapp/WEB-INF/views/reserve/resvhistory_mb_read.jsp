@@ -207,7 +207,7 @@
 	                                                    	<c:when test="${resvdto.resv_status == 1 }">
 	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">매칭완료</span>
 	                                                    	</c:when>
-	                                                    	<c:when test="${resvdto.resv_status == 6 }">
+	                                                    	<c:when test="${resvdto.resv_status == 0 and resvdto.match_method eq 'auto_match' }">
 	                                                    		<span style="font-size:20px; font-weight: bold; color: #4361eb;">자동매칭요청중</span>
 	                                                    	</c:when>
 	                                                    	<c:when test="${resvdto.resv_status == 5 }">
@@ -230,8 +230,8 @@
                                                     		</c:otherwise>
                                                     	</c:choose>
                                                 </div>
-                                                <div>
                                                 
+                                                <div>
                                                     <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
                                                     	<span style="font-size:20px">돌봄(기본)
                                                     <%if(resvdto.getWalk_service() == 'Y')  {%>
@@ -382,8 +382,21 @@
 	                                               		</c:if>
 	                                                </c:if>
 	                                                
+	                                                <c:if test="${resvdto.match_method ne 'auto_match' or resvdto.resv_status !=0 }">
+	                                                	<c:choose>
+	                                                		<c:when test="${sitter.sitter_code eq 'A' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:when test="${sitter.sitter_code eq 'C' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:otherwise>
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+	                                                		</c:otherwise>
+	                                                	</c:choose>
+	                                                </c:if>
 	                                                
-	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+	                                                <%-- <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
 		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
 		                                                	
@@ -393,7 +406,7 @@
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
 		                                                <%} %>	
 			                                                
-	                                               <%} %> 
+	                                               <%} %>  --%>
 	                                               
 	                                               		
 	                                               		
@@ -452,7 +465,7 @@
 		                                     	
 		                                            <div style="margin-bottom: -10%;">
 								                        <div class="button text-center pb-50" >
-								                        	<c:if test="${resvdto.resv_status == 0 or resvdto.resv_status == 6}">
+								                        	<c:if test="${resvdto.resv_status == 0}">
 								            	 				<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px;">결제취소</button>
 			                        						</c:if>
 			                        						<%if(resvdto.getResv_status() == 1 && (start<=(now+600))) {%>

@@ -17,7 +17,7 @@ public interface ResvService {
 	//자동매칭 외 방법 insert
 	int insert(ResvDTO resvdto);
 	//자동매칭 insert
-	int autoinsert(ResvDTO resvdto);
+	//int autoinsert(ResvDTO resvdto);
 	List<ResvDTO> resvlist(LoginUserDTO user);
 	
 	//예약번호로 예약 정보 받아오기

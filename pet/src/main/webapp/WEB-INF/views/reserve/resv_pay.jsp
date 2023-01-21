@@ -4,6 +4,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -178,7 +180,7 @@
                                             <!-- 예약정보 제목 -->
                                             <div class="col-xl-10 col-lg-8 mx-auto">
                                                 <div class="section-title text-center mb-20">
-                                                    <span class="wow fadeInDown" data-wow-delay=".2s">예약정보</span>
+                                                    <span class="wow fadeInDown" data-wow-delay=".2s">예약정보를 잘 확인해주세요!</span>
                                                 </div>
                                             </div>
                                             <!-- 반려동물정보 제목 -->
@@ -215,18 +217,20 @@
                                                     	<%} %>
                                                 </div> --%>
                                                 <div>
-                                                
+                                                <c:if test="${resvdot.walk_service eq 'Y' }">
+                                                	+ 산책
+                                                </c:if>
                                                     <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
                                                     	<span style="font-size:20px" id="service">돌봄(기본)
-                                                    <%if(resvdto.getWalk_service() == 'Y')  {%>
-                                                   							+ 산책
-                                                   	<%}%>	
-                                                   	<%if(resvdto.getBath_service() == 'Y')  {%>
-                                                   							+ 목욕
-                                                   	<%}%>	
-                                                   	<%if(resvdto.getBeauty_service() == 'Y')  {%>
-                                                   							+ 미용
-                                                   	<%}%></span>						
+	                                                    <c:if test="${resvdot.walk_service eq 'Y' }">
+	                                                			+ 산책
+	                                                	</c:if>
+                                                   		<c:if test="${resvdot.bath_service eq 'Y' }">
+	                                                			+ 목욕
+	                                                	</c:if>
+	                                                  	<c:if test="${resvdot.beauty_service eq 'Y' }">
+	                                                			+ 미용
+	                                                	</c:if>					
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline; ">서비스 장소:</h5> 
@@ -356,8 +360,21 @@
 	                                               		</c:if>
 	                                                </c:if>
 	                                                
+	                                                <c:if test="${resvdto.match_method ne 'auto_match' }">
+	                                                	<c:choose>
+	                                                		<c:when test="${sitter.sitter_code eq 'A' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:when test="${sitter.sitter_code eq 'C' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:otherwise>
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+	                                                		</c:otherwise>
+	                                                	</c:choose>
+	                                                </c:if>
 	                                                
-	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+	                                               <%--  <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
 		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
 		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
@@ -365,11 +382,7 @@
 		                                                <%}else{%>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
 		                                                <%} %>	
-	                                               <%} %> 
-	                                               
-	                                               		
-	                                               		
-	                                               		
+	                                               <%} %>  --%>
                                                </div>
                                             </div>
                                         </div>

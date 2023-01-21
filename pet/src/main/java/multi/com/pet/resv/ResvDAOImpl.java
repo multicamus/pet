@@ -53,7 +53,7 @@ public  class ResvDAOImpl implements ResvDAO {
 		map.put("size", size);
 		map.put("code", code);
 		map.put("shortAddr", shortAddr);
-		return sqlsession.selectList("mutli.com.pet.resv.autolistAllgender");
+		return sqlsession.selectList("mutli.com.pet.resv.autolistAllgender", map);
 	}
 
 	@Override
@@ -95,19 +95,19 @@ public  class ResvDAOImpl implements ResvDAO {
 		return sqlsession.insert("mutli.com.pet.resv.insert", resvdto);
 	}
 	//자동매칭 insert
-	@Override
-	public int autoinsert(ResvDTO resvdto) {
-		String idlist = resvdto.getSitter_id();
-		int autocount = 0;
-		if(idlist.length()!=0) {
-			if(resvdto.getSitter_id().contains(",")) {			
-					autocount += sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
-			}else {
-				autocount = sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
-			}
-		}
-		return autocount;
-	}
+//	@Override
+//	public int autoinsert(ResvDTO resvdto) {
+//		String idlist = resvdto.getSitter_id();
+//		int autocount = 0;
+//		if(idlist.length()!=0) {
+//			if(resvdto.getSitter_id().contains(",")) {			
+//					autocount += sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+//			}else {
+//				autocount = sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+//			}
+//		}
+//		return autocount;
+//	}
 
 	@Override
 	public List<ResvDTO> memberresvlist(String member_id) {

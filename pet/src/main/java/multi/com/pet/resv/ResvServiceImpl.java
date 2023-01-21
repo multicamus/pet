@@ -45,10 +45,10 @@ public class ResvServiceImpl implements ResvService {
 		return dao.insert(resvdto);
 	}
 	//자동매칭 insert
-	@Override
-	public int autoinsert(ResvDTO resvdto) {
-		return dao.autoinsert(resvdto);
-	}
+//	@Override
+//	public int autoinsert(ResvDTO resvdto) {
+//		return dao.autoinsert(resvdto);
+//	}
 	@Override
 	public List<ResvDTO> resvlist(LoginUserDTO user) {
 		if(user!=null) {

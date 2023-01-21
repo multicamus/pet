@@ -2,11 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mutli.com.pet.review">
-	<insert id="insert" parameterType="review">
+	<!-- <insert id="insert" parameterType="review">
 		INSERT into review (
 			review_no, member_id, write_date_rv, review, review_rate, review_img, resv_no)
 		VALUES (
 			review_seq.nextval,	#{member_id}, sysdate, #{review}, #{review_rate}, #{review_img}, #{resv_no})
+	</insert> -->
+	<insert id="insert" parameterType="review">
+		INSERT into review (
+			review_no, member_id, write_date_rv, review, review_rate, review_img, resv_no)
+		VALUES (
+			#{resv_no},	#{member_id}, sysdate, #{review}, #{review_rate}, #{review_img}, #{resv_no})
 	</insert>
 
 	<select id="read_detail_ajax" parameterType="review" resultType="review">
@@ -39,11 +45,20 @@
 						   WHERE data.no = #{review.review_no}) AND ROWNUM = 1
 	</select>
 
-	<select id="read" resultType="review">
+<!-- 	<select id="read" resultType="review">
 		SELECT r.*, p.pet_photo, m.member_addr1
 		FROM review r, pet_info p, resv_history h, member_info m
 		WHERE r.resv_no = h.resv_no
 			AND SUBSTR(h.pet_idlist, 0, INSTR(h.pet_idlist, ',', 1) - 1) = p.pet_id
+			AND m.member_id = r.member_id
+		ORDER BY r.review_no + 0 DESC
+	</select> -->
+		<select id="read" resultType="review">
+		SELECT r.*, p.pet_photo, m.member_addr1
+		FROM review r, pet_info p, resv_history h, member_info m
+		WHERE r.resv_no = h.resv_no
+			AND (SUBSTR(h.pet_idlist, 0, INSTR(h.pet_idlist, ',', 1) - 1) = p.pet_id 
+					OR	h.pet_idlist = p.pet_id)
 			AND m.member_id = r.member_id
 		ORDER BY r.review_no + 0 DESC
 	</select>
@@ -56,6 +71,7 @@
 		  AND h.resv_no = r.resv_no
 		  AND m.member_id = p.member_id
 		  AND r.review_no = #{review_no}
+		  AND ROWNUM = 1
 	</select>
 
 	<delete id="delete" parameterType="review">

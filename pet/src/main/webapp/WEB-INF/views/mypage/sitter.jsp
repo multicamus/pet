@@ -91,14 +91,14 @@
                                             <i class="lni lni-map-marker"></i>
                                         </div>
                                         <div class="contact-content">
-                                            <h4><a href="/pet/menu/reserve/resvhistory_st_list.do">나의 돌봄</a></h4>
+                                            <h4><a href="/pet/reserve/list.do">나의 돌봄</a></h4>
                                             <c:choose>
 	                                            <c:when test="${fn:length(resvlist) == 0}">
 	                                            	<p>돌봄경험이 없어요!</p>
 	                                            </c:when>
-	                                            <c:when test="${fn:length(review_no) == 0}">
+	                                            <%-- <c:when test="${fn:length(review_no) == 0}">
 	                                            	<p>아직 등록된 후기가 없어요!</p>
-	                                            </c:when>
+	                                            </c:when> --%>
 	                                            <c:otherwise>
 	                                        		<div class="star-ratings">
 														<div class="star-ratings-fill space-x-2 text-lg" style="width:${sitter.sitter_rate}*20%;">
@@ -108,7 +108,7 @@
 															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 														</div>
 													</div>
-                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no.review_no}">가장 최근 후기</a></p>    
+                                            		<p><a href="/pet/menu/review/detail.do?review_no=${review_no}">가장 최근 후기</a></p>    
 	                                            </c:otherwise>
                                             </c:choose>
                                             
