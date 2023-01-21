@@ -36,6 +36,7 @@ public class ResvDTO {
 	private String pet_idlist;
 	private String pet_codelist;
 	private String pet_namelist;
+	private String pet_sizelist;
 	
 	public ResvDTO() {
 	}
@@ -351,6 +352,15 @@ public class ResvDTO {
 	public void setSitter_name(String sitter_name) {
 		this.sitter_name = sitter_name;
 	}
+	
+
+	public String getPet_sizelist() {
+		return pet_sizelist;
+	}
+
+	public void setPet_sizelist(String pet_sizelist) {
+		this.pet_sizelist = pet_sizelist;
+	}
 
 	public ResvDTO(String resv_no, String member_id, String resv_date, String resv_change_date, int resv_status,
 			String pay_method, Date visit_date, String visit_place, int service_starttime, int service_endtime,
@@ -396,11 +406,13 @@ public class ResvDTO {
 		this.pet_namelist = pet_namelist;
 	}
 	
+
+	
 	@Override
 	public String toString() {
 		return "ResvDTO [resv_no=" + resv_no + ", member_id=" + member_id + ", resv_date=" + resv_date
-				+ ", resv_change_date=" + resv_change_date + ", resv_status=" + resv_status + ", pay_method=" + pay_method
-				+ ", visit_date=" + visit_date + ", visit_place=" + visit_place + ", service_starttime="
+				+ ", resv_change_date=" + resv_change_date + ", resv_status=" + resv_status + ", pay_method="
+				+ pay_method + ", visit_date=" + visit_date + ", visit_place=" + visit_place + ", service_starttime="
 				+ service_starttime + ", service_endtime=" + service_endtime + ", service_time=" + service_time
 				+ ", default_service=" + default_service + ", bath_service=" + bath_service + ", walk_service="
 				+ walk_service + ", beauty_service=" + beauty_service + ", sitter_id=" + sitter_id + ", sitter_name="
@@ -408,10 +420,11 @@ public class ResvDTO {
 				+ match_method + ", prefer_gender=" + prefer_gender + ", prefer_size=" + prefer_size + ", visit_method="
 				+ visit_method + ", common_pass=" + common_pass + ", home_pass=" + home_pass + ", direct_meet="
 				+ direct_meet + ", parking=" + parking + ", supplies_place=" + supplies_place + ", cleaning_method="
-				+ cleaning_method + ", emergency_phone=" + emergency_phone +", pet_idlist=" + pet_idlist
-				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + "]";
+				+ cleaning_method + ", emergency_phone=" + emergency_phone + ", pet_idlist=" + pet_idlist
+				+ ", pet_codelist=" + pet_codelist + ", pet_namelist=" + pet_namelist + ", pet_sizelist=" + pet_sizelist
+				+ "]";
 	}
-	
+
 	public static Date getTodayDate() {
 		long miliseconds = System.currentTimeMillis();
 		Date date = new Date(miliseconds);

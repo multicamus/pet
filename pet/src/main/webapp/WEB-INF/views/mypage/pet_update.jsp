@@ -29,9 +29,10 @@
 	</style>
 	<script>
 		$(document).ready(function() {
+
 			$("#edit").on("click", function(){
 				weight = $("input[name=pet_weight]").val()
-				petcode = $("input[name=pet_code]").val()
+				petcode = $('input:radio[name=pet_code]:checked').val();
 
 				if(petcode == 'DOG'){
 					if(weight <= 7){
@@ -42,7 +43,9 @@
 						$("#pet_size").prop("value", "L")
 					}
 
-				}	
+				}else{
+					$("#pet_size").prop("value", "C")
+				}		
 				
 			})
 		})
@@ -101,7 +104,7 @@
 										<div class="col-12 col-md-6 col-xl-12">
 											<div class="contact-item">
 												<div class="contact-icon">
-													<img src="">
+													<img src="/pet/resources/pet/${pet.pet_img}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 												</div>
 												<div class="contact-content">
 													<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
@@ -129,10 +132,17 @@
 								</div>
 							</div>
 						</div>
-						<form action="/pet/mypet/update.do?member_id=${user.member_id}" method="post" class="contact-form">
-							<div style="display: flex; position: relative;">
-								<a href="#"><img src="/pet/resources/assets/img/${pet.pet_photo }" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></a>
-							</div>
+						<form action="/pet/mypet/update.do?member_id=${user.member_id}" method="post" class="contact-form" enctype="multipart/form-data">
+							<div class="col-md-12">
+								 <div class="thumbnail">
+								 	 <div style="display: flex; position: relative;">
+										<img src="/pet/resources/pet/${pet.pet_photo}" id="userImage" width="220" height="150" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+									 </div>
+									 <div class="col-4 pt-30">
+									 	<input type="file" name="pet_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+									 </div>
+								 </div>
+						  	</div>
 							<div>
 								<!-- <label for="prod1">반려동물 종류</label>
 								<select name=pet_code id="prod1">
@@ -249,7 +259,7 @@
 										<input type="text" name="pet_kind" id="kind" placeholder="품종" value="${pet.pet_kind}" required>
 										<legend>몸무게(kg)</legend>
 										<input type="text" name="pet_weight" id="weight" placeholder="몸무게" value="${pet.pet_weight}" required>
-										<legend>크기()</legend>
+										<legend>크기</legend>
 										<c:if test="${pet.pet_size eq 'S' }">
 											<input type="text" value="소형견">
 										</c:if>	

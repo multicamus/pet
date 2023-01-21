@@ -14,6 +14,8 @@
 
 	</style>
 	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
@@ -60,7 +62,7 @@
 							<option value="name">이름</option>
 							<option value="email">이메일 주소</option>
 							<option value="phone">전화번호</option>
-							<option value="valid">미승인</option>
+							
 						</select>
 						</div>
 						<div class="col-lg-3">
@@ -154,6 +156,10 @@
 	}
 </script>
 <script type="text/javascript">
+$(document).ready(function(){
+	data = "${sitter.category}"
+	$("#category").val(data).attr("selected","selected");
+});
 /* category = "${category}"//컨트롤러 요청하고 response될때 값을 받아서 세팅
 	//alert(category);
 	$(document).ready(function() {

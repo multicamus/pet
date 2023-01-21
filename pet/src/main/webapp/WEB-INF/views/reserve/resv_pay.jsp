@@ -62,6 +62,53 @@
       			ResvDTO resvdto = (ResvDTO) request.getAttribute("resvdto");
       		%> 
       </script>
+   
+      <!-- jQuery -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+      <!-- iamport.payment.js -->
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+      <script>
+          var IMP = window.IMP; 
+          IMP.init("imp17001483"); 
+
+      
+          function requestPay() {
+              // IMP.request_pay(param, callback) 결제창 호출
+              alert("pay")
+              IMP.request_pay({ // param
+                  pg: "html5_inicis",
+                  pay_method: "card",
+                  merchant_uid: "ORD20180131-0000011",
+                  name: "노르웨이 회전 의자",
+                  amount: 10,
+                  buyer_email: "gildong@gmail.com",
+                  buyer_name: "홍길동",
+                  buyer_tel: "010-4242-4242",
+                  buyer_addr: "서울특별시 강남구 신사동",
+                  buyer_postcode: "01181"
+              }, function (rsp) { // callback
+            	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+            	        // jQuery로 HTTP 요청
+            	        alert("success")
+            	        jQuery.ajax({
+            	            url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
+            	            method: "POST",
+            	            headers: { "Content-Type": "application/json" },
+            	            data: {
+            	                imp_uid: rsp.imp_uid,
+            	                merchant_uid: rsp.merchant_uid
+            	            }
+            	        }).done(function (data) {
+            	          // 가맹점 서버 결제 API 성공시 로직
+            	        })
+            	      } else {
+            	        alert("결제에 실패하였습니다. 에러 내용: ");
+            	      }
+              });
+            }
+          
+      </script>
+      	
       
 </head>
     <body>
@@ -166,7 +213,7 @@
                                                 <div>
                                                 
                                                     <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
-                                                    	<span style="font-size:20px">돌봄(기본)
+                                                    	<span style="font-size:20px" id="service">돌봄(기본)
                                                     <%if(resvdto.getWalk_service() == 'Y')  {%>
                                                    							+ 산책
                                                    	<%}%>	
@@ -285,9 +332,23 @@
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                <c:if test="${resvdto.match_method == 'past_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+	                                               		<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		 <c:if test="${sitter.sitter_gender eq 'M' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+	                                               		</c:if>	
+	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+	                                               		</c:if>
 	                                                </c:if>
 	                                                
 	                                                
@@ -301,14 +362,8 @@
 		                                                <%} %>	
 	                                               <%} %> 
 	                                               
-	                                               		<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
 	                                               		
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+	                                               		
 	                                               		
                                                </div>
                                             </div>
@@ -360,7 +415,7 @@
                                             <!-- 결제상세정보끝 -->
 		                                            <div style="margin-bottom: -10%;">
 								                        <div class="button text-center pb-50" >
-								            	 			<button type="submit" class="theme-btn"  style="display:inline-block; margin-left:0px">결제</button>
+								            	 			<button type="submit" class="theme-btn"  onclick="requestPay()" style="display:inline-block; margin-left:0px">결제</button>
 			                        					</div>
 		                    					  </div>  
 		                    					  
@@ -410,8 +465,9 @@
 							<input type="hidden" name="supplies_place" value="${resvdto.supplies_place }">	
 							<input type="hidden" name="cleaning_method" value="${resvdto.cleaning_method }">
 							<input type="hidden" name="emergency_phone" value="${resvdto.emergency_phone }">	
+						 	<input type="hidden" name="pet_sizelist" value="${resvdto.pet_sizelist }"> 
 						 	<input type="hidden" name="total_price" value="${resvdto.total_price }">	
-						
+							<input type="hidden" name="resv_no" id="resv_no" value="${resvdto.resv_no }">
             </form>
             </div>
             <!-- 컨테이너 끝 -->

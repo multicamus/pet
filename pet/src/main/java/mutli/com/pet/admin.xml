@@ -26,9 +26,7 @@
 			<if test="category=='phone' and search_val!=''">
 				sitter_phone like '%' || #{search_val} || '%'
 			</if>
-			<if test="category=='valid' and search_val!=''">
-				valid like '%' || #{search_val} || '%'
-			</if>
+			
 		</where>
 	</select> 
 </mapper>

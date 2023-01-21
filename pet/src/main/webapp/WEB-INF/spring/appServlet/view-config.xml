@@ -24,6 +24,7 @@
 		<view-controller path="/menu/review/update.do" view-name="review/update"/>
 		
 		<view-controller path="/menu/mypage/admin.do" view-name="mypage/admin"/>
+		<view-controller path="/menu/mypage/search.do" view-name="mypage/admin"/>
 		<view-controller path="/menu/mypage/pet.do" view-name="mypage/pet"/>
 		<view-controller path="/menu/mypage/pet_update.do" view-name="mypage/pet_update"/>
 		<view-controller path="/menu/mypage/pet_register.do" view-name="mypage/pet_register"/>

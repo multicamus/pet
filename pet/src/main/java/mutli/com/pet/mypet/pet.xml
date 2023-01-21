@@ -23,10 +23,9 @@
 		WHERE pet_id = #{pet_id}
 	</select>
 	
-	<!-- , pet_photo =  -->
 	<update id="update" parameterType="pet">
 		UPDATE pet_info 
-		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, pet_note = #{pet_note}       
+		SET pet_name = #{pet_name}, pet_gender = #{pet_gender}, pet_code = #{pet_code}, pet_kind = #{pet_kind}, pet_birthdate = #{pet_birthdate}, pet_weight = #{pet_weight}, pet_size = #{pet_size}, neuter = #{neuter}, pet_note = #{pet_note}, pet_photo = #{pet_photo}       
 		WHERE pet_id = #{pet_id}
 	</update>
 	

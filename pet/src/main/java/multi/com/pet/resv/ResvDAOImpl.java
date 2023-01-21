@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mutli.com.pet.erp.SitterDTO;
-import mutli.com.pet.review.Review2DTO;
+import mutli.com.pet.review.ReviewDTO;
 
 @Repository
 public  class ResvDAOImpl implements ResvDAO {
 	
 	SqlSession sqlsession;
-	
 	@Autowired
 	public ResvDAOImpl(SqlSession sqlsession) {
 		super();
@@ -43,18 +42,72 @@ public  class ResvDAOImpl implements ResvDAO {
 		
 		return sqlsession.selectList("mutli.com.pet.resv.directlistBygender", map);
 	}
+	//자동매칭
+	@Override
+	public List<SitterDTO> autolistAllgender(String size, String code, String shortAddr) {
+		System.out.println("autolistAllgender");
+		System.out.println(size);
+		System.out.println(code);
+		System.out.println(shortAddr);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("size", size);
+		map.put("code", code);
+		map.put("shortAddr", shortAddr);
+		return sqlsession.selectList("mutli.com.pet.resv.autolistAllgender");
+	}
 
+	@Override
+	public List<SitterDTO> autolistBygender(String gender, String size, String code, String shortAddr) {
+		System.out.println("autolistBygender");
+		System.out.println(gender);
+		System.out.println(size);
+		System.out.println(code);
+		System.out.println(shortAddr);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("gender", gender);
+		map.put("size", size);
+		map.put("code", code);
+		map.put("shortAddr", shortAddr);
+		
+		return sqlsession.selectList("mutli.com.pet.resv.autolistBygender", map);
+	}
+
+	
+	//과거에 이용했던 펫시터 불러오기
+	@Override
+	public List<SitterDTO> pastlist(String code, String member_id, String shortAddr) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("code", code);
+		map.put("member_id", member_id);
+		map.put("shortAddr", shortAddr);
+		return sqlsession.selectList("mutli.com.pet.resv.pastlist", map);
+	}
+	
+	
 	@Override
 	public SitterDTO readSitter(String sitter_id) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readsitter", sitter_id);
 	}
-
+	//자동매칭외의 insert
 	@Override
 	public int insert(ResvDTO resvdto) {
 		System.out.println("insertdaoimpl");
 		return sqlsession.insert("mutli.com.pet.resv.insert", resvdto);
 	}
-
+	//자동매칭 insert
+	@Override
+	public int autoinsert(ResvDTO resvdto) {
+		String idlist = resvdto.getSitter_id();
+		int autocount = 0;
+		if(idlist.length()!=0) {
+			if(resvdto.getSitter_id().contains(",")) {			
+					autocount += sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+			}else {
+				autocount = sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+			}
+		}
+		return autocount;
+	}
 
 	@Override
 	public List<ResvDTO> memberresvlist(String member_id) {
@@ -93,9 +146,20 @@ public  class ResvDAOImpl implements ResvDAO {
 	
 	//펫시터가 승인을 수락함(resv_status -> 1로 바뀜)
 	@Override
-	public int approve(String resv_no) {
-		return sqlsession.update("mutli.com.pet.resv.approve", resv_no);
+	public int approve(String resv_no, String sitter_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("resv_no", resv_no);
+		map.put("sitter_id", sitter_id);
+		int approvecount = 0;
+		approvecount = sqlsession.update("mutli.com.pet.resv.approve", map);		
+		return approvecount;
 	}
+	/*
+	 * //자동매칭을 승인한 경우 나머지 자동매칭내약예약들을 없앰
+	 * 
+	 * @Override public int autochange(ResvDTO resvdto) { return
+	 * sqlsession.delete("mutli.com.pet.resv.autochange", resvdto); }
+	 */
 	
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	@Override
@@ -105,15 +169,36 @@ public  class ResvDAOImpl implements ResvDAO {
 	
 	//예약번호로 리뷰상세페이지 불렁기
 	@Override
-	public Review2DTO readReview(String resv_no) {
+	public ReviewDTO readReview(String resv_no) {
 		return sqlsession.selectOne("mutli.com.pet.resv.readreview", resv_no);
 	}
-	
-	
-
 
 
 	
-	
-	
+	//돌봄완료된 시터의 해당 경력 1씩 증가시키고 해당 예약내역의 resv_status를 5로 바꾸기
+	@Override
+	public int updateFinish() {
+		int a = sqlsession.update("mutli.com.pet.resv.updateSmallCareer");
+		int b = sqlsession.update("mutli.com.pet.resv.updateMediumCareer");
+		int c = sqlsession.update("mutli.com.pet.resv.updateLargeCareer");
+		int d = sqlsession.update("mutli.com.pet.resv.updateCatCareer");
+		int e = sqlsession.update("mutli.com.pet.resv.updateStatus");
+
+		return a+b+c+d+e;
+	}
+
+
 }
+
+
+
+	
+
+	
+
+
+
+	
+	
+	
+

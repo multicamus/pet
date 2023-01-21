@@ -17,19 +17,23 @@ import mutli.com.pet.erp.LoginUserDTO;
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
 import mutli.com.pet.erp.SitterDTO;
-import mutli.com.pet.review.Review2DTO;
+import mutli.com.pet.review.ReviewDTO;
+import mutli.com.pet.review.ReviewService;
 
 @Controller
 public class ResvController {
 	ResvService service;
+	ReviewService reviewservice;
 	MemberService mbservice;
 	
 	@Autowired
-	public ResvController(ResvService service, MemberService mbservice) {
+	public ResvController(ResvService service, ReviewService reviewservice, MemberService mbservice) {
 		super();
 		this.service = service;
+		this.reviewservice = reviewservice;
 		this.mbservice = mbservice;
 	}
+	
 
 	@RequestMapping("/reserve/resv1_mb.do")
 	public String resv1(ResvDTO resvdto, String servicecode, String pet_idlist, String pet_codelist,  HttpSession session, Model model) {
@@ -55,7 +59,6 @@ public class ResvController {
 				resvdto.setBeauty_service('Y');
 				resvdto.setTotal_price(resvdto.getTotal_price()+5000);
 			}
-			
 		}
 
 		//시작시간+서비스시간 = 종료시간 설정
@@ -79,11 +82,56 @@ public class ResvController {
 		return "resv/resv_2";
 	}
 
-	
+
+
 	@RequestMapping("/reserve/resv2_mb.do")
-	public String resv2(ResvDTO resvdto,  Model model) {
+	public String resv2(ResvDTO resvdto, String codearray, Model model, HttpSession session) {
 		System.out.println("컨트롤러");
 		System.out.println(resvdto);
+		//자동매칭인경우
+		if(resvdto.getMatch_method().equals("auto_match")) {
+			String gender  = "";
+			if(resvdto.getPrefer_gender().equals("male")) {
+				gender = "M";
+			}else if(resvdto.getPrefer_gender().equals("female")) {
+				gender = "F";
+			}else {
+				gender = "A";
+			}
+			
+			String size ="";
+			if(!codearray.equals("C")) {
+				if(resvdto.getPrefer_size().equals("small")) {
+					size = "S";
+				}else if(resvdto.getPrefer_size().equals("medium")) {
+					size = "M";
+				}else if(resvdto.getPrefer_size().equals("large")){
+					size = "L";
+				}else {
+					size = "A";
+				}
+			}	
+			String code = codearray;
+			System.out.println("code:"+code);
+			LoginUserDTO user = (LoginUserDTO)session.getAttribute("user");
+			MemberDTO member = mbservice.member_read(user.getMember_id());
+			String shortAddr = member.createShortAddr();
+			System.out.println(gender);
+			System.out.println(size);
+			System.out.println(shortAddr);
+			List<SitterDTO> sitterlist = service.autolist(gender, size, code, shortAddr);
+			String sitteridlist = "";
+			if(sitterlist!=null) {
+				sitteridlist += sitterlist.get(0).getSitter_id();
+				for(int i=1; i<sitterlist.size(); i++) {
+					sitteridlist += "," + sitterlist.get(i).getSitter_id();
+				}
+			}
+			resvdto.setSitter_id(sitteridlist);
+			System.out.println(resvdto.getSitter_id());
+			System.out.println(sitterlist);
+			
+		}else {//그 외의 경우
 		System.out.println("sittername:"+resvdto.getSitter_name());
 		String gender = resvdto.getPrefer_gender(); //선호 성별
 		String size= resvdto.getPrefer_size(); //선호 사이즈
@@ -93,8 +141,10 @@ public class ResvController {
 		System.out.println(size);
 		System.out.println(method);
 		
+		}
 		System.out.println(resvdto);
 		model.addAttribute("resvdto", resvdto);
+		
 		return "resv/resv_3";
 	}
 	
@@ -107,8 +157,11 @@ public class ResvController {
 		String[] nameArray = resvdto.getPet_namelist().split(",");
 		String simpleAddr = resvdto.getVisit_place();
 		
-		SitterDTO sitter = mbservice.sitter_read(resvdto.getSitter_id());
-		sitter.setSitter_age(sitter.calcAge());
+		if(!resvdto.getMatch_method().equals("auto_match")) {
+			SitterDTO sitter = mbservice.sitter_read(resvdto.getSitter_id());
+			sitter.setSitter_age(sitter.calcAge());
+			model.addAttribute("sitter", sitter);
+		}
 		
 		if(idArray.length == 2) {
 			resvdto.setTotal_price(resvdto.getTotal_price()+10000);
@@ -140,7 +193,7 @@ public class ResvController {
 		model.addAttribute("idlist", idlist);
 		model.addAttribute("codelist", codelist);		
 		model.addAttribute("namelist", namelist);
-		model.addAttribute("sitter", sitter);
+		
 		model.addAttribute("resvdto", resvdto);
 		return "resv/resv_pay";
 	}
@@ -151,13 +204,18 @@ public class ResvController {
 		System.out.println(resvdto);
 		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
 		String id = user.getMember_id();
-		
-		
 		resvdto.setMember_id(id);
+		if(resvdto.getMatch_method().equals("auto_match")) {
+			System.out.println("자동매칭");
+			int autocount = service.autoinsert(resvdto);
+			System.out.println(autocount);
+		}else {
+			service.insert(resvdto);
+		}
+		
 		
 		
 		System.out.println(resvdto);
-		service.insert(resvdto);
 		System.out.println(resvdto);
 		session.setAttribute("user", user);
 		
@@ -173,9 +231,11 @@ public class ResvController {
 		System.out.println("userid:"+user.getSitter_id());
 		System.out.println("userid:"+user.getUser_type());
 
+		// 돌봄완료시 해당 커리어를 1씩 증가시킴
 		// 예약리스트를 불러올때 예약상태(resv_status) 갱신
-		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절 
+		// 0: 매칭요청중, 1: 매칭성공, 2: 매칭기간초과실패,3: 이용자가 취소, 4: 펫시터가 거절, 5: 돌봄완료, 6:자동매칭요청중
 		int count = service.changeStatus();
+		service.updateFinish();
 		System.out.println("count:"+count);
 		List<ResvDTO> resvlist = service.resvlist(user);
 		//갖고 온 예약리스트의 이용후기작성 여부를 확인한다. 리뷰테이블에 존재하는 예약번호가 String리스트에 담아져서 반환된다.
@@ -209,15 +269,6 @@ public class ResvController {
 		String addr1 = member.getMember_addr1();
 		member.setMember_age(member.calcAge());
 		
-		
-		SitterDTO sitter = service.readSitter(resvdto.getSitter_id());
-		String sitter_name =  sitter.getSitter_name();
-		sitter.setSitter_age(sitter.calcAge());
-		
-		
-		
-		resvdto.setSitter_name(sitter_name);
-		
 		List<String> codelist = new ArrayList<String>();
 		List<String> namelist = new ArrayList<String>();
 		
@@ -227,17 +278,35 @@ public class ResvController {
 		}
 		
 		String view = "";
-		
-		LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
-		if(user.getUser_type().equals("M")) {
-			view = "resv/resvmb_read";
-			model.addAttribute("sitter", sitter);
-			model.addAttribute("member", member);
-
+		if(!resvdto.getMatch_method().equals("auto_match")) {
+			SitterDTO sitter = service.readSitter(resvdto.getSitter_id());
+			String sitter_name =  sitter.getSitter_name();
+			sitter.setSitter_age(sitter.calcAge());
+			
+			resvdto.setSitter_name(sitter_name);
+			LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
+			if(user.getUser_type().equals("M")) {
+				view = "resv/resvmb_read";
+				
+				model.addAttribute("sitter", sitter);
+				model.addAttribute("member", member);
+				
+			}else {
+				view = "resv/resvst_read";
+				model.addAttribute("member", member);
+			}
 		}else {
-			view = "resv/resvst_read";
-			model.addAttribute("member", member);
+			LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
+			if(user.getUser_type().equals("M")) {
+				view = "resv/resvmb_read";
+				model.addAttribute("member", member);
+			}else {
+				view = "resv/resvst_read";
+				model.addAttribute("member", member);
+			}
+			
 		}
+		
 		
 		
 		model.addAttribute("codelist", codelist);
@@ -254,17 +323,28 @@ public class ResvController {
 	public String approve(String resv_no, Model model, HttpSession session) {
 		System.out.println("매칭승인");
 		LoginUserDTO user = (LoginUserDTO) session.getAttribute("user");
-		service.approve(resv_no);
+		String sitterid = user.getSitter_id();
+		//자동매칭인 경우 나머지 예비자동매칭예약내역들도 다 취소시킴
+		ResvDTO resvdto = service.resvread(resv_no);
+		resvdto.setSitter_id(sitterid);
+		sitterid = resvdto.getSitter_id();
+
+			service.approve(resv_no, sitterid);
+
+			service.approve(resv_no, sitterid);
+
 		System.out.println(user);
 		session.setAttribute("user", user);
 		return "redirect:/reserve/list.do";
 	}
 	
+
+	
 	//예약번호로 해당 리뷰 상세보기
 	@RequestMapping(value= "/reserve/review/read.do", method = RequestMethod.GET)
 	public ModelAndView read_detail(String resv_no) { 
 		ModelAndView mav = new ModelAndView("review/read");
-		Review2DTO readlist = service.readReview(resv_no);
+		ReviewDTO readlist = reviewservice.read_detail(resv_no);
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;
@@ -274,7 +354,7 @@ public class ResvController {
 	@RequestMapping(value= "/reserve/review/write.do", method = RequestMethod.GET)
 	public ModelAndView write_detail(String resv_no) { 
 		ModelAndView mav = new ModelAndView("review/read");
-		Review2DTO readlist = service.readReview(resv_no);
+		ReviewDTO readlist = reviewservice.read_detail(resv_no);
 		mav.addObject("review",readlist);
 		System.out.println(readlist);
 		return mav;
@@ -296,6 +376,7 @@ public class ResvController {
 		System.out.println(gender);
 		System.out.println(size);
 		System.out.println(code);
+		
 		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
 		String shortAddr = user.createShortAddr();
 		System.out.println(shortAddr);
@@ -310,6 +391,17 @@ public class ResvController {
 		
 		System.out.println(sitterlist);
 		
+		return sitterlist;
+	}
+	
+	@RequestMapping(value="/sitter/ajax/pastlist.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public List<SitterDTO> pastlist(String code, HttpSession session){
+		LoginUserDTO user =  (LoginUserDTO) session.getAttribute("user");
+		String member_id = user.getMember_id();
+		String shortAddr = user.createShortAddr();
+		List<SitterDTO> sitterlist = service.pastlist(code, member_id, shortAddr);
+		System.out.println("과거이용:"+sitterlist);
 		return sitterlist;
 	}
 	

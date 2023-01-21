@@ -20,10 +20,8 @@
 						<div class="page-breadcrumb">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item" aria-current="page"><a
-										href="/pet/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">이용
-										후기 작성</li>
+									<li class="breadcrumb-item" aria-current="page"><a href="/pet/">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">이용 후기 작성</li>
 								</ol>
 							</nav>
 						</div>
@@ -37,25 +35,28 @@
 	<div class="col-lg-12">
 		<main>
 			<div class="text-center" style="padding: 20px;"></div>
-			<div class="row g-12">
+			<div class="row col-lg-12">
 				<div class="col-md-12 col-lg-12">
-					<h4 class="mb-3"></h4>
-					<h2>이용후기 작성</h2>
-					<br /> <br />
-
-					<form class="needs-validation" action="/pet/review/fileinsert.do"
-						method="post" enctype="multipart/form-data">
+					<div class="mb-50">
+						<h2>이용후기 작성</h2>
+						<h4>예약번호: ${resv.resv_no }</h4>
+					</div>
+					<!-- form 태그 시작 -->
+					<form class="needs-validation" action="/pet/review/insert.do" method="post" enctype="multipart/form-data">
 						<div class="row lg-3">
 							<div class="col-lg-3">
 								<h4>이용자 성함</h4>
-								<input type="text" class="form-control" name="member_id"
-									id="member_id" value="${user.member_id}" required>
-
+								<input type="text" class="form-control" name="member_id" id="member_id" value="${user.member_id}" readonly="readonly">
 							</div>
+							
+							<div class="col-lg-3">
+								<h4>펫 이름</h4>
+								<input type="text" class="form-control" name="pet_name" id="pet_name" value="${resv.pet_namelist}" readonly>
+							</div>
+							
 							<div class="col-lg-3">
 								<h4>펫시터 성함</h4>
-								<input type="text" class="form-control" name="sitter_name"
-									id="sitter_name" value="${user.member_id}" required>
+								<input type="text" class="form-control" name="sitter_name" id="sitter_name" value="${resv.sitter_id}${resv.sitter_name}" readonly>
 							</div>
 
 							<div class="col-lg-8 pt-30">
@@ -94,37 +95,29 @@
 							<div class="col-lg-12 pt-30">
 								<h4>내용</h4>
 								<div class="col-lg-12 pt-10 pb-30">
-									<textarea name="review" id="review" placeholder="내용을 작성해주세요."
-										rows="12" cols="102" class="form-control"></textarea>
-
+									<textarea name="review" id="review" placeholder="내용을 작성해주세요." rows="12" cols="102" class="form-control"></textarea>
 								</div>
 							</div>
 
-							<div class="col-lg-12">
+							<div class="col-lg-12 pb-50">
 								<h4>첨부파일</h4>
 								<div class="row align-items-center">
-									<!-- <div class="col-lg-1 pt-10">
-										<input type="file" class="form-control input-lg" name=""
-											id="files" placeholder="파일선택" multiple="multiple">
-
-									</div>
- -->									<!-- <div class="col-lg-11 pt-10">
-										<input type="text" class="form-control" name="review_file"
-											id="review_file" placeholder="파일은 000 mb 제한 입니다." required>
-									</div> -->
 									<div class="col-md-8">
-										<input type="file" class="form-control input-lg" name="review_file"
-											id="review_file" placeholder="파일선택" multiple="multiple">
+										<input type="file" class="form-control input-lg" name="review_file"	id="review_file" placeholder="파일선택" multiple="multiple">
 									</div>
-
 								</div>
 							</div>
+							
 						</div>
-						<div class="row">
+						
+						<!-- hidden tag -->
+						<input type="hidden" name="member_addr1" value="${resv.visit_place}">
+						<input type="hidden" name="resv_no" value="${resv.resv_no}">
+						
+						<div class="row pb-100">
 							<div class="button text-center">
 								<button type="submit" class="theme-btn">등록</button>
-								<a href="/pet/menu/review.do" role="button" type="submit"
-									class="theme-btn">취소</a>
+								<a href="/pet/menu/review.do" role="button" type="submit" class="theme-btn">취소</a>
 							</div>
 						</div>
 					</form>

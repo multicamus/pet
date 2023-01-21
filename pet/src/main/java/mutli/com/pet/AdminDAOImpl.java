@@ -106,7 +106,7 @@ public class AdminDAOImpl implements AdminDAO {
 		map.put("data", data);
 		System.out.println("tag-----"+tag);
 		System.out.println("data===="+data);
-		return sqlSession.selectList("mutli.com.pet.dynamicSearch",map);
+		return  null;
 	}
 
 }

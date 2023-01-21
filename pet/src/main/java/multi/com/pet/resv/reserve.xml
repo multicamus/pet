@@ -143,13 +143,201 @@
 		</where>
 	</select>
 	
+	<!-- 자동매칭  -->
+	<select id="autolistAllgender" parameterType="Map" resultType="sitter">
+		select * from sitter_info
+		<where>
+			<if test='code=="D" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+						
+			</if>
+			<if test='code=="A" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="C"'>
+					<![CDATA[						
+							(sitter_code='A' or sitter_code ='C')
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+		</where>
+		order by sitter_rate asc
+	</select>
+	
+	<select id="autolistBygender" parameterType="Map" resultType="sitter">
+		select * from sitter_info
+		<where>
+			<if test='code=="D" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="S"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="M"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="L"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="A" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="D" and size=="A"'>
+					<![CDATA[						
+							(sitter_code='D' or sitter_code='A')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+			<if test='code=="C"'>
+					<![CDATA[						
+							(sitter_code='A' or sitter_code ='C')
+							and sitter_gender = #{gender}
+							and service_area LIKE '%' || #{shortAddr} || '%'
+							and rownum <= 10
+						]]>
+			</if>
+		</where>
+				order by sitter_rate asc
+		
+	</select>
+	<!-- 과거에 이용했던 펫시터 리스트 불러오기 -->
+	<select id="pastlist" parameterType="Map" resultType="sitter">
+		select s.* from sitter_info s, resv_history h
+		<where>
+			<if test='code=="D"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and (s.sitter_code = 'A' or s.sitter_code = 'D')
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 5
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'	
+			</if> 
+			<if test='code=="C"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and (s.sitter_code = 'A' or s.sitter_code = 'C')
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 5
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'	
+			</if>
+			<if test='code=="A"'>
+					<![CDATA[	
+         				#{member_id} = h.member_id
+						and s.sitter_code = 'A'
+						and s.sitter_id = h.sitter_id
+						and h.resv_status = 5
+						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
+					]]>
+						and service_area LIKE '%' || #{shortAddr} || '%'	
+			</if>  
+		</where>	
+	</select>
+	
 	<!-- 시터 id로 시터 정보 row 가져오기 -->
 	<select id="readsitter" parameterType="String" resultType="sitter">
 			select * from sitter_info
-			where sitter_id = #{sitter_id}
+			where sitter_id = #{sitter_id} 
 	</select>
 	
-	<!-- 예약내역테이블에 예약정보 집어넣기 -->
+	<!-- 자동매칭 외의 방법 - 예약내역테이블에 예약정보 집어넣기 -->
 	 <insert id="insert" parameterType="resv">
 			insert into resv_history
 			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, to_char(sysdate,'yyyy-mm-dd hh24:mi'),
@@ -158,7 +346,19 @@
 						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, #{total_price},
 						#{match_method}, #{prefer_gender}, #{prefer_size}, #{visit_method}, #{common_pass},
 						#{home_pass}, #{direct_meet}, #{parking}, #{supplies_place}, #{cleaning_method},
-						#{emergency_phone}, #{pet_codelist}) 
+						#{emergency_phone}, #{pet_codelist}, #{pet_sizelist}) 
+	</insert> 
+	
+		<!-- 자동매칭 방법 - 예약내역테이블에 예약정보 집어넣기 -->
+	 <insert id="autoinsert" parameterType="resv">
+			insert into resv_history
+			values(to_char(sysdate, 'YYYYMMDD')|| LPAD(resv_seq.nextval, 4, '0'), #{member_id}, #{pet_idlist}, #{pet_namelist}, to_char(sysdate,'yyyy-mm-dd hh24:mi'),
+						  to_char(sysdate,'yyyy-mm-dd hh24:mi'), 6, null, #{visit_date}, #{visit_place}, 
+						#{service_starttime}, #{service_endtime}, #{service_time}, #{sitter_id}, #{service_note},
+						#{default_service}, #{bath_service}, #{walk_service}, #{beauty_service}, #{total_price},
+						#{match_method}, #{prefer_gender}, #{prefer_size}, #{visit_method}, #{common_pass},
+						#{home_pass}, #{direct_meet}, #{parking}, #{supplies_place}, #{cleaning_method},
+						#{emergency_phone}, #{pet_codelist}, #{pet_sizelist}) 
 	</insert> 
 	
 	<!-- 이용자id로 예약내역rows 가져오기 -->
@@ -171,7 +371,7 @@
 	<!-- 시터id로 예약내역rows 가져오기  -->
 	<select id="stresvlist" parameterType="String" resultType="resv">
 			select * from resv_history
-			where sitter_id = #{sitter_id}
+			where sitter_id like '%' || #{sitter_id} || '%'
 			order by resv_no desc
 	</select>
 	<!-- 예약번호로 예약내역 row가져오기 -->
@@ -186,12 +386,49 @@
 			set resv_status = 2,
 			resv_change_date = to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_starttime-2, 2, '0') || ':00:00'
             <![CDATA[	
-            where resv_status = 0					
+            where (resv_status = 0 or resv_status=6)					
 			and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_starttime, 2, '0') || ':00:00'
             < to_char(sysdate + 1/12 , 'YYYY-MM-DD HH24:MI:SS')
 			]]>
-	
 	</update>
+	<!-- 돌봄완료된 예약내역의 resv_status를 5로 바꾸고 해당 커리어를 1씩 증가시킴 -->
+	<update id="updateSmallCareer">
+		 <![CDATA[
+		update sitter_info 
+		set small_career = small_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%S%')
+		]]>
+	</update>
+	<update id="updateMediumCareer">
+	 	<![CDATA[
+		update sitter_info 
+		set medium_career = medium_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%M%')
+		]]>
+	</update>
+	<update id="updateLargeCareer">
+		<![CDATA[
+		update sitter_info 
+		set large_career = large_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and pet_sizelist like '%L%')
+		]]>
+	</update>
+	<update id="updateCatCareer">
+		<![CDATA[
+		update sitter_info 
+		set cat_career = cat_career + 1
+		where sitter_id in (select sitter_id from resv_history where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' and  pet_sizelist like '%C%')
+		]]>
+	</update>
+	<update id="updateStatus">
+		<![CDATA[
+		update resv_history 
+		set resv_status = 5
+		where resv_status = 1 and to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS') > to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00'
+		]]>
+	</update>
+	
+	
 	<!-- 이용자가 결제취소할경우  -->
 	<update id="mbcancelresv" parameterType="String">
 			update resv_history
@@ -212,9 +449,16 @@
 	<update id="approve" parameterType="String">
 			update resv_history
 			set resv_status = 1,
-			resv_change_date = to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')
+			sitter_id = #{sitter_id}
 			where resv_no=#{resv_no}
 	</update>
+	<!-- 펫시터가 자동승인을 한 후에 나머지 자동예약내역들을 다 취소시킨다  -->
+<!-- 	<update id="autochange">
+			delete resv_history
+			where resv_status = 6
+			and resv_date = #{resv_date}
+			and member_id = #{member_id}
+	</update> -->
 	<!-- 예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인 -->
 	<select id="checkreview" parameterType="java.util.List" resultType="String">
 		select h.resv_no
@@ -226,8 +470,13 @@
 	</select>
 	
 	<!-- 예약번호로 리뷰 읽기 -->
-	<select id="readreview" parameterType="String" resultType="review2" >
+	<select id="readreview" parameterType="String" resultType="review" >
 		select * from review
+		where resv_no = #{resv_no}	
+	</select>
+	<!-- 예약번호로 예약 정보 읽기 -->
+	<select id="read" parameterType="String" resultType="resv" >
+		select * from resv_history
 		where resv_no = #{resv_no}	
 	</select>
 </mapper>

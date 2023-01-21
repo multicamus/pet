@@ -50,11 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.sitter_read(sitter_id);
 	}
 	
-	@Override
-	public SitterImgDTO sitter_img_read(String sitter_id) {
-		return dao.sitter_img_read(sitter_id);
-	}
-	
 	// read - member
 	@Override
 	public MemberDTO member_read(String member_id) {
@@ -63,11 +58,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// update
 	@Override
-	public int update(SitterDTO sitter, SitterImgDTO sitter_img) {
-		int result = dao.update(sitter_img);
-		if(result == 0) {
-			dao.insert(sitter_img);
-		}
+	public int update(SitterDTO sitter) {
 		return dao.update(sitter);
 	}
 
@@ -83,8 +74,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// insert
 	@Override
-	public int insert(SitterDTO sitter, SitterImgDTO sitter_img) {
-		dao.insert(sitter_img);
+	public int insert(SitterDTO sitter) {
 		return dao.insert(sitter);
 	}
 
@@ -129,6 +119,40 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<ResvDTO> sitter_resvlist(String sitter_id) {
 		return dao.sitter_resvlist(sitter_id);
+	}
+
+	@Override
+	public int sitter_rate_update(String sitter_id, String review_rate) {
+		// 분모
+		int denominator = dao.sitter_resvlist(sitter_id).size();
+		
+		// 분자
+		int tmp1;
+		String tmp3 = null;
+		try {
+			tmp3 = dao.sitter_read(sitter_id).getSitter_rate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		if(tmp3 == null) {
+			tmp1 = 0;
+		}else {
+			tmp1 = Integer.parseInt(tmp3);
+		}
+		int tmp2 = Integer.parseInt(review_rate);
+		int numerator = (tmp1 * denominator + tmp2);
+		System.out.println(tmp1);
+		System.out.println(tmp2);
+		System.out.println(tmp3);
+		System.out.println(denominator);
+		
+		// sitter_rate
+		String rate = String.valueOf(numerator / denominator);
+		System.out.println(rate);
+		SitterDTO sitter_rate = new SitterDTO(sitter_id, rate);
+		System.out.println(sitter_rate);
+		return dao.sitter_rate_update(sitter_rate);
 	}
 	
 	

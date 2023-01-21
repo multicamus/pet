@@ -49,7 +49,7 @@ public class AdminController {
 	 * @RequestMapping(value = "/admin/popup", method = RequestMethod.GET) public
 	 * String adminpop() { return null; }
 	 */
-	@RequestMapping("/admin/search.do")
+	@RequestMapping("/mypage/search.do")
 	public ModelAndView search(String category,String search_val) {
 		System.out.println("search컨트롤러");
 		ModelAndView mav = new ModelAndView("mypage/admin");
