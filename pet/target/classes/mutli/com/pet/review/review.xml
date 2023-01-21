@@ -86,7 +86,7 @@
 	</update>
 	
 	<!-- 추가함 BY 오승영 -->
-	<select id="review_no_sitter" parameterType="String" resultType="String">
+	<select id="review_no_sitter" parameterType="String" resultType="review">
 		SELECT r.review_no
 		FROM review r, resv_history h
 		WHERE r.resv_no = h.resv_no

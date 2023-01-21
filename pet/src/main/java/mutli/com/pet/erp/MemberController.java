@@ -20,8 +20,8 @@ import org.springframework.web.util.WebUtils;
 import multi.com.pet.etc.FileUploadLogic;
 import multi.com.pet.resv.ResvDTO;
 import multi.com.pet.resv.ResvService;
-import multi.com.pet.resv.ResvServiceImpl;
 import mutli.com.pet.mypet.PetDTO;
+import mutli.com.pet.review.ReviewDTO;
 import mutli.com.pet.review.ReviewService;
 
 @Controller
@@ -66,7 +66,7 @@ public class MemberController {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
 		String size = null;
-		String review_no  = null;
+		ReviewDTO review_no  = null;
 		String view = "";
 		try {
 			size = String.valueOf(resvService.readStatus(loginUserInfo.getSitter_id()).size());
@@ -116,13 +116,14 @@ public class MemberController {
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
+		ReviewDTO review_no  = reviewService.review_no_sitter(sitter_id);
+		System.out.println(review_no);
 		HttpSession hs = hsr.getSession();
 		String view = "";
 		switch (state) {
 		case "READ":
 			view = "mypage/sitter";
 			model.addAttribute("resvlist", resvlist);
-			
 			break;
 		default:
 			view = "mypage/sitter_update";

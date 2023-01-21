@@ -76,9 +76,9 @@
 												</div>
 												<div class="contact-content">
 													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-													<%-- <c:forEach var="resv" items="${resvlist}" varStatus="status">
+													<c:forEach var="resv" items="${resvlist}" varStatus="status">
 														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
-													</c:forEach> --%>
+													</c:forEach>
 												</div>
 											</div>
 										</div>
@@ -96,9 +96,9 @@
 	                                            <c:when test="${fn:length(resvlist) == 0}">
 	                                            	<p>돌봄경험이 없어요!</p>
 	                                            </c:when>
-	                                            <%-- <c:when test="${fn:length(review_no) == 0}">
+	                                            <c:when test="${fn:length(review_no) == 0}">
 	                                            	<p>아직 등록된 후기가 없어요!</p>
-	                                            </c:when> --%>
+	                                            </c:when>
 	                                            <c:otherwise>
 	                                        		<div class="star-ratings">
 														<div class="star-ratings-fill space-x-2 text-lg" style="width:${sitter.sitter_rate}*20%;">
