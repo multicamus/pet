@@ -76,9 +76,9 @@
 												</div>
 												<div class="contact-content">
 													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-													<c:forEach var="resv" items="${resvlist}" varStatus="status">
+													<%-- <c:forEach var="resv" items="${resvlist}" varStatus="status">
 														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
-													</c:forEach>
+													</c:forEach> --%>
 												</div>
 											</div>
 										</div>
