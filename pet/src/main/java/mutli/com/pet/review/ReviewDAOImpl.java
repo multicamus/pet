@@ -68,7 +68,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	@Override
 	public ReviewDTO review_no_sitter(String sitter_id) {
 		ReviewDTO review_no = sqlSession.selectOne("mutli.com.pet.review.review_no_sitter", sitter_id);
-		return review_no ;
+		return review_no;
 	}
 
 	

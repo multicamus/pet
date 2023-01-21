@@ -116,7 +116,6 @@ public class ResvServiceImpl implements ResvService {
 		return dao.updateFinish();
 	}
 
-
 	@Override
 	public List<SitterDTO> autolist(String gender, String size, String code, String shortAddr) {
 		if(gender.equals("A")) {
@@ -127,14 +126,9 @@ public class ResvServiceImpl implements ResvService {
 		}
 	}
 
-
-
-
-
-
 	//탑에 추가 할 new 의 근거
 	@Override
-	public List<ReviewDTO> readStatus(String sitter_id) {
+	public List<ResvDTO> readStatus(String sitter_id) {
 		return dao.readStatus(sitter_id);
 	}
 

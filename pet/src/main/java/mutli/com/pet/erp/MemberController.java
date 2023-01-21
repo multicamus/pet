@@ -65,10 +65,10 @@ public class MemberController {
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
-		String size = null;
+		List<ResvDTO> size = null;
 		String view = "";
 		try {
-			size = String.valueOf(resvService.readStatus(loginUserInfo.getSitter_id()).size());
+			size = resvService.readStatus(loginUserInfo.getSitter_id());
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -113,6 +113,7 @@ public class MemberController {
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
+		List<ResvDTO> resvlist_status = resvService.readStatus(sitter_id);
 		ReviewDTO review_no  = reviewService.review_no_sitter(sitter_id);
 		System.out.println(review_no);
 		HttpSession hs = hsr.getSession();
@@ -121,7 +122,8 @@ public class MemberController {
 		case "READ":
 			view = "mypage/sitter";
 			model.addAttribute("resvlist", resvlist);
-			model.addAttribute("review_no", review_no);
+			hs.setAttribute("review_no", review_no);
+			hs.setAttribute("resvlist_status", resvlist_status);
 			break;
 		default:
 			view = "mypage/sitter_update";

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
@@ -97,8 +98,7 @@
 									
 									<c:otherwise>
 										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인</a>
-										
-											<c:if test="${size != null}">
+											<c:if test="${fn:length(size) != 0}">
 												<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
 												new!<span class="visually-hidden"></span></span>
 											</c:if>

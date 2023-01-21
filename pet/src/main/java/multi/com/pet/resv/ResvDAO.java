@@ -41,6 +41,6 @@ public interface ResvDAO {
 	public int updateFinish(); 
 	public ReviewDTO readReview(String resv_no);
 	//top에 추가할 new 의 근거
-	public List<ReviewDTO> readStatus(String sitter_id);
+	public List<ResvDTO> readStatus(String sitter_id);
 
 }
