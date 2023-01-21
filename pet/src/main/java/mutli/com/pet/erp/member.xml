@@ -33,7 +33,7 @@
 	<!-- update start -->	
 	<update id="member_update" parameterType="member">
 		UPDATE member_info
-		SET member_gender = #{member_gender}, member_email = #{member_email}, member_phone = ${member_phone}, member_addr1 = #{member_addr1}, member_addr2 = #{member_addr2}, hospital_name = #{hospital_name}, hospital_addr = #{hospital_addr}, member_birthdate = #{member_birthdate}
+		SET member_gender = #{member_gender}, member_email = #{member_email}, member_phone = #{member_phone}, member_addr1 = #{member_addr1}, member_addr2 = #{member_addr2}, hospital_name = #{hospital_name}, hospital_addr = #{hospital_addr}, member_birthdate = #{member_birthdate}
 		WHERE member_id = #{member_id}
 	</update>
 	<update id="sitter_update" parameterType="sitter">

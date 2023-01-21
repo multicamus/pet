@@ -164,10 +164,14 @@
 	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" disabled> 
 	                        </div>
 	                        	
-							<div class="col-lg-8">
+							<div class="col-lg-12 row">
 								<h4>주로 다니는 병원의 이름과 주소</h4>
-								<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" disabled>
-								<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr }" disabled>
+								<div class="col-lg-5">
+									<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" disabled>
+								</div>
+								<div class="col-lg-7">
+									<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" disabled>
+								</div>
 							</div>
 	                        
 	                        <div class="col-12">
