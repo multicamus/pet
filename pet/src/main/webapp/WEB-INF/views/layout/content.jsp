@@ -117,7 +117,7 @@
                     <div class="about-img-wrapper">
                         <div class="about-img position-relative d-inline-block wow fadeInLeft" data-wow-delay=".3s">
                             <img src="/pet/resources/assets/images/main_serviceintro2.jpg" alt="">
-                            <div class="about-experience" style="margin-right: -105%; margin-bottom: 80%;">
+                            <div class="about-experience" style="margin-right: -100%; margin-bottom: 60%;">
                                 <h3>언제든지 펫시터를<br/>부르세요</h3>
                                 <p>요청하신 날짜와 시간에 방문이 가능한 펫시터가 고객님의 예약을 수락하면 예약이 확정됩니다.</p>
                             </div>

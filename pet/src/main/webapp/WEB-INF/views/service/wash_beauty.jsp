@@ -9,11 +9,11 @@
         <section class="feature-section pt-130">
             <div class="container">
                 <div class="row">
-         			<h2 class="text">돌봄 서비스</h2>
+         			<h2 class="text">목욕&미용</h2>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active" aria-current="page">목욕&미용</li>
+                            <ol class="breadcrumb" style="margin-bottom: 50px;">
+                                <li class="breadcrumb-item active" aria-current="page"></li>
                             </ol>
                         </nav>
                     </div>
@@ -30,10 +30,10 @@
                                 <div class="section-title text-center mb-55">
                                     <span class="wow fadeInDown" data-wow-delay=".2s" style="font-size: 40px;margin-bottom:30px;">당신의 반려동물을 위한 최상의 서비스</span>
                                     <p class="wow fadeInUp" data-wow-delay=".4s" style="font-size:20px; margin-bottom:50px; font-weight: bold;">
-                                    바쁜 일상으로 미뤄왔던 당신의 반려동물을 위한 목욕과 미용 서비스! </br> 미쳐몰랐던 반려동물의 미모를 찾아주세요.</br> &nbsp; 저희 GAYO의 엄선된 시터분은 반려견의 발톱 정리와 털정리(미용)서비스 및 
+                                    바쁜 일상으로 미뤄왔던 당신의 반려동물을 위한 목욕과 미용 서비스! </br> 미쳐몰랐던 반려동물의 미모를 찾아주세요.</br> &nbsp; 엄선된 시터분은 반려견의 발톱 정리와 털정리(미용)서비스 및 
                                     반려동물의 피부병을 막기 위한 천연샴푸를 이용한 목욕 서비스까지 제공해드립니다. 
                                         </p>
-                                    <p class="wow fadeInUp" data-wow-delay=".6s">* 이용요금 : 목욕 (₩5,000) / 미용 서비스 (₩5,000)
+                                    <p class="wow fadeInUp" data-wow-delay=".6s">* 이용요금 : 목욕 (기본돌봄서비스 + ₩5,000 추가) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미용 (기본돌봄서비스 + ₩5,000 추가)</p>
                                         <br> * 반려동물 추가에 따라 추가요금이 발생할 수 있습니다</p>
                                 </div>
                             </div>
