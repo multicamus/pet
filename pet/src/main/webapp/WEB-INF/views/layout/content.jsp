@@ -116,8 +116,8 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-img-wrapper">
                         <div class="about-img position-relative d-inline-block wow fadeInLeft" data-wow-delay=".3s">
-                            <img src="/pet/resources/assets/img/about/about-img.png" alt="">
-                            <div class="about-experience">
+                            <img src="/pet/resources/assets/images/main_serviceintro2.jpg" alt="">
+                            <div class="about-experience" style="margin-right: -105%; margin-bottom: 80%;">
                                 <h3>언제든지 펫시터를<br/>부르세요</h3>
                                 <p>요청하신 날짜와 시간에 방문이 가능한 펫시터가 고객님의 예약을 수락하면 예약이 확정됩니다.</p>
                             </div>
@@ -132,7 +132,7 @@
                             <span class="wow fadeInUp" data-wow-delay=".2s"></span>
                         </div>
                         <div class="about-content" style="padding: 20px;">
-                            <p class="mb-45 wow fadeInUp" data-wow-delay=".6s">산책, 돌봄에는 30분부터 2시간까지<br/>시간별 맞춤 플랜이 준비되어 있어요</p>
+                            <p class="mb-45 wow fadeInUp" data-wow-delay=".6s">산책, 돌봄에는 1시간부터 3시간까지<br/>시간별 맞춤 플랜이 준비되어 있어요</p>
                         </div>
                     </div>
                 </div>
@@ -141,10 +141,24 @@
                    <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
                        <div class="row">
                            <div class="col-xl-7 col-lg-7 col-md-6"></div>
+                           <div class="col-xl-22 col-lg-2 col-md-6 text-center">
+                               <div class="single-pricing mb-50">
+                                   <h5>방문 돌봄</h5><br/>
+                                   <h4>25,000원 ~</h4><br/>
+                                   <ul>
+                                       <li>맞춤 배식</li>
+                                       <li>신나는 놀이</li>
+                                       <li>배변/환경 정리</li>
+                                       	<p>60분 이상 예약시 가능</p>
+                                       </li>
+                                   </ul><br/><br/>
+                                   <a href="/pet/menu/service/walk.do" class="theme-btn">자세히 보기</a>
+                               </div>
+                           </div>
                            <div class="col-xl-3 col-lg-3 col-md-6 text-center">
                                <div class="single-pricing mb-50">
                                    <h5>방문 산책</h5><br/>
-                                   <h4>$19,000 부터</h4><br/> 
+                                   <h4>30,000원 ~</h4><br/> 
                                    <ul>
                                        <li>산책 및 매너 교육</li>
                                        <li>간단한 발 닦기</li>
@@ -155,21 +169,7 @@
                                </div>
                            </div>
                            
-                           <div class="col-xl-22 col-lg-2 col-md-6 text-center">
-                               <div class="single-pricing mb-50">
-                                   <h5>방문 돌봄</h5><br/>
-                                   <h4>$19,000 부터</h4><br/>
-                                   <ul>
-                                       <li>맞춤 배식</li>
-                                       <li>신나는 놀이</li>
-                                       <li>배변/환경 정리</li>
-                                       <li>동네 산책
-                                       	<p>60분 이상 예약시 가능</p>
-                                       </li>
-                                   </ul><br/><br/>
-                                   <a href="/pet/menu/service/walk.do" class="theme-btn">자세히 보기</a>
-                               </div>
-                           </div>
+                           
                        </div>
                    </div>
                </div>
@@ -201,13 +201,13 @@
                     </div>
                     <div class="box-content-style service-content row justify-content-center">
                         <div class="col-lg-auto">
-                        	<h4>4단계 신원 검증</h4>
+                        	<h4>철저한 신원 및 능력 검증</h4>
                         </div>
-                        <p>신분증 사본 제출, 등초본 인증, 신원보증 부대, 펫시터 계약서로 신원을 4단계 검증합니다.</p>
+                        <p>신분증 사본 제출, 등초본 인증, 반려동물 관련 자격증, 펫시터 계약서 등으로 신원을 검증합니다.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-5" style="padding-left: 30px;">
+            <!-- <div class="col-lg-6 col-md-5" style="padding-left: 30px;">
                 <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-bootstrap"></i>
@@ -217,10 +217,10 @@
                         	<h4>모든 돌봄 과정 촬영</h4>
                         </div>
                         <p>펫시터의 카메라 착용을 의무화하고 있으며 모든 과정이 촬영되어 실시간으로 중계됩니다.</p>
-                    </div>
+                    </div> 
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-5" style="padding-right: 30px;">
+            </div> -->
+            <!-- <div class="col-lg-6 col-md-5" style="padding-right: 30px;">
                 <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
                         <i class="lni lni-dashboard"></i>
@@ -232,7 +232,7 @@
                         <p>서비스 이용중 예상치 못한 사건/사고 발생시 체계적인 안전 보상 프로그램이 적용됩니다.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-lg-6 col-md-5" style="padding-left: 30px;">
                 <div class="service-box box-style row justify-content-center">
                     <div class="service-icon box-icon-style">
@@ -242,7 +242,7 @@
                         <div class="col-lg-auto">
                         	<h4>최고 전문진과 교육 협업</h4>
                         </div>
-                        <p>TV 동물농장 출연중이신 이찬종 대표님과 펫시터 이론 및 실습 교육을 협업하고 있습니다.</p>
+                        <p>유명한 반려동물 전문가들과 펫시터 이론 및 실습 교육을 협업하고 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -253,7 +253,7 @@
 <!-- ========================= service-section end ========================= -->
 
 <!-- ========================= contact-section start ========================= -->
-<section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100" style="background-image: url('/pet/resources/assets/img/about/about-img.png');">
+<section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100" style="background-image: url('/pet/resources/assets/images/main_serviceintro1.jpg');">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-5 col-lg-7">

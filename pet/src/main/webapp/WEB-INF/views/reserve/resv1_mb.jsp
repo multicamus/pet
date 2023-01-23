@@ -379,6 +379,7 @@ input[type=label]
 													style="cursor: pointer;">[추가]미용(+5,000원)</label>
 											</div>
 										</div>
+											<p style="color: red; font-weight: bold;">※고양이는 안전 상의 이유로 목욕서비스와 산책서비스를 이용하실 수 없습니다.</p>
 									</div>
 								</div>
 								<div class="row">

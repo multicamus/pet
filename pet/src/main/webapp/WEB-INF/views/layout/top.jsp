@@ -38,7 +38,7 @@
 							<ul id="nav" class="navbar-nav ms-auto">
 								<c:choose>
 									<c:when test="${user!=null}">
-										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님^^7</a></li>
+										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님</a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 										<li class="nav-item"><a class="page-scroll"></a></li>
 									</c:when>
