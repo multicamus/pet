@@ -73,11 +73,11 @@
       <!-- iamport.payment.js -->
       <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
       <script>
-          var IMP = window.IMP; 
+     /*      var IMP = window.IMP; 
           IMP.init("imp17001483"); 
-
+ */
       
-          function requestPay() {
+         /*  function requestPay() {
               // IMP.request_pay(param, callback) 결제창 호출
               alert("pay")
               IMP.request_pay({ // param
@@ -110,7 +110,7 @@
             	        alert("결제에 실패하였습니다. 에러 내용: ");
             	      }
               });
-            }
+            } */
           
       </script>
       	
@@ -185,7 +185,7 @@
                                             </div>
                                             <!-- 반려동물정보 제목 -->
                                             <div>
-                                                <span style="margin:10px"><h3>반려동물정보</h3></span>
+                                                 <span style="margin:10px"><h3>예약정보</h3></span>
                                             </div>
                                             <!-- 반려동물사진 & 반려동물이름 & 고양이/강아지-->
                                             <div>

@@ -220,6 +220,31 @@ input[type=label]
 												$("#threehours").hide();
 											}
 										})
+										
+						
+							//고양이를 선택할 때는 목욕, 산책이 선택 불가되도록
+						$("input:checkbox[name='pet_namelist']").on("change", function(){
+							//기존의 선택사항을 초기화시킨다
+							$("#bathselect").show()
+					    	$("#walkselect").show()
+							
+							var select_obj = '';
+						    // 체크한 항목만 취득
+						    var codelist = $("input[name='pet_codelist']:checked");
+						    
+						    $(codelist).each(function() {
+						    	select_obj += $(this).val()
+						    });
+						    //서비스대상에 고양이가 포함되어있으면 목욕과 산책 서비스는 선택불가능하도록 한다
+						    if(select_obj.includes("CAT")){
+						    	$("#bathselect").hide()
+						    	$("#walkselect").hide()
+						    }
+						    
+						    
+							
+								
+						})				
 					})
 </script>
 
@@ -331,16 +356,16 @@ input[type=label]
 											</div>
 										</div>
 										<div
-											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											class="form_toggle row-vh d-flex flex-row justify-content-between" >
+											<div class="form_check_btn" id="bathselect">
 												<input id="check-2" value="bath_service" type="checkbox"
 													name="servicecode"> <label for="check-2"
 													style="cursor: pointer;">[추가]목욕(+5,000원)</label>
 											</div>
 										</div>
 										<div
-											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											class="form_toggle row-vh d-flex flex-row justify-content-between" >
+											<div class="form_check_btn" id="walkselect">
 												<input id="check-3" value="walk_service" type="checkbox"
 													name="servicecode"> <label for="check-3"
 													style="cursor: pointer;">[추가]산책(+3,000원)</label>

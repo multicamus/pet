@@ -101,7 +101,7 @@
 													<label class="form-check-label" for="member_genderM" style="width: 50px">남자</label>
 												</div>
 					                            <div class="form-check form-check-inline" style="display: inline-flex;align-items:center;padding-left: 20px; // Override base .form-check  margin-right: $form-check-inline-margin-x;">
-													<input class="form-check-input" type="radio" name="member_gender" id="member_genderW" value="W" style="{width:50px; position: static;margin-top: 0;margin-right: $form-check-inline-input-margin-x;margin-left: 0;}">
+													<input class="form-check-input" type="radio" name="member_gender" id="member_genderW" value="F" style="{width:50px; position: static;margin-top: 0;margin-right: $form-check-inline-input-margin-x;margin-left: 0;}">
 													<label class="form-check-label" for="member_genderW" style="width: 50px">여자</label>
 												</div>
 					                          </div>

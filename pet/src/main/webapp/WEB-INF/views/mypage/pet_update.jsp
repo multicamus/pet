@@ -155,18 +155,18 @@
 											<c:when test="${pet.pet_code eq 'DOG'}">
 												<div class="row">
 													<div class="col-1">
-														<div>
+														<div  style="cursor: pointer;">
 															<input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
 															<input type="radio" id="CAT" name="pet_code" value="CAT" required>
 														</div>
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="DOG" style="display: inline-block">강아지</label>
+															<label for="DOG" style="display: inline-block;  cursor: pointer;">강아지</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="CAT" style="display: inline-block">고양이</label>
+																<label for="CAT" style="display: inline-block; cursor: pointer;">고양이</label>
 															</div>
 														</div>
 													</div>
@@ -182,11 +182,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="DOG" style="display: inline-block">강아지</label>
+															<label for="DOG" style="display: inline-block; cursor: pointer;">강아지</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="CAT" style="display: inline-block">고양이</label>
+																<label for="CAT" style="display: inline-block; cursor: pointer;">고양이</label>
 															</div>
 														</div>
 													</div>
@@ -216,11 +216,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="gender_m" style="display: inline-block">남자아이</label>
+															<label for="gender_m" style="display: inline-block; cursor: pointer;">남자아이</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="gender_w" style="display: inline-block">여자아이</label>
+																<label for="gender_w" style="display: inline-block; cursor: pointer;">여자아이</label>
 															</div>
 														</div>
 													</div>
@@ -236,11 +236,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="gender_m" style="display: inline-block">남자아이</label>
+															<label for="gender_m" style="display: inline-block; cursor: pointer;">남자아이</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="gender_w" style="display: inline-block">여자아이</label>
+																<label for="gender_w" style="display: inline-block; cursor: pointer;">여자아이</label>
 															</div>
 														</div>
 													</div>
@@ -283,13 +283,13 @@
 													<div class="row">
 														<div class="col-1">
 															<div>
-																<input type="radio" id="neutral_y" name="neuter" value="Y" required checked="checked"> 
-																<input type="radio" id="neutral_n" name="neuter" value="N" required>
+																<input type="radio" id="neutral_y" name="neuter" value="Y" required checked="checked" style="cursor: pointer;">  
+																<input type="radio" id="neutral_n" name="neuter" value="N" required style="cursor: pointer;">
 															</div>
 														</div>
 														<div class="col-11">
-															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
-															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px; cursor: pointer;">중성화 했어요</label><br/>
+															<label for="neutral_n" style="display: inline-block; cursor: pointer;">아직 안했어요</label>
 														</div>
 													</div>
 												</c:when>
@@ -297,13 +297,13 @@
 													<div class="row">
 														<div class="col-1">
 															<div>
-																<input type="radio" id="neutral_y" name="neuter" value="Y" required> 
-																<input type="radio" id="neutral_n" name="neuter" value="N" required checked="checked">
+																<input type="radio" id="neutral_y" name="neuter" value="Y" required style="cursor: pointer;"> 
+																<input type="radio" id="neutral_n" name="neuter" value="N" required checked="checked" style="cursor: pointer;">
 															</div>
 														</div>
 														<div class="col-11">
-															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
-															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px; cursor: pointer;">중성화 했어요</label><br/>
+															<label for="neutral_n" style="display: inline-block; cursor: pointer;">아직 안했어요</label>
 														</div>
 													</div>
 												</c:otherwise>

@@ -337,83 +337,70 @@
                                             </div>
                                             <!-- 예약상세정보끝 -->
                                             <!-- 펫시터정보 제목 -->
-                                            <div style="margin-top: 50px;">
-                                                <span style="margin:10px"><h3>펫시터정보</h3></span>
-                                            </div>
-                                            <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
-                                            <div class="row">
-                                            	<div class="col-2">
-                                            		<c:if test="${resvdto.match_method != 'auto_match' or resvdto.resv_status == 1 || resvdto.resv_status == 5}">
-														<img src="/pet/resources/sitter/${sitter.sitter_photo }" alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
-                                                	</c:if>
-                                                </div>
-                                               <div class="col-8">
-	                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status != 1}">
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : 자동매칭 중입니다.</h5>
-	                                                </c:if>
-	                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status == 1}">
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
-	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
-	                                                </c:if>
-	                                                <c:if test="${resvdto.match_method == 'direct_match' }">
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
-	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
-	                                                </c:if>
-	                                                <c:if test="${resvdto.match_method == 'past_match' }">
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
-	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
-	                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
-	                                               		</c:if>	
-	                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
-	                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
-	                                               		</c:if>
-	                                                </c:if>
-	                                                
-	                                                <c:if test="${resvdto.match_method ne 'auto_match' or resvdto.resv_status !=0 }">
-	                                                	<c:choose>
-	                                                		<c:when test="${sitter.sitter_code eq 'A' }">
-	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
-	                                                		</c:when>
-	                                                		<c:when test="${sitter.sitter_code eq 'C' }">
-	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
-	                                                		</c:when>
-	                                                		<c:otherwise>
-	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
-	                                                		</c:otherwise>
-	                                                	</c:choose>
-	                                                </c:if>
-	                                                
-	                                                <%-- <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
-		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
-		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
-		                                                	
-		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
-		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
-		                                                <%}else{%>
-		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
-		                                                <%} %>	
+                                          
+	                                          	<div>
+		                                            <div style="margin-top: 50px;">
+		                                                <span style="margin:10px"><h3>펫시터정보</h3></span>
+		                                            </div>
+		                                            <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
+		                                            <div class="row">
+		                                            	<div class="col-2">
+		                                            		<c:if test="${resvdto.match_method != 'auto_match' or resvdto.resv_status == 1 or resvdto.resv_status == 5}">
+																<img src="/pet/resources/sitter/${sitter.sitter_photo }" alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+		                                                	</c:if>
+		                                                </div>
+		                                               <div class="col-8">
+			                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status != 1 and resvdto.resv_status != 5}">
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" > 자동매칭 </h5>
+			                                                </c:if>
+			                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status == 1}">
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+			                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+			                                               		</c:if>	
+			                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+			                                               		</c:if>
+			                                                </c:if>
+			                                                <c:if test="${resvdto.match_method == 'direct_match' }">
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+			                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+			                                               		</c:if>	
+			                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+			                                               		</c:if>
+			                                                </c:if>
+			                                                <c:if test="${resvdto.match_method == 'past_match' }">
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%" >펫시터 : ${resvdto.sitter_name }</h5>
+			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
+			                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 남성</h5>
+			                                               		</c:if>	
+			                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
+			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
+			                                               		</c:if>
+			                                                </c:if>
 			                                                
-	                                               <%} %>  --%>
-	                                               
-	                                               		
-	                                               		
-	                                               		
-                                               </div>
-                                            </div>
-                                      
+			                                                <c:if test="${resvdto.match_method ne 'auto_match' or resvdto.resv_status  == 1 or resvdto.resv_status == 5 }">
+			                                                	<c:choose>
+			                                                		<c:when test="${sitter.sitter_code eq 'A' }">
+			                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+			                                                		</c:when>
+			                                                		<c:when test="${sitter.sitter_code eq 'C' }">
+			                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+			                                                		</c:when>
+			                                                		<c:otherwise>
+			                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+			                                                		</c:otherwise>
+			                                                	</c:choose>
+			                                                </c:if>
+		                                               </div>
+		                                            </div>
+	                                      		</div>
+                                      		
                                         </div>
                                         <!-- 예약정보 row-2끝 -->
                                     </div>

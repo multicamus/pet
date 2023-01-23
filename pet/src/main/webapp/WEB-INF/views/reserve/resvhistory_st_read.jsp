@@ -438,14 +438,14 @@ System.out.println(member);%>
 												<h5 style="float: left; margin-left: 50px; margin-top: 5%">이용자
 													: ${member.member_name }</h5>
 												<c:if test="${member.member_gender eq 'M' }">
-													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 														성별 : 남성</h5>
 												</c:if>
 												<c:if test="${member.member_gender eq 'F' }">
-													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 														성별 : 여성</h5>
 												</c:if>
-												<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+												<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 													나이 : 만 ${member.member_age }세</h5>
 											</div>
 										</div>

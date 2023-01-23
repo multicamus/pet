@@ -130,33 +130,37 @@
 										<c:choose>
 											<c:when test="${pet.pet_code eq 'DOG'}">
 												<div class="row">
-													<div class="col-1">
+													<div class="col-6">
 														<div>
-															<input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
-															<input type="radio" id="CAT" name="pet_code" value="CAT" required>
+															<input type="text" id="DOG" placeholder="이름"
+																value="강아지" disabled>
+															<!-- <input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required> -->
 														</div>
 													</div>
-													<div class="col-11" style="margin-left: -20px;">
-														<div>
+													<!-- <div class="col-11" style="margin-left: -20px;">
+														 <div>
 															<label for="DOG" style="display: inline-block">강아지</label>
-														</div>
+														</div> -
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
 																<label for="CAT" style="display: inline-block">고양이</label>
-															</div>
+															</div> 
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div class="row">
-													<div class="col-1">
+													<div class="col-6">
 														<div>
-															<input type="radio" id="DOG" name="pet_code" value="DOG" required> 
-															<input type="radio" id="CAT" name="pet_code" value="CAT" required checked="checked">
+															<!-- <input type="radio" id="DOG" name="pet_code" value="DOG" required disabled> 
+															<input type="radio" id="CAT" name="pet_code" value="CAT" required checked="checked" disabled> -->
+															<input type="text" id="CAT" placeholder="이름"
+																value="고양이" disabled>
 														</div>
 													</div>
-													<div class="col-11" style="margin-left: -20px;">
+													<!-- <div class="col-11" style="margin-left: -20px;">
 														<div>
 															<label for="DOG" style="display: inline-block">강아지</label>
 														</div>
@@ -165,7 +169,7 @@
 																<label for="CAT" style="display: inline-block">고양이</label>
 															</div>
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</c:otherwise>
 										</c:choose>
@@ -185,15 +189,17 @@
 										<c:choose>
 											<c:when test="${pet.pet_gender=='M'}">
 												<div class="row">
-													<div class="col-1">
+													<div class="col-6">
 														<div>
-															<input type="radio" id="gender_m" name="pet_gender"
+															<!-- <input type="radio" id="gender_m" name="pet_gender"
 																value="M" required checked="checked"> <input
 																type="radio" id="gender_w" name="pet_gender" value="F"
-																required>
+																required> -->
+															<input type="text" id="gender_m" placeholder="성별"
+																value="남자아이" disabled>	
 														</div>
 													</div>
-													<div class="col-11" style="margin-left: -20px;">
+													<!-- <div class="col-11" style="margin-left: -20px;">
 														<div>
 															<label for="gender_m" style="display: inline-block">남자아이</label>
 														</div>
@@ -202,20 +208,22 @@
 																<label for="gender_w" style="display: inline-block">여자아이</label>
 															</div>
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div class="row">
-													<div class="col-1">
+													<div class="col-6">
 														<div>
-															<input type="radio" id="gender_m" name="pet_gender"
+															<!-- <input type="radio" id="gender_m" name="pet_gender"
 																value="M" required> <input type="radio"
 																id="gender_w" name="pet_gender" value="F" required
-																checked="checked">
+																checked="checked"> -->
+															<input type="text" id="gender_f" placeholder="성별"
+																value="여자아이" disabled>		
 														</div>
 													</div>
-													<div class="col-11" style="margin-left: -20px;">
+													<!-- <div class="col-11" style="margin-left: -20px;">
 														<div>
 															<label for="gender_m" style="display: inline-block">남자아이</label>
 														</div>
@@ -224,7 +232,7 @@
 																<label for="gender_w" style="display: inline-block">여자아이</label>
 															</div>
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</c:otherwise>
 										</c:choose>

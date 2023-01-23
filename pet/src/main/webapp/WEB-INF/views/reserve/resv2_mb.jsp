@@ -891,11 +891,12 @@ td {
 											경험이 많은 사람</option>
 										<option value="allsize" style="cursor: pointer;">상관
 											없음</option>
-									</select> <a href="javascript:void(0)" class="theme-btn">확인</a>
-									</c:if>
+									</select> 
+<!-- 									<a href="javascript:void(0)" class="theme-btn">확인</a>
+-->									</c:if>
 									<input type="hidden" id="pet_codearray" name="codearray"
 											value="${pet_codearray }" />
-									<p>펫시터분들을 확인해보세요!</p>
+									<!-- <p>펫시터분들을 확인해보세요!</p> -->
 								</div>
 
 								<div class="col-8 justify-content-center">

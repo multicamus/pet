@@ -35,11 +35,14 @@
             <div class="col-xl-7 col-lg-6">
                 <div class="hero-img">
                     <div class="d-inline-block hero-img-right">
-                        <img src="/pet/resources/assets/images/dogwalk.gif" alt="" class="image wow fadeInRight" data-wow-delay=".5s">
-                        <img src="/pet/resources/assets/img/hero/dots.shape.svg" alt="" class="dot-shape">
-                        <div class="video-btn">
+                        <!-- <img src="/pet/resources/assets/images/dogwalk.gif" alt="" class="image wow fadeInRight" data-wow-delay=".5s" style="animation-duration: 5s;"> -->
+                        <video loop muted  autoplay playsinline webkit-playsinline="true" style="display:flex;object-fit:cover;width:100%;height:500px;z-index:10"><source type="video/mp4" src="/pet/resources/assets/images/dog_walk.mp4">
+                        
+                        </video>
+<!--                         <img src="/pet/resources/assets/img/hero/dots.shape.svg" alt="" class="dot-shape">
+ -->                        <!-- <div class="video-btn">
                             <a href="https://www.youtube.com/watch?v=wDfqXR_5yyQ" target="_blank" class="glightbox"><i class="lni lni-play"></i></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -51,7 +54,7 @@
 <section class="feature-section pt-130">
     <div class="container">
         <div class="row">
-       		<div class="col-lg-6 text-center">
+       		<!-- <div class="col-lg-6 text-center">
                 <h5 class="wow fadeInUp" data-wow-delay=".6s">지금까지 
                 <span id="secondo" class="countup count color-1" cup-end="186" cup-append=",">10</span>
                 <span id="secondo" class="countup count color-1" cup-end="429" cup-append="마리">10</span>
@@ -65,7 +68,7 @@
                 <span id="secondo" class="countup count color-1" cup-end="248" cup-append=",">10</span>
                 <span id="secondo" class="countup count color-1" cup-end="902" cup-append="분">10</span>
                 </h2>
-            </div>
+            </div> -->
         	
             <div class="col-lg-12 mx-auto">
                 <div class="section-title text-center mb-20">
