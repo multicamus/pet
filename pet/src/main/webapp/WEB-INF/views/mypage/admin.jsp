@@ -61,8 +61,8 @@
 									<option value="name">이름</option>
 									<option value="email">이메일 주소</option>
 									<option value="phone">전화번호</option>
-									<option value="valid">미승인</option>
-								</select>
+<!-- 									<option value="valid">미승인</option>
+ -->								</select>
 							</div>
 							
 							<div class="col-lg-8">

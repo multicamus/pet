@@ -10,6 +10,11 @@
 		where sitter_id=#{id}
 		
 </update>
+
+<select id="adminList" resultType="sitter">
+		select * from sitter_info
+</select>	
+
 <select id="dynamicSearch" resultType="sitter" parameterType="Map">
 		select * from sitter_info
 		<where>

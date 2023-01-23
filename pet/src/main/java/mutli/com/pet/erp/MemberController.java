@@ -20,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 import multi.com.pet.etc.FileUploadLogic;
 import multi.com.pet.resv.ResvDTO;
 import multi.com.pet.resv.ResvService;
+import mutli.com.pet.AdminService;
 import mutli.com.pet.mypet.PetDTO;
 import mutli.com.pet.review.ReviewDTO;
 import mutli.com.pet.review.ReviewService;
@@ -32,14 +33,17 @@ public class MemberController {
 	ResvService resvService;
 	ReviewService reviewService;
 	FileUploadLogic fileUploadService;
+	AdminService adminservice;
 	
 	@Autowired
-	public MemberController(MemberService service, ResvService resvService, ReviewService reviewService, FileUploadLogic fileUploadService) {
+	public MemberController(MemberService service, ResvService resvService, ReviewService reviewService,
+			FileUploadLogic fileUploadService, AdminService adminservice) {
 		super();
 		this.service = service;
 		this.resvService = resvService;
 		this.reviewService = reviewService;
 		this.fileUploadService = fileUploadService;
+		this.adminservice = adminservice;
 	}
 
 	@RequestMapping(value = "user/login.do", method = RequestMethod.POST)
@@ -60,6 +64,8 @@ public class MemberController {
 		}
 		return view;		
 	}
+
+
 
 	@RequestMapping(value = "sitter/login.do", method = RequestMethod.POST)
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
@@ -191,7 +197,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "admin.do")
 	public String admin(Model model) {
-		List<SitterDTO> sitterlist = service.sitterList();
+		List<SitterDTO> sitterlist = adminservice.adminList();
 		// for문으로 sitterlist를 탐색해서 valid 값이 1면 승인 ,1가 아니면 미승인
 		//변수 세 개를 정의 후 전체 갯수, 1상태의 갯수, 1가 아닌 갯수를 저장하고 sysout출력해보기
 		int total = sitterlist.size();
@@ -210,6 +216,7 @@ public class MemberController {
 			
 		}
 		System.out.println(sitterlist);
+		System.out.println(sitterlist.get(1).getSitter_id());
 		model.addAttribute("total",total);
 		model.addAttribute("atotal",atotal);
 		model.addAttribute("untotal",untotal);

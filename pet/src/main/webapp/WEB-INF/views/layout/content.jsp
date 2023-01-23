@@ -152,7 +152,7 @@
                                        	<p>60분 이상 예약시 가능</p>
                                        </li>
                                    </ul><br/><br/>
-                                   <a href="/pet/menu/service/walk.do" class="theme-btn">자세히 보기</a>
+                                   <a href="/pet/menu/service/care.do" class="theme-btn">자세히 보기</a>
                                </div>
                            </div>
                            <div class="col-xl-3 col-lg-3 col-md-6 text-center">
@@ -165,7 +165,7 @@
                                        <li>배변 정리</li>
                                        <li>맞춤 배식</li>
                                    </ul><br/><br/>
-                                   <a href="/pet/menu/service/care.do" class="theme-btn">자세히 보기</a>
+                                   <a href="/pet/menu/service/walk.do" class="theme-btn">자세히 보기</a>
                                </div>
                            </div>
                            

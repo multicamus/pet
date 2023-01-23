@@ -84,6 +84,7 @@
 	</select>
 	<!-- sitter list end -->
 
+ 
 	<!-- id check -->	
 	<select id="idcheck" parameterType="String" resultType="member">
 		SELECT * from member_info

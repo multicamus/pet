@@ -36,7 +36,9 @@ public interface AdminService {
 	SitterImgDTO getFile(SitterImgDTO sitterinputdata);
 	List<SitterDTO> sitterlList();
 	SitterDTO getSitterInfo(String sitter_id);
-
+	
+	//마이페이지 처음 들어갔을 때 전체 목록 불러오기
+	List<SitterDTO> adminList();
 	
 	
 	

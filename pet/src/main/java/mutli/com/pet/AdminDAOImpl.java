@@ -108,5 +108,9 @@ public class AdminDAOImpl implements AdminDAO {
 		System.out.println("data===="+data);
 		return sqlSession.selectList("mutli.com.pet.dynamicSearch",map);
 	}
+	@Override
+	public List<SitterDTO> adminList() {
+		return sqlSession.selectList("mutli.com.pet.adminList");
+	}
 
 }
