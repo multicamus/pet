@@ -138,6 +138,9 @@ public class MemberController {
 		}
 		model.addAttribute("sitter", sitter);
 		hs.setAttribute("sitter", sitter);
+		//추가 by 여경
+		hs.setAttribute("user", sitter);
+		
 		return view;
 	}
 	

@@ -133,7 +133,7 @@
                                    	   		<p><%=certificate[i] %></p>
                                    	   		<%}}%>
                                             <div class="pt-30"></div>
-                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
+                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 취득정보</button>
                                         </div>
                                     </div>
                                 </div>
@@ -252,6 +252,14 @@
                                    	   		<%}}%>
 		                                </div>
 	                                </div>
+	                                
+	                                <!-- 추가 by 여경 -->
+	                                	<div class="row align-items-center" style="margin-top: 20px;">
+                                        <div class="col-md-auto"><h4>자격증</h4></div>
+                                        <p>*관리자만 수정 가능</p>
+                                        <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5" disabled>${sitter.sitter_certificate}</textarea>
+                                    </div>
+	                                
             
                                 <div class="row pt-100">
                                     <div class="col-12">

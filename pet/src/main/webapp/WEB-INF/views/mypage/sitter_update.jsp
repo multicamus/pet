@@ -321,6 +321,13 @@
 		                                    </div>
 	                                    </div>
 	                                </div>
+	                                <!-- 추가 by 여경 -->
+	                                <c:if test="${user.user_type ne 'S' }">
+	                                	<div class="row align-items-center" style="margin-top: 20px;">
+                                        <div class="col-md-auto"><h4>자격증</h4></div>
+                                        <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5">${sitter.sitter_certificate}</textarea>
+                                    </div>
+	                                </c:if>
 	                                
 	                                <!-- hidden start -->
 	                                <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
