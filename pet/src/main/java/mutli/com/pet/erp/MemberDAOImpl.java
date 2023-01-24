@@ -98,7 +98,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<SitterDTO> sitterList() {
 		List<SitterDTO> sitterlist = sqlSession.selectList("mutli.com.pet.erp.sitterList");
-		System.out.println(sitterlist);
 		return sitterlist;
 	}
 

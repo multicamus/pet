@@ -255,9 +255,18 @@
 	                                
 	                                <!-- 추가 by 여경 -->
 	                                	<div class="row align-items-center" style="margin-top: 20px;">
-                                        <div class="col-md-auto"><h4>자격증</h4></div>
-                                        <p>*관리자만 수정 가능</p>
+                                        <div class="col-md-auto"><h4>자격증</h4><p>*관리자만 수정 가능</p></div>
+                                        <c:choose>
+	                                        <c:when test="${user.valid == '1'}">
+	                                        	<p>*돌봄이 허가 된 시터 입니다.</p>
+	                                        </c:when>
+	                                        <c:otherwise>
+	                                        	<p style="color: red;">*관리자가 확인 중인 시터 입니다.</p>
+	                                        </c:otherwise>
+                                        </c:choose>
                                         <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5" disabled>${sitter.sitter_certificate}</textarea>
+                                        
+                                        
                                     </div>
 	                                
             

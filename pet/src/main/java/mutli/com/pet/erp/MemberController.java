@@ -186,7 +186,7 @@ public class MemberController {
 	@RequestMapping(value = "sitter/insert.do", method = RequestMethod.POST)
 	public String insert(SitterDTO sitter, Model model, HttpSession session) throws IOException {
 		MultipartFile img = sitter.getSitter_img();
-		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
+		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
 		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
 		System.out.println(sitter_img);
 		int result = service.insert(sitter_img);

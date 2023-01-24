@@ -21,11 +21,11 @@
                     <p class="mb-35 wow fadeInLeft" data-wow-delay=".4s">펫시터 방문 돌봄 및 산책 서비스</p>
                     
                     <c:choose>
-	                    <c:when test="${user==null }">
+	                    <c:when test="${user.user_type == 'M' || user == null}">
 	                    	<a href="/pet/menu/login.do" class="theme-btn">예약하기</a>
 	                    </c:when>
 	                    <c:otherwise>
-		                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약하기</a>
+		                    <a href="/pet/menu/reserve/resv1_mb.do" class="theme-btn">예약 확인</a>
 	                    </c:otherwise>
                     </c:choose>
                     
@@ -36,9 +36,7 @@
                 <div class="hero-img">
                     <div class="d-inline-block hero-img-right">
                         <!-- <img src="/pet/resources/assets/images/dogwalk.gif" alt="" class="image wow fadeInRight" data-wow-delay=".5s" style="animation-duration: 5s;"> -->
-                        <video loop muted  autoplay playsinline webkit-playsinline="true" style="display:flex;object-fit:cover;width:100%;height:500px;z-index:10"><source type="video/mp4" src="/pet/resources/assets/images/dog_walk.mp4">
-                        
-                        </video>
+                        <video loop muted autoplay playsinline webkit-playsinline="true" style="display:flex;object-fit:cover;width:100%;height:500px;z-index:10"><source type="video/mp4" src="/pet/resources/assets/images/dog_walk.mp4"></video>
 <!--                         <img src="/pet/resources/assets/img/hero/dots.shape.svg" alt="" class="dot-shape">
  -->                        <!-- <div class="video-btn">
                             <a href="https://www.youtube.com/watch?v=wDfqXR_5yyQ" target="_blank" class="glightbox"><i class="lni lni-play"></i></a>

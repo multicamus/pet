@@ -84,11 +84,7 @@
 									</c:when>
 									
 									<c:when test="${user.user_type == 'M'}">
-										<li class="nav-item"><a
-									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-									data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">예약</a>
+										<li class="nav-item"><a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">예약</a>
 									
 									<ul class="sub-menu collapse" id="submenu-1-1">
 										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
@@ -96,14 +92,14 @@
 									</ul>
 									</c:when>
 									
-									<c:otherwise>
+									<c:when test="${user.user_type == 'S' }">
 										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인</a>
 											<c:if test="${size != 0}">
 												<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
 												new!<span class="visually-hidden"></span></span>
 											</c:if>
-	    										</li>
-									</c:otherwise>
+   										</li>
+									</c:when>
 								</c:choose>
 								
 								<c:choose>
