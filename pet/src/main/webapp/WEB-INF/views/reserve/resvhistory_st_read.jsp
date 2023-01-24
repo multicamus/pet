@@ -635,7 +635,7 @@ System.out.println(member);%>
 
 											<!-- 결제상세정보끝 -->
 											<!-- 결제상세정보끝 -->
-											<c:if test="${resvdto.resv_status == 0}">
+											<c:if test="${resvdto.resv_status == 0 and resvdto.match_method ne 'auto_match'}">
 												<div class=row style="margin-bottom: -10%;">
 													<div class=col-6>
 														<div class="button text-center pb-50">
@@ -644,13 +644,25 @@ System.out.println(member);%>
 																style="display: inline-block; margin-left: 0px">매칭승인</button>
 														</div>
 													</div>
-													<div class=col-6>
-														<div class="button text-center pb-50">
-															<button type="button" class="theme-btn"
-																onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"
-																style="display: inline-block; margin-left: 0px">매칭취소</button>
+														<div class=col-6>
+															<div class="button text-center pb-50">
+																<button type="button" class="theme-btn"
+																	onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"
+																	style="display: inline-block; margin-left: 0px">매칭취소</button>
+															</div>
 														</div>
-													</div>
+												</div>
+											</c:if>
+											
+											<c:if test="${resvdto.resv_status == 0 and resvdto.match_method eq 'auto_match'}">
+												<div class=row style="margin-bottom: -10%;">
+														<div class=col-12>
+															<div class="button text-center pb-50">
+																<button type="button" class="theme-btn"
+																	onclick="location.href='/pet/reserve/approve.do?resv_no=${resvdto.resv_no }'"
+																	style="display: inline-block; margin-left: 0px">매칭승인</button>
+															</div>
+														</div>
 												</div>
 											</c:if>
 											

@@ -211,7 +211,7 @@
                                         	
                                         <%}else{ 
 	                                       		 if(resvdto.getResv_status()==0 && !resvdto.getMatch_method().equals("auto_match")){%>
-	                                      			<span style="margin-right:50px;"><h4>매칭 승인 <br> 대기중</h4></span>
+	                                      			<span style="margin-right:50px;"><h4 style="text-align: center;">매칭 승인 <br> 대기중</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==1){ %>
 	                                      			<span style="margin-right:50px"><h4  style="color: #4361eb;">돌봄 예정</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==0 && resvdto.getMatch_method().equals("auto_match")){%>
