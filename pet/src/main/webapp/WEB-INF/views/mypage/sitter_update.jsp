@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="ko">
+<link rel="stylesheet" href="/pet/resources/assets/css/awesome-bootstrap-checkbox.css">
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
@@ -126,31 +127,36 @@
                                     
                                	 	<div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>성별</h4></div>
-                                    	<div class="col-md-auto">
-	                                    	<c:choose>
-					                        	<c:when test="${sitter.sitter_gender == 'F'}">
-					                        		<div class="form-check form-check-inline">
+                                    	<c:choose>
+				                        	<c:when test="${sitter.sitter_gender == 'F'}">
+				                        		<div class="form-check form-check-inline">
+				                        			<label class="form-check-label" for="genderM" style="margin-left: 0px;">
 				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" disabled="disabled">
-				                                        <label class="form-check-label" for="genderM">남자</label>
+				                                        <span>남자</span>
+			                                        </label>
+		                                        </div>
+		                                        <div class="form-check form-check-inline">
+			                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" checked="checked" disabled="disabled">
+			                                        <label class="form-check-label" for="genderW">여자</label>
+		                                        </div>
+				                        	</c:when>
+				                        	
+				                        	<c:otherwise>
+					                        	<div class="col-md-auto">
+						                        	<div class="form-check form-check-inline">
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="M" checked="checked" disabled="disabled" style="width: 50px;">남자
 			                                        </div>
+		                                        </div>
+	                                          	<div class="col-md-auto">
 			                                        <div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" checked="checked" disabled="disabled">
-				                                        <label class="form-check-label" for="genderW">여자</label>
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="F" disabled="disabled" style="width: 50px;">여자
 			                                        </div>
-					                        	</c:when>
-					                        	<c:otherwise>
-					                        		<div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" checked="checked" disabled="disabled">
-				                                        <label class="form-check-label" for="genderM">남자</label>
-			                                        </div>
-			                                        <div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" disabled="disabled">
-				                                        <label class="form-check-label" for="genderW">여자</label>
-			                                        </div>
-					                        	</c:otherwise>
-				                        	</c:choose>
-			                        	</div>
-                                    </div>
+	                                            </div>
+				                        	</c:otherwise>
+			                        	</c:choose>
+                                   	</div>
+                               
+									
                                     
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이메일</h4></div>
