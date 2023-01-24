@@ -239,6 +239,7 @@ input[type=label]
 						    if(select_obj.includes("CAT")){
 						    	$("#bathselect").hide()
 						    	$("#walkselect").hide()
+						    	$("#beautyselect").hide()
 						    }
 						    
 						    
@@ -373,13 +374,13 @@ input[type=label]
 										</div>
 										<div
 											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											<div class="form_check_btn" id="beautyselect">
 												<input id="check-4" value="beauty_service" type="checkbox"
 													class="servicecode"> <label for="check-4"
 													style="cursor: pointer;">[추가]미용(+5,000원)</label>
 											</div>
 										</div>
-											<p style="color: red; font-weight: bold;">※고양이는 안전 상의 이유로 목욕서비스와 산책서비스를 이용하실 수 없습니다.</p>
+											<p style="color: red; font-weight: bold;">※고양이는 안전 상의 이유로 목욕, 산책, 미용서비스를 이용하실 수 없습니다.</p>
 									</div>
 								</div>
 								<div class="row">
