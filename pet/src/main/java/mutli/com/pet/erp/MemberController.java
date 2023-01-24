@@ -65,16 +65,15 @@ public class MemberController {
 		return view;		
 	}
 
-
-
 	@RequestMapping(value = "sitter/login.do", method = RequestMethod.POST)
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
-		List<ResvDTO> size = null;
+		int size = 0;
 		String view = "";
 		try {
-			size = resvService.readStatus(loginUserInfo.getSitter_id());
+			size = resvService.readStatus(loginUserInfo.getSitter_id()).size();
+			System.out.println(size);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

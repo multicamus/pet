@@ -98,7 +98,7 @@
 									
 									<c:otherwise>
 										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인</a>
-											<c:if test="${fn:length(size) != 0}">
+											<c:if test="${size != 0}">
 												<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
 												new!<span class="visually-hidden"></span></span>
 											</c:if>
