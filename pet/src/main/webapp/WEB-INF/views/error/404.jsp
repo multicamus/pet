@@ -43,87 +43,118 @@
 
         <!-- ========================= header start ========================= -->
         <header class="header bg-white navbar-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="/pet/resources/assets/img/logo/logo2.png" alt="Logo">
-                            </a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                        data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">Home</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-1">
-                                            <li class="nav-item"><a href="index.html">Home Style 1</a></li>
-                                            <li class="nav-item"><a href="#0">Home Style 2</a></li>
-                                            <li class="nav-item"><a href="#0">Home Style 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll" href="about.html">About</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                        data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">Service</a>
-
-                                        <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="service-1.html">Service Style 1</a></li>
-                                            <li class="nav-item"><a href="#0">Service Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll dd-menu active collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                        data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">Pages</a>
-
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="about.html">About Us</a></li>
-                                            <li class="nav-item"><a href="#0">Team Members</a></li>
-                                            <li class="nav-item"><a href="#0">Portfolio</a></li>
-                                            <li class="nav-item"><a href="#0">Portfolio Single</a></li>
-                                            <li class="nav-item"><a href="#0">Counter</a></li>
-                                            <li class="nav-item"><a href="#0">Accordion</a></li>
-                                            <li class="nav-item"><a href="#0">Alerts</a></li>
-                                            <li class="nav-item"><a href="#0">Map</a></li>
-                                            <li class="nav-item active"><a href="404.html">404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                        data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="#0">Blog Style 1</a></li>
-                                            <li class="nav-item"><a href="#0">Blog Style 2</a></li>
-                                            <li class="nav-item"><a href="#0">Blog Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll" href="contact.html">Contact</a>
-                                    </li>
-                                </ul>
-                                <form action="#" class="search-form">
-                                    <input type="text" placeholder="Search">
-                                    <button type="submit"><i class="lni lni-search-alt"></i></button>
-                                </form>
-                            </div> <!-- navbar collapse -->
-                        </nav> <!-- navbar -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-12">
+					<nav class="navbar navbar-expand-lg">
+						<a class="navbar-brand" href="/pet"> <img style="width:100px " src="/pet/resources/assets/img/logo/logo.png" alt="Logo"></a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="toggler-icon"></span> <span class="toggler-icon"></span>
+							<span class="toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+							<ul id="nav" class="navbar-nav ms-auto">
+								<c:choose>
+									<c:when test="${user!=null}">
+										<li class="nav-item"><a class="page-scroll">안녕하세요. ${user.name}님</a></li>
+										<li class="nav-item"><a class="page-scroll"></a></li>
+										<li class="nav-item"><a class="page-scroll"></a></li>
+									</c:when>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/user/register.do">회원가입</a></li>
+									</c:when>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll active" href="/pet/menu/login.do">로그인</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item"><a class="page-scroll active" href="/pet/erp/logout.do" onclick="">로그아웃</a></li>
+										<!-- href="javascript:kakaoDisconnect()" -->
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<li class="nav-item"><a
+									class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+									data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
+									aria-controls="navbarSupportedContent" aria-expanded="false"
+									aria-label="Toggle navigation">돌봄 서비스</a>
+									
+									<ul class="sub-menu collapse" id="submenu-1-1">
+										<li class="nav-item"><a href="/pet/menu/service/care.do">방문 돌봄</a></li>
+										<li class="nav-item"><a href="/pet/menu/service/walk.do">방문 산책</a></li>
+										<li class="nav-item"><a href="/pet/menu/service/beauty.do">방문 목욕과 미용</a></li>
+									</ul>
+								</li>
+								
+								
+								
+								<li class="nav-item"><a class="page-scroll" href="/pet/menu/review.do">이용 후기</a></li>
+								
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/login.do">예약하기</a></li>
+									</c:when>
+									
+									<c:when test="${user.user_type == 'M'}">
+										<li class="nav-item"><a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">예약</a>
+									
+									<ul class="sub-menu collapse" id="submenu-1-1">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/reserve/resv1_mb.do">예약하기</a></li>
+										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인</a>
+									</ul>
+									</c:when>
+									
+									<c:when test="${user.user_type == 'S' }">
+										<li class="nav-item"><a class="page-scroll" href="/pet/reserve/list.do">예약확인</a>
+											<c:if test="${size != 0}">
+												<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
+												new!<span class="visually-hidden"></span></span>
+											</c:if>
+   										</li>
+									</c:when>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${user == null}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/menu/login.do">마이페이지</a></li>
+									</c:when>
+									<c:when test="${user.user_type == 'A'}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/admin.do">마이페이지</a></li>
+									</c:when>
+									<c:when test="${user.user_type == 'M'}">
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/member/read.do?member_id=${user.member_id }&state=READ">마이페이지</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item"><a class="page-scroll" href="/pet/erp/sitter/read.do?sitter_id=${user.sitter_id}&state=READ">마이페이지</a></li>
+									</c:otherwise>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${user.valid == '0'}">
+										<li class="nav-item"><a class="page-scroll" href="https://docs.google.com/forms/d/1Gxm7aSqZRTbJ8SvTCeD2HRxpetM5g_0lqyLEmYeYfX4/edit">펫시터 지원</a></li>
+									</c:when>
+								</c:choose>
+								
+							</ul>
+						</div>
+						<!-- navbar collapse -->
+					</nav>
+					<!-- navbar -->
+				</div>
+			</div>
+			<!-- row -->
+		</div>
+		<!-- container -->
         
         </header>
         <!-- ========================= header end ========================= -->
@@ -156,9 +187,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="page-404-content text-center">
-                            <h2 class="mb-30">404</h2>
-                            <h4 class="mb-40">Page Not Found!</h4>
-                            <a href="/pet" class="theme-btn">Back to Home</a>
+                            <h2 class="mb-30">404 ERROR</h2>
+                            <p class="mb-20">죄송합니다. 페이지를 찾을 수 없습니다.</p>
+                            <p class="mb-20">존재하지 않는 주소를 입력하셨거나</p>
+                            <p class="mb-40">요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.</p>
+                            <a href="/pet" class="theme-btn">홈으로</a>
                         </div>
                     </div>
                 </div>
@@ -169,90 +202,84 @@
 
         <!-- ========================= footer start ========================= -->
         <footer class="footer pt-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
-                            <img src="/pet/resources/assets/img/logo/logo3.png" alt="logo">
-                            <p class="mb-30 footer-desc">We Crafted an awesome desig library that is robust and intuitive to use. No matter you're building a business presentation websit.</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 offset-xl-1 col-lg-2 col-md-6">
-                        <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".4s">
-                            <h4>Quick Link</h4>
-                            <ul class="footer-links">
-                                <li>
-                                    <a href="javascript:void(0)">Home</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Service</a>
-                                </li> 
-                                <li>
-                                    <a href="javascript:void(0)">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".6s">
-                            <h4>Service</h4>
-                            <ul class="footer-links">
-                                <li>
-                                    <a href="javascript:void(0)">Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Branding</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Graphics Design</a>
-                                </li> 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="footer-widget mb-60 wow fadeInRight" data-wow-delay=".8s">
-                            <h4>Contact</h4>
-                            <ul class="footer-contact">
-                                <li>
-                                    <p>+00983467367234</p>
-                                </li>
-                                <li>
-                                    <p>yourmail@gmail.com</p>
-                                </li>
-                                <li>
-                                    <p>United State Of America
-                                    *12 Street House</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="copyright-area">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                             <div class="footer-social-links">
-                                <ul class="d-flex">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="wow fadeInUp" data-wow-delay=".3s">Template Designed by <a href="https://GrayGrids.com" rel="nofollow">GrayGrids</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-xl-3 col-lg-4 col-md-6">
+	                <div class="footer-widget mb-60 wow fadeInLeft" data-wow-delay=".2s">
+	                    <a href="#" class="logo mb-30"><img src="/pet/resources/assets/img/logo/logo4.png" style="width: 100px;" alt="logo"></a>
+	                    <p class="mb-30 footer-desc">
+	                    나는 한때 내가<br/>
+	                    이 세상에 사라지길 바랬어<br/>
+						온 세상이 너무나 캄캄해<br/>
+						매일 밤을 울던 날<br/>
+	                    </p>
+	                </div>
+	            </div>
+	            <div class="col-xl-3 col-lg-4 col-md-6">
+	                <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".6s">
+	                    <h4>Service</h4>
+	                    <ul class="footer-links">
+	                        <li>
+	                            <a href="javascript:void(0)">안전보상제도</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)">질문과 답변</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)">이용 약관</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)">개인정보 취급</a>
+	                        </li> 
+	                        <li>
+	                            <a href="javascript:void(0)">비즈니스 제휴</a>
+	                        </li> 
+	                    </ul>
+	                </div>
+	            </div>
+	            <div class="col-xl-6 col-lg-6 col-md-6">
+	                <div class="footer-widget mb-60 wow fadeInRight" data-wow-delay=".8s">
+	                    <h4>Contact</h4>
+	                    <ul class="footer-contact">
+	                        <li>
+	                            <p>고객센터 문의 : 070 4756 2224</p>
+	                        </li>
+	                        <li>
+	                            <p>hello@gayopet.com</p>
+	                        </li>
+	                        <li>
+	                            <p>사업자 등록번호 : 347-87-00837   |   통신판매업 신고번호 : 제 2017-서울강남-03319</p>
+	                        </li>
+	                        <li>
+	                            <p>(주)펫피플 주소 : 서울시 강남구 논현동 20-2 세정빌딩 3층 (주식회사 펫피플)</p>
+	                        </li>
+	                        <li>
+	                            <p>대표 : 김형하   |   개인정보책임자 : 최여경</p>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <div class="copyright-area">
+	            <div class="row align-items-center">
+	                <div class="col-md-6">
+	                     <div class="footer-social-links">
+	                        <ul class="d-flex">
+	                            <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+	                            <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
+	                            <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+	                            <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	                <div class="col-md-6">
+	                    <p class="wow fadeInUp" data-wow-delay=".3s"><a>Template Designed by GrayGrids</a></p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</footer>
         <!-- ========================= footer end ========================= -->
 
 

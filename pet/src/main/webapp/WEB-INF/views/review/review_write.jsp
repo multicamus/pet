@@ -39,29 +39,31 @@
 				<div class="col-md-12 col-lg-12">
 					<div class="mb-50">
 						<h2>이용후기 작성</h2>
-						<h4>예약번호: ${resv.resv_no }</h4>
+						<%-- <h4>예약번호: ${resv.resv_no }</h4> --%>
+						<h5 style="margin-top: 10px;">돌봄날짜: ${resv.visit_date } ${resv.service_starttime }시</h4>
 					</div>
 					<!-- form 태그 시작 -->
 					<form class="needs-validation" action="/pet/review/insert.do" method="post" enctype="multipart/form-data">
 						<div class="row lg-3">
 							<div class="col-lg-3">
-								<h4>이용자 성함</h4>
-								<input type="text" class="form-control" name="member_id" id="member_id" value="${user.member_id}" readonly="readonly">
-							</div>
-							
-							<div class="col-lg-3">
-								<h4>펫 이름</h4>
+								<h4>반려동물 이름</h4>
 								<input type="text" class="form-control" name="pet_name" id="pet_name" value="${resv.pet_namelist}" readonly>
 							</div>
 							
 							<div class="col-lg-3">
-								<h4>펫시터 성함</h4>
-								<input type="text" class="form-control" name="sitter_name" id="sitter_name" value="${resv.sitter_id}${resv.sitter_name}" readonly>
-							</div>
+								 <!-- <h4>이용자 성함</h4> -->
+								<input type="hidden" class="form-control" name="member_id" id="member_id" value="${user.member_id}" readonly="readonly">
+							</div> 
+							
+							
+							 <div class="col-lg-3">
+								 <!-- <h4>펫시터 성함</h4> -->
+								<input type="hidden" class="form-control" name="sitter_id" id="sitter_name" value="${resv.sitter_id}${resv.sitter_name}" readonly> 
+							</div> 
 
-							<div class="col-lg-8 pt-30">
-								<h4>평점</h4>
-							</div>
+								<div class="col-lg-8 pt-30">
+									<h4>평점</h4>
+								</div>
 
 							<div class="row align-items-center pt-10 pl-50">
 

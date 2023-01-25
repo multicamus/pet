@@ -203,19 +203,19 @@
                                     <div class="col-2">
                                     	<% if(start<now&&now<=end){
                                     			if(resvdto.getResv_status()==1){%>
-                                        			<span style="margin-right:50px"><h4>돌봄 중</h4></span>
+                                        			<span style="margin-right:50px; "><h4>돌봄 중</h4></span>
                                         	<%}else{ %>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
                                         	<%} %>
                                         	
                                         	
                                         <%}else{ 
-	                                       		 if(resvdto.getResv_status()==0){%>
-	                                      			<span style="margin-right:50px;"><h4 style="text-align:center;">매칭 승인 <br> 대기중</h4></span>
+	                                       		 if(resvdto.getResv_status()==0 && !resvdto.getMatch_method().equals("auto_match")){%>
+	                                      			<span style="margin-right:50px;"><h4 style="text-align: center;">매칭 승인 <br> 대기중</h4></span>
 	                                      	<%}else if(resvdto.getResv_status()==1){ %>
 	                                      			<span style="margin-right:50px"><h4  style="color: #4361eb;">돌봄 예정</h4></span>
-	                                      	<%}else if(resvdto.getResv_status()==6){%>
-                                  					<span style="margin-right:50px;"><h4 style="text-align:center;">자동 매칭<br>승인 대기</h4></span>
+	                                      	<%}else if(resvdto.getResv_status()==0 && resvdto.getMatch_method().equals("auto_match")){%>
+                                  					<span style="margin-right:50px; padding : center;"><h4>자동 매칭<br>승인 대기</h4></span>
                                   			<%}else{%>
                                         			<span style='margin-right:50px;' ><h4 style='color:red;'>예약 취소</h4></span>
 	                                  		<%}%>	 
@@ -233,7 +233,7 @@
 				                                        <br>
 				                                </div>        
 			                                </div>
-			                                <%if(resvdto.getResv_status()!=0 && resvdto.getResv_status()!=1 && resvdto.getResv_status()!=6){ %>
+			                                <%if(resvdto.getResv_status()!=0 && resvdto.getResv_status()!=1){ %>
 			                                <div class="row" >
 				                                <div>
 				                                		<span><h5 style="color: red;">예약취소날짜: </h5></span>
@@ -251,6 +251,7 @@
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
                                     </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -292,7 +293,7 @@
                     				
                                     <!-- 더보기 -->
                                     <div class="col-2"  >        
-                                        <div class="button text-center detailread" style="margin-left: 100%;">
+                                        <div class="button text-center detailread" >
                                             <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                     <!-- 더보기 끝 -->
@@ -358,6 +359,7 @@
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
                                     </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -399,19 +401,21 @@
                     				
                                     <!-- 더보기 -->
                                     <div class="col-2">        
-                                        <div class="button text-center detailread" style="margin-left: 100%;">
+                                        <div class="button text-center detailread" >
                                             <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                         <%if(resvdto.getResv_status() == 5) {%>
-                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
-                                        	<div class="button text-center" style="margin-top: 15px; margin-left: 95%;">
-	                                            <a type="button" href="/pet/reserve/review/read.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 보기</a>
-	                                        </div>
-	                                        <%}else{ %>
-	                                        <div class="button text-center" style="margin-top: 15px; margin-left: 90%;">
-	                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no() %>" class="theme-btn"  >후기 남기기</a>
-	                                        </div>
-	                                        <%} %>
+                                        	<%if(reviewlist != null){ %>
+	                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
+		                                        	<div class="button text-center" style="margin-top: 15px;">
+			                                            <a type="button" href="/pet/menu/review/detail.do?review_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 보기</a>
+			                                        </div>
+		                                        <%}else{ %>
+			                                        <div class="button text-center" style="margin-top: 15px;">
+			                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 쓰기</a>
+			                                        </div>
+		                                        <%} %>
+		                                     <%} %>   
 	                                    <%} %>    
                                     	</div>
                                     <!-- 더보기 끝 -->

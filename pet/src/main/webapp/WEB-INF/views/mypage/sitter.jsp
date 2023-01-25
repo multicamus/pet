@@ -68,7 +68,7 @@
                             <div class="row">
                             
                             	<c:choose>
-	                            	<c:when test="${fn:length(resvlist) != 0}">
+	                            	<c:when test="${fn:length(resvlist_status) != 0}">
 										<div class="col-12 col-md-6 col-xl-12">
 											<div class="contact-item">
 												<div class="contact-icon">
@@ -76,8 +76,8 @@
 												</div>
 												<div class="contact-content">
 													<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-													<c:forEach var="resv" items="${resvlist}" varStatus="status">
-														<p><a href="/pet/reserve/list.do">${resv.member_id}</a></p>
+													<c:forEach var="resv" items="${resvlist_status}" varStatus="status">
+														<p><a href="/pet/reserve/list.do">${resv.resv_no}</a></p>
 													</c:forEach>
 												</div>
 											</div>
@@ -91,12 +91,12 @@
                                             <i class="lni lni-map-marker"></i>
                                         </div>
                                         <div class="contact-content">
-                                            <h4><a href="/pet/menu/reserve/resvhistory_st_list.do">나의 돌봄</a></h4>
+                                            <h4><a href="/pet/reserve/list.do">나의 돌봄</a></h4>
                                             <c:choose>
 	                                            <c:when test="${fn:length(resvlist) == 0}">
 	                                            	<p>돌봄경험이 없어요!</p>
 	                                            </c:when>
-	                                            <c:when test="${fn:length(review_no) == 0}">
+	                                            <c:when test="${review_no == null}">
 	                                            	<p>아직 등록된 후기가 없어요!</p>
 	                                            </c:when>
 	                                            <c:otherwise>
@@ -133,7 +133,7 @@
                                    	   		<p><%=certificate[i] %></p>
                                    	   		<%}}%>
                                             <div class="pt-30"></div>
-                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
+                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 취득정보</button>
                                         </div>
                                     </div>
                                 </div>
@@ -214,16 +214,16 @@
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>연락처</h4></div>
                                     	<div class="col-md-auto">
-                                        	<input type="text" name="phone" id="phone" placeholder="전화번호" value="${sitter.sitter_phone}" disabled>
+                                        	<input type="tel" name="phone" id="phone" placeholder="전화번호" value="${sitter.sitter_phone}" disabled>
                                         </div>                                        
                                     </div>
                                     
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>주소</h4></div>
-                                    	<div class="col-md-auto">
+                                    	<div class="col-md-6">
 	                                        <input type="text" name="sitter_addr" id="addr1" placeholder="주소" value="${sitter.sitter_addr1}" disabled>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
 	                                        <input type="text" name="sitter_addr2" id="addr2" placeholder="상세 주소" value="${sitter.sitter_addr2}" disabled>
                                         </div>
                                     </div>
@@ -252,8 +252,31 @@
                                    	   		<%}}%>
 		                                </div>
 	                                </div>
+	                                
+	                                <!-- 추가 by 여경 -->
+	                                	<div class="row align-items-center" style="margin-top: 20px;">
+                                        <div class="col-md-auto"><h4>자격증</h4><p>*관리자만 수정 가능</p></div>
+                                        <c:choose>
+	                                        <c:when test="${user.valid == '1'}">
+	                                        	<p>*돌봄이 허가 된 시터 입니다.</p>
+	                                        </c:when>
+	                                        <c:otherwise>
+	                                        	<p style="color: red;">*관리자가 확인 중인 시터 입니다.</p>
+	                                        </c:otherwise>
+                                        </c:choose>
+                                        <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5" disabled>${sitter.sitter_certificate}</textarea>
+                                        
+                                        
+                                    </div>
+	                                
+	                                <!-- 평점 -->
+	                                <div class="row align-items-center">
+                                        <div class="col-md-auto"><h4>평점</h4></div>
+                                        <textarea name="sitter_rate" id="자기소개" placeholder="평점입니다" rows="1" disabled>${sitter.sitter_rate}</textarea>
+                                    </div>
+	                                
             
-                                <div class="row pt-100">
+                                <div class="row pt-30">
                                     <div class="col-12">
                                         <div class="button text-center">
                                             <a type="button" class="theme-btn" href="/pet/erp/sitter/read.do?sitter_id=${sitter.sitter_id}&state=UPDATE">수정</a>

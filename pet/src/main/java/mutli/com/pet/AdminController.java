@@ -55,9 +55,34 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("mypage/admin");
 		List<SitterDTO> sitterlist = admin_service.search(category,search_val);
 		System.out.println(sitterlist);
+		
+		//전체 펫시터 목록 가져오기
+		List<SitterDTO> totallist = admin_service.adminList();
+		
+		
+		int total = totallist.size();
+		int atotal = 0;//valid가 1인 경우
+		int untotal = 0;
+		for(int i=0; i<totallist.size();i++) {
+			SitterDTO sDto =  totallist.get(i);
+			System.out.println(sDto);
+			if(sDto.getValid().equals("1")) {
+				System.out.println("활동승인");
+				atotal++;
+			}else  {
+				System.out.println("미승인");
+				untotal++;
+			}
+			
+		}
+		
 		mav.addObject("sitterlist", sitterlist);
-		System.out.println("category-----"+category);
-		System.out.println("search===="+search_val);
+
+		mav.addObject("total",total);
+		mav.addObject("atotal",atotal);
+		mav.addObject("untotal",untotal);
+		System.out.println("tag-----"+category);
+		System.out.println("data===="+search_val);
 		return mav;
 	}
 	@RequestMapping(value = "/admin/ajax/list.do", produces = "application/json;charset=utf-8")

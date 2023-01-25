@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public String review_no_sitter(String sitter_id) {
+	public ReviewDTO review_no_sitter(String sitter_id) {
 		return dao.review_no_sitter(sitter_id);
 	}
 	

@@ -8,62 +8,71 @@
 			<if test='code=="D" and size=="S"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and small_career >= 5
+							and small_career >= 10
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="S"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and small_career >= 5
+							and small_career >= 10
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="M"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and medium_career >= 5
+							and medium_career >= 10
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="M"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and medium_career >= 5
+							and medium_career >= 10
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="L"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and large_career >= 5
+							and large_career >= 10
 						]]>
-					and service_area LIKE '%' || #{shortAddr} || '%'	
+					and service_area LIKE '%' || #{shortAddr} || '%'
+					and valid = '1'	
 			</if>
 			<if test='code=="A" and size=="L"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and large_career >= 5
+							and large_career >= 10
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="A"'>
 					<![CDATA[						
 							(sitter_code='A')
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="A"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="C"'>
 					<![CDATA[						
 							(sitter_code='A' or sitter_code ='C')
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 		</where>
 	</select>
@@ -74,50 +83,56 @@
 			<if test='code=="D" and size=="S"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and small_career >= 5
+							and small_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="S"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and small_career >= 5
+							and small_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="M"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and medium_career >= 5
+							and medium_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="M"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and medium_career >= 5
+							and medium_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="L"'>
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
-							and large_career >= 5
+							and large_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="L"'>
 					<![CDATA[						
 							(sitter_code='A')
-							and large_career >= 5
+							and large_career >= 10
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="A" and size=="A"'>
 					<![CDATA[						
@@ -125,6 +140,7 @@
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="D" and size=="A"'>
 					<![CDATA[						
@@ -132,6 +148,7 @@
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 			<if test='code=="C"'>
 					<![CDATA[						
@@ -139,6 +156,7 @@
 							and sitter_gender = #{gender}
 						]]>
 						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'
 			</if>
 		</where>
 	</select>
@@ -151,6 +169,8 @@
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and small_career >= 10
 							and rownum <= 10
 						]]>
 						
@@ -159,6 +179,8 @@
 					<![CDATA[						
 							(sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and small_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -166,6 +188,8 @@
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and medium_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -173,6 +197,8 @@
 					<![CDATA[						
 							(sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and medium_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -180,6 +206,8 @@
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and large_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -187,6 +215,8 @@
 					<![CDATA[						
 							(sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and large_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -194,6 +224,7 @@
 					<![CDATA[						
 							(sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -201,6 +232,7 @@
 					<![CDATA[						
 							(sitter_code='D' or sitter_code='A')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -208,6 +240,7 @@
 					<![CDATA[						
 							(sitter_code='A' or sitter_code ='C')
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -223,6 +256,8 @@
 							(sitter_code='D' or sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and small_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -231,6 +266,8 @@
 							(sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and small_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -239,6 +276,8 @@
 							(sitter_code='D' or sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and medium_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -247,6 +286,8 @@
 							(sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and medium_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -255,6 +296,8 @@
 							(sitter_code='D' or sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and large_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -263,6 +306,8 @@
 							(sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
+							and large_career >= 10
 							and rownum <= 10
 						]]>
 			</if>
@@ -271,6 +316,7 @@
 							(sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -279,6 +325,7 @@
 							(sitter_code='D' or sitter_code='A')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -287,6 +334,7 @@
 							(sitter_code='A' or sitter_code ='C')
 							and sitter_gender = #{gender}
 							and service_area LIKE '%' || #{shortAddr} || '%'
+							and valid = '1'
 							and rownum <= 10
 						]]>
 			</if>
@@ -306,7 +354,8 @@
 						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
-						and service_area LIKE '%' || #{shortAddr} || '%'	
+						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'	
 			</if> 
 			<if test='code=="C"'>
 					<![CDATA[	
@@ -316,7 +365,8 @@
 						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
-						and service_area LIKE '%' || #{shortAddr} || '%'	
+						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'	
 			</if>
 			<if test='code=="A"'>
 					<![CDATA[	
@@ -326,7 +376,8 @@
 						and h.resv_status = 5
 						and to_char(visit_date, 'yyyy-mm-dd') || ' ' || LPAD(service_endtime, 2, '0') || ':00:00' < to_char(sysdate, 'yyyy-mm-dd HH24:MI:SS')	
 					]]>
-						and service_area LIKE '%' || #{shortAddr} || '%'	
+						and service_area LIKE '%' || #{shortAddr} || '%'
+						and valid = '1'	
 			</if>  
 		</where>	
 	</select>
@@ -452,18 +503,13 @@
 			sitter_id = #{sitter_id}
 			where resv_no=#{resv_no}
 	</update>
-	<!-- 펫시터가 자동승인을 한 후에 나머지 자동예약내역들을 다 취소시킨다  -->
-<!-- 	<update id="autochange">
-			delete resv_history
-			where resv_status = 6
-			and resv_date = #{resv_date}
-			and member_id = #{member_id}
-	</update> -->
+
 	<!-- 예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인 -->
 	<select id="checkreview" parameterType="java.util.List" resultType="String">
 		select h.resv_no
 		from resv_history h, review r
 		where r.resv_no = h.resv_no 
+		and r.resv_no in
         <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
             #{item.resv_no}
         </foreach>
@@ -485,7 +531,7 @@
 		SELECT h.resv_no
 		FROM resv_history h
 		WHERE sitter_id = #{sitter_id}
-		  AND resv_status = '0'
+		  AND resv_status = 0
 	</select>
 </mapper>
 

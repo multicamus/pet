@@ -20,8 +20,9 @@ import org.springframework.web.util.WebUtils;
 import multi.com.pet.etc.FileUploadLogic;
 import multi.com.pet.resv.ResvDTO;
 import multi.com.pet.resv.ResvService;
-import multi.com.pet.resv.ResvServiceImpl;
+import mutli.com.pet.AdminService;
 import mutli.com.pet.mypet.PetDTO;
+import mutli.com.pet.review.ReviewDTO;
 import mutli.com.pet.review.ReviewService;
 
 @Controller
@@ -32,14 +33,17 @@ public class MemberController {
 	ResvService resvService;
 	ReviewService reviewService;
 	FileUploadLogic fileUploadService;
+	AdminService adminservice;
 	
 	@Autowired
-	public MemberController(MemberService service, ResvService resvService, ReviewService reviewService, FileUploadLogic fileUploadService) {
+	public MemberController(MemberService service, ResvService resvService, ReviewService reviewService,
+			FileUploadLogic fileUploadService, AdminService adminservice) {
 		super();
 		this.service = service;
 		this.resvService = resvService;
 		this.reviewService = reviewService;
 		this.fileUploadService = fileUploadService;
+		this.adminservice = adminservice;
 	}
 
 	@RequestMapping(value = "user/login.do", method = RequestMethod.POST)
@@ -65,12 +69,11 @@ public class MemberController {
 	public String login(SitterDTO loginUserInfo, Model model, HttpServletRequest hsr) {
 		HttpSession hs = hsr.getSession();
 		SitterDTO user = service.login(loginUserInfo);
-		String size = null;
-		String review_no  = null;
+		int size = 0;
 		String view = "";
 		try {
-			size = String.valueOf(resvService.readStatus(loginUserInfo.getSitter_id()).size());
-			review_no = reviewService.review_no_sitter(loginUserInfo.getSitter_id());
+			size = resvService.readStatus(loginUserInfo.getSitter_id()).size();
+			System.out.println(size);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -78,7 +81,6 @@ public class MemberController {
 		if(user != null) {
 			model.addAttribute("user", new LoginUserDTO(user.getUser_type(), user.getSitter_name(), user.getSitter_id(), user.getSitter_code(), user.getSitter_gender(), user.getSitter_email(), user.getSitter_phone(), user.getSitter_addr1(), user.getSitter_addr2(), user.getSitter_startdate(), user.getSitter_enddate(), user.getSitter_status(), user.getSitter_birthdate(), user.getService_area(), user.getSitter_info(), user.getValid(), user.getSitter_certificate(), user.getSitter_rate()));
 			hs.setAttribute("size", size);
-			hs.setAttribute("review_no ", review_no );
 			view = "home";
 		}else {
 			view = "login";
@@ -116,13 +118,17 @@ public class MemberController {
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
 		SitterDTO sitter = service.sitter_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
+		List<ResvDTO> resvlist_status = resvService.readStatus(sitter_id);
+		ReviewDTO review_no  = reviewService.review_no_sitter(sitter_id);
+		System.out.println(review_no);
 		HttpSession hs = hsr.getSession();
 		String view = "";
 		switch (state) {
 		case "READ":
 			view = "mypage/sitter";
 			model.addAttribute("resvlist", resvlist);
-			
+			hs.setAttribute("review_no", review_no);
+			hs.setAttribute("resvlist_status", resvlist_status);
 			break;
 		default:
 			view = "mypage/sitter_update";
@@ -131,6 +137,9 @@ public class MemberController {
 		}
 		model.addAttribute("sitter", sitter);
 		hs.setAttribute("sitter", sitter);
+		//추가 by 여경
+		hs.setAttribute("user", sitter);
+		
 		return view;
 	}
 	
@@ -142,12 +151,15 @@ public class MemberController {
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
 	public String sitter_update(SitterDTO sitter, HttpSession session) throws IOException {
-
 		MultipartFile img = sitter.getSitter_img();
-		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
-		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
-		service.update(sitter_img);
-
+		if(!img.isEmpty()) {
+			String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
+			SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
+			service.update(sitter_img);
+		}
+		else {
+			service.update(sitter);
+		}
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	
@@ -177,7 +189,7 @@ public class MemberController {
 	@RequestMapping(value = "sitter/insert.do", method = RequestMethod.POST)
 	public String insert(SitterDTO sitter, Model model, HttpSession session) throws IOException {
 		MultipartFile img = sitter.getSitter_img();
-		String path = "C:/Users/ohsy/git/petRe/pet/src/main/webapp/resources/sitter";
+		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
 		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
 		System.out.println(sitter_img);
 		int result = service.insert(sitter_img);
@@ -190,7 +202,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "admin.do")
 	public String admin(Model model) {
-		List<SitterDTO> sitterlist = service.sitterList();
+		List<SitterDTO> sitterlist = adminservice.adminList();
 		// for문으로 sitterlist를 탐색해서 valid 값이 1면 승인 ,1가 아니면 미승인
 		//변수 세 개를 정의 후 전체 갯수, 1상태의 갯수, 1가 아닌 갯수를 저장하고 sysout출력해보기
 		int total = sitterlist.size();
@@ -209,6 +221,7 @@ public class MemberController {
 			
 		}
 		System.out.println(sitterlist);
+		System.out.println(sitterlist.get(1).getSitter_id());
 		model.addAttribute("total",total);
 		model.addAttribute("atotal",atotal);
 		model.addAttribute("untotal",untotal);

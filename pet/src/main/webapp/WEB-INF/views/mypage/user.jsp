@@ -48,7 +48,7 @@
 									<img src="/pet/resources/pet/${pet.pet_photo}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
 								</div>
 								<div class="contact-content">
-									<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
+									<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&member_id=${member.member_id}&state=READ">${pet.pet_name}</a></h4>
 									<p>${pet.pet_code}</p>
 									<p>${pet.pet_kind}</p>
 								</div>
@@ -92,9 +92,9 @@
 									</div>
 									<div class="contact-content">
 										<h4><a href="/pet/reserve/list.do">예약 확인하기!</a></h4>
-										<c:forEach var="resv" items="${resvlist}" varStatus="status">
+										<%-- <c:forEach var="resv" items="${resvlist}" varStatus="status">
 											<p><a href="/pet/reserve/list.do">${resv.sitter_id}</a></p>
-										</c:forEach>
+										</c:forEach> --%>
 									</div>
 								</div>
 							</div>
@@ -110,7 +110,7 @@
 	                 <div class="row">
 	                     <div class="col-xl-10 col-lg-8 mx-auto">
 	                         <div class="section-title text-center mb-50">
-	                            <span class="wow fadeInDown" data-wow-delay=".2s">${member.member_id}님, 안녕하세요!</span>
+	                            <span class="wow fadeInDown" data-wow-delay=".2s">계묘년 새해 복 많이 받으세요!</span>
 	                            <h2 class="wow fadeInUp" data-wow-delay=".4s">${member.member_name}님, 안녕하세요!</h2>
 	                        </div>
 	                    </div>
@@ -164,10 +164,14 @@
 	                        	상세 주소: <input type="text" name="addr2" id="addr2" placeholder="상세 주소" value="${member.member_addr2}" disabled> 
 	                        </div>
 	                        	
-							<div class="col-lg-8">
+							<div class="col-lg-12 row">
 								<h4>주로 다니는 병원의 이름과 주소</h4>
-								<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" disabled>
-								<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr }" disabled>
+								<div class="col-lg-5">
+									<input type="text" name="hospital_name" id="hospital_name" placeholder="동물병원 이름" value="${member.hospital_name}" disabled>
+								</div>
+								<div class="col-lg-7">
+									<input type="text" name="hospital_addr" id="hospital_addr" placeholder="동물병원 주소" value="${member.hospital_addr}" disabled>
+								</div>
 							</div>
 	                        
 	                        <div class="col-12">

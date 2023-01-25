@@ -49,6 +49,7 @@ public class ReviewController {
 	// 텍스트 + 파일 insert
 	@RequestMapping(value = "/review/insert.do", method = RequestMethod.POST)
 	public String insert(ReviewDTO review, HttpSession session) throws IllegalStateException, IOException {
+		System.out.println("review==========:"+review);
 		MultipartFile img = review.getReview_file();
 		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/review");
 		ReviewDTO review_img = fileUploadService.ReviewUploadImg(review, img, path);
@@ -64,6 +65,7 @@ public class ReviewController {
 	public ModelAndView read() {
 		ModelAndView mav = new ModelAndView("review");
 		List<ReviewDTO> readlist = service.read();
+		System.out.println("reviewreadlist:"+readlist);
 		mav.addObject("review", readlist);
 		return mav;
 	}

@@ -45,10 +45,10 @@ public class ResvServiceImpl implements ResvService {
 		return dao.insert(resvdto);
 	}
 	//자동매칭 insert
-	@Override
-	public int autoinsert(ResvDTO resvdto) {
-		return dao.autoinsert(resvdto);
-	}
+//	@Override
+//	public int autoinsert(ResvDTO resvdto) {
+//		return dao.autoinsert(resvdto);
+//	}
 	@Override
 	public List<ResvDTO> resvlist(LoginUserDTO user) {
 		if(user!=null) {
@@ -103,6 +103,7 @@ public class ResvServiceImpl implements ResvService {
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	@Override
 	public List<String> checkReview(List<ResvDTO> resvdto) {
+		System.out.println("checkReview:"+resvdto);
 		return dao.checkReview(resvdto);
 	}
 	//예약번호로 리뷰상세페이지 불러오기
@@ -116,7 +117,6 @@ public class ResvServiceImpl implements ResvService {
 		return dao.updateFinish();
 	}
 
-
 	@Override
 	public List<SitterDTO> autolist(String gender, String size, String code, String shortAddr) {
 		if(gender.equals("A")) {
@@ -127,14 +127,9 @@ public class ResvServiceImpl implements ResvService {
 		}
 	}
 
-
-
-
-
-
 	//탑에 추가 할 new 의 근거
 	@Override
-	public List<ReviewDTO> readStatus(String sitter_id) {
+	public List<ResvDTO> readStatus(String sitter_id) {
 		return dao.readStatus(sitter_id);
 	}
 

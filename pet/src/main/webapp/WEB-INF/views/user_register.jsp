@@ -101,7 +101,7 @@
 													<label class="form-check-label" for="member_genderM" style="width: 50px">남자</label>
 												</div>
 					                            <div class="form-check form-check-inline" style="display: inline-flex;align-items:center;padding-left: 20px; // Override base .form-check  margin-right: $form-check-inline-margin-x;">
-													<input class="form-check-input" type="radio" name="member_gender" id="member_genderW" value="W" style="{width:50px; position: static;margin-top: 0;margin-right: $form-check-inline-input-margin-x;margin-left: 0;}">
+													<input class="form-check-input" type="radio" name="member_gender" id="member_genderW" value="F" style="{width:50px; position: static;margin-top: 0;margin-right: $form-check-inline-input-margin-x;margin-left: 0;}">
 													<label class="form-check-label" for="member_genderW" style="width: 50px">여자</label>
 												</div>
 					                          </div>
@@ -110,7 +110,7 @@
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>연락처</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="member_phone" id="member_phone" placeholder="000-0000-0000" required>
+					                          	  <input type="tel" name="member_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" autofocus>
 					                          </div>
 					                      </div>
 					                	  <!-- member_addr start -->
@@ -249,7 +249,7 @@
 					                      <div class="row align-items-center">
 					                      	  <div class="col-md-auto"><h4>연락처</h4></div>
 					                          <div class="col-md-4">
-					                              <input type="text" name="sitter_phone" id="sitter_phone" placeholder="000-0000-0000" required value="">
+					                       		  <input type="tel" name="sitter_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" autofocus>
 					                          </div>
 					                      </div>
 					                	  <!-- sitter_addr start -->
@@ -451,6 +451,10 @@
 	const remove = (obj) => {
 	    document.getElementById("sitter_certificate").removeChild(obj.parentNode);
 	}
-  
+	const autoHyphen = (target) => {
+		target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
 </script>
 </html>

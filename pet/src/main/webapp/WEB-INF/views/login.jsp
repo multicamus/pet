@@ -42,19 +42,19 @@
 				                     </div>
 				                </div>
 				                <form action="/pet/erp/user/login.do" class="contact-form" method="post">
-				                      <div class="row">
+				                      <div class="row" style="margin-left: 100px;">
 				                          <div class="col-md-10">
 				                              <input type="text" name="member_id" id="member_id" placeholder="아이디" required>
 				                          </div>
 				                      </div>
-				                      <div class="row">
+				                      <div class="row"  style="margin-left: 100px;">
 				                          <div class="col-md-10">
 				                              <input type="password" name="member_pass" id="member_pass" placeholder="패스워드" required>
 				                          </div>
 				                      </div>
 				                      <div class="pt-50">
 			                             <button type="submit" class="theme-btn">로그인</button>
-			                             <a type="button" class="theme-btn" href="javascript:kakaoLogin();" style="margin-bottom:0px">카카오로 로그인</a>
+<!-- 			                             <a type="button" class="theme-btn" href="javascript:kakaoLogin();" style="margin-bottom:0px">카카오로 로그인</a> -->
 		                              </div>
 			                 	</form>
 			                 </div>
@@ -78,19 +78,20 @@
 				                </div>
 				                
 				                <form action="/pet/erp/sitter/login.do" class="contact-form" method="post">
-				                      <div class="row">
-				                          <div class="col-md-10">
+				                      <div class="row" style="margin-left: 100px;">
+				                          <div class="col-md-10" >
 				                              <input type="text" name="sitter_id" id="sitter_id" placeholder="아이디" required>
 				                          </div>
 				                      </div>
-				                      <div class="row">
+				                      <div class="row" style="margin-left: 100px;">
 				                          <div class="col-md-10">
 				                              <input type="password" name="sitter_pass" id="sitter_pass" placeholder="패스워드" required>
 				                          </div>
 				                      </div>
 						              <div class="pt-50">
 				                          <button type="submit" class="theme-btn">로그인</button>
-			                              <a type="button" class="theme-btn" href="javascript:kakaoLogin()" style="margin-bottom:0px">카카오 로그인</a>
+
+<!-- 			                              <a type="button" class="theme-btn" href="javascript:kakaoLogin()" style="margin-bottom:0px">카카오 로그인</a> -->
 			                          </div>
                             	</form>
                   				</div>
@@ -109,8 +110,9 @@
 	<input name="member_birthdate" id="birthday" type="hidden" value="">
 	<button type="submit" style="display:none;">제출</button>
 </form>
-<a href="javascript:kakaoLogout();">로그 아웃</a>
-<a href="javascript:kakaoDisconnect();">로그 아웃</a>
+
+<!-- <a href="javascript:kakaoLogout();">로그 아웃</a> -->
+<!-- <a href="javascript:kakaoDisconnect();">로그 아웃</a> -->
 <!-- hidden end -->
 
 <!-- ========================= pricing-section end ========================= -->

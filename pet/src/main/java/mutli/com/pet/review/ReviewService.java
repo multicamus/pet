@@ -17,5 +17,5 @@ public interface ReviewService {
 	ReviewDTO read_detail_ajax_next(String review_no);
 
 //	가장 최근 후기 by 오승영
-	String review_no_sitter(String sitter_id);
+	ReviewDTO review_no_sitter(String sitter_id);
 }

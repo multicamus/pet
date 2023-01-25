@@ -53,7 +53,7 @@ public  class ResvDAOImpl implements ResvDAO {
 		map.put("size", size);
 		map.put("code", code);
 		map.put("shortAddr", shortAddr);
-		return sqlsession.selectList("mutli.com.pet.resv.autolistAllgender");
+		return sqlsession.selectList("mutli.com.pet.resv.autolistAllgender", map);
 	}
 
 	@Override
@@ -95,19 +95,19 @@ public  class ResvDAOImpl implements ResvDAO {
 		return sqlsession.insert("mutli.com.pet.resv.insert", resvdto);
 	}
 	//자동매칭 insert
-	@Override
-	public int autoinsert(ResvDTO resvdto) {
-		String idlist = resvdto.getSitter_id();
-		int autocount = 0;
-		if(idlist.length()!=0) {
-			if(resvdto.getSitter_id().contains(",")) {			
-					autocount += sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
-			}else {
-				autocount = sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
-			}
-		}
-		return autocount;
-	}
+//	@Override
+//	public int autoinsert(ResvDTO resvdto) {
+//		String idlist = resvdto.getSitter_id();
+//		int autocount = 0;
+//		if(idlist.length()!=0) {
+//			if(resvdto.getSitter_id().contains(",")) {			
+//					autocount += sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+//			}else {
+//				autocount = sqlsession.insert("mutli.com.pet.resv.autoinsert", resvdto);
+//			}
+//		}
+//		return autocount;
+//	}
 
 	@Override
 	public List<ResvDTO> memberresvlist(String member_id) {
@@ -164,6 +164,7 @@ public  class ResvDAOImpl implements ResvDAO {
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	@Override
 	public List<String> checkReview(List<ResvDTO> resvdto) {
+		System.out.println("checkReview:"+resvdto);
 		return sqlsession.selectList("mutli.com.pet.resv.checkreview", resvdto);
 	}
 	
@@ -189,8 +190,8 @@ public  class ResvDAOImpl implements ResvDAO {
 
 	//탑에 추가 할 new 의 근거
 	@Override
-	public List<ReviewDTO> readStatus(String sitter_id) {
-		return sqlsession.selectList(sitter_id);
+	public List<ResvDTO> readStatus(String sitter_id) {
+		return sqlsession.selectList("mutli.com.pet.resv.readstatus", sitter_id);
 	}
 
 

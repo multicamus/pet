@@ -4,6 +4,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!doctype html>
 <html class="no-js" lang="ko">
 <head>
@@ -71,11 +73,11 @@
       <!-- iamport.payment.js -->
       <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
       <script>
-          var IMP = window.IMP; 
+     /*      var IMP = window.IMP; 
           IMP.init("imp17001483"); 
-
+ */
       
-          function requestPay() {
+         /*  function requestPay() {
               // IMP.request_pay(param, callback) 결제창 호출
               alert("pay")
               IMP.request_pay({ // param
@@ -108,7 +110,7 @@
             	        alert("결제에 실패하였습니다. 에러 내용: ");
             	      }
               });
-            }
+            } */
           
       </script>
       	
@@ -178,17 +180,17 @@
                                             <!-- 예약정보 제목 -->
                                             <div class="col-xl-10 col-lg-8 mx-auto">
                                                 <div class="section-title text-center mb-20">
-                                                    <span class="wow fadeInDown" data-wow-delay=".2s">예약정보</span>
+                                                    <span class="wow fadeInDown" data-wow-delay=".2s">예약정보를 잘 확인해주세요!</span>
                                                 </div>
                                             </div>
                                             <!-- 반려동물정보 제목 -->
                                             <div>
-                                                <span style="margin:10px"><h3>반려동물정보</h3></span>
+                                                 <span style="margin:10px"><h3>예약정보</h3></span>
                                             </div>
                                             <!-- 반려동물사진 & 반려동물이름 & 고양이/강아지-->
                                             <div>
                                             <%for(int i=0; i<petlist.size(); i++) {%>
-                                                <img src="/pet/resources/pet/<%=petlist.get(i).getPet_photo() %>"
+                                                 <img src="/pet/resources/pet/<%=petlist.get(i).getPet_photo() %>" 
                                                     alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
                                                 <h5 style="float:left; margin-left: 50px; margin-top: 35px;" ></h5>
                                             <%} %>
@@ -215,18 +217,20 @@
                                                     	<%} %>
                                                 </div> --%>
                                                 <div>
-                                                
+                                                <c:if test="${resvdot.walk_service eq 'Y' }">
+                                                	+ 산책
+                                                </c:if>
                                                     <h5 style="line-height:200%;display: inline;">서비스 종류:</h5> 
                                                     	<span style="font-size:20px" id="service">돌봄(기본)
-                                                    <%if(resvdto.getWalk_service() == 'Y')  {%>
-                                                   							+ 산책
-                                                   	<%}%>	
-                                                   	<%if(resvdto.getBath_service() == 'Y')  {%>
-                                                   							+ 목욕
-                                                   	<%}%>	
-                                                   	<%if(resvdto.getBeauty_service() == 'Y')  {%>
-                                                   							+ 미용
-                                                   	<%}%></span>						
+	                                                    <c:if test="${resvdot.walk_service eq 'Y' }">
+	                                                			+ 산책
+	                                                	</c:if>
+                                                   		<c:if test="${resvdot.bath_service eq 'Y' }">
+	                                                			+ 목욕
+	                                                	</c:if>
+	                                                  	<c:if test="${resvdot.beauty_service eq 'Y' }">
+	                                                			+ 미용
+	                                                	</c:if>					
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline; ">서비스 장소:</h5> 
@@ -326,9 +330,11 @@
                                             </div>
                                             <!-- 펫시터사진 & 펫시터이름 & 고양이/강아지/둘다 펫시터-->
                                             <div class="row">
-                                            	<div class="col-2">
-													<img src="/pet/resources/sitter/${sitter.sitter_photo }" alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
-                                                </div>
+                                            	<c:if test="${resvdto.match_method ne 'auto_match' }">
+	                                            	<div class="col-2">
+														<img src="/pet/resources/sitter/${sitter.sitter_photo }" alt="해당 서비스 펫시터" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none; float:left;">
+	                                                </div>
+                                                </c:if>
                                                 <div class="col-8">
 	                                                <c:if test="${resvdto.match_method == 'auto_match' }">
 	                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : 자동매칭 중입니다.</h5>
@@ -354,8 +360,21 @@
 	                                               		</c:if>
 	                                                </c:if>
 	                                                
+	                                                <c:if test="${resvdto.match_method ne 'auto_match' }">
+	                                                	<c:choose>
+	                                                		<c:when test="${sitter.sitter_code eq 'A' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:when test="${sitter.sitter_code eq 'C' }">
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
+	                                                		</c:when>
+	                                                		<c:otherwise>
+	                                                			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 펫시터</h5>
+	                                                		</c:otherwise>
+	                                                	</c:choose>
+	                                                </c:if>
 	                                                
-	                                                <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
+	                                               <%--  <%if (!resvdto.getMatch_method().equals("auto_match")) {%>
 		                                                <% if(resvdto.getPet_codelist().contains("DOG") && resvdto.getPet_codelist().contains("CAT")){ %>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >강아지 & 고양이 펫시터</h5>
 		                                                <%}else if(resvdto.getPet_codelist().contains("DOG")){  %>
@@ -363,11 +382,7 @@
 		                                                <%}else{%>
 		                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >고양이 펫시터</h5>
 		                                                <%} %>	
-	                                               <%} %> 
-	                                               
-	                                               		
-	                                               		
-	                                               		
+	                                               <%} %>  --%>
                                                </div>
                                             </div>
                                         </div>
@@ -389,7 +404,7 @@
                                         <!-- 결제정보 row-2 -->
                                         <div class="row">
                                             <!-- 결제정보 제목 -->
-                                            <div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:50px ;">
+                                            <div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:10px ;">
                                                 <div class="section-title text-center mb-20">
                                                     <span class="wow fadeInDown" data-wow-delay=".2s">결제정보</span>
                                                 </div>
@@ -397,20 +412,16 @@
                                             <!-- 결제정보 제목 끝-->
 
                                             <!-- 결제상세정보 -->
-                                            <div style="margin-top:20px; ">
-                                                <div>
-                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
-                                                    <span style="font-size:20px">결제 완료</span>
-                                                </div>
-                                                <div>
+                                            <div>
+	                                        <!--  <div>
                                                     <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
                                                     <span style="font-size:20px">ㅇㅇㅇㅇ-ㅇㅇ-ㅇㅇ</span>
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">결제방법:</h5> 
                                                     <span style="font-size:20px">삼성비자/일시불</span>
-                                                </div>
-                                                <div>
+                                                </div> -->
+                                                <div style="margin-bottom: 50px;">
                                                     <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
                                                     <span style="font-size:20px">${resvdto.total_price }원</span>
                                                 </div>

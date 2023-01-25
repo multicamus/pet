@@ -223,17 +223,17 @@ System.out.println(member);%>
 											<div>
 												<h5 style="line-height: 200%; display: inline;">취소여부:</h5>
 												<c:choose>
-													<c:when test="${resvdto.resv_status == 0 }">
+													<c:when test="${resvdto.resv_status == 0 and resvdto.match_method eq 'auto_match' }">
+														<span
+															style="font-size: 20px; font-weight: bold; color: #4361eb;">자동매칭요청중</span>
+													</c:when>
+													<c:when test="${resvdto.resv_status == 0 and resvdto.match_method ne 'auto_match'}">
 														<span
 															style="font-size: 20px; font-weight: bold; color: #4361eb;">매칭요청중</span>
 													</c:when>
 													<c:when test="${resvdto.resv_status == 1 }">
 														<span
 															style="font-size: 20px; font-weight: bold; color: #4361eb;">매칭완료</span>
-													</c:when>
-													<c:when test="${resvdto.resv_status == 6 }">
-														<span
-															style="font-size: 20px; font-weight: bold; color: #4361eb;">자동매칭요청중</span>
 													</c:when>
 													<c:when test="${resvdto.resv_status == 5 }">
 														<span
@@ -438,14 +438,14 @@ System.out.println(member);%>
 												<h5 style="float: left; margin-left: 50px; margin-top: 5%">이용자
 													: ${member.member_name }</h5>
 												<c:if test="${member.member_gender eq 'M' }">
-													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 														성별 : 남성</h5>
 												</c:if>
 												<c:if test="${member.member_gender eq 'F' }">
-													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+													<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 														성별 : 여성</h5>
 												</c:if>
-												<h5 style="float: left; margin-left: 50px; margin-top: 5%;">펫시터
+												<h5 style="float: left; margin-left: 50px; margin-top: 5%;">이용자
 													나이 : 만 ${member.member_age }세</h5>
 											</div>
 										</div>
@@ -466,7 +466,7 @@ System.out.println(member);%>
 								<!-- 결제정보 칸 wrapper -->
 								<!-- 결제정보 wrapper 끝 -->
 								<c:if
-									test="${resvdto.resv_status ==0 or resvdto.resv_status == 1  or resvdto.resv_status == 6}">
+									test="${resvdto.resv_status ==0 or resvdto.resv_status == 1}">
 									<div class="contact-form-wrapper">
 										<div class="row">
 											<div class="col-xl-10 col-lg-8 mx-auto"
@@ -619,7 +619,7 @@ System.out.println(member);%>
 									</div>
 								</c:if>
 								<c:if
-									test="${resvdto.resv_status == 0 or resvdto.resv_status == 1 or resvdto.resv_status == 6}">
+									test="${resvdto.resv_status == 0 or resvdto.resv_status == 1}">
 									<div class="contact-form-wrapper">
 										<!-- 결제정보 row-2 -->
 										<div class="row">
@@ -635,7 +635,7 @@ System.out.println(member);%>
 
 											<!-- 결제상세정보끝 -->
 											<!-- 결제상세정보끝 -->
-											<c:if test="${resvdto.resv_status == 0 or resvdto.resv_status == 6}">
+											<c:if test="${resvdto.resv_status == 0 and resvdto.match_method ne 'auto_match'}">
 												<div class=row style="margin-bottom: -10%;">
 													<div class=col-6>
 														<div class="button text-center pb-50">
@@ -644,13 +644,25 @@ System.out.println(member);%>
 																style="display: inline-block; margin-left: 0px">매칭승인</button>
 														</div>
 													</div>
-													<div class=col-6>
-														<div class="button text-center pb-50">
-															<button type="button" class="theme-btn"
-																onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"
-																style="display: inline-block; margin-left: 0px">매칭취소</button>
+														<div class=col-6>
+															<div class="button text-center pb-50">
+																<button type="button" class="theme-btn"
+																	onclick="location.href='/pet/reserve/cancel.do?resv_no=${resvdto.resv_no }'"
+																	style="display: inline-block; margin-left: 0px">매칭취소</button>
+															</div>
 														</div>
-													</div>
+												</div>
+											</c:if>
+											
+											<c:if test="${resvdto.resv_status == 0 and resvdto.match_method eq 'auto_match'}">
+												<div class=row style="margin-bottom: -10%;">
+														<div class=col-12>
+															<div class="button text-center pb-50">
+																<button type="button" class="theme-btn"
+																	onclick="location.href='/pet/reserve/approve.do?resv_no=${resvdto.resv_no }'"
+																	style="display: inline-block; margin-left: 0px">매칭승인</button>
+															</div>
+														</div>
 												</div>
 											</c:if>
 											

@@ -103,5 +103,10 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("data===="+data);
 		return dao.titlesearch(tag, data);
 	}
+	//관리자페이지 처음 들어갔을 때 시터 목록 조회
+	@Override
+	public List<SitterDTO> adminList() {
+		return dao.adminList();
+	}
 
 }

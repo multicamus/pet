@@ -19,6 +19,7 @@ public class PetDTO {
 	private String pet_photo;
 	private String pet_note;
 	private String pet_number;
+	
 //	0118 오승영 추가
 	private MultipartFile pet_img;
 	

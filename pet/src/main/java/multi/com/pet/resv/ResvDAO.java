@@ -19,7 +19,7 @@ public interface ResvDAO {
 	//자동매칭외의 insert
 	int insert(ResvDTO resvdto);
 	//자동매칭 insert
-	int autoinsert(ResvDTO resvdto);
+	//int autoinsert(ResvDTO resvdto);
 	
 	List<ResvDTO> memberresvlist(String member_id);
 	// 예약번호로 예약 데이터 가져오기
@@ -41,6 +41,6 @@ public interface ResvDAO {
 	public int updateFinish(); 
 	public ReviewDTO readReview(String resv_no);
 	//top에 추가할 new 의 근거
-	public List<ReviewDTO> readStatus(String sitter_id);
+	public List<ResvDTO> readStatus(String sitter_id);
 
 }

@@ -163,95 +163,89 @@ input[type=label]
 </style>
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 						//한 반려동물의 이름, 종, id를 같은 클래스로 묶음
 						//한 반려동물의 이름 체크박스의 체크여부에 변화가 일어나면
-						$("input:checkbox[name='pet_namelist']").on("change",
-								function() {
+						$("input:checkbox[name='pet_namelist']").on("change", function() {
 									//해당 이름체크박스의 체크 여부를 가져온다.
 									val = $(this).is(":checked")
 									//해당 이름체크박스의 클래스 이름을 가져온다
 									classname = $(this).attr("class")
 									//해당 클래스의 이름, 종, id 체크박스의 체크 여부를 위의 체크여부(val)로 바꾼다
 									$("." + classname).prop("checked", val);
-
 								})
-
-						$("#date")
-								.on(
-										"change",
-										function() {
+						$("#date").on("change", function() {
 											//선택한 날짜를 가져온다.
 											date = $("#date").prop("value");
-											//오늘 날짜를 가녀온다
+											//오늘 날짜와 시간을 가져온다
 											var now = new Date();
 
 											var year = now.getFullYear();
-											var mon = (now.getMonth() + 1) > 9 ? ''
-													+ (now.getMonth() + 1)
-													: '0'
-															+ (now.getMonth() + 1);
-											var day = now.getDate() > 9 ? ''
-													+ now.getDate() : '0'
-													+ now.getDate();
-											var todaydate = year + '-' + mon
-													+ '-' + day;
-
-											var hours = ('0' + now.getHours())
-													.slice(-2);
-											var minutes = ('0' + now
-													.getMinutes()).slice(-2);
-											var todaydatetime = hours + ''
-													+ minutes;
-
+											//선택한 월과 일이 두자리수면 그대로 가져오고 한자리 수면 앞에 0을 붙인다
+											var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
+											var day = now.getDate() > 9 ? ''+ now.getDate() : '0' + now.getDate();
+											//위의 셋팅된 년,월,일을 하이픈으로 이어준다
+											var todaydate = year + '-' + mon + '-' + day;
+											//시, 분이 두자리수면 그대로 가져오고 한자리수면 앞에 0을 붙인다.
+											var hours = ('0' + now.getHours()).slice(-2);
+											var minutes = ('0' + now.getMinutes()).slice(-2);
+											var todaydatetime = hours + ''+ minutes;
+											
+											//시+분을 숫자로 바꾼다
 											todaytime = Number(todaydatetime)
 
 											sel = $("select[name='service_starttime'] option")
 
 											//전에 disabled되어있던 시간option에 disalbed를 다 해제시킨다
-											$(
-													"select[name='service_starttime'] option")
-													.prop("disabled", false)
+											$("select[name='service_starttime'] option").prop("disabled", false)
 											//만약에 오늘날짜와 예약날짜가 같다면
 											if (date === todaydate) {
-
 												//모든 시간선택 option들에 대해서 반복문을 돌린다.
 												for (i = 0; i < sel.length; i++) {
 													//i번째 시간 option의 값을 불러온다.
-													starttime = $(
-															"select[name='service_starttime'] option:eq("
-																	+ i + ")")
-															.attr("value")
+													starttime = $("select[name='service_starttime'] option:eq("+ i + ")").attr("value")
 													//현재시간에 2시간을 더한 시간보다 i번째 시간 option이 작으면 disabled처리 시킨다.
 													if ((todaytime + 300) > starttime * 100) {
-														val = $("select[name='service_starttime'] option:eq("
-																+ i + ")")
-														val.prop("disabled",
-																true)
-
+														val = $("select[name='service_starttime'] option:eq("+ i + ")")
+														val.prop("disabled", true)
 													}
-
 												}
 											}
-
 										})
 
-						$("#service_starttime")
-								.on(
-										"change",
-										function() {
-
-											val = $(
-													"#service_starttime option:selected")
-													.val();
-
+						$("#service_starttime").on("change", function() {
+							//오후 8시(20시)를 선택한 경우 서비스이용시간에서 3시간은 선택못하도록 한다.
+											val = $("#service_starttime option:selected").val();
 											if (val == 20) {
 												$("#threehours").hide();
 											}
 										})
-
+										
+						
+							//고양이를 선택할 때는 목욕, 산책이 선택 불가되도록
+						$("input:checkbox[name='pet_namelist']").on("change", function(){
+							//기존의 선택사항을 초기화시킨다
+							$("#bathselect").show()
+					    	$("#walkselect").show()
+							
+							var select_obj = '';
+						    // 체크한 항목만 취득
+						    var codelist = $("input[name='pet_codelist']:checked");
+						    
+						    $(codelist).each(function() {
+						    	select_obj += $(this).val()
+						    });
+						    //서비스대상에 고양이가 포함되어있으면 목욕과 산책 서비스는 선택불가능하도록 한다
+						    if(select_obj.includes("CAT")){
+						    	$("#bathselect").hide()
+						    	$("#walkselect").hide()
+						    	$("#beautyselect").hide()
+						    }
+						    
+						    
+							
+								
+						})				
 					})
 </script>
 
@@ -363,16 +357,16 @@ input[type=label]
 											</div>
 										</div>
 										<div
-											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											class="form_toggle row-vh d-flex flex-row justify-content-between" >
+											<div class="form_check_btn" id="bathselect">
 												<input id="check-2" value="bath_service" type="checkbox"
 													name="servicecode"> <label for="check-2"
 													style="cursor: pointer;">[추가]목욕(+5,000원)</label>
 											</div>
 										</div>
 										<div
-											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											class="form_toggle row-vh d-flex flex-row justify-content-between" >
+											<div class="form_check_btn" id="walkselect">
 												<input id="check-3" value="walk_service" type="checkbox"
 													name="servicecode"> <label for="check-3"
 													style="cursor: pointer;">[추가]산책(+3,000원)</label>
@@ -380,12 +374,13 @@ input[type=label]
 										</div>
 										<div
 											class="form_toggle row-vh d-flex flex-row justify-content-between">
-											<div class="form_check_btn">
+											<div class="form_check_btn" id="beautyselect">
 												<input id="check-4" value="beauty_service" type="checkbox"
 													class="servicecode"> <label for="check-4"
 													style="cursor: pointer;">[추가]미용(+5,000원)</label>
 											</div>
 										</div>
+											<p style="color: red; font-weight: bold;">※고양이는 안전 상의 이유로 목욕, 산책, 미용서비스를 이용하실 수 없습니다.</p>
 									</div>
 								</div>
 								<div class="row">

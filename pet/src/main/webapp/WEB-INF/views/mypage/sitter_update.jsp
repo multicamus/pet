@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="ko">
+<link rel="stylesheet" href="/pet/resources/assets/css/awesome-bootstrap-checkbox.css">
     <head>
         <meta charset="utf-8">
         <title>sitter</title>
@@ -50,39 +51,39 @@
         <section class="contact-section pt-100 pb-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-4">
+                    <div class="col-xl-2">
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <!-- 자격증 시작 -->
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-alarm-clock"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>자격증</h4>
-	                                            <%
-										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
-		                                   	   		if(sitter.getSitter_certificate() != null){
-		                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
-		                                   	   		int size = certificate.length;
-		                                   	   		for(int i = 0; i < size; i++){%>
-		                                   	   		<input name = "sitter_certificate" value="<%=certificate[i] %>">
-	                                   	   		<%}}%>
-	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post">
-	                                            <div class="pb-30" id="sitter_certificate">
-		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" >
-		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
-	                                            </div>
-	                                            <div>
-		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button>
-		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button>
-		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
-	                                            </div>
+<!--                                     <div class="contact-item"> -->
+<!--                                         <div class="contact-icon"> -->
+<!--                                             <i class="lni lni-alarm-clock"></i> -->
+<!--                                         </div> -->
+<!--                                         <div class="contact-content"> -->
+<!--                                             <h4>자격증</h4> -->
+<%-- 	                                            <% --%>
+<!-- // 										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter"); -->
+<!-- // 		                                   	   		if(sitter.getSitter_certificate() != null){ -->
+<!-- // 		                                   	   		String[] certificate = sitter.getSitter_certificate().split(","); -->
+<!-- // 		                                   	   		int size = certificate.length; -->
+<%-- 		                                   	   		for(int i = 0; i < size; i++){%> --%>
+<%-- 		                                   	   		<input name = "sitter_certificate" value="<%=certificate[i] %>"> --%>
+<%-- 	                                   	   		<%}}%> --%>
+<!-- 	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post"> -->
+<!-- 	                                            <div class="pb-30" id="sitter_certificate"> -->
+<!-- 		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" > -->
+<%-- 		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}"> --%>
+<!-- 	                                            </div> -->
+<!-- 	                                            <div> -->
+<!-- 		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button> -->
+<!-- 		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button> -->
+<!-- 		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button> -->
+<!-- 	                                            </div> -->
 	                                            
-                                            </form>
-                                        </div>
-                                    </div>
+<!--                                             </form> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
                                 </div>
                                 <!-- 자격증 끝 -->
                             </div>
@@ -111,6 +112,7 @@
 											 <div class="thumbnail">
 												 <img src="/pet/resources/sitter/${sitter.sitter_photo}" id="userImage" width="220" height="150">
 												 <div class="col-4 pt-30">
+												 	<input type="hidden" name="sitter_photo" value="${sitter.sitter_photo}">
 												 	<input type="file" name="sitter_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
 												 </div>
 											 </div>
@@ -126,31 +128,36 @@
                                     
                                	 	<div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>성별</h4></div>
-                                    	<div class="col-md-auto">
-	                                    	<c:choose>
-					                        	<c:when test="${sitter.sitter_gender == 'F'}">
-					                        		<div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" disabled="disabled">
-				                                        <label class="form-check-label" for="genderM">남자</label>
+                                    	<c:choose>
+				                        	<c:when test="${sitter.sitter_gender == 'F'}">
+				                        		<div class="col-md-auto">
+						                        	<div class="form-check form-check-inline">
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="M" disabled="disabled" style="width: 50px;">남자
 			                                        </div>
+		                                        </div>
+	                                          	<div class="col-md-auto">
 			                                        <div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" checked="checked" disabled="disabled">
-				                                        <label class="form-check-label" for="genderW">여자</label>
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="F" checked="checked" disabled="disabled" style="width: 50px;">여자
 			                                        </div>
-					                        	</c:when>
-					                        	<c:otherwise>
-					                        		<div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" checked="checked" disabled="disabled">
-				                                        <label class="form-check-label" for="genderM">남자</label>
+	                                            </div>
+				                        	</c:when>
+				                        	
+				                        	<c:otherwise>
+					                        	<div class="col-md-auto">
+						                        	<div class="form-check form-check-inline">
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="M" checked="checked" disabled="disabled" style="width: 50px;">남자
 			                                        </div>
+		                                        </div>
+	                                          	<div class="col-md-auto">
 			                                        <div class="form-check form-check-inline">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" disabled="disabled">
-				                                        <label class="form-check-label" for="genderW">여자</label>
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="F" disabled="disabled" style="width: 50px;">여자
 			                                        </div>
-					                        	</c:otherwise>
-				                        	</c:choose>
-			                        	</div>
-                                    </div>
+	                                            </div>
+				                        	</c:otherwise>
+			                        	</c:choose>
+                                   	</div>
+                               
+									
                                     
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>이메일</h4></div>
@@ -169,16 +176,16 @@
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>연락처</h4></div>
                                         <div class="col-md-auto">
-                                        	<input type="text" name="sitter_phone" id="phone" placeholder="전화번호" value="${sitter.sitter_phone}" required>
+                                        	<input type="tel" name="sitter_phone" oninput="autoHyphen(this)" maxlength="13" placeholder="숫자만 입력해주세요" value="${sitter.sitter_phone}" autofocus>
                                         </div>
                                     </div>
                                     
                                     <div class="row align-items-center">
                                     	<div class="col-md-auto"><h4>주소</h4></div>
-                                    	<div class="col-md-auto">
+                                    	<div class="col-md-6">
                                         	<input type="text" name="sitter_addr1" id="addr1" placeholder="주소" value="${sitter.sitter_addr1}" required>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                         	<input type="text" name="sitter_addr2" id="addr2" placeholder="상세 주소" value="${sitter.sitter_addr2}" required>
                                         </div>
                                     </div>
@@ -321,13 +328,20 @@
 		                                    </div>
 	                                    </div>
 	                                </div>
+	                                <!-- 추가 by 여경 -->
+	                                <c:if test="${user.user_type ne 'S' }">
+	                                	<div class="row align-items-center" style="margin-top: 20px;">
+                                        <div class="col-md-auto"><h4>자격증</h4></div>
+                                        <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5">${sitter.sitter_certificate}</textarea>
+                                    </div>
+	                                </c:if>
 	                                
 	                                <!-- hidden start -->
 	                                <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
 	                                <!-- hidden end -->
 	                                
 	                                <!-- button 시작 -->
-	                                <div class="row pt-100">
+	                                <div class="row pt-30">
 	                                    <div class="col-12">
 	                                        <div class="button text-center">
 	                                            <button type="submit" class="theme-btn">확인</button>
@@ -390,5 +404,11 @@
 			}
 		});
 	});
+	
+	const autoHyphen = (target) => {
+		target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
 </script>
 </html>

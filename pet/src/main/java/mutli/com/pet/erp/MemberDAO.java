@@ -40,7 +40,9 @@ public interface MemberDAO {
 	List<SitterDTO> sitterList();
 	
 	// sitter rate
-	int sitter_rate_update(SitterDTO sitter);
+	double sitter_rate_update(SitterDTO sitter);
 	
-
+	// sitter_rate
+	List<ResvDTO> sitter_reviewlist(String sitter_id);
+	
 }

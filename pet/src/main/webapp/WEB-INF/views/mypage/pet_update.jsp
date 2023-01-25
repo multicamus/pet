@@ -79,44 +79,44 @@
 	<section class="contact-section pt-100 pb-100">
 		<div class="container">
 			<div class="row">
-				<div class="col-xl-4">
+				<div class="col-xl-2">
 					<div class="contact-item-wrapper">
 						<div class="row">
 							<!-- 동물 정보 시작 -->
-							<c:choose>
-								<c:when test="${fn:length(mypetlist)}=0 ">
-									<div class="col-12 col-md-6 col-xl-12">
-									<div class="contact-item">
-										<div class="contact-icon">
-											<img src="/pet/resources/pet/${pet.pet_photo }" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-										</div>
-										<div class="contact-content">
-											<h4>
-												<a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}
-												${user.name} 님의 귀여운 아이를 등록 해주세요!</a>
-											</h4>
-										</div>
-									</div>
-								</div>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="pet" items="${mypetlist}" varStatus="status">
-										<div class="col-12 col-md-6 col-xl-12">
-											<div class="contact-item">
-												<div class="contact-icon">
-													<img src="/pet/resources/pet/${pet.pet_img}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-												</div>
-												<div class="contact-content">
-													<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4>
-													<p>${pet.pet_code}</p>
-													<p>${pet.pet_kind}</p>
-													<p><a type="button" href="/pet/mypet/delete.do?pet_id=${pet.pet_id}&member_id=${user.member_id}">삭제</a></p>
-												</div>
-											</div>
-										</div>
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
+<%-- 							<c:choose> --%>
+<%-- 								<c:when test="${fn:length(mypetlist)}=0 "> --%>
+<!-- 									<div class="col-12 col-md-6 col-xl-12"> -->
+<!-- 									<div class="contact-item"> -->
+<!-- 										<div class="contact-icon"> -->
+<%-- 											<img src="/pet/resources/pet/${pet.pet_photo }" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"> --%>
+<!-- 										</div> -->
+<!-- 										<div class="contact-content"> -->
+<!-- 											<h4> -->
+<%-- 												<a type="button" href="/pet/pet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name} --%>
+<%-- 												${user.name} 님의 귀여운 아이를 등록 해주세요!</a> --%>
+<!-- 											</h4> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<%-- 								</c:when> --%>
+<%-- 								<c:otherwise> --%>
+<%-- 									<c:forEach var="pet" items="${mypetlist}" varStatus="status"> --%>
+<!-- 										<div class="col-12 col-md-6 col-xl-12"> -->
+<!-- 											<div class="contact-item"> -->
+<!-- 												<div class="contact-icon"> -->
+<%-- 													<img src="/pet/resources/pet/${pet.pet_img}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"> --%>
+<!-- 												</div> -->
+<!-- 												<div class="contact-content"> -->
+<%-- 													<h4><a type="button" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">${pet.pet_name}</a></h4> --%>
+<%-- 													<p>${pet.pet_code}</p> --%>
+<%-- 													<p>${pet.pet_kind}</p> --%>
+<%-- 													<p><a type="button" href="/pet/mypet/delete.do?pet_id=${pet.pet_id}&member_id=${user.member_id}">삭제</a></p> --%>
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<%-- 									</c:forEach> --%>
+<%-- 								</c:otherwise> --%>
+<%-- 							</c:choose> --%>
 							<!-- 동물 정보 끝 -->
 						</div>
 					</div>
@@ -155,18 +155,18 @@
 											<c:when test="${pet.pet_code eq 'DOG'}">
 												<div class="row">
 													<div class="col-1">
-														<div>
+														<div  style="cursor: pointer;">
 															<input type="radio" id="DOG" name="pet_code" value="DOG" required checked="checked"> 
 															<input type="radio" id="CAT" name="pet_code" value="CAT" required>
 														</div>
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="DOG" style="display: inline-block">강아지</label>
+															<label for="DOG" style="display: inline-block;  cursor: pointer;">강아지</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="CAT" style="display: inline-block">고양이</label>
+																<label for="CAT" style="display: inline-block; cursor: pointer;">고양이</label>
 															</div>
 														</div>
 													</div>
@@ -182,11 +182,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="DOG" style="display: inline-block">강아지</label>
+															<label for="DOG" style="display: inline-block; cursor: pointer;">강아지</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="CAT" style="display: inline-block">고양이</label>
+																<label for="CAT" style="display: inline-block; cursor: pointer;">고양이</label>
 															</div>
 														</div>
 													</div>
@@ -216,11 +216,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="gender_m" style="display: inline-block">남자아이</label>
+															<label for="gender_m" style="display: inline-block; cursor: pointer;">남자아이</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="gender_w" style="display: inline-block">여자아이</label>
+																<label for="gender_w" style="display: inline-block; cursor: pointer;">여자아이</label>
 															</div>
 														</div>
 													</div>
@@ -236,11 +236,11 @@
 													</div>
 													<div class="col-11" style="margin-left: -20px;">
 														<div>
-															<label for="gender_m" style="display: inline-block">남자아이</label>
+															<label for="gender_m" style="display: inline-block; cursor: pointer;">남자아이</label>
 														</div>
 														<div class="col-11" style="margin-left: -2px;">
 															<div style="padding-top: 17px;">
-																<label for="gender_w" style="display: inline-block">여자아이</label>
+																<label for="gender_w" style="display: inline-block; cursor: pointer;">여자아이</label>
 															</div>
 														</div>
 													</div>
@@ -283,13 +283,13 @@
 													<div class="row">
 														<div class="col-1">
 															<div>
-																<input type="radio" id="neutral_y" name="neuter" value="Y" required checked="checked"> 
-																<input type="radio" id="neutral_n" name="neuter" value="N" required>
+																<input type="radio" id="neutral_y" name="neuter" value="Y" required checked="checked" style="cursor: pointer;">  
+																<input type="radio" id="neutral_n" name="neuter" value="N" required style="cursor: pointer;">
 															</div>
 														</div>
 														<div class="col-11">
-															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
-															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px; cursor: pointer;">중성화 했어요</label><br/>
+															<label for="neutral_n" style="display: inline-block; cursor: pointer;">아직 안했어요</label>
 														</div>
 													</div>
 												</c:when>
@@ -297,13 +297,13 @@
 													<div class="row">
 														<div class="col-1">
 															<div>
-																<input type="radio" id="neutral_y" name="neuter" value="Y" required> 
-																<input type="radio" id="neutral_n" name="neuter" value="N" required checked="checked">
+																<input type="radio" id="neutral_y" name="neuter" value="Y" required style="cursor: pointer;"> 
+																<input type="radio" id="neutral_n" name="neuter" value="N" required checked="checked" style="cursor: pointer;">
 															</div>
 														</div>
 														<div class="col-11">
-															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px">중성화 했어요</label><br/>
-															<label for="neutral_n" style="display: inline-block">아직 안했어요</label>
+															<label for="neutral_y" style="display: inline-block; padding-bottom: 15px; cursor: pointer;">중성화 했어요</label><br/>
+															<label for="neutral_n" style="display: inline-block; cursor: pointer;">아직 안했어요</label>
 														</div>
 													</div>
 												</c:otherwise>
@@ -330,6 +330,7 @@
 										<div class="button text-center">
 											<button id="edit" type="submit" class="theme-btn">확인</button>
 											<a type="button" class="theme-btn" href="/pet/mypet/read.do?pet_id=${pet.pet_id}&state=READ">취소</a>
+											<a type="button" class="theme-btn" href="/pet/mypet/delete.do?pet_id=${pet.pet_id}&member_id=${user.member_id}">삭제</a>
 										</div>
 									</div>
 								</div>
