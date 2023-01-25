@@ -264,32 +264,67 @@
 					                      </div>
 				                          <!-- service area start -->
 					                      <div class="row align-items-center">
-                                          <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
-                                          <div class="col-auto pb-50">
-	                                        <div class="col-md-auto">
-		                                        <button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
-					                            <button class=" btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
-					                            <button class=" btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
-			                                </div>
-			                                <div class="col-md-auto">
-			                                    <div class="area seoul">
-											    	<input type="checkbox" id="default1" value="서울시 강남구" name="service_area">
-				                           			<label for="default1">강남구</label>
-				                           			<input type="checkbox" id="default2" value="서울시 강동구" name="service_area">
-				                           			<label for="default2">강동구</label>
-				                           			<input type="checkbox" id="default3" value="서울시 강북구" name="service_area">
-				                           			<label for="default3">강북구</label>
+	                                          <div class="col-md-auto"><h4>서비스 가능 지역</h4></div>
+	                                          <div class="col-md-auto"><button class=" btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button></div>
+			                                	
+	                                          <div class="col-12 pb-50 row">
+				                                <div class="area seoul" style="margin-top: 30px; margin-left: 20px;">
+				                                	<div class="narrow">
+											    		<input type="checkbox" id="default1" value="서울 강남구" name="service_area" style="width: 12px;">
+				                           				<label for="default1" style="margin-left: 0.1px;">강남구</label>
+				                           				<input type="checkbox" id="default2" value="서울 강북구" name="service_area" style="width: 12px">
+				                           				<label for="default2" style="margin-left: 0.1px;">강북구</label>
+				                           				<input type="checkbox" id="default3" value="서울 강서구" name="service_area" style="width: 12px">
+				                           				<label for="default3" style="margin-left: 0.1px;">강서구</label>	
+				                           				<input type="checkbox" id="default4" value="서울 강동구" name="service_area" style="width: 12px">
+				                           				<label for="default4" style="margin-left: 0.1px;">강동구</label>
+				                           				<input type="checkbox" id="default5" value="서울 관악구" name="service_area" style="width: 12px">
+				                           				<label for="default5" style="margin-left: 0.1px;">관악구</label>
+				                           				<input type="checkbox" id="default6" value="서울 광진구" name="service_area" style="width: 12px">
+				                           				<label for="default6" style="margin-left: 0.1px;">광진구</label>
+				                           				<input type="checkbox" id="default7" value="서울 구로구" name="service_area" style="width: 12px">
+				                           				<label for="default7" style="margin-left: 0.1px;">구로구</label>
+				                           				<input type="checkbox" id="default27" value="서울 중랑구" name="service_area" style="width: 12px">
+				                           				<label for="default27" style="margin-left: 0.1px;">중랑구</label>
+			                           				</div>
+			                           				<div class="narrow">
+				                           				<input type="checkbox" id="default8" value="서울 금천구" name="service_area" style="width: 12px">
+				                           				<label for="default8" style="margin-left: 0.1px;">금천구</label>
+				                           				<input type="checkbox" id="default9" value="서울 노원구" name="service_area" style="width: 12px">
+				                           				<label for="default9" style="margin-left: 0.1px;">노원구</label>
+				                           				<input type="checkbox" id="default10" value="서울 도봉구" name="service_area" style="width: 12px">
+				                           				<label for="default10" style="margin-left: 0.1px;">도봉구</label>
+				                           				<input type="checkbox" id="default11" value="서울 강동구" name="service_area" style="width: 12px">
+				                           				<label for="default11" style="margin-left: 0.1px;">강동구</label>
+				                           				<input type="checkbox" id="default14" value="서울 마포구" name="service_area" style="width: 12px">
+				                           				<label for="default14" style="margin-left: 0.1px;">마포구</label>
+				                           				<input type="checkbox" id="default16" value="서울 서대문구" name="service_area" style="width: 12px">
+				                           				<label for="default16" style="margin-left: 0.1px;">서대문구</label>
+				                           				<input type="checkbox" id="default17" value="서울 서초구" name="service_area" style="width: 12px">
+				                           				<label for="default17" style="margin-left: 0.1px;">서초구</label>
+				                           				<input type="checkbox" id="default26" value="서울 중구" name="service_area" style="width: 12px">
+				                           				<label for="default26" style="margin-left: 0.1px;">중구</label>
+			                           				</div>
+			                           				<div class="narrow">
+				                           				<input type="checkbox" id="default18" value="서울 성동구" name="service_area" style="width: 12px">
+				                           				<label for="default18" style="margin-left: 0.1px;">성동구</label>
+				                           				<input type="checkbox" id="default19" value="서울 성북구" name="service_area" style="width: 12px">
+				                           				<label for="default19" style="margin-left: 0.1px;">성북구</label>
+				                           				<input type="checkbox" id="default20" value="서울 송파구" name="service_area" style="width: 12px">
+				                           				<label for="default20" style="margin-left: 0.1px;">송파구</label>
+				                           				<input type="checkbox" id="default21" value="서울 양천구" name="service_area" style="width: 12px">
+				                           				<label for="default21" style="margin-left: 0.1px;">양천구</label>
+				                           				<input type="checkbox" id="default22" value="서울 영등포구" name="service_area" style="width: 12px">
+				                           				<label for="default22" style="margin-left: 0.1px;">영등포구</label>
+				                           				<input type="checkbox" id="default23" value="서울 용산구" name="service_area" style="width: 12px">
+				                           				<label for="default23" style="margin-left: 0.1px;">용산구</label>
+				                           				<input type="checkbox" id="default24" value="서울 은평구" name="service_area" style="width: 12px">
+				                           				<label for="default24" style="margin-left: 0.1px;">은평구</label>
+				                           				<input type="checkbox" id="default25" value="서울 종로구" name="service_area" style="width: 12px">
+				                           				<label for="default25" style="margin-left: 0.1px;">종로구</label>
+				                           			</div>	
 			                                    </div>
-		                                     </div>
-		                                        <div class="area suwon">
-										    	<input type="checkbox" id="default4"  value="경기도 수원시 영통구" name="service_area">
-		                               			<label for="default4">영통구</label>
-		                               			<input type="checkbox" id="default5"  value="경기도 수원시 권선구" name="service_area">
-		                               			<label for="default5">권선구</label>
-		                               			<input type="checkbox" id="default6"  value="경기도 수원시 장안구" name="service_area">
-		                               			<label for="default6">장안구</label>
-		                                    </div>
-	                                      </div>
+		                                      </div>
 	                                      </div>
 					                      <!-- sitter_intro start -->
 					                      <div class="row align-items-center">
@@ -309,15 +344,6 @@
 													  <img src="/erp/images/myphoto.jpg" id="userImage" width="220" height="150">
 												  </div>
 											  </div>
-					                      </div>
-					                      
-					                      <!-- sitter_certificate start -->
-					                      <div class="row align-items-center">
-					                      	  <div class="col-md-auto"><h4>자격증 등록</h4></div>
-					                      	  <div class="col-md-auto"><button class="btn btn-outline-success wide" type="button" onclick="javascript:add()">추가</button></div>
-					                          <div id="sitter_certificate" class="col-md-12">
-					                              <input type="text" name="sitter_certificate" id="certificate" placeholder="ex) 반려동물행동상담사 2급 자격증 보유">
-					                          </div>
 					                      </div>
 					                    
 					                      <!-- hidden start -->
@@ -430,7 +456,6 @@
 		
 		$(".narrow").on("click", function(){
 			val = $(this).attr("value")
-			alert(val);
 		})	
 		
 		$("input[type='checkbox']").on("click", function(){

@@ -247,10 +247,11 @@
 
                                 <!-- 반려동물 사진 / 서비스정보 -->
                                 <div class="row" style="display: flex; align-items: center;  flex: 110%;">
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
-                                    </div>
+                                    </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">
@@ -354,10 +355,11 @@
 
                                 <!-- 반려동물 사진 / 서비스정보 -->
                                 <div class="row" style="display: flex; align-items: center;  flex: 110%;">
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <img src="https://www.dailysecu.com/news/photo/202104/123449_145665_1147.png"
                                             alt="해당 서비스 이용 반려동물" style="width: 100px; height: 100px; border-radius: 100px;  pointer-events: none;">
-                                    </div>
+                                    </div> -->
+                                    <div class="col-2"></div>
                                     <div class="col-8 ">
                                         <div >
                                             <div style="font-size: 20px; ">

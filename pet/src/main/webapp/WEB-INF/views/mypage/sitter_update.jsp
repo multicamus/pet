@@ -207,11 +207,7 @@
                                         <div class="col-12">
 	                                        <div class="col-md-auto pt-20">
 		                                        <button class="btn btn-outline-primary wide seoul" type="button" id="seoul">서울</button>
-					                            <button class="btn btn-outline-success wide" type="button" id="suwon">경기 수원</button>
-					                            <button class="btn btn-outline-secondary wide" type="button" id="incheon">인천</button> 
 			                                </div>
-
-			                                
 			                                    <div class="area seoul" style="margin-top: 30px; margin-left: 20px;">
 			                                    	<div class="narrow">
 											    		<input type="checkbox" id="default1" value="서울 강남구" name="service_area" style="width: 12px;">
@@ -309,23 +305,7 @@
 				                           				<input type="checkbox" id="default27" value="서울 중랑구" name="service_area" style="width: 12px">
 				                           				<label for="default27" style="margin-left: 0.1px;">중랑구</label>
 				                           			</div>		
-
 			                                    </div>
-		                                    
-		                                        <div class="area suwon">
-		                                        <div class="narrow">
-										    		<input type="checkbox" id="default4"  value="경기 수원시 영통구" name="service_area">
-		                               				<label for="default4">영통구</label>
-		                               			</div>
-		                               			<div class="narrow">
-		                               				<input type="checkbox" id="default5"  value="경기 수원시 권선구" name="service_area">
-		                               				<label for="default5">권선구</label>
-		                               			</div>
-		                               			<div class="narrow">
-		                               				<input type="checkbox" id="default6"  value="경기 수원시 장안구" name="service_area">
-		                               				<label for="default6">장안구</label>
-		                               			</div>
-		                                    </div>
 	                                    </div>
 	                                </div>
 	                                <!-- 추가 by 여경 -->
