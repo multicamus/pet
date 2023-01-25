@@ -51,39 +51,39 @@
         <section class="contact-section pt-100 pb-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-4">
+                    <div class="col-xl-2">
                         <div class="contact-item-wrapper">
                             <div class="row">
                                 <!-- 자격증 시작 -->
                                 <div class="col-12 col-md-6 col-xl-12">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="lni lni-alarm-clock"></i>
-                                        </div>
-                                        <div class="contact-content">
-                                            <h4>자격증</h4>
-	                                            <%
-										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter");
-		                                   	   		if(sitter.getSitter_certificate() != null){
-		                                   	   		String[] certificate = sitter.getSitter_certificate().split(",");
-		                                   	   		int size = certificate.length;
-		                                   	   		for(int i = 0; i < size; i++){%>
-		                                   	   		<input name = "sitter_certificate" value="<%=certificate[i] %>">
-	                                   	   		<%}}%>
-	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post">
-	                                            <div class="pb-30" id="sitter_certificate">
-		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" >
-		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}">
-	                                            </div>
-	                                            <div>
-		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button>
-		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button>
-		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button>
-	                                            </div>
+<!--                                     <div class="contact-item"> -->
+<!--                                         <div class="contact-icon"> -->
+<!--                                             <i class="lni lni-alarm-clock"></i> -->
+<!--                                         </div> -->
+<!--                                         <div class="contact-content"> -->
+<!--                                             <h4>자격증</h4> -->
+<%-- 	                                            <% --%>
+<!-- // 										    		SitterDTO sitter = (SitterDTO) session.getAttribute("sitter"); -->
+<!-- // 		                                   	   		if(sitter.getSitter_certificate() != null){ -->
+<!-- // 		                                   	   		String[] certificate = sitter.getSitter_certificate().split(","); -->
+<!-- // 		                                   	   		int size = certificate.length; -->
+<%-- 		                                   	   		for(int i = 0; i < size; i++){%> --%>
+<%-- 		                                   	   		<input name = "sitter_certificate" value="<%=certificate[i] %>"> --%>
+<%-- 	                                   	   		<%}}%> --%>
+<!-- 	                                            <form action="/pet/erp/sitter/certi_update.do" class="contact-form" method="post"> -->
+<!-- 	                                            <div class="pb-30" id="sitter_certificate"> -->
+<!-- 		                                            <input type="text" name="sitter_certificate" placeholder="자격증 등록" value="" > -->
+<%-- 		                                            <input type="hidden" name="sitter_id" value="${sitter.sitter_id}"> --%>
+<!-- 	                                            </div> -->
+<!-- 	                                            <div> -->
+<!-- 		                                            <button id="certi" type="button" class=" btn btn-outline-primary wide seoul" onclick="add()">추가 등록</button> -->
+<!-- 		                                            <button id="certi_update" type="submit" class=" btn btn-outline-primary wide seoul">확인</button> -->
+<!-- 		                                            <button type="button" class=" btn btn-outline-primary wide seoul" onclick="window.open('http://www.kkc.or.kr/service/service_05.html')">자격증 따기</button> -->
+<!-- 	                                            </div> -->
 	                                            
-                                            </form>
-                                        </div>
-                                    </div>
+<!--                                             </form> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
                                 </div>
                                 <!-- 자격증 끝 -->
                             </div>
@@ -340,7 +340,7 @@
 	                                <!-- hidden end -->
 	                                
 	                                <!-- button 시작 -->
-	                                <div class="row pt-100">
+	                                <div class="row pt-30">
 	                                    <div class="col-12">
 	                                        <div class="button text-center">
 	                                            <button type="submit" class="theme-btn">확인</button>
