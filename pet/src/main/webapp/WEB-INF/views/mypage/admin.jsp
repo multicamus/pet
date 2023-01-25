@@ -169,7 +169,7 @@
 	}); */
 
 	     
-	      function ViewLayer(){
+	     /*  function ViewLayer(){
 
 	          //만일 Pop라는 녀석이 닫혀있다면??
 
@@ -189,6 +189,6 @@
 
 	          }
 
-	       }
+	       } */
 
 </script>
