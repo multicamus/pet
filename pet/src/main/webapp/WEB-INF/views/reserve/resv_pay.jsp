@@ -404,7 +404,7 @@
                                         <!-- 결제정보 row-2 -->
                                         <div class="row">
                                             <!-- 결제정보 제목 -->
-                                            <div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:50px ;">
+                                            <div class="col-xl-10 col-lg-8 mx-auto" style="margin-bottom:10px ;">
                                                 <div class="section-title text-center mb-20">
                                                     <span class="wow fadeInDown" data-wow-delay=".2s">결제정보</span>
                                                 </div>
@@ -412,20 +412,16 @@
                                             <!-- 결제정보 제목 끝-->
 
                                             <!-- 결제상세정보 -->
-                                            <div style="margin-top:20px; ">
-                                                <div>
-                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
-                                                    <span style="font-size:20px">결제 완료</span>
-                                                </div>
-                                                <div>
+                                            <div>
+	                                        <!--  <div>
                                                     <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
                                                     <span style="font-size:20px">ㅇㅇㅇㅇ-ㅇㅇ-ㅇㅇ</span>
                                                 </div>
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">결제방법:</h5> 
                                                     <span style="font-size:20px">삼성비자/일시불</span>
-                                                </div>
-                                                <div>
+                                                </div> -->
+                                                <div style="margin-bottom: 50px;">
                                                     <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
                                                     <span style="font-size:20px">${resvdto.total_price }원</span>
                                                 </div>

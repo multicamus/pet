@@ -109,6 +109,12 @@
 		WHERE sitter_id = #{sitter_id}		 
 	</select>
 	
+	<select id="sitter_reviewlist" parameterType="String" resultType="resv">
+		SELECT * FROM review r, resv_history h
+		WHERE r.resv_no = h.resv_no
+		AND h.sitter_id = #{sitter_id}		 
+	</select>
+	
 	<!-- sitter rate update -->
 	<update id="sitter_rate_update" parameterType="sitter">
 		UPDATE sitter_info

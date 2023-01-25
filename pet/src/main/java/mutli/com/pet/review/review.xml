@@ -60,7 +60,7 @@
 			AND (SUBSTR(h.pet_idlist, 0, INSTR(h.pet_idlist, ',', 1) - 1) = p.pet_id 
 					OR	h.pet_idlist = p.pet_id)
 			AND m.member_id = r.member_id
-		ORDER BY r.review_no + 0 DESC
+		ORDER BY r.write_date_rv  DESC
 	</select>
 
 	<!-- 상세 보기, 수정 페이지 같이 사용 -->

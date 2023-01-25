@@ -353,7 +353,7 @@
 			                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status != 1 and resvdto.resv_status != 5}">
 			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" > 자동매칭 </h5>
 			                                                </c:if>
-			                                                <c:if test="${resvdto.match_method == 'auto_match' and resvdto.resv_status == 1}">
+			                                                <c:if test="${resvdto.match_method != 'auto_match' or resvdto.resv_status == 1 or resvdto.resv_status == 5}">
 			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
 			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
 			                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
@@ -363,7 +363,7 @@
 			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
 			                                               		</c:if>
 			                                                </c:if>
-			                                                <c:if test="${resvdto.match_method == 'direct_match' }">
+			                                                <%-- <c:if test="${resvdto.match_method == 'direct_match' }">
 			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 : ${resvdto.sitter_name }</h5>
 			                                                	<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 나이 : 만 ${sitter.sitter_age }세</h5>
 			                                                	<c:if test="${sitter.sitter_gender eq 'M' }">
@@ -382,7 +382,7 @@
 			                                               		<c:if test="${sitter.sitter_gender eq 'F' }">
 			                                               			<h5 style="float:left; margin-left: 50px; margin-top: 5%;" >펫시터 성별 : 여성</h5>
 			                                               		</c:if>
-			                                                </c:if>
+			                                                </c:if> --%>
 			                                                
 			                                                <c:if test="${resvdto.match_method ne 'auto_match' or resvdto.resv_status  == 1 or resvdto.resv_status == 5 }">
 			                                                	<c:choose>
@@ -429,18 +429,44 @@
 
                                             <!-- 결제상세정보 -->
                                             <div style="margin-top:20px; ">
+                                                <c:choose>
+	                                            	<c:when test="${resvdto.resv_status == 0 or  resvdto.resv_status == 1 or resvdto.resv_status == 5}">
+			                                            	<div>
+			                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
+			                                                    <span style="font-size:20px">결제 완료</span>
+			                                                </div>
+	                                                </c:when>
+	                                                <c:otherwise>
+	                                                		<div>
+			                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
+			                                                    <span style="font-size:20px; color:red;">결제 취소</span>
+			                                                </div>
+	                                                </c:otherwise>
+                                                </c:choose>
                                                 <div>
-                                                    <h5 style="line-height:200%;display: inline;">결제 상태:</h5> 
-                                                    <span style="font-size:20px">결제 완료</span>
+                                                	<c:choose>
+	                                            	<c:when test="${resvdto.resv_status == 0 or  resvdto.resv_status == 1 or resvdto.resv_status == 5}">
+			                                            	<div>
+			                                                    <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
+                                                   				<span style="font-size:20px">${resvdto.resv_date }</span>
+			                                                </div>
+	                                                </c:when>
+	                                                <c:otherwise>
+	                                                		<div>
+			                                                    <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
+                                                   				<span style="font-size:20px">${resvdto.resv_date }</span>
+			                                                </div>
+			                                                <div>
+			                                                	<h5 style="line-height:200%;display: inline;">결제 취소 날짜:</h5> 
+                                                   				<span style="font-size:20px">${resvdto.resv_change_date }</span>
+			                                                </div>
+	                                                </c:otherwise>
+                                                </c:choose>
                                                 </div>
-                                                <div>
-                                                    <h5 style="line-height:200%;display: inline;">결제 날짜:</h5> 
-                                                    <span style="font-size:20px">ㅇㅇㅇㅇ-ㅇㅇ-ㅇㅇ</span>
-                                                </div>
-                                                <div>
+                                                <!-- <div>
                                                     <h5 style="line-height:200%;display: inline;">결제방법:</h5> 
                                                     <span style="font-size:20px">삼성비자/일시불</span>
-                                                </div>
+                                                </div> -->
                                                 <div>
                                                     <h5 style="line-height:200%;display: inline;">지불금액:</h5> 
                                                     <span style="font-size:20px"><%=resvdto.getTotal_price() %>원</span>

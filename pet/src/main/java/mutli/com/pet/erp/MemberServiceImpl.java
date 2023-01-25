@@ -124,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int sitter_rate_update(String sitter_id, String review_rate) {
 		// 분모
-		int denominator = dao.sitter_resvlist(sitter_id).size();
+		int denominator = dao.sitter_resvlist(sitter_id).size(); // 후기 갯수 
 		System.out.println("denominator:"+denominator);
 		// 분자
 		int tmp1;
@@ -144,11 +144,13 @@ public class MemberServiceImpl implements MemberService {
 		int numerator = (tmp1 * (denominator - 1) + tmp2);
 		System.out.println(tmp1);
 		System.out.println(tmp2);
-		System.out.println(tmp3);
+		System.out.println(tmp3); //null
 		System.out.println(denominator);
 		
 		// sitter_rate
-		String rate = String.valueOf(numerator / denominator);
+		String rate = String.valueOf(numerator / (double)denominator);
+		
+		//double rate = numerator / (double)denominator;
 		System.out.println(rate);
 		SitterDTO sitter_rate = new SitterDTO(sitter_id, rate);
 		System.out.println(sitter_rate);

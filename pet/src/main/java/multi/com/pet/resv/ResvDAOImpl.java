@@ -164,6 +164,7 @@ public  class ResvDAOImpl implements ResvDAO {
 	//예약리스트를 매개변수로 받아서 각각의 예약내역의 이용후기 여부를 확인
 	@Override
 	public List<String> checkReview(List<ResvDTO> resvdto) {
+		System.out.println("checkReview:"+resvdto);
 		return sqlsession.selectList("mutli.com.pet.resv.checkreview", resvdto);
 	}
 	

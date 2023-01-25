@@ -88,11 +88,12 @@
             <div class="client-logo-carousel d-flex align-items-center justify-content-between" id="ajax" >
             	<c:forEach var="sitter" items="${sitterlist}" varStatus="status">
 	                <div class="client-logo">
-	                    <img src="/pet/resources/sitter/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px;">
+	                    <img src="/pet/resources/sitter/${sitter.sitter_photo}" alt="이미지" style="padding-bottom: 20px; height: 170px ">
 	                    <div class="box-content-style feature-content">
-	                        <h4>${sitter.sitter_name} 훈련사</h4>
+	                        <h4>${sitter.sitter_name} 펫시터</h4>
 	                        <p>후기 ${sitter.sitter_resvNum}개 | 평점 ${sitter.sitter_rate}점</p><br/>
 	                        <ul>
+	                        	<p>[보유자격증]</p>
 	                        	<c:forTokens items="${sitter.sitter_certificate}" delims="," var="certificate">
 	                        		<li>${certificate}</li>
 	                        	</c:forTokens>

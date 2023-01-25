@@ -383,171 +383,7 @@ td {
 
 <script>
 	$(document).ready(function() {
-						//[과거에 이용했던 펫시터]탭을 눌렀을때
-						$("#pills-3-tab").on("click", function() {
-							//resv1컨트롤러에서 받아온 codearray(어떤 동물을 서비스에 맡길건지)의 값을 불러온다.
-							var code = $("#pet_codearray").val()
-							$.ajax({//과거에 이용했던 펫시터 목록을 가져온다.
-								url : "/pet/sitter/ajax/pastlist.do",
-								type : "get",
-								data : {//위의 code값을 컨트롤러에 넘긴다(cat,dog둘다 맡기면 'A', dog만 맡기면 'D', cat만 맡기면 'C')
-									"code" : code
-								},
-								success : function(data) {
-									//펫시터 리스트를 가져오는데 성공하면 html태그와 데이터 값을 이용해서 화면에 뿌려준다.
-									for(i=0;i<data.length;i++){
-									mydata = ""
-									mydata = mydata + "<div class='col-lg-4 cardbox'>"
-									+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card2'>"
-									+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' class='card-img-top' alt='...' >"
-									+ "<div class='card-body'>"
-									+ "<p class='card-text'>"
-									+ "<span id='sittername'>"
-									+ data[i].sitter_name
-									+ "</span>"
-									+ "</p><br/>"
-									+ "<div class=row>"
-
-									+ "<div class=col-6>"
-									+ "<div  class='detailread' id=" +  data[i].sitter_id+">"
-									+ "<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
-									+ "</div>"
-									+ "</div>"
-
-									+ "<div class=col-6>"
-									+ "<div   id='" +  data[i].sitter_id +"select2'>"
-									+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
-									+ "</div>"
-									+ "</div>"
-
-									+ "</div>"
-									+ "</div>"
-									+ "</div>"
-									+ "</div>"
-									}
-									//[과거에 이요했던 펫시터] navi-tab을 누를때마다 기존의 정보는 지우고 새 정보를 불러온다.
-									$("#pastlist").empty();
-									$("#pastlist").append(mydata);
-									
-									//[상세정보] 버튼을 누를때
-									$(".detailread").on("click", function(event) {
-										//해당 시터의 아이디를 가져온다.
-										sitter_id = $(this).attr("id");
-										
-										$.ajax({//해당 시터의 상세정보를 알수있는 read 컨트롤러에 시터아이디를 매개변수로 해서 보낸다.
-													url : "/pet/sitter/ajax/read.do",
-													type : "get",
-													data : {
-														"sitter_id" : sitter_id
-													},
-													success : function(sitter) {//해당 시터의 정보를 가져오는데 성공하면 시터의 정보를 뿌린다
-														sitter_code = sitter.sitter_code;  // sitter_code는 시터가 돌봄 가능한 동물종을 가리킨다
-														if (sitter_code == "D") {//강아지만 돌봄가능하면
-															sitter_code = "강아지"
-														} else if (sitter_code == "C") {//고양이만 돌봄가능하면
-															sitter_code = "고양이"
-														} else {//둘다 돌봄 가능하면
-															sitter_code = "강아지 고양이"
-														}
-
-														sitter_gender = sitter.sitter_gender;
-														if (sitter_gender == "M") {//시터의 성별이 'M'이면
-															sitter_gender = "남자"
-														} else {//'F'이면
-															sitter_gender = "여자"
-														}
-
-														mydata = "";
-														mydata = mydata
-																+ "<h3 style='margin-bottom: 10%; color:#3e62eb;'>펫시터 상세정보</h3>";
-														mydata = mydata
-																+ "<table id='table'><thead><tr>"
-														mydata = mydata
-																+ "<th>이름</th><td style='color:black;'>"
-																+ sitter.sitter_name
-																+ "</td></tr></thread>";
-														mydata = mydata
-																+ "<tr><th>만 나이</th><td style='color:black;'>"
-																+ sitter.sitter_age
-																+ "</td></tr>";
-														mydata = mydata
-																+ "<tr><th>성별</th><td style='color:black;'>"
-																+ sitter_gender
-																+ "</td></tr>";
-														mydata = mydata
-																+ "<tr><th>사는 지역</th><td style='color:black;'>"
-																+ sitter.sitter_shortAddr
-																+ "</td></tr>";
-														mydata = mydata
-																+ "<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"
-																+ sitter_code
-																+ "</td></tr>";
-														mydata = mydata
-																+ "<tr><th>자기소개</th><td style='color:black;'>"
-																+ sitter.sitter_info
-																+ "</td></tr></table>";
-														//위와 마찬가지로 상세정보 버튼을 누를때마다 기존의 정보는 지우고 새 정보를 append한다.
-														$("#detailcontent").empty();
-														$("#detailcontent").append(mydata);
-														
-														
-														
-													},
-													error : function(data) {
-
-													}
-												})
-												
-										$(".modal").fadeIn();
-									})
-													//해당 펫시터에서 [선택]버튼을 누르면
-													$("#pastsitter").on("click", function() {
-														
-														//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
-														preCardId = "#"+ $(".card[selected=selected]").attr("id");
-														
-														$(".card").css("border-color", '');
-
-														//현재 선택한 시터의 id와 name
-														id = $(this).attr("value")
-														name = $(this).attr("name")
-														//cardid는 (sitter의 id+card)
-														cardId = "#" + id + "card2";
-														
-														//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
-														if (cardId == preCardId) {
-															//selected속성과 테두리속성을 해제시킨다
-															$(".card").css("border-color", '');
-															$(".card").removeAttr("selected");
-															//input태그의 sitter_id의 value값을 초기화시킨다
-															$("#sitter_id3").attr("value", "");
-															$("#sitter_name3").attr("value", '');
-															
-														} else {//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
-															//기존의 selected속성과 테두리속성을 모두 해제시킨다.
-															$(".card").css("border-color", '');
-															$(".card").removeAttr("selected");
-															//현재 누른 카드에 selected속성과 테두리css를 적용시킨다.
-															$(cardId).attr("selected", "selected");
-															$(cardId).css("border-color", "#3763eb");
-															$(cardId).css("border-width", "5pt");
-															//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
-															$("#sitter_id3").attr("value", id);
-															$("#sitter_name3").attr("value", name);
-															
-														
-														}
-													})
-															//펫시터 상세정보창의 x버튼을 누르면 상세정보창이 닫힌다.
-															$("#closebtn").on("click", function() {
-																				$(".modal").fadeOut();
-																			})
-								},
-								error : function(data) {
-									alert("fail")
-								}
-							})
-						})//[과거에 이용했던 펫시터] 기능 끝
+						
 						
 						//직접선택에서 선호성별과 돌봄횟수가많은선호사이즈 선택후 확인버튼을 눌렀을 때 옆에 해당 펫시터 리스트 뿌리기
 						$("#direct_button").on("click", function() {
@@ -570,7 +406,7 @@ td {
 																mydata = mydata
 																		+ "<div class='col-lg-4 cardbox'>"
 																		+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card'>"
-																		+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' class='card-img-top' alt='...' >"
+																		+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' style='height: 204px;' class='card-img-top' alt='...' >"
 																		+ "<div class='card-body'>"
 																		+ "<p class='card-text'>"
 																		+ "<span id='sittername'>"
@@ -711,6 +547,176 @@ td {
 													})
 
 										})
+										
+								//[과거에 이용했던 펫시터]탭을 눌렀을때
+						$("#pills-3-tab").on("click", function() {
+							//resv1컨트롤러에서 받아온 codearray(어떤 동물을 서비스에 맡길건지)의 값을 불러온다.
+							var code = $("#pet_codearray").val()
+							$.ajax({//과거에 이용했던 펫시터 목록을 가져온다.
+								url : "/pet/sitter/ajax/pastlist.do",
+								type : "get",
+								data : {//위의 code값을 컨트롤러에 넘긴다(cat,dog둘다 맡기면 'A', dog만 맡기면 'D', cat만 맡기면 'C')
+									"code" : code
+								},
+								success : function(data) {
+										//alert(data)
+										//펫시터 리스트를 가져오는데 성공하면 html태그와 데이터 값을 이용해서 화면에 뿌려준다.
+										for(i=0;i<data.length;i++){
+										mydata2 = ""
+										mydata2 = mydata2 + "<div class='col-lg-4 cardbox' style=''>"
+										+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card2'>"
+										+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' style='height: 204px;' class='card-img-top' alt='...' >"
+										+ "<div class='card-body'>"
+										+ "<p class='card-text'>"
+										+ "<span id='sittername'>"
+										+ data[i].sitter_name
+										+ "</span>"
+										+ "</p><br/>"
+										+ "<div class=row>"
+	
+										+ "<div class=col-6>"
+										+ "<div  class='detailread' id=" +  data[i].sitter_id+">"
+										+ "<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
+										+ "</div>"
+										+ "</div>"
+	
+										+ "<div class=col-6>"
+										+ "<div   id='" +  data[i].sitter_id +"select2'>"
+										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										+ "</div>"
+										+ "</div>"
+	
+										+ "</div>"
+										+ "</div>"
+										+ "</div>"
+										+ "</div>"
+										//alert(mydata2)
+										}
+										//[과거에 이요했던 펫시터] navi-tab을 누를때마다 기존의 정보는 지우고 새 정보를 불러온다.
+										$("#pastlist").empty();
+										//alert(mydata2);
+										$("#pastlist").append(mydata2);
+										
+										//[상세정보] 버튼을 누를때
+										$(".detailread").on("click", function(event) {
+											//해당 시터의 아이디를 가져온다.
+											sitter_id = $(this).attr("id");
+											
+											$.ajax({//해당 시터의 상세정보를 알수있는 read 컨트롤러에 시터아이디를 매개변수로 해서 보낸다.
+														url : "/pet/sitter/ajax/read.do",
+														type : "get",
+														data : {
+															"sitter_id" : sitter_id
+														},
+														success : function(sitter) {//해당 시터의 정보를 가져오는데 성공하면 시터의 정보를 뿌린다
+															sitter_code = sitter.sitter_code;  // sitter_code는 시터가 돌봄 가능한 동물종을 가리킨다
+															if (sitter_code == "D") {//강아지만 돌봄가능하면
+																sitter_code = "강아지"
+															} else if (sitter_code == "C") {//고양이만 돌봄가능하면
+																sitter_code = "고양이"
+															} else {//둘다 돌봄 가능하면
+																sitter_code = "강아지 고양이"
+															}
+	
+															sitter_gender = sitter.sitter_gender;
+															if (sitter_gender == "M") {//시터의 성별이 'M'이면
+																sitter_gender = "남자"
+															} else {//'F'이면
+																sitter_gender = "여자"
+															}
+	
+															mydata3 = "";
+															mydata3 = mydata3
+																	+ "<h3 style='margin-bottom: 10%; color:#3e62eb;'>펫시터 상세정보</h3>";
+															mydata3 = mydata3
+																	+ "<table id='table'><thead><tr>"
+															mydata3 = mydata3
+																	+ "<th>이름</th><td style='color:black;'>"
+																	+ sitter.sitter_name
+																	+ "</td></tr></thread>";
+															mydata3 = mydata3
+																	+ "<tr><th>만 나이</th><td style='color:black;'>"
+																	+ sitter.sitter_age
+																	+ "</td></tr>";
+															mydata3 = mydata3
+																	+ "<tr><th>성별</th><td style='color:black;'>"
+																	+ sitter_gender
+																	+ "</td></tr>";
+															mydata3 = mydata3
+																	+ "<tr><th>사는 지역</th><td style='color:black;'>"
+																	+ sitter.sitter_shortAddr
+																	+ "</td></tr>";
+															mydata3 = mydata3
+																	+ "<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"
+																	+ sitter_code
+																	+ "</td></tr>";
+															mydata3 = mydata3
+																	+ "<tr><th>자기소개</th><td style='color:black;'>"
+																	+ sitter.sitter_info
+																	+ "</td></tr></table>";
+															//위와 마찬가지로 상세정보 버튼을 누를때마다 기존의 정보는 지우고 새 정보를 append한다.
+															$("#detailcontent").empty();
+															$("#detailcontent").append(mydata3);
+															
+															
+															
+														},
+														error : function(data) {
+	
+														}
+													})
+													
+											$(".modal").fadeIn();
+										})
+														//해당 펫시터에서 [선택]버튼을 누르면
+														$("#pastsitter").on("click", function() {
+															
+															//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
+															preCardId = "#"+ $(".card[selected=selected]").attr("id");
+															
+															$(".card").css("border-color", '');
+	
+															//현재 선택한 시터의 id와 name
+															id = $(this).attr("value")
+															name = $(this).attr("name")
+															//cardid는 (sitter의 id+card)
+															cardId = "#" + id + "card2";
+															
+															//만약 지금눌렀던 시터가 이전에 눌렀던 시터와 같다면
+															if (cardId == preCardId) {
+																//selected속성과 테두리속성을 해제시킨다
+																$(".card").css("border-color", '');
+																$(".card").removeAttr("selected");
+																//input태그의 sitter_id의 value값을 초기화시킨다
+																$("#sitter_id3").attr("value", "");
+																$("#sitter_name3").attr("value", '');
+																
+															} else {//이전눌렀던 시터와 다른 시터를 누른다면 테두리css속성 적용, input value값에 해당 id입력
+																//기존의 selected속성과 테두리속성을 모두 해제시킨다.
+																$(".card").css("border-color", '');
+																$(".card").removeAttr("selected");
+																//현재 누른 카드에 selected속성과 테두리css를 적용시킨다.
+																$(cardId).attr("selected", "selected");
+																$(cardId).css("border-color", "#3763eb");
+																$(cardId).css("border-width", "5pt");
+																//현재 누른 카드의 시터id를 input태그의 value에 집어넣는다.
+																$("#sitter_id3").attr("value", id);
+																$("#sitter_name3").attr("value", name);
+																
+															
+															}
+														})
+																//펫시터 상세정보창의 x버튼을 누르면 상세정보창이 닫힌다.
+																$("#closebtn").on("click", function() {
+																					$(".modal").fadeOut();
+																				})
+									},
+									error : function(data) {
+										alert("fail")
+									}
+								})
+							
+						})//[과거에 이용했던 펫시터] 기능 끝		
 
 					})
 </script>
@@ -959,8 +965,7 @@ td {
 										id="prefer_gender" name="prefer_gender" value=""> <input
 										type="hidden" id="prefer_size" name="prefer_size" value="">
 										
-								<div class="col-12" id="pastlist">
-								</div>
+								<div class="col-12" id="pastlist"></div>
 
 
 

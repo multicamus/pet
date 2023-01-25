@@ -405,15 +405,17 @@
                                             <button type="submit" style="display: inline-block;" onclick="location.href='/pet/reserve/read.do?resv_no=<%=resvdto.getResv_no()%>'"  class="theme-btn">더보기</button>
                                         </div>
                                         <%if(resvdto.getResv_status() == 5) {%>
-                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
-	                                        	<div class="button text-center" style="margin-top: 15px;">
-		                                            <a type="button" href="/pet/menu/review/detail.do?review_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 보기</a>
-		                                        </div>
-	                                        <%}else{ %>
-		                                        <div class="button text-center" style="margin-top: 15px;">
-		                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 쓰기</a>
-		                                        </div>
-	                                        <%} %>
+                                        	<%if(reviewlist != null){ %>
+	                                        	<%if(reviewlist.contains(resvdto.getResv_no())) {%>
+		                                        	<div class="button text-center" style="margin-top: 15px;">
+			                                            <a type="button" href="/pet/menu/review/detail.do?review_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 보기</a>
+			                                        </div>
+		                                        <%}else{ %>
+			                                        <div class="button text-center" style="margin-top: 15px;">
+			                                            <a type="button" href="/pet/menu/review/write.do?resv_no=<%=resvdto.getResv_no()%>" class="theme-btn" >후기 쓰기</a>
+			                                        </div>
+		                                        <%} %>
+		                                     <%} %>   
 	                                    <%} %>    
                                     	</div>
                                     <!-- 더보기 끝 -->
