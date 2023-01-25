@@ -576,13 +576,13 @@ td {
 	
 										+ "<div class=col-6>"
 										+ "<div  class='detailread' id=" +  data[i].sitter_id+">"
-										+ "<button type='button' class='theme-btn direct' value='"+data[i].sitter_id+ "' >상세정보</button>"
+										+ "<button type='button' class='theme-btn direct' style='width: 45%;' value='"+data[i].sitter_id+ "' >상세정보</button>"
 										+ "</div>"
 										+ "</div>"
 	
 										+ "<div class=col-6>"
 										+ "<div   id='" +  data[i].sitter_id +"select2'>"
-										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' style='width: 35%; padding-left: 10px; padding-right: 20px;'  value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
 										+ "</div>"
 										+ "</div>"
 	
