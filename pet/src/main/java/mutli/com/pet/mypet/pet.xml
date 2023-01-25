@@ -34,7 +34,6 @@
 		INSERT INTO pet_info (
 		pet_id,	member_id, pet_name, pet_gender, pet_code, pet_kind, pet_birthdate, pet_weight, pet_size, neuter, pet_photo, pet_note)
 		VALUES(#{pet_id}, #{member_id}, #{pet_name}, #{pet_gender}, #{pet_code}, #{pet_kind}, #{pet_birthdate}, #{pet_weight}, #{pet_size}, #{neuter}, #{pet_photo}, #{pet_note})
-
 	</insert>
 	
 	<delete id="delete" parameterType="String">

@@ -16,6 +16,7 @@ public class PetDAOImpl implements PetDAO {
 
 	@Override
 	public int insert(PetDTO pet) {
+		System.out.println(pet);
 		return sqlsession.insert("mutli.com.pet.mypet.insert", pet);
 	}
 
