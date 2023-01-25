@@ -486,6 +486,10 @@ td {
 																										+ sitter_code
 																										+ "</td></tr>";
 																								mydata = mydata
+																										+ "<tr><th>보유 자격증</th><td style='color:black;'>"
+																										+ sitter.sitter_certificate
+																										+ "</td></tr>";
+																								mydata = mydata
 																										+ "<tr><th>자기소개</th><td style='color:black;'>"
 																										+ sitter.sitter_info
 																										+ "</td></tr></table>";
@@ -561,11 +565,11 @@ td {
 								success : function(data) {
 										//alert(data)
 										//펫시터 리스트를 가져오는데 성공하면 html태그와 데이터 값을 이용해서 화면에 뿌려준다.
-										for(i=0;i<data.length;i++){
 										mydata2 = ""
-										mydata2 = mydata2 + "<div class='col-lg-4 cardbox' style=''>"
+										for(i=0;i<data.length;i++){
+										mydata2 = mydata2 + "<div class='col-lg-4 cardbox' style='float: left;  width: 20%; height: 30%;'>"
 										+ "<div class='card'  style='cursor: pointer;'' id='" + data[i].sitter_id +"card2'>"
-										+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"' style='height: 204px;' class='card-img-top' alt='...' >"
+										+ "<img src='/pet/resources/sitter/"+data[i].sitter_photo+"'  style='height: 250px;' class='card-img-top' alt='...' >"
 										+ "<div class='card-body'>"
 										+ "<p class='card-text'>"
 										+ "<span id='sittername'>"
@@ -576,13 +580,13 @@ td {
 	
 										+ "<div class=col-6>"
 										+ "<div  class='detailread' id=" +  data[i].sitter_id+">"
-										+ "<button type='button' class='theme-btn direct' style='width: 45%;' value='"+data[i].sitter_id+ "' >상세정보</button>"
+										+ "<button type='button' class='theme-btn direct' style='width: 70%;' value='"+data[i].sitter_id+ "' >상세정보</button>"
 										+ "</div>"
 										+ "</div>"
 	
 										+ "<div class=col-6>"
 										+ "<div   id='" +  data[i].sitter_id +"select2'>"
-										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' style='width: 35%; padding-left: 10px; padding-right: 20px;'  value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' style='width: 55%; padding-left: 5px; padding-right: 20px;'  value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
 										+ "</div>"
 										+ "</div>"
 	
@@ -590,7 +594,7 @@ td {
 										+ "</div>"
 										+ "</div>"
 										+ "</div>"
-										//alert(mydata2)
+										
 										}
 										//[과거에 이요했던 펫시터] navi-tab을 누를때마다 기존의 정보는 지우고 새 정보를 불러온다.
 										$("#pastlist").empty();
@@ -649,6 +653,10 @@ td {
 															mydata3 = mydata3
 																	+ "<tr><th>돌봄가능 반려동물종</th><td style='color:black;'>"
 																	+ sitter_code
+																	+ "</td></tr>";
+																	mydata3 = mydata3
+																	+ "<tr><th>보유 자격증</th><td style='color:black;'>"
+																	+ sitter.sitter_certificate
 																	+ "</td></tr>";
 															mydata3 = mydata3
 																	+ "<tr><th>자기소개</th><td style='color:black;'>"
@@ -959,14 +967,14 @@ td {
 					<div class="single-pricing active mb-50">
 						<div class="col-lg-12 row align-self-center">
 							<form action="/pet/reserve/resv2_mb.do" method="post" id="pastmatch">
-								
-									<input type="hidden" id="match_method" name="match_method"
-										value="past_match"> <input type="hidden"
-										id="prefer_gender" name="prefer_gender" value=""> <input
-										type="hidden" id="prefer_size" name="prefer_size" value="">
-										
-								<div class="col-12" id="pastlist"></div>
-
+									<div class="row">
+											<input type="hidden" id="match_method" name="match_method"
+												value="past_match"> <input type="hidden"
+												id="prefer_gender" name="prefer_gender" value=""> <input
+												type="hidden" id="prefer_size" name="prefer_size" value="">
+												
+										<div class="col-12" id="pastlist"></div>
+										</div>
 
 
 								<div class="button text-center pb-50">
