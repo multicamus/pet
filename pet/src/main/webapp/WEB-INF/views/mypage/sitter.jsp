@@ -255,12 +255,29 @@
 	                                
 	                                <!-- 추가 by 여경 -->
 	                                	<div class="row align-items-center" style="margin-top: 20px;">
-                                        <div class="col-md-auto"><h4>자격증</h4><p>*관리자만 수정 가능</p></div>
-                                        
-                                        <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5" disabled>${sitter.sitter_certificate}</textarea>
-                                        
-                                        
-                                    </div>
+                                        	<div class="col-md-auto"><h4>자격증</h4><p>*관리자만 수정 가능</p></div>
+                                       		 <textarea name="sitter_certificate" id="자격증" placeholder="자격증 기입란" rows="5" disabled>${sitter.sitter_certificate}</textarea>
+                                    	</div>
+                                    	
+                                    	<div class="row align-items-center" style="margin-top: 20px;">
+                                        	<div class="col-md-auto"><h6>소형견 돌봄횟수</h6></div>
+                                       		 <textarea name="small_career" id="소형견" placeholder="돌봄횟수" rows="1" disabled>${sitter.small_career}</textarea>
+                                    	</div>
+                                    	
+                                    	<div class="row align-items-center" style="margin-top: 20px;">
+                                        	<div class="col-md-auto"><h6>중형견 돌봄횟수</h6></div>
+                                       		 <textarea name="medium_career" id="중형견" placeholder="돌봄횟수 " rows="1" disabled>${sitter.medium_career}</textarea>
+                                    	</div>
+                                    	
+                                    	<div class="row align-items-center" style="margin-top: 20px;">
+                                        	<div class="col-md-auto"><h6>대형견 돌봄횟수</h6></div>
+                                       		 <textarea name="large_career" id="대형견" placeholder="돌봄횟수 " rows="1" disabled>${sitter.large_career}</textarea>
+                                    	</div>
+                                    	
+                                    	<div class="row align-items-center" style="margin-top: 20px;">
+                                        	<div class="col-md-auto"><h6>고양이 돌봄횟수</h6></div>
+                                       		 <textarea name="cat_career" id="고양이" placeholder="돌봄횟수 " rows="1" disabled>${sitter.cat_career}</textarea>
+                                    	</div>
 	                                
 	                                <!-- 평점 -->
 	                                <div class="row align-items-center">

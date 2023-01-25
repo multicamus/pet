@@ -227,7 +227,7 @@ input[type=label]
 							//기존의 선택사항을 초기화시킨다
 							$("#bathselect").show()
 					    	$("#walkselect").show()
-							
+							$("#beautyselect").show()
 							var select_obj = '';
 						    // 체크한 항목만 취득
 						    var codelist = $("input[name='pet_codelist']:checked");

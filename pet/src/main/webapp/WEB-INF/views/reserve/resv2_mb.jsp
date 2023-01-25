@@ -586,7 +586,7 @@ td {
 	
 										+ "<div class=col-6>"
 										+ "<div   id='" +  data[i].sitter_id +"select2'>"
-										+ "<button type='button' class='theme-btn direct selectsitter' id='pastsitter' style='width: 55%; padding-left: 5px; padding-right: 20px;'  value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
+										+ "<button type='button' class='theme-btn direct selectsitter pastsitter'  style='width: 55%; padding-left: 5px; padding-right: 20px;'  value='"+data[i].sitter_id+ "' name='"+data[i].sitter_name+"'><span id='selectspan'>선택</span></button>"
 										+ "</div>"
 										+ "</div>"
 	
@@ -677,7 +677,7 @@ td {
 											$(".modal").fadeIn();
 										})
 														//해당 펫시터에서 [선택]버튼을 누르면
-														$("#pastsitter").on("click", function() {
+														$(".pastsitter").on("click", function() {
 															
 															//새로 누르기 바로 직전에 선택했던 시터카드 id값 불러오기
 															preCardId = "#"+ $(".card[selected=selected]").attr("id");
