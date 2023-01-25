@@ -98,6 +98,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/read.do", method = RequestMethod.GET)
 	public String member_read(String member_id, String state, Model model) {
+		System.out.println("read.do==============================");
 		MemberDTO member = service.member_read(member_id);
 		List<ResvDTO> resvlist = service.resvlist(member_id);
 		String view = "";
@@ -116,6 +117,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/sitter/read.do", method = RequestMethod.GET)
 	public String sitter_read(String sitter_id, String state, Model model, HttpServletRequest hsr) {
+		System.out.println("sitter/read.do============666666666=================");
 		SitterDTO sitter = service.sitter_read(sitter_id);
 		List<ResvDTO> resvlist = service.sitter_resvlist(sitter_id);
 		List<ResvDTO> resvlist_status = resvService.readStatus(sitter_id);
@@ -203,6 +205,7 @@ public class MemberController {
 	@RequestMapping(value = "admin.do")
 	public String admin(Model model) {
 		List<SitterDTO> sitterlist = adminservice.adminList();
+		System.out.println("admin.do==============================");
 		// for문으로 sitterlist를 탐색해서 valid 값이 1면 승인 ,1가 아니면 미승인
 		//변수 세 개를 정의 후 전체 갯수, 1상태의 갯수, 1가 아닌 갯수를 저장하고 sysout출력해보기
 		int total = sitterlist.size();

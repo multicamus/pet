@@ -49,7 +49,7 @@
 <section class="contact-section pt-130">
 	<div class="container">	
 		<h2>관리자 페이지</h2></br>
-		<div class="count" style="">
+		<div class="count" >
 		<h7><b style="color: #0D6EFD">전체 시터: ${total }</b></h7></br>
 		<h7><b style="color: #0D6EFD">승인완료 시터: ${atotal }</b></h7></br>
 		<h7><b style="color: #0D6EFD">미승인 시터: ${untotal }</b></h7>
@@ -165,43 +165,5 @@
 	}
 </script>
 <script type="text/javascript">
-$(document).ready(function(){
-	data = "${sitter.category}"
-	$("#category").val(data).attr("selected","selected");
-});
-/* category = "${category}"//컨트롤러 요청하고 response될때 값을 받아서 세팅
-	//alert(category);
-	$(document).ready(function() {
-		$("#category").val(category).attr("selected","selected");
-		$("#category").change(function() {
-			//alert("test");
-			//컨트롤러가 실행되도록
-			//select를 선택하면 컨트롤러가 실행되고 파라미터로 category가 파라미터의 값으로 현재 선택한 select의 value속성값이 지정
-			location.href="/pet/erp/admin.do?category="+encodeURI($(this).val())
-		});
-	}); */
-
-	     
-	      function ViewLayer(){
-
-	          //만일 Pop라는 녀석이 닫혀있다면??
-
-	          if(document.getElementById("Pop").style.display=="none"){
-
-	             //열어주어라
-
-	             document.getElementById("Pop").style.display='inline'
-
-	          //그렇지 않은 모든 경우라면??
-
-	          }else{
-
-	             //닫아주어라
-
-	             document.getElementById("Pop").style.display='none'
-
-	          }
-
-	       }
 
 </script>
