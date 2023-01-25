@@ -54,7 +54,7 @@
 				                      </div>
 				                      <div class="pt-50">
 			                             <button type="submit" class="theme-btn">로그인</button>
-			                             <a type="button" class="theme-btn" href="javascript:kakaoLogin();" style="margin-bottom:0px">카카오로 로그인</a>
+<!-- 			                             <a type="button" class="theme-btn" href="javascript:kakaoLogin();" style="margin-bottom:0px">카카오로 로그인</a> -->
 		                              </div>
 			                 	</form>
 			                 </div>
@@ -90,7 +90,7 @@
 				                      </div>
 						              <div class="pt-50">
 				                          <button type="submit" class="theme-btn">로그인</button>
-			                              <a type="button" class="theme-btn" href="javascript:kakaoLogin()" style="margin-bottom:0px">카카오 로그인</a>
+<!-- 			                              <a type="button" class="theme-btn" href="javascript:kakaoLogin()" style="margin-bottom:0px">카카오 로그인</a> -->
 			                          </div>
                             	</form>
                   				</div>
@@ -109,8 +109,8 @@
 	<input name="member_birthdate" id="birthday" type="hidden" value="">
 	<button type="submit" style="display:none;">제출</button>
 </form>
-<a href="javascript:kakaoLogout();">로그 아웃</a>
-<a href="javascript:kakaoDisconnect();">로그 아웃</a>
+<!-- <a href="javascript:kakaoLogout();">로그 아웃</a> -->
+<!-- <a href="javascript:kakaoDisconnect();">로그 아웃</a> -->
 <!-- hidden end -->
 
 <!-- ========================= pricing-section end ========================= -->

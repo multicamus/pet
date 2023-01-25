@@ -270,7 +270,7 @@
                                     </div>
 	                                
             
-                                <div class="row pt-100">
+                                <div class="row pt-30">
                                     <div class="col-12">
                                         <div class="button text-center">
                                             <a type="button" class="theme-btn" href="/pet/erp/sitter/read.do?sitter_id=${sitter.sitter_id}&state=UPDATE">수정</a>

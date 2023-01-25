@@ -34,7 +34,7 @@ public class PetController {
 
 	// read
 	@RequestMapping(value = "/read.do")
-	public String read(String pet_id, String state, Model model) {
+	public String read(String pet_id, String state, Model model, String member_id, HttpServletRequest hsr) {
 		PetDTO pet = ps.read(pet_id);
 		String view = "";
 		switch (state) {

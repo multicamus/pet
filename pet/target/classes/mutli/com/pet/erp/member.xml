@@ -104,9 +104,17 @@
 		WHERE r.member_id = m.member_id
 		AND m.member_id = #{member_id} 
 	</select>
+	
 	<select id="sitter_resvlist" parameterType="String" resultType="resv">
 		SELECT * FROM resv_history 
 		WHERE sitter_id = #{sitter_id}		 
+	</select>
+	
+	<select id="sitter_reviewlist" parameterType="String" resultType="resv">
+		SELECT h.resv_no 
+		FROM resv_history h, review r
+		WHERE r.resv_no = h.resv_no  
+		AND h.sitter_id = #{sitter_id}
 	</select>
 	
 	<!-- sitter rate update -->
