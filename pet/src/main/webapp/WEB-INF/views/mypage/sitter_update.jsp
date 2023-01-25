@@ -112,6 +112,7 @@
 											 <div class="thumbnail">
 												 <img src="/pet/resources/sitter/${sitter.sitter_photo}" id="userImage" width="220" height="150">
 												 <div class="col-4 pt-30">
+												 	<input type="hidden" name="sitter_photo" value="${sitter.sitter_photo}">
 												 	<input type="file" name="sitter_img" id="myfile" placeholder="사진을 등록해주세요" onchange="document.getElementById('userImage').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
 												 </div>
 											 </div>
@@ -129,16 +130,16 @@
                                     	<div class="col-md-auto"><h4>성별</h4></div>
                                     	<c:choose>
 				                        	<c:when test="${sitter.sitter_gender == 'F'}">
-				                        		<div class="form-check form-check-inline">
-				                        			<label class="form-check-label" for="genderM" style="margin-left: 0px;">
-				                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderM" value="M" disabled="disabled">
-				                                        <span>남자</span>
-			                                        </label>
+				                        		<div class="col-md-auto">
+						                        	<div class="form-check form-check-inline">
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="M" disabled="disabled" style="width: 50px;">남자
+			                                        </div>
 		                                        </div>
-		                                        <div class="form-check form-check-inline">
-			                                        <input class="form-check-input" type="radio" name="sitter_gender" id="genderW" value="F" checked="checked" disabled="disabled">
-			                                        <label class="form-check-label" for="genderW">여자</label>
-		                                        </div>
+	                                          	<div class="col-md-auto">
+			                                        <div class="form-check form-check-inline">
+				                                        <input class="form-check-input" type="radio" name="sitter_gender" value="F" checked="checked" disabled="disabled" style="width: 50px;">여자
+			                                        </div>
+	                                            </div>
 				                        	</c:when>
 				                        	
 				                        	<c:otherwise>

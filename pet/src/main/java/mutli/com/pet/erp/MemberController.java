@@ -151,12 +151,15 @@ public class MemberController {
 	
 	@RequestMapping(value = "/sitter/update.do", method = RequestMethod.POST)
 	public String sitter_update(SitterDTO sitter, HttpSession session) throws IOException {
-
 		MultipartFile img = sitter.getSitter_img();
-		String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
-		SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
-		service.update(sitter_img);
-
+		if(!img.isEmpty()) {
+			String path = WebUtils.getRealPath(session.getServletContext(), "/resources/sitter");
+			SitterDTO sitter_img = fileUploadService.sitterUploadimg(sitter, img, path);
+			service.update(sitter_img);
+		}
+		else {
+			service.update(sitter);
+		}
 		return "redirect:/erp/sitter/read.do?sitter_id=" + sitter.getSitter_id() + "&state=READ";
 	}
 	

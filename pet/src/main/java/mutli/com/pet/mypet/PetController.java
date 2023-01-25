@@ -16,6 +16,7 @@ import org.springframework.web.util.WebUtils;
 import multi.com.pet.etc.FileUploadLogic;
 import mutli.com.pet.erp.MemberDTO;
 import mutli.com.pet.erp.MemberService;
+import mutli.com.pet.erp.SitterDTO;
 
 @Controller
 @RequestMapping("/mypet")
@@ -73,10 +74,15 @@ public class PetController {
 	public String update(PetDTO pet, String member_id, HttpServletRequest hsr, Model model) throws IOException {
 		MultipartFile img = pet.getPet_img();
 		HttpSession hs = hsr.getSession();
-		String path = WebUtils.getRealPath(hs.getServletContext(), "/resources/pet");
-		PetDTO pet_img = ful.petUploadImg(pet, img, path);
-		// 기존 사진 파일을 삭제하는 코드가 필요
-		int result = ps.update(pet_img);
+		int result = 0;
+		if(!img.isEmpty()) {
+			String path = WebUtils.getRealPath(hs.getServletContext(), "/resources/pet");
+			PetDTO pet_img = ful.petUploadImg(pet, img, path);
+			result = ps.update(pet_img);
+		}
+		else {
+			result = ps.update(pet);
+		}
 		if(result == 1) {
 			hs.removeAttribute("mypetlist");
 			List<PetDTO> petList = ms.petList(member_id);
