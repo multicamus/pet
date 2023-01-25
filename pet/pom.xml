@@ -16,8 +16,6 @@
 		</repository>
 	</repositories>
 	
-
-	
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.2.4.RELEASE</org.springframework-version>
