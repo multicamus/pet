@@ -269,6 +269,12 @@
                                         
                                     </div>
 	                                
+	                                <!-- 평점 -->
+	                                <div class="row align-items-center">
+                                        <div class="col-md-auto"><h4>평점</h4></div>
+                                        <textarea name="sitter_rate" id="자기소개" placeholder="평점입니다" rows="1" disabled>${sitter.sitter_rate}</textarea>
+                                    </div>
+	                                
             
                                 <div class="row pt-30">
                                     <div class="col-12">
