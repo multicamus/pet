@@ -517,7 +517,7 @@ input[type=label]
 					<!-- 2번째 칸 -->
 
 					<!-- 다음버튼 -->
-					<div class="col-12" style="margin-top: -20%;">
+					<div class="col-12" style="margin-top: -5%;">
 						<div class="button text-center pb-50">
 							<button id="nextbtn" type="submit"
 								onclick="return CheckTest(); return CheckTime();"
